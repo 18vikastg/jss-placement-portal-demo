@@ -30,14 +30,17 @@ from Courses import ds_course,web_course,android_course,ios_course,uiux_course,r
 import nltk
 try:
     import config
-except ImportError:
+    print(f"✅ Config imported successfully! DB: {config.DB_NAME}")
+except ImportError as e:
+    print(f"❌ Config import failed: {e}")
     # Default configuration if config.py doesn't exist
     class Config:
         DB_HOST = 'localhost'
         DB_USER = 'root'
-        DB_PASSWORD = 'root@MySQL4admin'
-        DB_NAME = 'cv'
+        DB_PASSWORD = 'Vikas@2004'  # Update this with your MySQL root password
+        DB_NAME = 'resume_analyzer_db'
     config = Config()
+    print("⚠️ Using fallback configuration")
 
 nltk.download('stopwords')
 
@@ -101,14 +104,15 @@ def course_recommender(course_list):
 
 ###### Database Stuffs ######
 
-# Global variables for database connection
-connection = None
-cursor = None
-
 # sql connector
 def init_database():
-    global connection, cursor
     try:
+        print(f"🔍 Attempting database connection...")
+        print(f"Host: {config.DB_HOST}")
+        print(f"User: {config.DB_USER}")
+        print(f"Database: {config.DB_NAME}")
+        print(f"Password: {'*' * len(config.DB_PASSWORD)}")
+        
         connection = pymysql.connect(
             host=config.DB_HOST,
             user=config.DB_USER,
@@ -116,43 +120,67 @@ def init_database():
             db=config.DB_NAME
         )
         cursor = connection.cursor()
+        print("✅ Database connection successful!")
+        
+        # Store in session state for persistence
+        st.session_state.db_connection = connection
+        st.session_state.db_cursor = cursor
+        st.session_state.db_connected = True
+        
         return True
     except Exception as e:
+        print(f"❌ Database connection failed: {e}")
         st.warning(f"Database connection failed: {e}")
         st.info("The app will run in demo mode without database functionality.")
+        st.session_state.db_connected = False
         return False
 
 
-# inserting miscellaneous data, fetched results, prediction and recommendation into user_data table
+# inserting miscellaneous data, fetched results, prediction and recommendation into database
 def insert_data(sec_token,ip_add,host_name,dev_user,os_name_ver,latlong,city,state,country,act_name,act_mail,act_mob,name,email,res_score,timestamp,no_of_pages,reco_field,cand_level,skills,recommended_skills,courses,pdf_name):
-    global cursor, connection
-    if cursor is None:
-        st.warning("Database not available - data not saved")
+    # Get connection from session state
+    connection = st.session_state.get('db_connection', None)
+    cursor = st.session_state.get('db_cursor', None)
+    
+    if not connection or not cursor:
+        st.warning("Database not connected. Data not saved.")
         return
+        
     try:
-        DB_table_name = 'user_data'
-        insert_sql = "insert into " + DB_table_name + """
-        values (0,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"""
-        rec_values = (str(sec_token),str(ip_add),host_name,dev_user,os_name_ver,str(latlong),city,state,country,act_name,act_mail,act_mob,name,email,str(res_score),timestamp,str(no_of_pages),reco_field,cand_level,skills,recommended_skills,courses,pdf_name)
+        insert_sql = """INSERT INTO user_data 
+        (sec_token, ip_add, host_name, dev_user, os_name_ver, latlong, city, state, country, 
+         act_name, act_mail, act_mob, name, email, res_score, timestamp, no_of_pages, reco_field, 
+         cand_level, skills, recommended_skills, courses, pdf_name) 
+        VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"""
+        
+        rec_values = (str(sec_token), str(ip_add), host_name, dev_user, os_name_ver, str(latlong), 
+                     city, state, country, act_name, act_mail, act_mob, name, email, 
+                     str(res_score), timestamp, str(no_of_pages), reco_field, cand_level, str(skills), 
+                     str(recommended_skills), str(courses), pdf_name)
         cursor.execute(insert_sql, rec_values)
         connection.commit()
+        st.success("✅ Data saved successfully!")
     except Exception as e:
         st.warning(f"Error saving data: {e}")
 
 
 # inserting feedback data into user_feedback table
 def insertf_data(feed_name,feed_email,feed_score,comments,Timestamp):
-    global cursor, connection
-    if cursor is None:
+    # Get connection from session state
+    connection = st.session_state.get('db_connection', None)
+    cursor = st.session_state.get('db_cursor', None)
+    
+    if not connection or not cursor:
         st.warning("Database not available - feedback not saved")
         return
     try:
-        DBf_table_name = 'user_feedback'
-        insertfeed_sql = "insert into " + DBf_table_name + """
-        values (0,%s,%s,%s,%s,%s)"""
-        rec_values = (feed_name, feed_email, feed_score, comments, Timestamp)
-        cursor.execute(insertfeed_sql, rec_values)
+        insert_sql = """INSERT INTO user_feedback 
+        (feed_name, feed_email, feed_score, comments) 
+        VALUES (%s,%s,%s,%s)"""
+        rec_values = (feed_name, feed_email, feed_score, comments)
+        cursor.execute(insert_sql, rec_values)
         connection.commit()
+        st.success("✅ Feedback saved successfully!")
     except Exception as e:
         st.warning(f"Error saving feedback: {e}")
 
@@ -162,7 +190,7 @@ def insertf_data(feed_name,feed_email,feed_score,comments,Timestamp):
 
 st.set_page_config(
    page_title="AI Resume Analyzer",
-   page_icon='App/Logo/recommend.png',
+   page_icon='Logo/recommend.png',
 )
 
 
@@ -170,13 +198,17 @@ st.set_page_config(
 
 
 def run():
-    # Initialize database connection
-    db_connected = init_database()
+    # Initialize database connection only if not already connected
+    if 'db_connected' not in st.session_state or not st.session_state.get('db_connected', False):
+        db_connected = init_database()
+    else:
+        db_connected = st.session_state.get('db_connected', False)
+        
     if not db_connected:
         st.info("💡 Running in demo mode - some features may be limited")
     
     # (Logo, Heading, Sidebar etc)
-    img = Image.open('App/Logo/RESUM.png')
+    img = Image.open('Logo/RESUM.png')
     st.image(img)
     st.sidebar.markdown("# Choose Something...")
     activities = ["User", "Feedback", "About", "Admin"]
@@ -200,63 +232,16 @@ def run():
 
     ###### Creating Database and Table ######
 
-    # Create the DB (only if database is connected)
+    # Since database and tables already exist, we'll just ensure they're available
+    cursor = st.session_state.get('db_cursor', None)
     if cursor is not None:
         try:
-            db_sql = """CREATE DATABASE IF NOT EXISTS CV;"""
-            cursor.execute(db_sql)
+            # The database 'resume_analyzer_db' already exists, so we just use it
+            cursor.execute("USE resume_analyzer_db;")
         except Exception as e:
-            st.warning(f"Error creating database: {e}")
+            st.warning(f"Error accessing database: {e}")
 
-    # Create table user_data and user_feedback (only if database is connected)  
-    if cursor is not None:
-        try:
-            DB_table_name = 'user_data'
-            table_sql = "CREATE TABLE IF NOT EXISTS " + DB_table_name + """
-                        (ID INT NOT NULL AUTO_INCREMENT,
-                        sec_token varchar(20) NOT NULL,
-                        ip_add varchar(50) NULL,
-                        host_name varchar(50) NULL,
-                        dev_user varchar(50) NULL,
-                        os_name_ver varchar(50) NULL,
-                        latlong varchar(50) NULL,
-                        city varchar(50) NULL,
-                        state varchar(50) NULL,
-                        country varchar(50) NULL,
-                        act_name varchar(50) NOT NULL,
-                        act_mail varchar(50) NOT NULL,
-                        act_mob varchar(20) NOT NULL,
-                        Name varchar(500) NOT NULL,
-                        Email_ID VARCHAR(500) NOT NULL,
-                        resume_score VARCHAR(8) NOT NULL,
-                        Timestamp VARCHAR(50) NOT NULL,
-                        Page_no VARCHAR(5) NOT NULL,
-                        Predicted_Field BLOB NOT NULL,
-                        User_level BLOB NOT NULL,
-                        Actual_skills BLOB NOT NULL,
-                        Recommended_skills BLOB NOT NULL,
-                        Recommended_courses BLOB NOT NULL,
-                        pdf_name varchar(50) NOT NULL,
-                        PRIMARY KEY (ID)
-                        );
-                    """
-            cursor.execute(table_sql)
-
-
-            DBf_table_name = 'user_feedback'
-            tablef_sql = "CREATE TABLE IF NOT EXISTS " + DBf_table_name + """
-                        (ID INT NOT NULL AUTO_INCREMENT,
-                            feed_name varchar(50) NOT NULL,
-                            feed_email VARCHAR(50) NOT NULL,
-                        feed_score VARCHAR(5) NOT NULL,
-                        comments VARCHAR(100) NULL,
-                        Timestamp VARCHAR(50) NOT NULL,
-                        PRIMARY KEY (ID)
-                    );
-                """
-            cursor.execute(tablef_sql)
-        except Exception as e:
-            st.warning(f"Error creating database tables: {e}")
+    # Tables already exist in MySQL, so we don't need to recreate them
 
     ###### CODE FOR CLIENT SIDE (USER) ######
 
@@ -306,7 +291,7 @@ def run():
                 time.sleep(4)
         
             ### saving the uploaded resume to folder
-            save_image_path = 'App/Uploaded_Resumes/'+pdf_file.name
+            save_image_path = 'Uploaded_Resumes/'+pdf_file.name
             pdf_name = pdf_file.name
             with open(save_image_path, "wb") as f:
                 f.write(pdf_file.getbuffer())
@@ -665,19 +650,32 @@ def run():
 
 
         # query to fetch data from user feedback table
+        connection = st.session_state.get('db_connection', None)
+        cursor = st.session_state.get('db_cursor', None)
+        
         if connection is not None and cursor is not None:
             try:
-                query = 'select * from user_feedback'        
-                plotfeed_data = pd.read_sql(query, connection)                        
+                # Fetch feedback data manually to avoid pandas warning
+                cursor.execute('SELECT * FROM user_feedback')
+                feedback_data = cursor.fetchall()
+                
+                if feedback_data:
+                    # Get column names
+                    cursor.execute('DESCRIBE user_feedback')
+                    columns = [col[0] for col in cursor.fetchall()]
+                    plotfeed_data = pd.DataFrame(feedback_data, columns=columns)
+                else:
+                    plotfeed_data = pd.DataFrame()
 
                 # fetching feed_score from the query and getting the unique values and total value count 
-                labels = plotfeed_data.feed_score.unique()
-                values = plotfeed_data.feed_score.value_counts()
+                if not plotfeed_data.empty:
+                    labels = plotfeed_data.feed_score.unique()
+                    values = plotfeed_data.feed_score.value_counts()
 
-                # plotting pie chart for user ratings
-                st.subheader("**Past User Rating's**")
-                fig = px.pie(values=values, names=labels, title="Chart of User Rating Score From 1 - 5", color_discrete_sequence=px.colors.sequential.Aggrnyl)
-                st.plotly_chart(fig)
+                    # plotting pie chart for user ratings
+                    st.subheader("**Past User Rating's**")
+                    fig = px.pie(values=values, names=labels, title="Chart of User Rating Score From 1 - 5", color_discrete_sequence=px.colors.sequential.Aggrnyl)
+                    st.plotly_chart(fig)
 
                 #  Fetching Comment History
                 cursor.execute('select feed_name, comments from user_feedback')
@@ -738,10 +736,15 @@ def run():
             ## Credentials 
             if ad_user == 'admin' and ad_password == 'admin@resume-analyzer':
                 
-                if connection is not None and cursor is not None:
+                # Get connection from session state
+                connection = st.session_state.get('db_connection', None)
+                cursor = st.session_state.get('db_cursor', None)
+                db_connected = st.session_state.get('db_connected', False)
+                
+                if connection is not None and cursor is not None and db_connected:
                     try:
                         ### Fetch miscellaneous data from user_data(table) and convert it into dataframe
-                        cursor.execute('''SELECT ID, ip_add, resume_score, convert(Predicted_Field using utf8), convert(User_level using utf8), city, state, country from user_data''')
+                        cursor.execute('''SELECT ID, ip_add, res_score, reco_field, cand_level, city, state, country from user_data''')
                         datanalys = cursor.fetchall()
                         plot_data = pd.DataFrame(datanalys, columns=['Idt', 'IP_add', 'resume_score', 'Predicted_Field', 'User_Level', 'City', 'State', 'Country'])
                         
@@ -750,7 +753,7 @@ def run():
                         st.success("Welcome Admin ! Total %d " % values + " User's Have Used Our Tool : )")                
                         
                         ### Fetch user data from user_data(table) and convert it into dataframe
-                        cursor.execute('''SELECT ID, sec_token, ip_add, act_name, act_mail, act_mob, convert(Predicted_Field using utf8), Timestamp, Name, Email_ID, resume_score, Page_no, pdf_name, convert(User_level using utf8), convert(Actual_skills using utf8), convert(Recommended_skills using utf8), convert(Recommended_courses using utf8), city, state, country, latlong, os_name_ver, host_name, dev_user from user_data''')
+                        cursor.execute('''SELECT ID, sec_token, ip_add, act_name, act_mail, act_mob, reco_field, timestamp, name, email, res_score, no_of_pages, pdf_name, cand_level, skills, recommended_skills, courses, city, state, country, latlong, os_name_ver, host_name, dev_user from user_data''')
                         data = cursor.fetchall()                
 
                         st.header("**User's Data**")
@@ -780,80 +783,112 @@ def run():
                         ### Analyzing All the Data's in pie charts
 
                         # fetching feed_score from the query and getting the unique values and total value count 
-                        labels = plotfeed_data.feed_score.unique()
-                        values = plotfeed_data.feed_score.value_counts()
+                        feed_score_counts = plotfeed_data.feed_score.value_counts()
                         
                         # Pie chart for user ratings
                         st.subheader("**User Rating's**")
-                        fig = px.pie(values=values, names=labels, title="Chart of User Rating Score From 1 - 5 🤗", color_discrete_sequence=px.colors.sequential.Aggrnyl)
-                        st.plotly_chart(fig)
+                        if len(feed_score_counts) > 0:
+                            fig = px.pie(values=feed_score_counts.values, names=feed_score_counts.index, 
+                                       title="Chart of User Rating Score From 1 - 5 🤗", 
+                                       color_discrete_sequence=px.colors.sequential.Aggrnyl)
+                            st.plotly_chart(fig)
+                        else:
+                            st.info("No feedback data available for chart")
 
                         # fetching Predicted_Field from the query and getting the unique values and total value count                 
-                        labels = plot_data.Predicted_Field.unique()
-                        values = plot_data.Predicted_Field.value_counts()
+                        predicted_field_counts = plot_data.Predicted_Field.value_counts()
 
                         # Pie chart for predicted field recommendations
                         st.subheader("**Pie-Chart for Predicted Field Recommendation**")
-                        fig = px.pie(df, values=values, names=labels, title='Predicted Field according to the Skills 👽', color_discrete_sequence=px.colors.sequential.Aggrnyl_r)
-                        st.plotly_chart(fig)
+                        if len(predicted_field_counts) > 0:
+                            fig = px.pie(values=predicted_field_counts.values, names=predicted_field_counts.index, 
+                                       title='Predicted Field according to the Skills 👽', 
+                                       color_discrete_sequence=px.colors.sequential.Aggrnyl_r)
+                            st.plotly_chart(fig)
+                        else:
+                            st.info("No predicted field data available for chart")
 
                         # fetching User_Level from the query and getting the unique values and total value count                 
-                        labels = plot_data.User_Level.unique()
-                        values = plot_data.User_Level.value_counts()
+                        user_level_counts = plot_data.User_Level.value_counts()
 
                         # Pie chart for User's👨‍💻 Experienced Level
                         st.subheader("**Pie-Chart for User's Experienced Level**")
-                        fig = px.pie(df, values=values, names=labels, title="Pie-Chart 📈 for User's 👨‍💻 Experienced Level", color_discrete_sequence=px.colors.sequential.RdBu)
-                        st.plotly_chart(fig)
+                        if len(user_level_counts) > 0:
+                            fig = px.pie(values=user_level_counts.values, names=user_level_counts.index, 
+                                       title="Pie-Chart 📈 for User's 👨‍💻 Experienced Level", 
+                                       color_discrete_sequence=px.colors.sequential.RdBu)
+                            st.plotly_chart(fig)
+                        else:
+                            st.info("No user level data available for chart")
 
                         # fetching resume_score from the query and getting the unique values and total value count                 
-                        labels = plot_data.resume_score.unique()                
-                        values = plot_data.resume_score.value_counts()
+                        resume_score_counts = plot_data.resume_score.value_counts()
 
                         # Pie chart for Resume Score
                         st.subheader("**Pie-Chart for Resume Score**")
-                        fig = px.pie(df, values=values, names=labels, title='From 1 to 100 💯', color_discrete_sequence=px.colors.sequential.Agsunset)
-                        st.plotly_chart(fig)
+                        if len(resume_score_counts) > 0:
+                            fig = px.pie(values=resume_score_counts.values, names=resume_score_counts.index, 
+                                       title='From 1 to 100 💯', 
+                                       color_discrete_sequence=px.colors.sequential.Agsunset)
+                            st.plotly_chart(fig)
+                        else:
+                            st.info("No resume score data available for chart")
 
                         # fetching IP_add from the query and getting the unique values and total value count 
-                        labels = plot_data.IP_add.unique()
-                        values = plot_data.IP_add.value_counts()
+                        ip_counts = plot_data.IP_add.value_counts()
 
                         # Pie chart for Users
                         st.subheader("**Pie-Chart for Users App Used Count**")
-                        fig = px.pie(df, values=values, names=labels, title='Usage Based On IP Address 👥', color_discrete_sequence=px.colors.sequential.matter_r)
-                        st.plotly_chart(fig)
+                        if len(ip_counts) > 0:
+                            fig = px.pie(values=ip_counts.values, names=ip_counts.index, 
+                                       title='Usage Based On IP Address 👥', 
+                                       color_discrete_sequence=px.colors.sequential.matter_r)
+                            st.plotly_chart(fig)
+                        else:
+                            st.info("No IP address data available for chart")
 
                         # fetching City from the query and getting the unique values and total value count 
-                        labels = plot_data.City.unique()
-                        values = plot_data.City.value_counts()
+                        city_counts = plot_data.City.value_counts()
 
                         # Pie chart for City
                         st.subheader("**Pie-Chart for City**")
-                        fig = px.pie(df, values=values, names=labels, title='Usage Based On City 🌆', color_discrete_sequence=px.colors.sequential.Jet)
-                        st.plotly_chart(fig)
+                        if len(city_counts) > 0:
+                            fig = px.pie(values=city_counts.values, names=city_counts.index, 
+                                       title='Usage Based On City 🌆', 
+                                       color_discrete_sequence=px.colors.sequential.Jet)
+                            st.plotly_chart(fig)
+                        else:
+                            st.info("No city data available for chart")
 
                         # fetching State from the query and getting the unique values and total value count 
-                        labels = plot_data.State.unique()
-                        values = plot_data.State.value_counts()
+                        state_counts = plot_data.State.value_counts()
 
                         # Pie chart for State
                         st.subheader("**Pie-Chart for State**")
-                        fig = px.pie(df, values=values, names=labels, title='Usage Based on State 🚉', color_discrete_sequence=px.colors.sequential.PuBu_r)
-                        st.plotly_chart(fig)
+                        if len(state_counts) > 0:
+                            fig = px.pie(values=state_counts.values, names=state_counts.index, 
+                                       title='Usage Based on State 🚉', 
+                                       color_discrete_sequence=px.colors.sequential.PuBu_r)
+                            st.plotly_chart(fig)
+                        else:
+                            st.info("No state data available for chart")
 
                         # fetching Country from the query and getting the unique values and total value count 
-                        labels = plot_data.Country.unique()
-                        values = plot_data.Country.value_counts()
+                        country_counts = plot_data.Country.value_counts()
 
                         # Pie chart for Country
                         st.subheader("**Pie-Chart for Country**")
-                        fig = px.pie(df, values=values, names=labels, title='Usage Based on Country 🌏', color_discrete_sequence=px.colors.sequential.Purpor_r)
-                        st.plotly_chart(fig)
+                        if len(country_counts) > 0:
+                            fig = px.pie(values=country_counts.values, names=country_counts.index, 
+                                       title='Usage Based on Country 🌏', 
+                                       color_discrete_sequence=px.colors.sequential.Purpor_r)
+                            st.plotly_chart(fig)
+                        else:
+                            st.info("No country data available for chart")
                         
                     except Exception as e:
-                        st.error("Database connection error. Running in demo mode.")
-                        st.info("Please set up MySQL database to enable full admin functionality.")
+                        st.error(f"Error in admin dashboard: {str(e)}")
+                        st.info("Some charts may not display correctly. Core data is still available above.")
                 else:
                     st.warning("Database not connected. Please configure database settings.")
                     st.info("Set up MySQL database using the provided schema to enable admin features.")

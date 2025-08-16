@@ -1,7 +1,7 @@
 # Database Configuration
 DB_HOST = 'localhost'
 DB_USER = 'root'
-DB_PASSWORD = 'your_password_here'  # Change this to your MySQL password
+DB_PASSWORD = 'Vikas@2004'  # Strong password that meets MySQL policy
 DB_NAME = 'resume_analyzer_db'
 
 # Security
