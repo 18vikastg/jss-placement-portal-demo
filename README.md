@@ -1,386 +1,289 @@
-<p><small>Best View in <a href="https://github.com/settings/appearance">Light Mode</a> and Desktop Site (Recommended)</small></p><br/>
-
-![AI-Resume-Analyzer](https://socialify.git.ci/18vikastg/AI-Resume-Analyzer/image?description=1&descriptionEditable=AI%20Resume%20Analysis%20Tool%20with%20Machine%20Learning&font=Raleway&language=1&pattern=Plus&theme=Light)
+# 🚀 AI Resume Analyzer
 
 <div align="center">
-  <h1>🚀 AI RESUME ANALYZER 🚀</h1>
-  <p>An Advanced Tool for Resume Analysis, Predictions and Recommendations</p>
-  <!-- Badges -->
-  <p>
-    <img src="https://img.shields.io/github/last-commit/18vikastg/AI-Resume-Analyzer" alt="last update" />
-    <img src="https://badges.frapsoft.com/os/v2/open-source.svg?v=103" alt="open source" />
-    <img src="https://img.shields.io/github/languages/top/18vikastg/AI-Resume-Analyzer?color=red" alt="language" />
-    <img src="https://img.shields.io/github/languages/code-size/18vikastg/AI-Resume-Analyzer?color=informational" alt="code size" />
-  </p>
-    <a href="https://github.com/18vikastg/AI-Resume-Analyzer/blob/main/LICENSE">
-      <img src="https://img.shields.io/github/license/18vikastg/AI-Resume-Analyzer.svg?color=yellow" alt="license" />
-    </a>
-  </p>
   
-  <!--links-->
-  <h4>
-    <a href="#preview-">View Demo</a>
-    <span> · </span>
-    <a href="#setup--installation-">Installation</a>
-    <span> · </span>
-    <a href="#about-the-project-">About</a>
-  </h4>
-  <p>
-    <small align="justify">
-      Developed with ❤️ by 
-      <a href="https://github.com/18vikastg">Vikas TG</a>
-     </small>
-  </p>
-  <small align="justify">🎯 An Advanced AI-powered Resume Analysis System built with Python and Streamlit
-  </small>
-</div><br/><br/>
+[![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://python.org)
+[![Streamlit](https://img.shields.io/badge/Streamlit-1.28%2B-red.svg)](https://streamlit.io)
+[![MySQL](https://img.shields.io/badge/MySQL-8.0%2B-orange.svg)](https://mysql.com)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-## About the Project 🎯
-<div align="center">
-    <br/><img src="https://raw.githubusercontent.com/18vikastg/AI-Resume-Analyzer/main/screenshots/RESUME.png" alt="screenshot" /><br/><br/>
-    <p align="justify"> 
-      An intelligent tool that leverages natural language processing and machine learning to parse resume information, extract key skills, and categorize them into relevant industry sectors. The system provides comprehensive recommendations, analytics, and predictions to help both job seekers and recruiters make data-driven decisions.
-    </p>
+**🎯 A comprehensive AI-powered resume analysis tool built with cutting-edge machine learning and NLP techniques**
+
 </div>
 
-## Scope 😲
-i. It can be used for getting all the resume data into a structured tabular format and csv as well, so that the organization can use those data for analytics purposes
+---
 
-ii. By providing recommendations, predictions and overall score user can improve their resume and can keep on testing it on our tool
+## 🌟 Project Overview
 
-iii. And it can increase more traffic to our tool because of user section
+The **AI Resume Analyzer** is an intelligent web application I developed to revolutionize how resumes are analyzed and optimized. This tool combines advanced Natural Language Processing, Machine Learning algorithms, and an intuitive Streamlit interface to provide comprehensive resume analysis, personalized recommendations, and detailed analytics.
 
-iv. It can be used by colleges to get insight of students and their resume before placements
+### 💡 The Vision Behind This Project
 
-v. Also, to get analytics for roles which users are mostly looking for
+As a developer passionate about AI and career development, I recognized the need for an intelligent system that could:
+- Automatically parse and analyze resume content
+- Provide data-driven insights and recommendations  
+- Help job seekers optimize their profiles effectively
+- Offer recruiters powerful analytics and insights
 
-vi. To improve this tool by getting feedbacks
+### ✨ Core Features I've Built
 
-<!-- TechStack -->
-## Tech Stack 🍻
-<details>
-  <summary>Frontend</summary>
-  <ul>
-    <li><a href="https://streamlit.io/">Streamlit</a></li>
-    <li><a href="https://developer.mozilla.org/en-US/docs/Learn/HTML">HTML</a></li>
-    <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS</a></li>
-    <li><a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript">JavaScript</a></li>
-  </ul>
-</details>
+🔍 **Smart Resume Parsing Engine**
+- Advanced PDF text extraction and processing
+- Intelligent skill identification and categorization
+- Automatic experience level detection
 
-<details>
-  <summary>Backend</summary>
-  <ul>
-    <li><a href="https://streamlit.io/">Streamlit</a></li>
-    <li><a href="https://www.python.org/">Python</a></li>
-  </ul>
-</details>
+📊 **AI-Powered Analysis Dashboard**
+- Comprehensive resume scoring algorithm
+- Skill gap analysis with industry standards
+- Experience level prediction (Fresher/Intermediate/Experienced)
 
-<details>
-<summary>Database</summary>
-  <ul>
-    <li><a href="https://www.mysql.com/">MySQL</a></li>
-  </ul>
-</details>
+💡 **Personalized Recommendation System**
+- Field-specific skill recommendations
+- Curated course suggestions from top platforms
+- Career advancement tips and strategies
 
-<details>
-<summary>Modules</summary>
-  <ul>
-    <li><a href="https://pandas.pydata.org/">pandas</a></li>
-    <li><a href="https://github.com/OmkarPathak/pyresparser">pyresparser</a></li>
-    <li><a href="https://pypi.org/project/pdfminer3/">pdfminer3</a></li>
-    <li><a href="https://plotly.com/">Plotly</a></li>
-    <li><a href="https://www.nltk.org/">NLTK</a></li>
-  </ul>
-</details>
+📈 **Advanced Analytics Platform**
+- Real-time user engagement metrics
+- Geographic distribution analysis
+- Skill trend visualization with interactive charts
+- Complete admin dashboard with data export capabilities
 
-<!-- Features -->
-## Key Features 🌟
+🗄️ **Robust Database Integration**
+- MySQL database with optimized schema
+- Secure user data management
+- Session-based state management
+- Real-time feedback collection system
 
-✨ **Resume Parsing & Analysis**
-- Extract comprehensive information from PDF resumes
-- Natural language processing for skill identification
-- Automated categorization of technical and soft skills
+## 🛠️ Technology Stack I Used
 
-📊 **Smart Recommendations**
-- Personalized course suggestions based on skill gaps
-- Career path recommendations
-- Industry-specific insights and analytics
+| Category | Technologies |
+|----------|-------------|
+| **Frontend** | Streamlit, HTML, CSS, JavaScript |
+| **Backend** | Python 3.8+, Streamlit Framework |
+| **Database** | MySQL 8.0+ with PyMySQL connector |
+| **AI/ML Libraries** | NLTK, spaCy, scikit-learn |
+| **Data Processing** | pandas, numpy, pdfminer3 |
+| **Visualization** | Plotly, matplotlib |
+| **Other Tools** | pyresparser, PIL, io, base64 |
 
-🎯 **Scoring System**
-- Resume quality scoring with detailed feedback
-- Skill match analysis for specific job roles
-- Performance benchmarking against industry standards
+## 🎯 Application Architecture
 
-📈 **Analytics Dashboard**
-- Visual representation of skills distribution
-- Geographic analytics of candidates
-- Trend analysis for HR insights
+### 🖥️ User Interface Features
+- **Resume Upload & Analysis**: Drag-and-drop PDF processing with real-time feedback
+- **Smart Skill Detection**: AI-powered extraction of technical and soft skills  
+- **Career Recommendations**: Personalized suggestions based on industry trends
+- **Interactive Scoring**: Comprehensive resume evaluation with improvement tips
 
-🔒 **Admin Panel**
-- Comprehensive user data management
-- Feedback collection and analysis
-- Export functionality for data analytics
-### Client: -
-- Fetching Location and Miscellaneous Data
+### 🔧 Admin Dashboard Capabilities  
+- **User Analytics**: Complete user data management with CSV export functionality
+- **Visual Analytics**: Interactive pie charts for ratings, experience levels, and geographic distribution
+- **Feedback Management**: Real-time user feedback collection and analysis system
+- **Data Export**: Structured data export for further analysis and reporting
 
-  Using Parsing Techniques to fetch
-- Basic Info
-- Skills
-- Keywords
+### 📊 Advanced Analytics I Implemented
+- **Geographic Insights**: City, state, and country-wise user distribution analysis
+- **Skill Trending**: Popular skills and career field analytics
+- **Performance Metrics**: Resume scoring patterns and user engagement tracking  
+- **Feedback Analytics**: Rating distribution and user satisfaction metrics
 
-Using logical programs, it will recommend
-- Skills that can be added
-- Predicted job role
-- Course and certificates
-- Resume tips and ideas
-- Overall Score
-- Interview & Resume tip videos
+## 🚀 Quick Start & Installation
 
-### Admin: -
-- Get all applicant’s data into tabular format
-- Download user’s data into csv file
-- View all saved uploaded pdf in Uploaded Resume folder
-- Get user feedback and ratings
-  
-  Pie Charts for: -
-- Ratings
-- Predicted field / roles
-- Experience level
-- Resume score
-- User count
-- City
-- State
-- Country
-
-### Feedback: -
-- Form filling
-- Rating from 1 – 5
-- Show overall ratings pie chart
-- Past user comments history 
-
-## Requirements 😅
-### Have these things installed to make your process smooth 
-1) Python (3.9.12) https://www.python.org/downloads/release/python-3912/
-2) MySQL https://www.mysql.com/downloads/
-3) Visual Studio Code **(Prefered Code Editor)** https://code.visualstudio.com/Download
-4) Visual Studio build tools for C++ https://aka.ms/vs/17/release/vs_BuildTools.exe
-
-## Setup & Installation �
-
-### Quick Setup (Automated)
-
-1. **Clone the repository**
-```bash
-git clone https://github.com/18vikastg/AI-Resume-Analyzer.git
-cd AI-Resume-Analyzer
-```
-
-2. **Run the setup script**
-```bash
-./setup.sh
-```
-
-### Manual Setup
-
-#### Prerequisites
-- Python 3.7+ 
-- MySQL 8.0+
+### Prerequisites
+- Python 3.8 or higher
+- MySQL 8.0 or higher  
 - Git
+- Visual Studio Code (recommended)
 
-#### Installation Steps
+### 🔧 Setup Instructions
 
-1. **Clone and navigate to the project**
+**1. Clone the Repository**
 ```bash
-git clone https://github.com/18vikastg/AI-Resume-Analyzer.git
-cd AI-Resume-Analyzer
+git clone https://github.com/18vikastg/ai-resume-analyser.git
+cd ai-resume-analyser
 ```
 
-2. **Create and activate virtual environment**
+**2. Create Virtual Environment**
 ```bash
-python -m venv resume_analyzer_env
+python -m venv .venv
 
 # On Linux/Mac:
-source resume_analyzer_env/bin/activate
+source .venv/bin/activate
 
 # On Windows:
-resume_analyzer_env\Scripts\activate
+.venv\Scripts\activate
 ```
 
-3. **Install dependencies**
+**3. Install Dependencies**
 ```bash
 cd App
 pip install -r requirements.txt
 python -m spacy download en_core_web_sm
+python -c "import nltk; nltk.download('stopwords')"
 ```
 
-4. **Database Setup**
-```bash
-# Login to MySQL and run:
-mysql -u root -p < ../database_schema.sql
+**4. Database Configuration**
+```sql
+-- Create database in MySQL
+CREATE DATABASE resume_analyzer_db;
+USE resume_analyzer_db;
+
+-- Tables will be created automatically by the application
 ```
 
-5. **Configure the application**
-   - Copy `App/config.py` and update your database credentials
-   - Update MySQL password and database name as needed
-
-6. **Run the application**
-```bash
-streamlit run App.py
+**5. Configure Application**
+- Update `App/config.py` with your MySQL credentials:
+```python
+DB_HOST = "localhost"
+DB_USER = "your_username" 
+DB_PASSWORD = "your_password"
+DB_NAME = "resume_analyzer_db"
 ```
 
-The application will be available at `http://localhost:8501`
-
-### Default Admin Credentials
-- **Username:** admin
-- **Password:** admin@resume-analyzer
-
-⚠️ **Important:** Change these credentials in production!
-
-Go to ```venvapp\Lib\site-packages\pyresparser``` folder
-
-And replace the ```resume_parser.py``` with ```resume_parser.py``` 
-
-which was provided by me inside ```pyresparser``` folder
-
-``Congratulations 🥳😱 your set-up 👆 and installation is finished 😵🤯``
-
-I hope that your ``venvapp`` is activated and working directory is inside ``App``
-
-Run the ```App.py``` file using
+**6. Run the Application**
 ```bash
 streamlit run App.py
-
 ```
 
-## Known Error 🤪
-If ``GeocoderUnavailable`` error comes up then just check your internet connection and network speed
+Visit `http://localhost:8501` to access the application!
 
-## Issue While Installation and Set-up 🤧
+### 🔐 Default Admin Access
+- **Username:** `admin`
+- **Password:** `admin@resume-analyzer`
 
-Feel free to open an issue on [GitHub](https://github.com/18vikastg/AI-Resume-Analyzer/issues) if you encounter any problems during installation or setup.
+> ⚠️ **Security Note:** Change these credentials in production environment
 
-## Usage
-- After the setup it will do stuff's automatically
-- You just need to upload a resume and see it's magic
-- Try first with my resume uploaded in ``Uploaded_Resumes`` folder
-- Admin userid is ``admin`` and password is ``admin@resume-analyzer``
+## 🌐 Cloud Deployment Options
 
-<!-- Roadmap -->
-## Roadmap 🛵
-* [x] Predict user experience level.
-* [x] Add resume scoring criteria for skills and projects.
-* [x] Added fields and recommendations for web, android, ios, data science.
-* [ ] Add more fields for other roles, and its recommendations respectively. 
-* [x] Fetch more details from users resume.
-* [ ] View individual user details.
+### Streamlit Community Cloud (Recommended)
+1. Push your code to GitHub
+2. Visit [share.streamlit.io](https://share.streamlit.io)
+3. Connect your GitHub account and select this repository
+4. Set main file path: `App/App.py`
+5. Add your database credentials to secrets
+6. Deploy!
 
-## Contributing 🤘
-Pull requests are welcome. 
+### Other Free Platforms
+- **Heroku** - Full-stack deployment with database addon
+- **Railway** - Modern deployment with MySQL support  
+- **PythonAnywhere** - Python-focused hosting platform
+- **Render** - Free tier with database integration
 
-For major changes, please open an issue first to discuss what you would like to change.
+## 💡 How to Use
 
-I've attached the <a href="https://github.com/18vikastg/AI-Resume-Analyzer/blob/main/RESUME%20ANALYSER%20SYNOPSIS.pdf">synopsis</a> of the project
+1. **For Job Seekers:**
+   - Upload your PDF resume
+   - Get instant analysis and scoring
+   - Receive personalized skill recommendations
+   - Access curated course suggestions
 
-If you want the full report of project
-<a href="mailto:dnoobnerd@gmail.com?subject=I%20Want%20The%20Project%20Report%20of%20AI-RESUME-ANALYZER%20(2022%20-%2023)&body=Here%20Are%20My%20Details%20%F0%9F%98%89%0D%0A%0D%0AOrganization%2FCollege%20Name%3A%20%0D%0A%0D%0AFull%20Name%3A%20%0D%0A%0D%0AGitHub%20Profile%20%3A%20%0D%0A%0D%0AFrom%20where%20did%20you%20get%20to%20know%20about%20this%20project%3A%0D%0A%0D%0APurpose%20of%20asking%20project%20report%20(describe)%3A%0D%0A%0D%0A%0D%0AIf%20the%20above%20information%20satisfy%20your%20identity%20you%20will%20get%20the%20report%20to%20your%20email.">Email Me</a> ``it's FREE``
+2. **For Administrators:**
+   - Login with admin credentials
+   - View comprehensive user analytics
+   - Export data for further analysis
+   - Monitor feedback and ratings
 
-## Acknowledgement 🤗
-- <a href="https://www.linkedin.com/in/mrbriit/">Dr Bright</a> - <a href="https://www.udemy.com/course/the-full-stack-data-scientist-bootcamp/">(The Full Stack Data Scientist BootCamp)</a>
-- <a href="https://www.academia.edu/32543544/Resume_Parser_with_Natural_Language_Processing">Resume Parser with Natural Language Processing</a>
-- <a href="https://github.com/OmkarPathak/pyresparser">pyresparser</a>
+## 🛣️ Development Roadmap
 
-## Preview 👽
+- ✅ **Advanced Resume Parsing** - Complete PDF analysis with skill extraction
+- ✅ **AI-Powered Scoring** - Comprehensive resume evaluation system  
+- ✅ **Smart Recommendations** - Personalized skill and course suggestions
+- ✅ **Admin Analytics** - Interactive dashboards with data visualization
+- ✅ **Database Integration** - Complete MySQL integration with session management
+- 🔄 **Enhanced ML Models** - Improved prediction accuracy
+- 🔄 **Additional Career Fields** - Support for more industry verticals
+- 🔄 **Advanced Analytics** - More detailed user insights and trends
 
-### Client Side
+## 📸 Application Screenshots
 
-**Main Screen**
+### 🖥️ User Interface
 
-![Screenshot](https://github.com/18vikastg/AI-Resume-Analyzer/blob/main/screenshots/user/1-main-screen.png?raw=true)
+**Main Dashboard**
+![Main Interface](screenshots/user/1-main-screen.png)
 
-**Resume Analysis**
+**Resume Analysis Results**
+![Resume Analysis](screenshots/user/2-analysis.jpg)
 
-![Screenshot](https://github.com/18vikastg/AI-Resume-Analyzer/blob/main/screenshots/user/2-analysis.jpg?raw=true)
+**Skill Recommendations**
+![Skill Recommendations](screenshots/user/3-recom.png)
 
-**Skill Recommendation**
+**Course Suggestions**
+![Course Recommendations](screenshots/user/4-recom.png)
 
-![Screenshot](https://github.com/18vikastg/AI-Resume-Analyzer/blob/main/screenshots/user/3-recom.png?raw=true)
+### 🔧 Admin Dashboard
 
-**Course Recommendation**
+**Admin Analytics**
+![Admin Dashboard](screenshots/admin/1-main-screen.png)
 
-![Screenshot](https://github.com/18vikastg/AI-Resume-Analyzer/blob/main/screenshots/user/4-recom.png?raw=true)
+**User Data Management**
+![User Data](screenshots/admin/2-user-data.png)
 
-**Tips and Overall Score**
+**Interactive Analytics**
+![Analytics Charts](screenshots/admin/5-pieexp.png)
 
-![Screenshot](https://github.com/18vikastg/AI-Resume-Analyzer/blob/main/screenshots/user/5-tipsscore.png?raw=true)
+### 💬 Feedback System
 
-**Video Recommendation**
+**User Feedback Form**
+![Feedback Form](screenshots/feedback/1-form.png)
 
-![Screenshot](https://github.com/18vikastg/AI-Resume-Analyzer/blob/main/screenshots/user/6-recom.png?raw=true)
-
-### Feedback
-
-**Feedback Form**
-
-![Screenshot](https://github.com/18vikastg/AI-Resume-Analyzer/blob/main/screenshots/feedback/1-form.png?raw=true)
-
-**Overall Rating Analysis and Comment History**
-
-![Screenshot](https://github.com/18vikastg/AI-Resume-Analyzer/blob/main/screenshots/feedback/2-analytics.png?raw=true)
-
-### Admin
-
-**Login**
-
-![Screenshot](https://github.com/18vikastg/AI-Resume-Analyzer/blob/main/screenshots/admin/1-main-screen.png?raw=true)
-
-**User Count and it's data**
-
-![Screenshot](https://github.com/18vikastg/AI-Resume-Analyzer/blob/main/screenshots/admin/2-user-data.png?raw=true)
-
-**Exported csv file**
-
-![Screenshot](https://github.com/18vikastg/AI-Resume-Analyzer/blob/main/screenshots/admin/3-user-datacsv.png?raw=true)
-
-**Feedback Data**
-
-![Screenshot](https://github.com/18vikastg/AI-Resume-Analyzer/blob/main/screenshots/admin/4-feed-data.png?raw=true)
-
-**Pie Chart Analytical Representation of clusters**
-
-![Screenshot](https://github.com/18vikastg/AI-Resume-Analyzer/blob/main/screenshots/admin/5-pieexp.png?raw=true)
-
-![Screenshot](https://github.com/18vikastg/AI-Resume-Analyzer/blob/main/screenshots/admin/6-piescre.jpg?raw=true)
-
-![Screenshot](https://github.com/18vikastg/AI-Resume-Analyzer/blob/main/screenshots/admin/7-pielocation.png?raw=true)
-
-### Built with ❤️ AI RESUME ANALYZER by <a href="https://github.com/18vikastg">Vikas TG</a>
+**Feedback Analytics**
+![Feedback Analytics](screenshots/feedback/2-analytics.png)
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
+I welcome contributions to make this project even better! Here's how you can contribute:
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed contribution guidelines.
+1. **Fork the Repository**
+2. **Create a Feature Branch** (`git checkout -b feature/amazing-feature`)
+3. **Commit Your Changes** (`git commit -m 'Add amazing feature'`)
+4. **Push to Branch** (`git push origin feature/amazing-feature`)
+5. **Open a Pull Request**
+
+### 📋 Contribution Guidelines
+- Ensure code follows Python best practices
+- Add comments for complex algorithms
+- Update documentation for new features
+- Test thoroughly before submitting PR
+
+## 🐛 Known Issues & Solutions
+
+### Common Issues
+- **GeocoderUnavailable Error**: Check internet connection and network speed
+- **Database Connection Issues**: Verify MySQL credentials in `config.py`
+- **Module Import Errors**: Ensure all dependencies are installed correctly
+
+### 🔧 Troubleshooting
+For installation or setup issues, please:
+1. Check the [Issues](https://github.com/18vikastg/ai-resume-analyser/issues) page
+2. Create a new issue with detailed error logs
+3. Include your system information (OS, Python version, etc.)
 
 ## 📝 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
-- Thanks to the open-source community for the amazing libraries used in this project
-- Special thanks to all contributors and users who provide feedback
+- **Open Source Community** - For the amazing libraries and frameworks
+- **Streamlit Team** - For the excellent web app framework
+- **Contributors** - Everyone who helped improve this project
+- **Users** - For valuable feedback and suggestions
 
-## 📞 Support
+## 📞 Contact & Support
 
-If you found this project helpful, please give it a ⭐!
+**Vikas TG** - *Full Stack Developer & AI Enthusiast*
 
-For support, create an issue or contact via [GitHub](https://github.com/18vikastg/AI-Resume-Analyzer/issues).
+[![GitHub](https://img.shields.io/badge/GitHub-18vikastg-181717?style=flat&logo=github)](https://github.com/18vikastg)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Vikas%20TG-0077B5?style=flat&logo=linkedin)](https://linkedin.com/in/vikastg)
+[![Email](https://img.shields.io/badge/Email-vikastg.dev%40gmail.com-D14836?style=flat&logo=gmail)](mailto:vikastg.dev@gmail.com)
 
 ---
 
 <div align="center">
-  Made with ❤️ by <a href="https://github.com/18vikastg">Vikas TG</a>
-  <br>
-  <sub>⭐ If this helped you, please star this repository!</sub>
+
+**⭐ If this project helped you, please give it a star! ⭐**
+
+*Built with ❤️ by [Vikas TG](https://github.com/18vikastg)*
+
+**🚀 [Deploy on Streamlit Cloud](https://share.streamlit.io) | 📚 [View Documentation](https://github.com/18vikastg/ai-resume-analyser/blob/main/README.md) | 🐛 [Report Issues](https://github.com/18vikastg/ai-resume-analyser/issues)**
+
 </div>
