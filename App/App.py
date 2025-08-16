@@ -16,6 +16,45 @@ import io,random
 import plotly.express as px # to create visualisations at the admin session
 import plotly.graph_objects as go
 from geopy.geocoders import Nominatim
+
+# NLTK setup for Streamlit Cloud
+import nltk
+import ssl
+
+# Handle SSL certificate issues for NLTK downloads
+try:
+    _create_unverified_https_context = ssl._create_unverified_context
+except AttributeError:
+    pass
+else:
+    ssl._create_default_https_context = _create_unverified_https_context
+
+# Download NLTK data if not present
+@st.cache_resource
+def setup_nltk():
+    """Download and setup NLTK data"""
+    nltk_downloads = ['punkt', 'stopwords', 'averaged_perceptron_tagger', 'wordnet', 'omw-1.4']
+    
+    for item in nltk_downloads:
+        try:
+            # Try different possible locations for NLTK data
+            try:
+                nltk.data.find(f'tokenizers/{item}')
+            except LookupError:
+                try:
+                    nltk.data.find(f'corpora/{item}')
+                except LookupError:
+                    try:
+                        nltk.data.find(f'taggers/{item}')
+                    except LookupError:
+                        print(f"Downloading {item}...")
+                        nltk.download(item, quiet=True)
+        except Exception as e:
+            print(f"Error downloading {item}: {e}")
+
+# Setup NLTK before importing pyresparser
+setup_nltk()
+
 # libraries used to parse the pdf files
 from pyresparser import ResumeParser
 from pdfminer3.layout import LAParams, LTTextBox
@@ -27,7 +66,6 @@ from streamlit_tags import st_tags
 from PIL import Image
 # pre stored data for prediction purposes
 from Courses import ds_course,web_course,android_course,ios_course,uiux_course,resume_videos,interview_videos
-import nltk
 try:
     import config
     print(f"✅ Config imported successfully! DB: {config.DB_NAME}")
