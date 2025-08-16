@@ -1,21 +1,355 @@
-# 🚀 AI Resume Analyzer
+# AI Resume Analyzer 🚀
 
 <div align="center">
-  
-[![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://python.org)
-[![Streamlit](https://img.shields.io/badge/Streamlit-1.28%2B-red.svg)](https://streamlit.io)
-[![MySQL](https://img.shields.io/badge/MySQL-8.0%2B-orange.svg)](https://mysql.com)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-**🎯 A comprehensive AI-powered resume analysis tool built with cutting-edge machine learning and NLP techniques**
+![Best View in Light Mode and Desktop Site (Recommended)](https://img.shields.io/badge/Best%20View-Light%20Mode%20%26%20Desktop-brightgreen)
+
+# 🌴 AI RESUME ANALYZER 🌴
+**A Tool for Resume Analysis, Predictions and Recommendations**
+
+![last update](https://img.shields.io/github/last-commit/18vikastg/ai-resume-analyser)
+![open source](https://img.shields.io/badge/Open%20Source-Yes-brightgreen)
+![language](https://img.shields.io/github/languages/top/18vikastg/ai-resume-analyser)
+![code size](https://img.shields.io/github/languages/code-size/18vikastg/ai-resume-analyser)
+![license](https://img.shields.io/github/license/18vikastg/ai-resume-analyser)
+
+[View Demo](https://ai-resume-analyser.railway.app) · [Installation](#setup--installation-) · [Features](#features-)
+
+**Built with 🤍 by Vikas TG - AI/ML Developer**
+
+🚀 **A comprehensive AI-powered resume analysis tool with intelligent recommendations and analytics**
 
 </div>
 
 ---
 
-## 🌟 Project Overview
+## About the Project 🥱
 
-The **AI Resume Analyzer** is an intelligent web application I developed to revolutionize how resumes are analyzed and optimized. This tool combines advanced Natural Language Processing, Machine Learning algorithms, and an intuitive Streamlit interface to provide comprehensive resume analysis, personalized recommendations, and detailed analytics.
+![screenshot](./screenshots/user/1-main-screen.png)
+
+An intelligent tool that parses information from resumes using **Natural Language Processing** and **Machine Learning** techniques. It extracts keywords, clusters them into relevant sectors, and provides personalized recommendations, predictions, and analytics to help job seekers and recruiters make data-driven decisions.
+
+### Key Capabilities:
+- 🤖 **AI-Powered Resume Parsing** using spaCy and NLTK
+- 📊 **Intelligent Analytics** with interactive visualizations
+- 🎯 **Personalized Recommendations** for skills and career paths
+- 🔍 **Smart Resume Scoring** algorithm
+- 📈 **Predictive Analytics** for job role matching
+
+---
+
+## Scope 😲
+
+✅ **For Organizations:**
+- Extract resume data into structured formats (CSV/Database)
+- Generate analytics and insights from candidate pool
+- Automated screening and candidate ranking
+
+✅ **For Job Seekers:**
+- Get actionable recommendations to improve resumes
+- Receive personalized career guidance
+- Track resume performance with scoring metrics
+
+✅ **For Educational Institutions:**
+- Analyze student readiness for placements
+- Generate placement statistics and trends
+- Provide career counseling insights
+
+✅ **For Recruiters:**
+- Quick candidate assessment and filtering
+- Skills gap analysis for roles
+- Market trend analysis for hiring
+
+---
+
+## Tech Stack 🍻
+
+### **Frontend**
+![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+
+### **Backend**
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
+![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white)
+
+### **Database**
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+
+### **AI/ML Libraries**
+![spaCy](https://img.shields.io/badge/spaCy-09A3D5?style=for-the-badge&logo=spacy&logoColor=white)
+![NLTK](https://img.shields.io/badge/NLTK-154f3c?style=for-the-badge)
+![scikit-learn](https://img.shields.io/badge/scikit_learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)
+
+### **Visualization**
+![Plotly](https://img.shields.io/badge/Plotly-3F4F75?style=for-the-badge&logo=plotly&logoColor=white)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-11557c?style=for-the-badge)
+
+### **Deployment**
+![Railway](https://img.shields.io/badge/Railway-131415?style=for-the-badge&logo=railway&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+
+---
+
+## Features 🤦‍♂️
+
+### **Client Side Features:**
+
+#### 🔍 **Intelligent Resume Analysis**
+- **Location & Metadata Extraction:** Automatically fetches user location and system information
+- **Advanced Parsing:** Extracts basic info, skills, experience, and education details
+- **Keyword Intelligence:** Identifies relevant keywords and technical skills
+
+#### 🎯 **Smart Recommendations**
+- **Skill Enhancement:** Suggests skills to add based on target roles
+- **Job Role Prediction:** AI-powered career path recommendations  
+- **Course Suggestions:** Relevant certifications and learning paths
+- **Resume Optimization:** Actionable tips to improve resume quality
+- **Performance Scoring:** Overall resume effectiveness score
+- **Interview Preparation:** Video recommendations and tips
+
+### **Admin Panel Features:**
+
+#### 📊 **Data Analytics Dashboard**
+- **User Management:** View all applicant data in tabular format
+- **Data Export:** Download user analytics as CSV files
+- **File Management:** Access all uploaded resumes in organized folders
+- **Feedback System:** Collect and analyze user ratings and comments
+
+#### 📈 **Advanced Analytics**
+Interactive pie charts and visualizations for:
+- User ratings and satisfaction scores
+- Predicted job fields and career trends
+- Experience level distribution
+- Resume score analytics
+- Geographic user distribution (City/State/Country)
+- Real-time user engagement metrics
+
+### **Feedback System:**
+
+#### 💬 **User Experience**
+- **Rating System:** 1-5 star rating mechanism
+- **Comment Collection:** Detailed feedback from users
+- **Analytics Dashboard:** Visual representation of overall ratings
+- **History Tracking:** Complete user feedback timeline
+
+---
+
+## Requirements 😅
+
+Make sure you have these installed for a smooth experience:
+
+- **Python 3.11+** - [Download Here](https://www.python.org/downloads/)
+- **MySQL 8.0+** - [Download Here](https://www.mysql.com/downloads/) *(Optional for local development)*
+- **Visual Studio Code** - [Download Here](https://code.visualstudio.com/) *(Recommended)*
+- **Git** - [Download Here](https://git-scm.com/downloads)
+
+---
+
+## Setup & Installation 👀
+
+### **Quick Start** 🚀
+
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/18vikastg/ai-resume-analyser.git
+   cd ai-resume-analyser
+   ```
+
+2. **Create Virtual Environment**
+   ```bash
+   python -m venv .venv
+   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+   ```
+
+3. **Install Dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Download Language Model**
+   ```bash
+   python -m spacy download en_core_web_sm
+   ```
+
+5. **Run the Application**
+   ```bash
+   streamlit run App/App.py
+   ```
+
+6. **Access the App**
+   - Open your browser and go to: `http://localhost:8501`
+   - Admin Panel: Use `admin` / `admin@resume-analyzer`
+
+### **Database Setup** (Optional)
+
+For full functionality with database features:
+
+1. **Install MySQL** and create a database named `resume_analyzer_db`
+2. **Update credentials** in `App/config.py`:
+   ```python
+   DB_HOST = 'localhost'
+   DB_USER = 'your_username'
+   DB_PASSWORD = 'your_password'
+   DB_NAME = 'resume_analyzer_db'
+   ```
+
+**Note:** The app works perfectly without a database in **demo mode**!
+
+---
+
+## Cloud Deployment 🌐
+
+### **Railway** (Recommended)
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template/your-template)
+
+1. Visit [Railway.app](https://railway.app)
+2. Connect your GitHub account
+3. Deploy from repository: `18vikastg/ai-resume-analyser`
+4. Railway handles everything automatically!
+
+### **Alternative Platforms**
+- **Render:** Use the included `render.yaml`
+- **Heroku:** Use the included `Procfile`
+- **Docker:** Use `docker build -t ai-resume-analyzer .`
+
+---
+
+## Known Issues 🤪
+
+- **Network Issues:** If geocoding fails, check your internet connection
+- **Large Files:** Resume files larger than 16MB may not upload
+- **Browser Compatibility:** Best experience on modern browsers in desktop mode
+
+---
+
+## Usage Guide 📖
+
+### **For Job Seekers:**
+1. Upload your resume (PDF format)
+2. Wait for AI analysis to complete
+3. Review your resume score and recommendations
+4. Implement suggested improvements
+5. Re-test your updated resume
+
+### **For Recruiters:**
+1. Access admin panel with provided credentials
+2. View candidate analytics and statistics
+3. Export data for further analysis
+4. Use insights for hiring decisions
+
+### **Sample Resume:**
+Try the tool with the sample resume in `App/Uploaded_Resumes/` folder!
+
+---
+
+## Roadmap 🛵
+
+- ✅ Predict user experience level
+- ✅ Resume scoring for skills and projects  
+- ✅ Multi-domain recommendations (Web, Mobile, Data Science)
+- 🔄 **In Progress:** Advanced ML models for better predictions
+- 📅 **Planned:** Integration with job portals
+- 📅 **Planned:** Resume builder tool
+- 📅 **Planned:** Interview scheduling system
+- 📅 **Planned:** Mobile app version
+
+---
+
+## Contributing 🤘
+
+Contributions are always welcome! Here's how you can help:
+
+1. **Fork** the repository
+2. **Create** a feature branch (`git checkout -b feature/AmazingFeature`)
+3. **Commit** your changes (`git commit -m 'Add some AmazingFeature'`)
+4. **Push** to the branch (`git push origin feature/AmazingFeature`)
+5. **Open** a Pull Request
+
+For major changes, please open an issue first to discuss your ideas.
+
+---
+
+## Preview 👽
+
+### **Client Side**
+
+#### **Main Dashboard**
+![Main Screen](./screenshots/user/1-main-screen.png)
+
+#### **Resume Analysis**
+![Analysis](./screenshots/user/2-analysis.jpg)
+
+#### **Smart Recommendations**
+![Recommendations](./screenshots/user/3-recom.png)
+
+#### **Skill Enhancement**
+![Skills](./screenshots/user/4-recom.png)
+
+#### **Performance Scoring**
+![Scoring](./screenshots/user/5-tipsscore.png)
+
+### **Admin Panel**
+
+#### **Analytics Dashboard**
+![Admin Dashboard](./screenshots/admin/1-main-screen.png)
+
+#### **User Data Management**
+![User Data](./screenshots/admin/2-user-data.png)
+
+#### **Export Analytics**
+![CSV Export](./screenshots/admin/3-user-datacsv.png)
+
+#### **Visual Analytics**
+![Charts](./screenshots/admin/5-pieexp.png)
+
+### **Feedback System**
+
+#### **User Feedback**
+![Feedback Form](./screenshots/feedback/1-form.png)
+
+#### **Analytics Overview**
+![Feedback Analytics](./screenshots/feedback/2-analytics.png)
+
+---
+
+## Support 🤝
+
+- **Issues:** [GitHub Issues](https://github.com/18vikastg/ai-resume-analyser/issues)
+- **Discussions:** [GitHub Discussions](https://github.com/18vikastg/ai-resume-analyser/discussions)
+- **Email:** vikas.tg.dev@gmail.com
+
+---
+
+## License 📄
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## Acknowledgments 🤗
+
+- **spaCy Team** - For excellent NLP capabilities
+- **Streamlit** - For the amazing web framework
+- **pyresparser** - For resume parsing functionality
+- **Plotly** - For interactive visualizations
+- **Open Source Community** - For continuous inspiration
+
+---
+
+<div align="center">
+
+### **Built with 🤍 by [Vikas TG](https://github.com/18vikastg)**
+
+**AI Resume Analyzer - Empowering Careers with Intelligence** 
+
+[![GitHub](https://img.shields.io/badge/GitHub-18vikastg-181717?style=for-the-badge&logo=github)](https://github.com/18vikastg)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-vikas--tg-0077B5?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/vikas-tg)
+
+**Star ⭐ this repository if it helped you!**
+
+</div>
 
 ### 💡 The Vision Behind This Project
 
