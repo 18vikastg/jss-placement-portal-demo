@@ -4,6 +4,6 @@
     "builder": "nixpacks"
   },
   "deploy": {
-    "startCommand": "./start.sh"
+    "startCommand": "streamlit run App/App.py --server.port $PORT --server.address 0.0.0.0 --server.headless true"
   }
 }
