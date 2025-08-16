@@ -1,8 +1,6 @@
 <p><small>Best View in <a href="https://github.com/settings/appearance">Light Mode</a> and Desktop Site (Recommended)</small></p><br/>
 
-![AI-Resume-Analyzer](https://socialify.git.ci/18vikastg/AI-Resume-Analyzer/image?description=1&descriptionEditable=AI%20Resume%20Analysis%20Tool%20with%20Machine%20Learning&font=Rale![Screenshot](https://github.com/18vikastg/AI-Resume-Analyzer/blob/main/screenshots/admin/6-piescre.jpg?raw=true)
-
-![Screenshot](https://github.com/18vikastg/AI-Resume-Analyzer/blob/main/screenshots/admin/7-pielocation.png?raw=true)&language=1&pattern=Plus&theme=Light)
+![AI-Resume-Analyzer](https://socialify.git.ci/18vikastg/AI-Resume-Analyzer/image?description=1&descriptionEditable=AI%20Resume%20Analysis%20Tool%20with%20Machine%20Learning&font=Raleway&language=1&pattern=Plus&theme=Light)
 
 <div align="center">
   <h1>🚀 AI RESUME ANALYZER 🚀</h1>
@@ -13,6 +11,7 @@
     <img src="https://badges.frapsoft.com/os/v2/open-source.svg?v=103" alt="open source" />
     <img src="https://img.shields.io/github/languages/top/18vikastg/AI-Resume-Analyzer?color=red" alt="language" />
     <img src="https://img.shields.io/github/languages/code-size/18vikastg/AI-Resume-Analyzer?color=informational" alt="code size" />
+  </p>
     <a href="https://github.com/18vikastg/AI-Resume-Analyzer/blob/main/LICENSE">
       <img src="https://img.shields.io/github/license/18vikastg/AI-Resume-Analyzer.svg?color=yellow" alt="license" />
     </a>
