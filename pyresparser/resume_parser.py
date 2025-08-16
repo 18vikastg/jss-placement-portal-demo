@@ -16,7 +16,8 @@ class ResumeParser(object):
         custom_regex=None
     ):
         nlp = spacy.load('en_core_web_sm')
-        custom_nlp = spacy.load(os.path.dirname(os.path.abspath(__file__)))
+        # Use the same model for custom processing instead of loading a separate one
+        custom_nlp = nlp
         self.__skills_file = skills_file
         self.__custom_regex = custom_regex
         self.__matcher = Matcher(nlp.vocab)

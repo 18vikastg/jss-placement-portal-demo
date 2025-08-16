@@ -162,7 +162,7 @@ def insertf_data(feed_name,feed_email,feed_score,comments,Timestamp):
 
 st.set_page_config(
    page_title="AI Resume Analyzer",
-   page_icon='./Logo/recommend.png',
+   page_icon='App/Logo/recommend.png',
 )
 
 
@@ -176,7 +176,7 @@ def run():
         st.info("💡 Running in demo mode - some features may be limited")
     
     # (Logo, Heading, Sidebar etc)
-    img = Image.open('./Logo/RESUM.png')
+    img = Image.open('App/Logo/RESUM.png')
     st.image(img)
     st.sidebar.markdown("# Choose Something...")
     activities = ["User", "Feedback", "About", "Admin"]
@@ -306,7 +306,7 @@ def run():
                 time.sleep(4)
         
             ### saving the uploaded resume to folder
-            save_image_path = './Uploaded_Resumes/'+pdf_file.name
+            save_image_path = 'App/Uploaded_Resumes/'+pdf_file.name
             pdf_name = pdf_file.name
             with open(save_image_path, "wb") as f:
                 f.write(pdf_file.getbuffer())
@@ -665,24 +665,29 @@ def run():
 
 
         # query to fetch data from user feedback table
-        query = 'select * from user_feedback'        
-        plotfeed_data = pd.read_sql(query, connection)                        
+        if connection is not None and cursor is not None:
+            try:
+                query = 'select * from user_feedback'        
+                plotfeed_data = pd.read_sql(query, connection)                        
 
+                # fetching feed_score from the query and getting the unique values and total value count 
+                labels = plotfeed_data.feed_score.unique()
+                values = plotfeed_data.feed_score.value_counts()
 
-        # fetching feed_score from the query and getting the unique values and total value count 
-        labels = plotfeed_data.feed_score.unique()
-        values = plotfeed_data.feed_score.value_counts()
+                # plotting pie chart for user ratings
+                st.subheader("**Past User Rating's**")
+                fig = px.pie(values=values, names=labels, title="Chart of User Rating Score From 1 - 5", color_discrete_sequence=px.colors.sequential.Aggrnyl)
+                st.plotly_chart(fig)
 
-
-        # plotting pie chart for user ratings
-        st.subheader("**Past User Rating's**")
-        fig = px.pie(values=values, names=labels, title="Chart of User Rating Score From 1 - 5", color_discrete_sequence=px.colors.sequential.Aggrnyl)
-        st.plotly_chart(fig)
-
-
-        #  Fetching Comment History
-        cursor.execute('select feed_name, comments from user_feedback')
-        plfeed_cmt_data = cursor.fetchall()
+                #  Fetching Comment History
+                cursor.execute('select feed_name, comments from user_feedback')
+                plfeed_cmt_data = cursor.fetchall()
+            except Exception as e:
+                st.info("📊 Analytics not available in demo mode")
+                plfeed_cmt_data = []
+        else:
+            st.info("📊 Analytics not available in demo mode")
+            plfeed_cmt_data = []
 
         st.subheader("**User Comment's**")
         dff = pd.DataFrame(plfeed_cmt_data, columns=['User', 'Comment'])
@@ -733,116 +738,125 @@ def run():
             ## Credentials 
             if ad_user == 'admin' and ad_password == 'admin@resume-analyzer':
                 
-                ### Fetch miscellaneous data from user_data(table) and convert it into dataframe
-                cursor.execute('''SELECT ID, ip_add, resume_score, convert(Predicted_Field using utf8), convert(User_level using utf8), city, state, country from user_data''')
-                datanalys = cursor.fetchall()
-                plot_data = pd.DataFrame(datanalys, columns=['Idt', 'IP_add', 'resume_score', 'Predicted_Field', 'User_Level', 'City', 'State', 'Country'])
-                
-                ### Total Users Count with a Welcome Message
-                values = plot_data.Idt.count()
-                st.success("Welcome Deepak ! Total %d " % values + " User's Have Used Our Tool : )")                
-                
-                ### Fetch user data from user_data(table) and convert it into dataframe
-                cursor.execute('''SELECT ID, sec_token, ip_add, act_name, act_mail, act_mob, convert(Predicted_Field using utf8), Timestamp, Name, Email_ID, resume_score, Page_no, pdf_name, convert(User_level using utf8), convert(Actual_skills using utf8), convert(Recommended_skills using utf8), convert(Recommended_courses using utf8), city, state, country, latlong, os_name_ver, host_name, dev_user from user_data''')
-                data = cursor.fetchall()                
+                if connection is not None and cursor is not None:
+                    try:
+                        ### Fetch miscellaneous data from user_data(table) and convert it into dataframe
+                        cursor.execute('''SELECT ID, ip_add, resume_score, convert(Predicted_Field using utf8), convert(User_level using utf8), city, state, country from user_data''')
+                        datanalys = cursor.fetchall()
+                        plot_data = pd.DataFrame(datanalys, columns=['Idt', 'IP_add', 'resume_score', 'Predicted_Field', 'User_Level', 'City', 'State', 'Country'])
+                        
+                        ### Total Users Count with a Welcome Message
+                        values = plot_data.Idt.count()
+                        st.success("Welcome Admin ! Total %d " % values + " User's Have Used Our Tool : )")                
+                        
+                        ### Fetch user data from user_data(table) and convert it into dataframe
+                        cursor.execute('''SELECT ID, sec_token, ip_add, act_name, act_mail, act_mob, convert(Predicted_Field using utf8), Timestamp, Name, Email_ID, resume_score, Page_no, pdf_name, convert(User_level using utf8), convert(Actual_skills using utf8), convert(Recommended_skills using utf8), convert(Recommended_courses using utf8), city, state, country, latlong, os_name_ver, host_name, dev_user from user_data''')
+                        data = cursor.fetchall()                
 
-                st.header("**User's Data**")
-                df = pd.DataFrame(data, columns=['ID', 'Token', 'IP Address', 'Name', 'Mail', 'Mobile Number', 'Predicted Field', 'Timestamp',
-                                                 'Predicted Name', 'Predicted Mail', 'Resume Score', 'Total Page',  'File Name',   
-                                                 'User Level', 'Actual Skills', 'Recommended Skills', 'Recommended Course',
-                                                 'City', 'State', 'Country', 'Lat Long', 'Server OS', 'Server Name', 'Server User',])
-                
-                ### Viewing the dataframe
-                st.dataframe(df)
-                
-                ### Downloading Report of user_data in csv file
-                st.markdown(get_csv_download_link(df,'User_Data.csv','Download Report'), unsafe_allow_html=True)
+                        st.header("**User's Data**")
+                        df = pd.DataFrame(data, columns=['ID', 'Token', 'IP Address', 'Name', 'Mail', 'Mobile Number', 'Predicted Field', 'Timestamp',
+                                                         'Predicted Name', 'Predicted Mail', 'Resume Score', 'Total Page',  'File Name',   
+                                                         'User Level', 'Actual Skills', 'Recommended Skills', 'Recommended Course',
+                                                         'City', 'State', 'Country', 'Lat Long', 'Server OS', 'Server Name', 'Server User',])
+                        
+                        ### Viewing the dataframe
+                        st.dataframe(df)
+                        
+                        ### Downloading Report of user_data in csv file
+                        st.markdown(get_csv_download_link(df,'User_Data.csv','Download Report'), unsafe_allow_html=True)
 
-                ### Fetch feedback data from user_feedback(table) and convert it into dataframe
-                cursor.execute('''SELECT * from user_feedback''')
-                data = cursor.fetchall()
+                        ### Fetch feedback data from user_feedback(table) and convert it into dataframe
+                        cursor.execute('''SELECT * from user_feedback''')
+                        data = cursor.fetchall()
 
-                st.header("**User's Feedback Data**")
-                df = pd.DataFrame(data, columns=['ID', 'Name', 'Email', 'Feedback Score', 'Comments', 'Timestamp'])
-                st.dataframe(df)
+                        st.header("**User's Feedback Data**")
+                        df = pd.DataFrame(data, columns=['ID', 'Name', 'Email', 'Feedback Score', 'Comments', 'Timestamp'])
+                        st.dataframe(df)
 
-                ### query to fetch data from user_feedback(table)
-                query = 'select * from user_feedback'
-                plotfeed_data = pd.read_sql(query, connection)                        
+                        ### query to fetch data from user_feedback(table)
+                        query = 'select * from user_feedback'
+                        plotfeed_data = pd.read_sql(query, connection)                        
 
-                ### Analyzing All the Data's in pie charts
+                        ### Analyzing All the Data's in pie charts
 
-                # fetching feed_score from the query and getting the unique values and total value count 
-                labels = plotfeed_data.feed_score.unique()
-                values = plotfeed_data.feed_score.value_counts()
-                
-                # Pie chart for user ratings
-                st.subheader("**User Rating's**")
-                fig = px.pie(values=values, names=labels, title="Chart of User Rating Score From 1 - 5 🤗", color_discrete_sequence=px.colors.sequential.Aggrnyl)
-                st.plotly_chart(fig)
+                        # fetching feed_score from the query and getting the unique values and total value count 
+                        labels = plotfeed_data.feed_score.unique()
+                        values = plotfeed_data.feed_score.value_counts()
+                        
+                        # Pie chart for user ratings
+                        st.subheader("**User Rating's**")
+                        fig = px.pie(values=values, names=labels, title="Chart of User Rating Score From 1 - 5 🤗", color_discrete_sequence=px.colors.sequential.Aggrnyl)
+                        st.plotly_chart(fig)
 
-                # fetching Predicted_Field from the query and getting the unique values and total value count                 
-                labels = plot_data.Predicted_Field.unique()
-                values = plot_data.Predicted_Field.value_counts()
+                        # fetching Predicted_Field from the query and getting the unique values and total value count                 
+                        labels = plot_data.Predicted_Field.unique()
+                        values = plot_data.Predicted_Field.value_counts()
 
-                # Pie chart for predicted field recommendations
-                st.subheader("**Pie-Chart for Predicted Field Recommendation**")
-                fig = px.pie(df, values=values, names=labels, title='Predicted Field according to the Skills 👽', color_discrete_sequence=px.colors.sequential.Aggrnyl_r)
-                st.plotly_chart(fig)
+                        # Pie chart for predicted field recommendations
+                        st.subheader("**Pie-Chart for Predicted Field Recommendation**")
+                        fig = px.pie(df, values=values, names=labels, title='Predicted Field according to the Skills 👽', color_discrete_sequence=px.colors.sequential.Aggrnyl_r)
+                        st.plotly_chart(fig)
 
-                # fetching User_Level from the query and getting the unique values and total value count                 
-                labels = plot_data.User_Level.unique()
-                values = plot_data.User_Level.value_counts()
+                        # fetching User_Level from the query and getting the unique values and total value count                 
+                        labels = plot_data.User_Level.unique()
+                        values = plot_data.User_Level.value_counts()
 
-                # Pie chart for User's👨‍💻 Experienced Level
-                st.subheader("**Pie-Chart for User's Experienced Level**")
-                fig = px.pie(df, values=values, names=labels, title="Pie-Chart 📈 for User's 👨‍💻 Experienced Level", color_discrete_sequence=px.colors.sequential.RdBu)
-                st.plotly_chart(fig)
+                        # Pie chart for User's👨‍💻 Experienced Level
+                        st.subheader("**Pie-Chart for User's Experienced Level**")
+                        fig = px.pie(df, values=values, names=labels, title="Pie-Chart 📈 for User's 👨‍💻 Experienced Level", color_discrete_sequence=px.colors.sequential.RdBu)
+                        st.plotly_chart(fig)
 
-                # fetching resume_score from the query and getting the unique values and total value count                 
-                labels = plot_data.resume_score.unique()                
-                values = plot_data.resume_score.value_counts()
+                        # fetching resume_score from the query and getting the unique values and total value count                 
+                        labels = plot_data.resume_score.unique()                
+                        values = plot_data.resume_score.value_counts()
 
-                # Pie chart for Resume Score
-                st.subheader("**Pie-Chart for Resume Score**")
-                fig = px.pie(df, values=values, names=labels, title='From 1 to 100 💯', color_discrete_sequence=px.colors.sequential.Agsunset)
-                st.plotly_chart(fig)
+                        # Pie chart for Resume Score
+                        st.subheader("**Pie-Chart for Resume Score**")
+                        fig = px.pie(df, values=values, names=labels, title='From 1 to 100 💯', color_discrete_sequence=px.colors.sequential.Agsunset)
+                        st.plotly_chart(fig)
 
-                # fetching IP_add from the query and getting the unique values and total value count 
-                labels = plot_data.IP_add.unique()
-                values = plot_data.IP_add.value_counts()
+                        # fetching IP_add from the query and getting the unique values and total value count 
+                        labels = plot_data.IP_add.unique()
+                        values = plot_data.IP_add.value_counts()
 
-                # Pie chart for Users
-                st.subheader("**Pie-Chart for Users App Used Count**")
-                fig = px.pie(df, values=values, names=labels, title='Usage Based On IP Address 👥', color_discrete_sequence=px.colors.sequential.matter_r)
-                st.plotly_chart(fig)
+                        # Pie chart for Users
+                        st.subheader("**Pie-Chart for Users App Used Count**")
+                        fig = px.pie(df, values=values, names=labels, title='Usage Based On IP Address 👥', color_discrete_sequence=px.colors.sequential.matter_r)
+                        st.plotly_chart(fig)
 
-                # fetching City from the query and getting the unique values and total value count 
-                labels = plot_data.City.unique()
-                values = plot_data.City.value_counts()
+                        # fetching City from the query and getting the unique values and total value count 
+                        labels = plot_data.City.unique()
+                        values = plot_data.City.value_counts()
 
-                # Pie chart for City
-                st.subheader("**Pie-Chart for City**")
-                fig = px.pie(df, values=values, names=labels, title='Usage Based On City 🌆', color_discrete_sequence=px.colors.sequential.Jet)
-                st.plotly_chart(fig)
+                        # Pie chart for City
+                        st.subheader("**Pie-Chart for City**")
+                        fig = px.pie(df, values=values, names=labels, title='Usage Based On City 🌆', color_discrete_sequence=px.colors.sequential.Jet)
+                        st.plotly_chart(fig)
 
-                # fetching State from the query and getting the unique values and total value count 
-                labels = plot_data.State.unique()
-                values = plot_data.State.value_counts()
+                        # fetching State from the query and getting the unique values and total value count 
+                        labels = plot_data.State.unique()
+                        values = plot_data.State.value_counts()
 
-                # Pie chart for State
-                st.subheader("**Pie-Chart for State**")
-                fig = px.pie(df, values=values, names=labels, title='Usage Based on State 🚉', color_discrete_sequence=px.colors.sequential.PuBu_r)
-                st.plotly_chart(fig)
+                        # Pie chart for State
+                        st.subheader("**Pie-Chart for State**")
+                        fig = px.pie(df, values=values, names=labels, title='Usage Based on State 🚉', color_discrete_sequence=px.colors.sequential.PuBu_r)
+                        st.plotly_chart(fig)
 
-                # fetching Country from the query and getting the unique values and total value count 
-                labels = plot_data.Country.unique()
-                values = plot_data.Country.value_counts()
+                        # fetching Country from the query and getting the unique values and total value count 
+                        labels = plot_data.Country.unique()
+                        values = plot_data.Country.value_counts()
 
-                # Pie chart for Country
-                st.subheader("**Pie-Chart for Country**")
-                fig = px.pie(df, values=values, names=labels, title='Usage Based on Country 🌏', color_discrete_sequence=px.colors.sequential.Purpor_r)
-                st.plotly_chart(fig)
+                        # Pie chart for Country
+                        st.subheader("**Pie-Chart for Country**")
+                        fig = px.pie(df, values=values, names=labels, title='Usage Based on Country 🌏', color_discrete_sequence=px.colors.sequential.Purpor_r)
+                        st.plotly_chart(fig)
+                        
+                    except Exception as e:
+                        st.error("Database connection error. Running in demo mode.")
+                        st.info("Please set up MySQL database to enable full admin functionality.")
+                else:
+                    st.warning("Database not connected. Please configure database settings.")
+                    st.info("Set up MySQL database using the provided schema to enable admin features.")
 
             ## For Wrong Credentials
             else:
