@@ -1,0 +1,19 @@
+streamlit
+pandas
+numpy
+PyMySQL
+nltk
+plotly
+matplotlib
+Pillow
+geocoder
+geopy
+requests
+python-dateutil
+docx2txt
+streamlit-tags
+pdfminer3
+PyPDF2
+pyresparser
+spacy>=3.4.0,<3.8.0
+en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.4.1/en_core_web_sm-3.4.1-py3-none-any.whl
