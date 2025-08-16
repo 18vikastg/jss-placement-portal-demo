@@ -225,11 +225,31 @@ def insertf_data(feed_name,feed_email,feed_score,comments,Timestamp):
 
 ###### Setting Page Configuration (favicon, Logo, Title) ######
 
-
-st.set_page_config(
-   page_title="AI Resume Analyzer",
-   page_icon='Logo/recommend.png',
-)
+# Set page config with fallback for favicon
+try:
+    # Try different possible icon paths
+    icon_paths = [
+        'Logo/recommend.png',
+        './Logo/recommend.png',
+        os.path.join(os.path.dirname(__file__), 'Logo', 'recommend.png')
+    ]
+    
+    page_icon = "🚀"  # Default emoji fallback
+    for icon_path in icon_paths:
+        if os.path.exists(icon_path):
+            page_icon = icon_path
+            break
+            
+    st.set_page_config(
+       page_title="AI Resume Analyzer",
+       page_icon=page_icon,
+    )
+except:
+    # Fallback to emoji if image fails
+    st.set_page_config(
+       page_title="AI Resume Analyzer",
+       page_icon="🚀",
+    )
 
 
 ###### Main function run() ######
@@ -246,8 +266,34 @@ def run():
         st.info("💡 Running in demo mode - some features may be limited")
     
     # (Logo, Heading, Sidebar etc)
-    img = Image.open('Logo/RESUM.png')
-    st.image(img)
+    try:
+        # Try different possible logo paths
+        logo_paths = [
+            'Logo/RESUM.png',
+            './Logo/RESUM.png',
+            os.path.join(os.path.dirname(__file__), 'Logo', 'RESUM.png'),
+            '/mount/src/ai-resume-analyser/App/Logo/RESUM.png'  # Streamlit Cloud path
+        ]
+        
+        img = None
+        for logo_path in logo_paths:
+            try:
+                if os.path.exists(logo_path):
+                    img = Image.open(logo_path)
+                    break
+            except:
+                continue
+        
+        if img:
+            st.image(img)
+        else:
+            # Fallback if logo not found
+            st.markdown("# 🚀 AI Resume Analyzer")
+            
+    except Exception as e:
+        # Fallback if any error with logo
+        st.markdown("# 🚀 AI Resume Analyzer")
+        
     st.sidebar.markdown("# Choose Something...")
     activities = ["User", "Feedback", "About", "Admin"]
     choice = st.sidebar.selectbox("Choose among the given options:", activities)
@@ -329,7 +375,12 @@ def run():
                 time.sleep(4)
         
             ### saving the uploaded resume to folder
-            save_image_path = 'Uploaded_Resumes/'+pdf_file.name
+            # Create upload directory if it doesn't exist
+            upload_dir = 'Uploaded_Resumes'
+            if not os.path.exists(upload_dir):
+                os.makedirs(upload_dir, exist_ok=True)
+                
+            save_image_path = os.path.join(upload_dir, pdf_file.name)
             pdf_name = pdf_file.name
             with open(save_image_path, "wb") as f:
                 f.write(pdf_file.getbuffer())
