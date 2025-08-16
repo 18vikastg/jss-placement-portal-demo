@@ -1,4 +1,4 @@
-# Developed by dnoobnerd [https://dnoobnerd.netlify.app]    Made with Streamlit
+# Developed by Vikas TG [https://github.com/18vikastg]    Made with Streamlit
 
 
 ###### Packages Used ######
@@ -28,6 +28,17 @@ from PIL import Image
 # pre stored data for prediction purposes
 from Courses import ds_course,web_course,android_course,ios_course,uiux_course,resume_videos,interview_videos
 import nltk
+try:
+    import config
+except ImportError:
+    # Default configuration if config.py doesn't exist
+    class Config:
+        DB_HOST = 'localhost'
+        DB_USER = 'root'
+        DB_PASSWORD = 'root@MySQL4admin'
+        DB_NAME = 'cv'
+    config = Config()
+
 nltk.download('stopwords')
 
 
@@ -90,30 +101,60 @@ def course_recommender(course_list):
 
 ###### Database Stuffs ######
 
+# Global variables for database connection
+connection = None
+cursor = None
 
 # sql connector
-connection = pymysql.connect(host='localhost',user='root',password='root@MySQL4admin',db='cv')
-cursor = connection.cursor()
+def init_database():
+    global connection, cursor
+    try:
+        connection = pymysql.connect(
+            host=config.DB_HOST,
+            user=config.DB_USER,
+            password=config.DB_PASSWORD,
+            db=config.DB_NAME
+        )
+        cursor = connection.cursor()
+        return True
+    except Exception as e:
+        st.warning(f"Database connection failed: {e}")
+        st.info("The app will run in demo mode without database functionality.")
+        return False
 
 
 # inserting miscellaneous data, fetched results, prediction and recommendation into user_data table
 def insert_data(sec_token,ip_add,host_name,dev_user,os_name_ver,latlong,city,state,country,act_name,act_mail,act_mob,name,email,res_score,timestamp,no_of_pages,reco_field,cand_level,skills,recommended_skills,courses,pdf_name):
-    DB_table_name = 'user_data'
-    insert_sql = "insert into " + DB_table_name + """
-    values (0,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"""
-    rec_values = (str(sec_token),str(ip_add),host_name,dev_user,os_name_ver,str(latlong),city,state,country,act_name,act_mail,act_mob,name,email,str(res_score),timestamp,str(no_of_pages),reco_field,cand_level,skills,recommended_skills,courses,pdf_name)
-    cursor.execute(insert_sql, rec_values)
-    connection.commit()
+    global cursor, connection
+    if cursor is None:
+        st.warning("Database not available - data not saved")
+        return
+    try:
+        DB_table_name = 'user_data'
+        insert_sql = "insert into " + DB_table_name + """
+        values (0,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"""
+        rec_values = (str(sec_token),str(ip_add),host_name,dev_user,os_name_ver,str(latlong),city,state,country,act_name,act_mail,act_mob,name,email,str(res_score),timestamp,str(no_of_pages),reco_field,cand_level,skills,recommended_skills,courses,pdf_name)
+        cursor.execute(insert_sql, rec_values)
+        connection.commit()
+    except Exception as e:
+        st.warning(f"Error saving data: {e}")
 
 
 # inserting feedback data into user_feedback table
 def insertf_data(feed_name,feed_email,feed_score,comments,Timestamp):
-    DBf_table_name = 'user_feedback'
-    insertfeed_sql = "insert into " + DBf_table_name + """
-    values (0,%s,%s,%s,%s,%s)"""
-    rec_values = (feed_name, feed_email, feed_score, comments, Timestamp)
-    cursor.execute(insertfeed_sql, rec_values)
-    connection.commit()
+    global cursor, connection
+    if cursor is None:
+        st.warning("Database not available - feedback not saved")
+        return
+    try:
+        DBf_table_name = 'user_feedback'
+        insertfeed_sql = "insert into " + DBf_table_name + """
+        values (0,%s,%s,%s,%s,%s)"""
+        rec_values = (feed_name, feed_email, feed_score, comments, Timestamp)
+        cursor.execute(insertfeed_sql, rec_values)
+        connection.commit()
+    except Exception as e:
+        st.warning(f"Error saving feedback: {e}")
 
 
 ###### Setting Page Configuration (favicon, Logo, Title) ######
@@ -129,6 +170,10 @@ st.set_page_config(
 
 
 def run():
+    # Initialize database connection
+    db_connected = init_database()
+    if not db_connected:
+        st.info("💡 Running in demo mode - some features may be limited")
     
     # (Logo, Heading, Sidebar etc)
     img = Image.open('./Logo/RESUM.png')
@@ -136,7 +181,7 @@ def run():
     st.sidebar.markdown("# Choose Something...")
     activities = ["User", "Feedback", "About", "Admin"]
     choice = st.sidebar.selectbox("Choose among the given options:", activities)
-    link = '<b>Built with 🤍 by <a href="https://dnoobnerd.netlify.app/" style="text-decoration: none; color: #021659;">Deepak Padhi</a></b>' 
+    link = '<b>Built with ❤️ by <a href="https://github.com/18vikastg" style="text-decoration: none; color: #021659;">Vikas TG</a></b>' 
     st.sidebar.markdown(link, unsafe_allow_html=True)
     st.sidebar.markdown('''
         <!-- site visitors -->
@@ -155,58 +200,63 @@ def run():
 
     ###### Creating Database and Table ######
 
+    # Create the DB (only if database is connected)
+    if cursor is not None:
+        try:
+            db_sql = """CREATE DATABASE IF NOT EXISTS CV;"""
+            cursor.execute(db_sql)
+        except Exception as e:
+            st.warning(f"Error creating database: {e}")
 
-    # Create the DB
-    db_sql = """CREATE DATABASE IF NOT EXISTS CV;"""
-    cursor.execute(db_sql)
+    # Create table user_data and user_feedback (only if database is connected)  
+    if cursor is not None:
+        try:
+            DB_table_name = 'user_data'
+            table_sql = "CREATE TABLE IF NOT EXISTS " + DB_table_name + """
+                        (ID INT NOT NULL AUTO_INCREMENT,
+                        sec_token varchar(20) NOT NULL,
+                        ip_add varchar(50) NULL,
+                        host_name varchar(50) NULL,
+                        dev_user varchar(50) NULL,
+                        os_name_ver varchar(50) NULL,
+                        latlong varchar(50) NULL,
+                        city varchar(50) NULL,
+                        state varchar(50) NULL,
+                        country varchar(50) NULL,
+                        act_name varchar(50) NOT NULL,
+                        act_mail varchar(50) NOT NULL,
+                        act_mob varchar(20) NOT NULL,
+                        Name varchar(500) NOT NULL,
+                        Email_ID VARCHAR(500) NOT NULL,
+                        resume_score VARCHAR(8) NOT NULL,
+                        Timestamp VARCHAR(50) NOT NULL,
+                        Page_no VARCHAR(5) NOT NULL,
+                        Predicted_Field BLOB NOT NULL,
+                        User_level BLOB NOT NULL,
+                        Actual_skills BLOB NOT NULL,
+                        Recommended_skills BLOB NOT NULL,
+                        Recommended_courses BLOB NOT NULL,
+                        pdf_name varchar(50) NOT NULL,
+                        PRIMARY KEY (ID)
+                        );
+                    """
+            cursor.execute(table_sql)
 
 
-    # Create table user_data and user_feedback
-    DB_table_name = 'user_data'
-    table_sql = "CREATE TABLE IF NOT EXISTS " + DB_table_name + """
-                    (ID INT NOT NULL AUTO_INCREMENT,
-                    sec_token varchar(20) NOT NULL,
-                    ip_add varchar(50) NULL,
-                    host_name varchar(50) NULL,
-                    dev_user varchar(50) NULL,
-                    os_name_ver varchar(50) NULL,
-                    latlong varchar(50) NULL,
-                    city varchar(50) NULL,
-                    state varchar(50) NULL,
-                    country varchar(50) NULL,
-                    act_name varchar(50) NOT NULL,
-                    act_mail varchar(50) NOT NULL,
-                    act_mob varchar(20) NOT NULL,
-                    Name varchar(500) NOT NULL,
-                    Email_ID VARCHAR(500) NOT NULL,
-                    resume_score VARCHAR(8) NOT NULL,
-                    Timestamp VARCHAR(50) NOT NULL,
-                    Page_no VARCHAR(5) NOT NULL,
-                    Predicted_Field BLOB NOT NULL,
-                    User_level BLOB NOT NULL,
-                    Actual_skills BLOB NOT NULL,
-                    Recommended_skills BLOB NOT NULL,
-                    Recommended_courses BLOB NOT NULL,
-                    pdf_name varchar(50) NOT NULL,
-                    PRIMARY KEY (ID)
-                    );
-                """
-    cursor.execute(table_sql)
-
-
-    DBf_table_name = 'user_feedback'
-    tablef_sql = "CREATE TABLE IF NOT EXISTS " + DBf_table_name + """
-                    (ID INT NOT NULL AUTO_INCREMENT,
-                        feed_name varchar(50) NOT NULL,
-                        feed_email VARCHAR(50) NOT NULL,
+            DBf_table_name = 'user_feedback'
+            tablef_sql = "CREATE TABLE IF NOT EXISTS " + DBf_table_name + """
+                        (ID INT NOT NULL AUTO_INCREMENT,
+                            feed_name varchar(50) NOT NULL,
+                            feed_email VARCHAR(50) NOT NULL,
                         feed_score VARCHAR(5) NOT NULL,
                         comments VARCHAR(100) NULL,
                         Timestamp VARCHAR(50) NOT NULL,
                         PRIMARY KEY (ID)
                     );
                 """
-    cursor.execute(tablef_sql)
-
+            cursor.execute(tablef_sql)
+        except Exception as e:
+            st.warning(f"Error creating database tables: {e}")
 
     ###### CODE FOR CLIENT SIDE (USER) ######
 
@@ -219,16 +269,28 @@ def run():
         sec_token = secrets.token_urlsafe(12)
         host_name = socket.gethostname()
         ip_add = socket.gethostbyname(host_name)
-        dev_user = os.getlogin()
+        try:
+            dev_user = os.getlogin()
+        except:
+            dev_user = "unknown_user"
         os_name_ver = platform.system() + " " + platform.release()
-        g = geocoder.ip('me')
-        latlong = g.latlng
-        geolocator = Nominatim(user_agent="http")
-        location = geolocator.reverse(latlong, language='en')
-        address = location.raw['address']
-        cityy = address.get('city', '')
-        statee = address.get('state', '')
-        countryy = address.get('country', '')  
+        try:
+            g = geocoder.ip('me')
+            latlong = g.latlng
+            geolocator = Nominatim(user_agent="http")
+            location = geolocator.reverse(latlong, language='en')
+            address = location.raw['address']
+            cityy = address.get('city', '')
+            statee = address.get('state', '')
+        except:
+            latlong = [0, 0]
+            cityy = "Unknown"
+            statee = "Unknown"
+            countryy = "Unknown"
+        try:
+            countryy = address.get('country', '')
+        except:
+            countryy = "Unknown"
         city = cityy
         state = statee
         country = countryy
@@ -651,9 +713,8 @@ def run():
         </p><br/><br/>
 
         <p align="justify">
-            Built with 🤍 by 
-            <a href="https://dnoobnerd.netlify.app/" style="text-decoration: none; color: grey;">Deepak Padhi</a> through 
-            <a href="https://www.linkedin.com/in/mrbriit/" style="text-decoration: none; color: grey;">Dr Bright --(Data Scientist)</a>
+            Built with ❤️ by 
+            <a href="https://github.com/18vikastg" style="text-decoration: none; color: grey;">Vikas TG</a>
         </p>
 
         ''',unsafe_allow_html=True)  
