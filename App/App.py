@@ -31,8 +31,9 @@ else:
 
 # Download NLTK data if not present
 @st.cache_resource
-def setup_nltk():
-    """Download and setup NLTK data"""
+def setup_nltk_and_spacy():
+    """Download and setup NLTK data and spaCy models"""
+    # NLTK setup
     nltk_downloads = ['punkt', 'stopwords', 'averaged_perceptron_tagger', 'wordnet', 'omw-1.4']
     
     for item in nltk_downloads:
@@ -47,13 +48,30 @@ def setup_nltk():
                     try:
                         nltk.data.find(f'taggers/{item}')
                     except LookupError:
-                        print(f"Downloading {item}...")
+                        print(f"Downloading NLTK {item}...")
                         nltk.download(item, quiet=True)
         except Exception as e:
-            print(f"Error downloading {item}: {e}")
+            print(f"Error downloading NLTK {item}: {e}")
+    
+    # spaCy model setup
+    try:
+        import spacy
+        # Try to load the model
+        try:
+            nlp = spacy.load('en_core_web_sm')
+            print("✅ spaCy en_core_web_sm model already available")
+        except OSError:
+            print("📥 Downloading spaCy en_core_web_sm model...")
+            import subprocess
+            import sys
+            # Download the spaCy model
+            subprocess.check_call([sys.executable, "-m", "spacy", "download", "en_core_web_sm"])
+            print("✅ spaCy en_core_web_sm model downloaded successfully")
+    except Exception as e:
+        print(f"❌ Error setting up spaCy: {e}")
 
-# Setup NLTK before importing pyresparser
-setup_nltk()
+# Setup NLTK and spaCy before importing pyresparser
+setup_nltk_and_spacy()
 
 # libraries used to parse the pdf files
 from pyresparser import ResumeParser
@@ -386,8 +404,15 @@ def run():
                 f.write(pdf_file.getbuffer())
             show_pdf(save_image_path)
 
-            ### parsing and extracting whole resume 
-            resume_data = ResumeParser(save_image_path).get_extracted_data()
+            ### parsing and extracting whole resume with error handling
+            try:
+                resume_data = ResumeParser(save_image_path).get_extracted_data()
+            except Exception as e:
+                st.error(f"❌ Resume parsing failed: {str(e)}")
+                st.info("💡 This might be due to missing spaCy model. Please try with a simpler resume or contact support.")
+                st.info("🔧 The app is trying to download required models. Please refresh the page and try again.")
+                resume_data = None
+                
             if resume_data:
                 
                 ## Get the whole resume data into resume_text
