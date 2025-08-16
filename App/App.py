@@ -395,6 +395,14 @@ def course_recommender(course_list):
 
 # sql connector
 def init_database():
+    # Check if running on cloud (Streamlit Cloud environment)
+    is_cloud = os.path.exists('/mount/src') or 'STREAMLIT_SERVER_PORT' in os.environ
+    
+    if is_cloud:
+        print("🌐 Detected cloud environment - skipping database connection")
+        st.session_state.db_connected = False
+        return False
+    
     try:
         print(f"🔍 Attempting database connection...")
         print(f"Host: {config.DB_HOST}")
@@ -507,6 +515,9 @@ except:
 
 
 def run():
+    # Environment detection
+    is_cloud = os.path.exists('/mount/src') or 'STREAMLIT_SERVER_PORT' in os.environ
+    
     # Initialize database connection only if not already connected
     if 'db_connected' not in st.session_state or not st.session_state.get('db_connected', False):
         db_connected = init_database()
@@ -514,16 +525,21 @@ def run():
         db_connected = st.session_state.get('db_connected', False)
         
     if not db_connected:
-        st.info("💡 Running in demo mode - some features may be limited")
+        if is_cloud:
+            st.info("🌐 Running on Streamlit Cloud in demo mode - database features are disabled")
+            st.info("💡 All resume analysis features are fully functional!")
+        else:
+            st.info("💡 Running in demo mode - some features may be limited")
     
     # (Logo, Heading, Sidebar etc)
     try:
-        # Try different possible logo paths
+        # Try different possible logo paths for different environments
         logo_paths = [
             'Logo/RESUM.png',
             './Logo/RESUM.png',
             os.path.join(os.path.dirname(__file__), 'Logo', 'RESUM.png'),
-            '/mount/src/ai-resume-analyser/App/Logo/RESUM.png'  # Streamlit Cloud path
+            '/mount/src/ai-resume-analyser/App/Logo/RESUM.png',  # Streamlit Cloud path
+            'App/Logo/RESUM.png'  # Alternative cloud path
         ]
         
         img = None
@@ -531,8 +547,10 @@ def run():
             try:
                 if os.path.exists(logo_path):
                     img = Image.open(logo_path)
+                    print(f"✅ Logo loaded from: {logo_path}")
                     break
-            except:
+            except Exception as e:
+                print(f"⚠️ Failed to load logo from {logo_path}: {e}")
                 continue
         
         if img:
@@ -540,9 +558,14 @@ def run():
         else:
             # Fallback if logo not found
             st.markdown("# 🚀 AI Resume Analyzer")
+            st.markdown("*Your Intelligent Career Companion*")
+            print("⚠️ Using fallback logo display")
             
     except Exception as e:
         # Fallback if any error with logo
+        st.markdown("# 🚀 AI Resume Analyzer")
+        st.markdown("*Your Intelligent Career Companion*")
+        print(f"❌ Logo error: {e}")
         st.markdown("# 🚀 AI Resume Analyzer")
         
     st.sidebar.markdown("# Choose Something...")

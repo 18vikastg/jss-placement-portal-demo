@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: ai-resume-analyzer
+    env: python
+    buildCommand: "pip install -r App/requirements.txt"
+    startCommand: "streamlit run App/App.py --server.port $PORT --server.address 0.0.0.0"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
