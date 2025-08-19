@@ -515,6 +515,370 @@ except:
 
 
 def run():
+    # Add enhanced professional CSS styling
+    st.markdown("""
+    <style>
+    /* Import Google Fonts for better typography */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    
+    /* Global styling */
+    .main {
+        padding-top: 1rem;
+        font-family: 'Inter', sans-serif;
+    }
+    
+    /* Hide Streamlit header and footer */
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
+    
+    /* Custom header styling with enhanced gradient */
+    .main-header {
+        text-align: center;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+        padding: 2.5rem 1rem;
+        border-radius: 20px;
+        margin-bottom: 2.5rem;
+        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .main-header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(45deg, rgba(255,255,255,0.1) 25%, transparent 25%), 
+                    linear-gradient(-45deg, rgba(255,255,255,0.1) 25%, transparent 25%);
+        background-size: 20px 20px;
+        animation: float 6s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+    }
+    
+    .main-header h1 {
+        color: white !important;
+        font-size: 3.2rem !important;
+        font-weight: 700 !important;
+        margin-bottom: 0.8rem !important;
+        text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+        letter-spacing: -1px;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .main-header p {
+        color: #f8f9fa !important;
+        font-size: 1.3rem !important;
+        margin-bottom: 0 !important;
+        font-weight: 400 !important;
+        text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+        position: relative;
+        z-index: 1;
+    }
+    
+    /* Enhanced logo container */
+    .logo-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2rem;
+        filter: drop-shadow(0 8px 16px rgba(0,0,0,0.15));
+    }
+    
+    /* Enhanced sidebar styling */
+    .css-1d391kg, .css-1lcbmhc {
+        background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);
+        border-right: 3px solid #667eea;
+    }
+    
+    /* Enhanced file uploader */
+    .stFileUploader {
+        border: 3px dashed #667eea;
+        border-radius: 15px;
+        padding: 2.5rem;
+        background: linear-gradient(135deg, #f8f9ff 0%, #e3f2fd 100%);
+        transition: all 0.3s ease;
+    }
+    
+    .stFileUploader:hover {
+        border-color: #764ba2;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
+    }
+    
+    /* Enhanced success messages */
+    .stSuccess {
+        background: linear-gradient(90deg, #28a745, #20c997) !important;
+        border: none !important;
+        border-radius: 12px !important;
+        padding: 1.2rem !important;
+        color: white !important;
+        box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3) !important;
+    }
+    
+    /* Enhanced info boxes */
+    .stInfo {
+        background: linear-gradient(90deg, #17a2b8, #007bff) !important;
+        border: none !important;
+        border-radius: 12px !important;
+        color: white !important;
+        box-shadow: 0 4px 15px rgba(23, 162, 184, 0.3) !important;
+    }
+    
+    /* Enhanced warning messages */
+    .stWarning {
+        background: linear-gradient(90deg, #ffc107, #fd7e14) !important;
+        border: none !important;
+        border-radius: 12px !important;
+        color: #212529 !important;
+        box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3) !important;
+    }
+    
+    /* Professional metric cards */
+    .metric-card {
+        background: linear-gradient(145deg, #ffffff, #f8f9fa);
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        border-left: 5px solid #667eea;
+        margin: 1rem 0;
+        transition: all 0.3s ease;
+    }
+    
+    .metric-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    }
+    
+    /* Enhanced buttons */
+    .stButton > button {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        border: none !important;
+        border-radius: 30px !important;
+        padding: 0.8rem 2.5rem !important;
+        color: white !important;
+        font-weight: 600 !important;
+        font-size: 1rem !important;
+        transition: all 0.3s ease !important;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4) !important;
+    }
+    
+    .stButton > button:hover {
+        transform: translateY(-3px) !important;
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6) !important;
+        background: linear-gradient(135deg, #764ba2 0%, #667eea 100%) !important;
+    }
+    
+    /* Professional section headers */
+    .section-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 1.5rem 2rem;
+        border-radius: 15px;
+        margin: 2rem 0 1.5rem 0;
+        font-weight: 600;
+        text-align: center;
+        font-size: 1.3rem;
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .section-header::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+        transform: rotate(45deg);
+        animation: shine 3s infinite;
+    }
+    
+    @keyframes shine {
+        0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+        50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    }
+    
+    /* Enhanced progress bars */
+    .stProgress .st-bo {
+        background: linear-gradient(90deg, #667eea, #764ba2) !important;
+        border-radius: 10px !important;
+    }
+    
+    /* Professional chart containers */
+    .chart-container {
+        background: linear-gradient(145deg, #ffffff, #f8f9fa);
+        padding: 2rem;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        margin: 1.5rem 0;
+        border: 1px solid rgba(102, 126, 234, 0.1);
+    }
+    
+    /* Enhanced animations */
+    @keyframes fadeInUp {
+        from { 
+            opacity: 0; 
+            transform: translateY(30px); 
+        }
+        to { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
+    }
+    
+    .fade-in {
+        animation: fadeInUp 0.8s ease-out;
+    }
+    
+    /* Professional experience level badges */
+    .level-badge {
+        display: inline-block;
+        padding: 1rem 2rem;
+        border-radius: 30px;
+        font-weight: 600;
+        text-align: center;
+        margin: 1rem 0;
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        transition: all 0.3s ease;
+    }
+    
+    .level-badge:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
+    
+    .fresher-badge {
+        background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+        color: white;
+    }
+    
+    .intermediate-badge {
+        background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+        color: white;
+    }
+    
+    .experienced-badge {
+        background: linear-gradient(135deg, #f9ca24 0%, #f0932b 100%);
+        color: white;
+    }
+    
+    /* Enhanced skill tags */
+    .skill-tag {
+        display: inline-block;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 0.5rem 1.2rem;
+        margin: 0.3rem;
+        border-radius: 25px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
+        transition: all 0.3s ease;
+    }
+    
+    .skill-tag:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+    }
+    
+    /* Professional resume cards */
+    .resume-card {
+        background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+        border-radius: 20px;
+        padding: 2rem;
+        margin: 1.5rem 0;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        border: 1px solid rgba(102, 126, 234, 0.1);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .resume-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(90deg, #667eea, #764ba2);
+    }
+    
+    .resume-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+    
+    /* Enhanced selectbox styling */
+    .stSelectbox > div > div {
+        background: linear-gradient(145deg, #ffffff, #f8f9fa);
+        border-radius: 10px;
+        border: 2px solid #e9ecef;
+        transition: all 0.3s ease;
+    }
+    
+    .stSelectbox > div > div:hover {
+        border-color: #667eea;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+    }
+    
+    /* Professional text input styling */
+    .stTextInput > div > div > input {
+        border-radius: 10px;
+        border: 2px solid #e9ecef;
+        transition: all 0.3s ease;
+    }
+    
+    .stTextInput > div > div > input:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 15px rgba(102, 126, 234, 0.3);
+    }
+    
+    /* Enhanced spinner */
+    .stSpinner {
+        text-align: center;
+        color: #667eea;
+    }
+    
+    /* Professional table styling */
+    .dataframe {
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    
+    /* Enhanced markdown styling */
+    .stMarkdown h1, .stMarkdown h2, .stMarkdown h3, .stMarkdown h4 {
+        color: #2c3e50;
+        font-weight: 600;
+    }
+    
+    /* Professional footer styling */
+    .footer-style {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 1.5rem;
+        border-radius: 15px;
+        text-align: center;
+        color: white;
+        margin-top: 2rem;
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+    }
+    </style>
+    """, unsafe_allow_html=True)
+    
     # Environment detection
     is_cloud = os.path.exists('/mount/src') or 'STREAMLIT_SERVER_PORT' in os.environ
     
@@ -553,39 +917,68 @@ def run():
                 print(f"⚠️ Failed to load logo from {logo_path}: {e}")
                 continue
         
+        # Header with centered medium-sized logo
         if img:
-            st.image(img)
-        else:
-            # Fallback if logo not found
-            st.markdown("# 🚀 AI Resume Analyzer")
-            st.markdown("*Your Intelligent Career Companion*")
-            print("⚠️ Using fallback logo display")
-            
-    except Exception as e:
-        # Fallback if any error with logo
-        st.markdown("# 🚀 AI Resume Analyzer")
-        st.markdown("*Your Intelligent Career Companion*")
-        print(f"❌ Logo error: {e}")
-        st.markdown("# 🚀 AI Resume Analyzer")
+            col1, col2, col3 = st.columns([1, 2, 1])
+            with col2:
+                st.markdown('<div class="logo-container">', unsafe_allow_html=True)
+                st.image(img, width=280)  # Increased logo size to medium
+                st.markdown('</div>', unsafe_allow_html=True)
         
-    st.sidebar.markdown("# Choose Something...")
+        # Enhanced Professional main header
+        st.markdown("""
+        <div class="main-header fade-in">
+            <h1>🚀 AI Resume Analyzer Pro</h1>
+            <p>Advanced AI-Powered Career Intelligence Platform</p>
+        </div>
+        """, unsafe_allow_html=True)
+        
+    except Exception as e:
+        # Fallback header if logo fails
+        st.markdown("""
+        <div class="main-header fade-in">
+            <h1>🚀 AI Resume Analyzer Pro</h1>
+            <p>Advanced AI-Powered Career Intelligence Platform</p>
+        </div>
+        """, unsafe_allow_html=True)
+        print(f"❌ Logo error: {e}")
+        
+    # Enhanced Professional Sidebar
+    st.sidebar.markdown("""
+    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 1.5rem; border-radius: 15px; margin-bottom: 1.5rem; box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);">
+        <h2 style="color: white; text-align: center; margin: 0; font-weight: 600; font-size: 1.5rem;">🧭 Navigation Hub</h2>
+        <p style="color: #f8f9fa; text-align: center; margin: 0.5rem 0 0 0; font-size: 0.9rem;">Choose your destination</p>
+    </div>
+    """, unsafe_allow_html=True)
+    
     activities = ["User", "Feedback", "About", "Admin"]
-    choice = st.sidebar.selectbox("Choose among the given options:", activities)
-    link = '<b>Built with ❤️ by <a href="https://github.com/18vikastg" style="text-decoration: none; color: #021659;">Vikas TG</a></b>' 
+    choice = st.sidebar.selectbox("🎯 Select Mode:", activities, key="nav_selectbox")
+    
+    # Enhanced professional footer in sidebar
+    st.sidebar.markdown("---")
+    link = '''
+    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 1.5rem; border-radius: 15px; margin: 1rem 0; text-align: center; box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);">
+        <div style="color: white; font-size: 1rem; margin-bottom: 0.5rem;">⚡ Powered by</div>
+        <a href="https://github.com/18vikastg" style="text-decoration: none; color: #ffffff; font-weight: bold; font-size: 1.2rem;">Vikas TG</a>
+        <div style="color: #f8f9fa; font-size: 0.8rem; margin-top: 0.5rem;">Built with ❤️ & AI</div>
+    </div>
+    ''' 
     st.sidebar.markdown(link, unsafe_allow_html=True)
+    
+    # Visitor counter with improved styling
     st.sidebar.markdown('''
-        <!-- site visitors -->
-
-        <div id="sfct2xghr8ak6lfqt3kgru233378jya38dy" hidden></div>
-
-        <noscript>
-            <a href="https://www.freecounterstat.com" title="hit counter">
-                <img src="https://counter9.stat.ovh/private/freecounterstat.php?c=t2xghr8ak6lfqt3kgru233378jya38dy" border="0" title="hit counter" alt="hit counter"> -->
-            </a>
-        </noscript>
-    
-        <p>Visitors <img src="https://counter9.stat.ovh/private/freecounterstat.php?c=t2xghr8ak6lfqt3kgru233378jya38dy" title="Free Counter" Alt="web counter" width="60px"  border="0" /></p>
-    
+        <div style="text-align: center; margin-top: 1rem;">
+            <div id="sfct2xghr8ak6lfqt3kgru233378jya38dy" hidden></div>
+            <noscript>
+                <a href="https://www.freecounterstat.com" title="hit counter">
+                    <img src="https://counter9.stat.ovh/private/freecounterstat.php?c=t2xghr8ak6lfqt3kgru233378jya38dy" border="0" title="hit counter" alt="hit counter">
+                </a>
+            </noscript>
+            <div style="background: #f8f9fa; padding: 0.5rem; border-radius: 5px; border: 1px solid #dee2e6;">
+                <small style="color: #6c757d;">Visitors</small><br>
+                <img src="https://counter9.stat.ovh/private/freecounterstat.php?c=t2xghr8ak6lfqt3kgru233378jya38dy" title="Free Counter" alt="web counter" width="60px" border="0" />
+            </div>
+        </div>
     ''', unsafe_allow_html=True)
 
     ###### Creating Database and Table ######
@@ -639,13 +1032,33 @@ def run():
         country = countryy
 
 
-        # Upload Resume
-        st.markdown('''<h5 style='text-align: left; color: #021659;'> Upload Your Resume, And Get Smart Recommendations</h5>''',unsafe_allow_html=True)
+        # Enhanced Professional Upload Section
+        st.markdown("""
+        <div class="section-header">
+            📄 Advanced Resume Analysis Portal
+        </div>
+        """, unsafe_allow_html=True)
         
-        ## file upload in pdf format
-        pdf_file = st.file_uploader("Choose your Resume", type=["pdf"])
+        st.markdown("""
+        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%); padding: 2rem; border-radius: 20px; margin: 1.5rem 0; box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);">
+            <h3 style="color: white; margin: 0 0 1rem 0; text-align: center; font-weight: 600;">🎯 Ready for AI-Powered Analysis?</h3>
+            <p style="color: #f8f9fa; margin: 0; font-size: 1.1rem; text-align: center; line-height: 1.6;">
+                Upload your resume and unlock personalized insights with our advanced AI engine. 
+                Get detailed skill analysis, career recommendations, and professional growth strategies.
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        ## Enhanced professional file upload
+        pdf_file = st.file_uploader(
+            "� Select Your Resume (PDF Format)", 
+            type=["pdf"],
+            help="Upload your resume in PDF format for comprehensive AI analysis and personalized recommendations"
+        )
+        
         if pdf_file is not None:
-            with st.spinner('Hang On While We Cook Magic For You...'):
+            # Enhanced loading message with better styling
+            with st.spinner('🔮 Analyzing your resume with advanced AI algorithms... Please wait!'):
                 time.sleep(4)
         
             ### saving the uploaded resume to folder
@@ -689,65 +1102,140 @@ def run():
                 ## Get the whole resume data into resume_text
                 resume_text = pdf_reader(save_image_path)
 
-                ## Showing Analyzed data from (resume_data)
-                st.header("**Resume Analysis 🤘**")
-                st.success("Hello "+ resume_data['name'])
-                st.subheader("**Your Basic info 👀**")
-                try:
-                    st.text('Name: '+resume_data['name'])
-                    st.text('Email: ' + resume_data['email'])
-                    st.text('Contact: ' + resume_data['mobile_number'])
-                    st.text('Degree: '+str(resume_data['degree']))                    
-                    st.text('Resume pages: '+str(resume_data['no_of_pages']))
-
-                except:
+                ## Professional Analysis Header
+                st.markdown("""
+                <div class="section-header">
+                    🎯 AI Resume Analysis Results
+                </div>
+                """, unsafe_allow_html=True)
+                
+                # Welcome message with professional styling
+                st.markdown(f"""
+                <div style="background: linear-gradient(90deg, #28a745, #20c997); padding: 1.5rem; border-radius: 15px; margin: 1rem 0;">
+                    <h3 style="color: white; margin: 0; text-align: center;">👋 Hello {resume_data['name']}!</h3>
+                    <p style="color: #e8f4fd; margin: 0.5rem 0 0 0; text-align: center;">Your resume has been successfully analyzed. Here are your personalized insights:</p>
+                </div>
+                """, unsafe_allow_html=True)
+                
+                # Professional Basic Info Section
+                st.markdown("""
+                <div class="section-header">
+                    👤 Personal Information
+                </div>
+                """, unsafe_allow_html=True)
+                
+                # Create columns for better layout
+                col1, col2 = st.columns(2)
+                
+                with col1:
+                    st.markdown(f"""
+                    <div class="resume-card">
+                        <h4 style="color: #2a5298; margin-bottom: 1rem;">📊 Basic Details</h4>
+                        <div style="line-height: 1.8;">
+                            <strong>👤 Name:</strong> {resume_data['name']}<br>
+                            <strong>📧 Email:</strong> {resume_data['email']}<br>
+                            <strong>📱 Contact:</strong> {resume_data['mobile_number']}
+                        </div>
+                    </div>
+                    """, unsafe_allow_html=True)
+                
+                with col2:
+                    st.markdown(f"""
+                    <div class="resume-card">
+                        <h4 style="color: #2a5298; margin-bottom: 1rem;">🎓 Education & Stats</h4>
+                        <div style="line-height: 1.8;">
+                            <strong>🏫 Degree:</strong> {str(resume_data['degree'])}<br>
+                            <strong>📄 Resume Pages:</strong> {str(resume_data['no_of_pages'])}<br>
+                            <strong>📅 Analysis Date:</strong> {datetime.datetime.now().strftime('%Y-%m-%d')}
+                        </div>
+                    </div>
+                    """, unsafe_allow_html=True)
                     pass
                 ## Predicting Candidate Experience Level 
 
                 ### Trying with different possibilities
+                # Experience Level Analysis
+                st.markdown("""
+                <div class="section-header">
+                    📈 Experience Level Assessment
+                </div>
+                """, unsafe_allow_html=True)
+                
                 cand_level = ''
                 if resume_data['no_of_pages'] < 1:                
-                    cand_level = "NA"
-                    st.markdown( '''<h4 style='text-align: left; color: #d73b5c;'>You are at Fresher level!</h4>''',unsafe_allow_html=True)
+                    cand_level = "Fresher"
+                    st.markdown('''
+                    <div class="resume-card">
+                        <div class="level-badge fresher-badge">
+                            🌱 Fresher Level
+                        </div>
+                        <p style="margin-top: 1rem; color: #6c757d;">You're at the beginning of your career journey. Focus on building foundational skills and gaining practical experience.</p>
+                    </div>
+                    ''', unsafe_allow_html=True)
                 
                 #### if internship then intermediate level
-                elif 'INTERNSHIP' in resume_text:
+                elif any(keyword in resume_text.upper() for keyword in ['INTERNSHIP', 'INTERNSHIPS']):
                     cand_level = "Intermediate"
-                    st.markdown('''<h4 style='text-align: left; color: #1ed760;'>You are at intermediate level!</h4>''',unsafe_allow_html=True)
-                elif 'INTERNSHIPS' in resume_text:
-                    cand_level = "Intermediate"
-                    st.markdown('''<h4 style='text-align: left; color: #1ed760;'>You are at intermediate level!</h4>''',unsafe_allow_html=True)
-                elif 'Internship' in resume_text:
-                    cand_level = "Intermediate"
-                    st.markdown('''<h4 style='text-align: left; color: #1ed760;'>You are at intermediate level!</h4>''',unsafe_allow_html=True)
-                elif 'Internships' in resume_text:
-                    cand_level = "Intermediate"
-                    st.markdown('''<h4 style='text-align: left; color: #1ed760;'>You are at intermediate level!</h4>''',unsafe_allow_html=True)
+                    st.markdown('''
+                    <div class="resume-card">
+                        <div class="level-badge intermediate-badge">
+                            🚀 Intermediate Level
+                        </div>
+                        <p style="margin-top: 1rem; color: #6c757d;">Great! You have internship experience. You're building practical skills and industry knowledge.</p>
+                    </div>
+                    ''', unsafe_allow_html=True)
                 
                 #### if Work Experience/Experience then Experience level
-                elif 'EXPERIENCE' in resume_text:
+                elif any(keyword in resume_text.upper() for keyword in ['EXPERIENCE', 'WORK EXPERIENCE']):
                     cand_level = "Experienced"
-                    st.markdown('''<h4 style='text-align: left; color: #fba171;'>You are at experience level!''',unsafe_allow_html=True)
-                elif 'WORK EXPERIENCE' in resume_text:
-                    cand_level = "Experienced"
-                    st.markdown('''<h4 style='text-align: left; color: #fba171;'>You are at experience level!''',unsafe_allow_html=True)
-                elif 'Experience' in resume_text:
-                    cand_level = "Experienced"
-                    st.markdown('''<h4 style='text-align: left; color: #fba171;'>You are at experience level!''',unsafe_allow_html=True)
-                elif 'Work Experience' in resume_text:
-                    cand_level = "Experienced"
-                    st.markdown('''<h4 style='text-align: left; color: #fba171;'>You are at experience level!''',unsafe_allow_html=True)
+                    st.markdown('''
+                    <div class="resume-card">
+                        <div class="level-badge experienced-badge">
+                            💼 Experienced Level
+                        </div>
+                        <p style="margin-top: 1rem; color: #6c757d;">Excellent! You have professional work experience. You're ready for advanced roles and leadership opportunities.</p>
+                    </div>
+                    ''', unsafe_allow_html=True)
                 else:
                     cand_level = "Fresher"
-                    st.markdown('''<h4 style='text-align: left; color: #fba171;'>You are at Fresher level!!''',unsafe_allow_html=True)
+                    st.markdown('''
+                    <div class="resume-card">
+                        <div class="level-badge fresher-badge">
+                            🌱 Fresher Level
+                        </div>
+                        <p style="margin-top: 1rem; color: #6c757d;">You're at the beginning of your career journey. Focus on building foundational skills and gaining practical experience.</p>
+                    </div>
+                    ''', unsafe_allow_html=True)
 
 
-                ## Skills Analyzing and Recommendation
-                st.subheader("**Skills Recommendation 💡**")
+                ## Professional Skills Analysis
+                st.markdown("""
+                <div class="section-header">
+                    🎯 Skills Analysis & Recommendations
+                </div>
+                """, unsafe_allow_html=True)
                 
-                ### Current Analyzed Skills
-                keywords = st_tags(label='### Your Current Skills',
-                text='See our skills recommendation below',value=resume_data['skills'],key = '1  ')
+                ### Current Skills Display
+                st.markdown("""
+                <div class="resume-card">
+                    <h4 style="color: #2a5298; margin-bottom: 1rem;">📋 Your Current Skills</h4>
+                    <p style="color: #6c757d; margin-bottom: 1rem;">Skills identified from your resume:</p>
+                </div>
+                """, unsafe_allow_html=True)
+                
+                # Display skills as badges
+                if resume_data['skills']:
+                    skills_html = '<div style="margin: 1rem 0;">'
+                    for skill in resume_data['skills']:
+                        skills_html += f'<span class="skill-tag">{skill}</span>'
+                    skills_html += '</div>'
+                    st.markdown(skills_html, unsafe_allow_html=True)
+                else:
+                    st.info("💡 No specific skills were detected. Consider adding a skills section to your resume.")
+                
+                ### Skills input for user
+                keywords = st_tags(label='### ✏️ Edit Your Skills',
+                text='You can add or remove skills to get better recommendations',value=resume_data['skills'],key = '1  ')
 
                 ### Keywords for Recommendations
                 ds_keyword = ['tensorflow','keras','pytorch','machine learning','deep Learning','flask','streamlit']
@@ -762,17 +1250,40 @@ def run():
                 rec_course = ''
 
                 ### condition starts to check skills from keywords and predict field
-                for i in resume_data['skills']:
+                for i in keywords:  # Use user-edited skills
                 
                     #### Data science recommendation
                     if i.lower() in ds_keyword:
                         print(i.lower())
                         reco_field = 'Data Science'
-                        st.success("** Our analysis says you are looking for Data Science Jobs.**")
+                        
+                        st.markdown("""
+                        <div style="background: linear-gradient(90deg, #28a745, #20c997); padding: 1.5rem; border-radius: 15px; margin: 1rem 0;">
+                            <h4 style="color: white; margin: 0 0 0.5rem 0;">🎯 Career Path Identified</h4>
+                            <p style="color: #e8f4fd; margin: 0;">Our AI analysis suggests you're perfect for <strong>Data Science</strong> roles!</p>
+                        </div>
+                        """, unsafe_allow_html=True)
+                        
                         recommended_skills = ['Data Visualization','Predictive Analysis','Statistical Modeling','Data Mining','Clustering & Classification','Data Analytics','Quantitative Analysis','Web Scraping','ML Algorithms','Keras','Pytorch','Probability','Scikit-learn','Tensorflow',"Flask",'Streamlit']
-                        recommended_keywords = st_tags(label='### Recommended skills for you.',
-                        text='Recommended skills generated from System',value=recommended_skills,key = '2')
-                        st.markdown('''<h5 style='text-align: left; color: #1ed760;'>Adding this skills to resume will boost🚀 the chances of getting a Job</h5>''',unsafe_allow_html=True)
+                        
+                        st.markdown("""
+                        <div class="resume-card">
+                            <h4 style="color: #2a5298; margin-bottom: 1rem;">🚀 Skill Enhancement Recommendations</h4>
+                            <p style="color: #6c757d;">Adding these skills will significantly boost your chances in Data Science roles:</p>
+                        </div>
+                        """, unsafe_allow_html=True)
+                        
+                        recommended_keywords = st_tags(label='### 💡 Recommended Skills for Data Science',
+                        text='AI-generated skill recommendations to enhance your profile',value=recommended_skills,key = '2')
+                        
+                        st.markdown('''
+                        <div style="background: linear-gradient(90deg, #1ed760, #28a745); padding: 1rem; border-radius: 10px; margin: 1rem 0;">
+                            <p style="color: white; margin: 0; text-align: center; font-weight: 600;">
+                                ✨ Adding these skills to your resume will significantly boost your job prospects! 🚀
+                            </p>
+                        </div>
+                        ''', unsafe_allow_html=True)
+                        
                         # course recommendation
                         rec_course = course_recommender(ds_course)
                         break
@@ -781,11 +1292,34 @@ def run():
                     elif i.lower() in web_keyword:
                         print(i.lower())
                         reco_field = 'Web Development'
-                        st.success("** Our analysis says you are looking for Web Development Jobs **")
+                        
+                        st.markdown("""
+                        <div style="background: linear-gradient(90deg, #007bff, #0056b3); padding: 1.5rem; border-radius: 15px; margin: 1rem 0;">
+                            <h4 style="color: white; margin: 0 0 0.5rem 0;">🌐 Career Path Identified</h4>
+                            <p style="color: #e8f4fd; margin: 0;">Our AI analysis suggests you're perfect for <strong>Web Development</strong> roles!</p>
+                        </div>
+                        """, unsafe_allow_html=True)
+                        
                         recommended_skills = ['React','Django','Node JS','React JS','php','laravel','Magento','wordpress','Javascript','Angular JS','c#','Flask','SDK']
-                        recommended_keywords = st_tags(label='### Recommended skills for you.',
-                        text='Recommended skills generated from System',value=recommended_skills,key = '3')
-                        st.markdown('''<h5 style='text-align: left; color: #1ed760;'>Adding this skills to resume will boost🚀 the chances of getting a Job💼</h5>''',unsafe_allow_html=True)
+                        
+                        st.markdown("""
+                        <div class="resume-card">
+                            <h4 style="color: #2a5298; margin-bottom: 1rem;">🚀 Skill Enhancement Recommendations</h4>
+                            <p style="color: #6c757d;">Adding these skills will significantly boost your chances in Web Development roles:</p>
+                        </div>
+                        """, unsafe_allow_html=True)
+                        
+                        recommended_keywords = st_tags(label='### 💡 Recommended Skills for Web Development',
+                        text='AI-generated skill recommendations to enhance your profile',value=recommended_skills,key = '3')
+                        
+                        st.markdown('''
+                        <div style="background: linear-gradient(90deg, #1ed760, #28a745); padding: 1rem; border-radius: 10px; margin: 1rem 0;">
+                            <p style="color: white; margin: 0; text-align: center; font-weight: 600;">
+                                ✨ Adding these skills to your resume will significantly boost your job prospects! 🚀
+                            </p>
+                        </div>
+                        ''', unsafe_allow_html=True)
+                        
                         # course recommendation
                         rec_course = course_recommender(web_course)
                         break
@@ -794,11 +1328,34 @@ def run():
                     elif i.lower() in android_keyword:
                         print(i.lower())
                         reco_field = 'Android Development'
-                        st.success("** Our analysis says you are looking for Android App Development Jobs **")
+                        
+                        st.markdown("""
+                        <div style="background: linear-gradient(90deg, #6f42c1, #563d7c); padding: 1.5rem; border-radius: 15px; margin: 1rem 0;">
+                            <h4 style="color: white; margin: 0 0 0.5rem 0;">📱 Career Path Identified</h4>
+                            <p style="color: #e8f4fd; margin: 0;">Our AI analysis suggests you're perfect for <strong>Android Development</strong> roles!</p>
+                        </div>
+                        """, unsafe_allow_html=True)
+                        
                         recommended_skills = ['Android','Android development','Flutter','Kotlin','XML','Java','Kivy','GIT','SDK','SQLite']
-                        recommended_keywords = st_tags(label='### Recommended skills for you.',
-                        text='Recommended skills generated from System',value=recommended_skills,key = '4')
-                        st.markdown('''<h5 style='text-align: left; color: #1ed760;'>Adding this skills to resume will boost🚀 the chances of getting a Job💼</h5>''',unsafe_allow_html=True)
+                        
+                        st.markdown("""
+                        <div class="resume-card">
+                            <h4 style="color: #2a5298; margin-bottom: 1rem;">🚀 Skill Enhancement Recommendations</h4>
+                            <p style="color: #6c757d;">Adding these skills will significantly boost your chances in Android Development roles:</p>
+                        </div>
+                        """, unsafe_allow_html=True)
+                        
+                        recommended_keywords = st_tags(label='### 💡 Recommended Skills for Android Development',
+                        text='AI-generated skill recommendations to enhance your profile',value=recommended_skills,key = '4')
+                        
+                        st.markdown('''
+                        <div style="background: linear-gradient(90deg, #1ed760, #28a745); padding: 1rem; border-radius: 10px; margin: 1rem 0;">
+                            <p style="color: white; margin: 0; text-align: center; font-weight: 600;">
+                                ✨ Adding these skills to your resume will significantly boost your job prospects! �
+                            </p>
+                        </div>
+                        ''', unsafe_allow_html=True)
+                        
                         # course recommendation
                         rec_course = course_recommender(android_course)
                         break
@@ -807,11 +1364,34 @@ def run():
                     elif i.lower() in ios_keyword:
                         print(i.lower())
                         reco_field = 'IOS Development'
-                        st.success("** Our analysis says you are looking for IOS App Development Jobs **")
+                        
+                        st.markdown("""
+                        <div style="background: linear-gradient(90deg, #fd7e14, #dc3545); padding: 1.5rem; border-radius: 15px; margin: 1rem 0;">
+                            <h4 style="color: white; margin: 0 0 0.5rem 0;">🍎 Career Path Identified</h4>
+                            <p style="color: #e8f4fd; margin: 0;">Our AI analysis suggests you're perfect for <strong>iOS Development</strong> roles!</p>
+                        </div>
+                        """, unsafe_allow_html=True)
+                        
                         recommended_skills = ['IOS','IOS Development','Swift','Cocoa','Cocoa Touch','Xcode','Objective-C','SQLite','Plist','StoreKit',"UI-Kit",'AV Foundation','Auto-Layout']
-                        recommended_keywords = st_tags(label='### Recommended skills for you.',
-                        text='Recommended skills generated from System',value=recommended_skills,key = '5')
-                        st.markdown('''<h5 style='text-align: left; color: #1ed760;'>Adding this skills to resume will boost🚀 the chances of getting a Job💼</h5>''',unsafe_allow_html=True)
+                        
+                        st.markdown("""
+                        <div class="resume-card">
+                            <h4 style="color: #2a5298; margin-bottom: 1rem;">🚀 Skill Enhancement Recommendations</h4>
+                            <p style="color: #6c757d;">Adding these skills will significantly boost your chances in iOS Development roles:</p>
+                        </div>
+                        """, unsafe_allow_html=True)
+                        
+                        recommended_keywords = st_tags(label='### 💡 Recommended Skills for iOS Development',
+                        text='AI-generated skill recommendations to enhance your profile',value=recommended_skills,key = '5')
+                        
+                        st.markdown('''
+                        <div style="background: linear-gradient(90deg, #1ed760, #28a745); padding: 1rem; border-radius: 10px; margin: 1rem 0;">
+                            <p style="color: white; margin: 0; text-align: center; font-weight: 600;">
+                                ✨ Adding these skills to your resume will significantly boost your job prospects! 🚀
+                            </p>
+                        </div>
+                        ''', unsafe_allow_html=True)
+                        
                         # course recommendation
                         rec_course = course_recommender(ios_course)
                         break
@@ -820,11 +1400,34 @@ def run():
                     elif i.lower() in uiux_keyword:
                         print(i.lower())
                         reco_field = 'UI-UX Development'
-                        st.success("** Our analysis says you are looking for UI-UX Development Jobs **")
+                        
+                        st.markdown("""
+                        <div style="background: linear-gradient(90deg, #e83e8c, #fd7e14); padding: 1.5rem; border-radius: 15px; margin: 1rem 0;">
+                            <h4 style="color: white; margin: 0 0 0.5rem 0;">🎨 Career Path Identified</h4>
+                            <p style="color: #e8f4fd; margin: 0;">Our AI analysis suggests you're perfect for <strong>UI/UX Design</strong> roles!</p>
+                        </div>
+                        """, unsafe_allow_html=True)
+                        
                         recommended_skills = ['UI','User Experience','Adobe XD','Figma','Zeplin','Balsamiq','Prototyping','Wireframes','Storyframes','Adobe Photoshop','Editing','Illustrator','After Effects','Premier Pro','Indesign','Wireframe','Solid','Grasp','User Research']
-                        recommended_keywords = st_tags(label='### Recommended skills for you.',
-                        text='Recommended skills generated from System',value=recommended_skills,key = '6')
-                        st.markdown('''<h5 style='text-align: left; color: #1ed760;'>Adding this skills to resume will boost🚀 the chances of getting a Job💼</h5>''',unsafe_allow_html=True)
+                        
+                        st.markdown("""
+                        <div class="resume-card">
+                            <h4 style="color: #2a5298; margin-bottom: 1rem;">🚀 Skill Enhancement Recommendations</h4>
+                            <p style="color: #6c757d;">Adding these skills will significantly boost your chances in UI/UX Design roles:</p>
+                        </div>
+                        """, unsafe_allow_html=True)
+                        
+                        recommended_keywords = st_tags(label='### 💡 Recommended Skills for UI/UX Design',
+                        text='AI-generated skill recommendations to enhance your profile',value=recommended_skills,key = '6')
+                        
+                        st.markdown('''
+                        <div style="background: linear-gradient(90deg, #1ed760, #28a745); padding: 1rem; border-radius: 10px; margin: 1rem 0;">
+                            <p style="color: white; margin: 0; text-align: center; font-weight: 600;">
+                                ✨ Adding these skills to your resume will significantly boost your job prospects! 🚀
+                            </p>
+                        </div>
+                        ''', unsafe_allow_html=True)
+                        
                         # course recommendation
                         rec_course = course_recommender(uiux_course)
                         break
@@ -832,33 +1435,66 @@ def run():
                     #### For Not Any Recommendations
                     elif i.lower() in n_any:
                         print(i.lower())
-                        reco_field = 'NA'
-                        st.warning("** Currently our tool only predicts and recommends for Data Science, Web, Android, IOS and UI/UX Development**")
-                        recommended_skills = ['No Recommendations']
-                        recommended_keywords = st_tags(label='### Recommended skills for you.',
-                        text='Currently No Recommendations',value=recommended_skills,key = '6')
-                        st.markdown('''<h5 style='text-align: left; color: #092851;'>Maybe Available in Future Updates</h5>''',unsafe_allow_html=True)
-                        # course recommendation
-                        rec_course = "Sorry! Not Available for this Field"
+                        reco_field = 'General'
+                        
+                        st.markdown("""
+                        <div style="background: linear-gradient(90deg, #6c757d, #495057); padding: 1.5rem; border-radius: 15px; margin: 1rem 0;">
+                            <h4 style="color: white; margin: 0 0 0.5rem 0;">💼 General Skills Detected</h4>
+                            <p style="color: #e8f4fd; margin: 0;">We found general professional skills. Consider specializing in one of our focus areas for better recommendations.</p>
+                        </div>
+                        """, unsafe_allow_html=True)
+                        
+                        st.markdown("""
+                        <div class="resume-card">
+                            <h4 style="color: #2a5298; margin-bottom: 1rem;">🎯 Specialization Recommendations</h4>
+                            <p style="color: #6c757d;">Our AI tool currently provides specialized recommendations for:</p>
+                            <ul style="color: #6c757d; margin-left: 1rem;">
+                                <li>📊 Data Science & Analytics</li>
+                                <li>🌐 Web Development</li>
+                                <li>📱 Android Development</li>
+                                <li>🍎 iOS Development</li>
+                                <li>🎨 UI/UX Design</li>
+                            </ul>
+                            <p style="color: #6c757d;">Consider adding skills from these areas to get personalized recommendations!</p>
+                        </div>
+                        """, unsafe_allow_html=True)
+                        
+                        recommended_skills = ['Choose a specialization above']
                         break
+                
+                # If no specific field is detected
+                if not reco_field:
+                    reco_field = 'General'
+                    st.markdown("""
+                    <div style="background: linear-gradient(90deg, #6c757d, #495057); padding: 1.5rem; border-radius: 15px; margin: 1rem 0;">
+                        <h4 style="color: white; margin: 0 0 0.5rem 0;">🔍 No Specific Field Detected</h4>
+                        <p style="color: #e8f4fd; margin: 0;">Consider adding more technical skills to get specialized recommendations!</p>
+                    </div>
+                    """, unsafe_allow_html=True)
 
 
-                ## Resume Scorer & Resume Writing Tips
-                st.subheader("**Resume Tips & Ideas 🥂**")
+                ## Professional Resume Scoring Section
+                st.markdown("""
+                <div class="section-header">
+                    📊 Resume Quality Assessment
+                </div>
+                """, unsafe_allow_html=True)
+                
                 resume_score = 0
+                score_details = []
                 
                 ### Predicting Whether these key points are added to the resume
-                if 'Objective' or 'Summary' in resume_text:
+                if any(keyword in resume_text for keyword in ['Objective', 'Summary', 'OBJECTIVE', 'SUMMARY']):
                     resume_score = resume_score+6
-                    st.markdown('''<h5 style='text-align: left; color: #1ed760;'>[+] Awesome! You have added Objective/Summary</h4>''',unsafe_allow_html=True)                
+                    score_details.append(('✅ Career Objective/Summary', '+6 points', 'Great! You have a clear career direction.'))                
                 else:
-                    st.markdown('''<h5 style='text-align: left; color: #000000;'>[-] Please add your career objective, it will give your career intension to the Recruiters.</h4>''',unsafe_allow_html=True)
+                    score_details.append(('❌ Career Objective/Summary', '0 points', 'Add a career objective to show your goals to recruiters.'))
 
-                if 'Education' or 'School' or 'College'  in resume_text:
+                if any(keyword in resume_text for keyword in ['Education', 'School', 'College', 'EDUCATION', 'UNIVERSITY']):
                     resume_score = resume_score + 12
-                    st.markdown('''<h5 style='text-align: left; color: #1ed760;'>[+] Awesome! You have added Education Details</h4>''',unsafe_allow_html=True)
+                    score_details.append(('✅ Education Details', '+12 points', 'Excellent! Your education background is clear.'))
                 else:
-                    st.markdown('''<h5 style='text-align: left; color: #000000;'>[-] Please add Education. It will give Your Qualification level to the recruiter</h4>''',unsafe_allow_html=True)
+                    score_details.append(('❌ Education Details', '0 points', 'Add your education to show your qualification level.'))
 
                 if 'EXPERIENCE' in resume_text:
                     resume_score = resume_score + 16
