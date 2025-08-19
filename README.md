@@ -38,7 +38,7 @@
 
 ## About the Project 🎯
 <div align="center">
-    <br/><img src="https://raw.githubusercontent.com/18vikastg/ai-resume-analyser/main/screenshots/RESUME.png" alt="screenshot" /><br/><br/>
+    <br/><img src="https://raw.githubusercontent.com/18vikastg/ai-resume-analyser/main/Screenshot%20from%202025-08-20%2000-08-01.png" alt="AI Resume Analyzer Dashboard" /><br/><br/>
     <p align="justify"> 
       An intelligent resume analysis platform that leverages advanced Natural Language Processing (NLP) and Machine Learning algorithms to parse, analyze, and provide comprehensive insights on resumes. The system extracts key information, analyzes skills, predicts career paths, and offers personalized recommendations to enhance professional profiles.
     </p>
@@ -252,65 +252,53 @@ For major changes, please open an issue first to discuss your ideas.
 
 ### 🖥️ Client Side
 
-**Main Screen**
+**Main Dashboard - Professional UI**
 
-![Screenshot](https://github.com/18vikastg/ai-resume-analyser/blob/main/screenshots/user/1-main-screen.png?raw=true)
+![Main Dashboard](https://raw.githubusercontent.com/18vikastg/ai-resume-analyser/main/Screenshot%20from%202025-08-20%2000-08-01.png)
 
-**Resume Analysis**
+**Resume Upload Interface**
 
-![Screenshot](https://github.com/18vikastg/ai-resume-analyser/blob/main/screenshots/user/2-analysis.jpg?raw=true)
+![Resume Upload](https://raw.githubusercontent.com/18vikastg/ai-resume-analyser/main/Screenshot%20from%202025-08-20%2000-08-56.png)
 
-**Skill Recommendation**
+**AI-Powered Resume Analysis**
 
-![Screenshot](https://github.com/18vikastg/ai-resume-analyser/blob/main/screenshots/user/3-recom.png?raw=true)
+![Resume Analysis](https://raw.githubusercontent.com/18vikastg/ai-resume-analyser/main/Screenshot%20from%202025-08-20%2000-10-03.png)
 
-**Course Recommendation**
+**Detailed Skills Assessment**
 
-![Screenshot](https://github.com/18vikastg/ai-resume-analyser/blob/main/screenshots/user/4-recom.png?raw=true)
+![Skills Assessment](https://raw.githubusercontent.com/18vikastg/ai-resume-analyser/main/Screenshot%20from%202025-08-20%2000-10-22.png)
 
-**Tips and Overall Score**
+**Personalized Recommendations**
 
-![Screenshot](https://github.com/18vikastg/ai-resume-analyser/blob/main/screenshots/user/5-tipsscore.png?raw=true)
+![Recommendations](https://raw.githubusercontent.com/18vikastg/ai-resume-analyser/main/Screenshot%20from%202025-08-20%2000-10-33.png)
 
-**Video Recommendation**
+**Career Guidance & Tips**
 
-![Screenshot](https://github.com/18vikastg/ai-resume-analyser/blob/main/screenshots/user/6-recom.png?raw=true)
+![Career Guidance](https://raw.githubusercontent.com/18vikastg/ai-resume-analyser/main/Screenshot%20from%202025-08-20%2000-10-42.png)
 
-### 💬 Feedback
+### 💬 Feedback System
 
-**Feedback Form**
+**User Feedback Interface**
 
-![Screenshot](https://github.com/18vikastg/ai-resume-analyser/blob/main/screenshots/feedback/1-form.png?raw=true)
+![Feedback Form](https://raw.githubusercontent.com/18vikastg/ai-resume-analyser/main/Screenshot%20from%202025-08-20%2000-11-25.png)
 
-**Overall Rating Analysis and Comment History**
+**Rating & Review System**
 
-![Screenshot](https://github.com/18vikastg/ai-resume-analyser/blob/main/screenshots/feedback/2-analytics.png?raw=true)
+![Rating System](https://raw.githubusercontent.com/18vikastg/ai-resume-analyser/main/Screenshot%20from%202025-08-20%2000-11-31.png)
 
-### 🔧 Admin
+### 🔧 Admin Dashboard
 
-**Login**
+**Admin Control Panel**
 
-![Screenshot](https://github.com/18vikastg/ai-resume-analyser/blob/main/screenshots/admin/1-main-screen.png?raw=true)
+![Admin Panel](https://raw.githubusercontent.com/18vikastg/ai-resume-analyser/main/Screenshot%20from%202025-08-20%2000-11-38.png)
 
-**User Count and Data**
+**Analytics & Data Insights**
 
-![Screenshot](https://github.com/18vikastg/ai-resume-analyser/blob/main/screenshots/admin/2-user-data.png?raw=true)
+![Analytics Dashboard](https://raw.githubusercontent.com/18vikastg/ai-resume-analyser/main/Screenshot%20from%202025-08-20%2000-11-51.png)
 
-**Exported CSV File**
+**User Data Management**
 
-![Screenshot](https://github.com/18vikastg/ai-resume-analyser/blob/main/screenshots/admin/3-user-datacsv.png?raw=true)
-
-**Feedback Data**
-
-![Screenshot](https://github.com/18vikastg/ai-resume-analyser/blob/main/screenshots/admin/4-feed-data.png?raw=true)
-
-**Pie Chart Analytical Representation**
-
-![Screenshot](https://github.com/18vikastg/ai-resume-analyser/blob/main/screenshots/admin/5-pieexp.png?raw=true)
-
-![Screenshot](https://github.com/18vikastg/ai-resume-analyser/blob/main/screenshots/admin/6-piescre.jpg?raw=true)
-
-![Screenshot](https://github.com/18vikastg/ai-resume-analyser/blob/main/screenshots/admin/7-pielocation.png?raw=true)
+![Data Management](https://raw.githubusercontent.com/18vikastg/ai-resume-analyser/main/Screenshot%20from%202025-08-20%2000-11-57.png)
 
 ---
 
