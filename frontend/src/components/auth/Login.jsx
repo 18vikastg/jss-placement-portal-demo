@@ -28,6 +28,13 @@ const Login = () => {
 
     const submitHandler = async (e) => {
         e.preventDefault();
+        
+        // Form validation
+        if (!input.email || !input.password || !input.role) {
+            toast.error("Please fill all fields");
+            return;
+        }
+
         try {
             dispatch(setLoading(true));
             const res = await axios.post(`${USER_API_END_POINT}/login`, input, {
@@ -43,7 +50,7 @@ const Login = () => {
             }
         } catch (error) {
             console.log(error);
-            toast.error(error.response.data.message);
+            toast.error(error.response?.data?.message || "Something went wrong");
         } finally {
             dispatch(setLoading(false));
         }
@@ -52,7 +59,7 @@ const Login = () => {
         if(user){
             navigate("/");
         }
-    },[])
+    },[user, navigate])
     return (
         <div>
             <Navbar />
@@ -80,36 +87,51 @@ const Login = () => {
                             placeholder="patel@gmail.com"
                         />
                     </div>
-                    <div className='flex items-center justify-between'>
-                        <RadioGroup className="flex items-center gap-4 my-5">
+                    <div className='my-5'>
+                        <Label className="text-base font-medium">Select Role</Label>
+                        <RadioGroup className="flex items-center gap-6 mt-2">
                             <div className="flex items-center space-x-2">
-                                <Input
+                                <input
                                     type="radio"
+                                    id="student"
                                     name="role"
                                     value="student"
                                     checked={input.role === 'student'}
                                     onChange={changeEventHandler}
                                     className="cursor-pointer"
                                 />
-                                <Label htmlFor="r1">Student</Label>
+                                <Label htmlFor="student" className="cursor-pointer">Student</Label>
                             </div>
                             <div className="flex items-center space-x-2">
-                                <Input
+                                <input
                                     type="radio"
+                                    id="faculty"
+                                    name="role"
+                                    value="faculty"
+                                    checked={input.role === 'faculty'}
+                                    onChange={changeEventHandler}
+                                    className="cursor-pointer"
+                                />
+                                <Label htmlFor="faculty" className="cursor-pointer">Faculty</Label>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                                <input
+                                    type="radio"
+                                    id="recruiter"
                                     name="role"
                                     value="recruiter"
                                     checked={input.role === 'recruiter'}
                                     onChange={changeEventHandler}
                                     className="cursor-pointer"
                                 />
-                                <Label htmlFor="r2">Recruiter</Label>
+                                <Label htmlFor="recruiter" className="cursor-pointer">Recruiter</Label>
                             </div>
                         </RadioGroup>
                     </div>
                     {
                         loading ? <Button className="w-full my-4"> <Loader2 className='mr-2 h-4 w-4 animate-spin' /> Please wait </Button> : <Button type="submit" className="w-full my-4">Login</Button>
                     }
-                    <span className='text-sm'>Don't have an account? <Link to="/signup" className='text-blue-600'>Signup</Link></span>
+                    <span className='text-sm'>Don&apos;t have an account? <Link to="/signup" className='text-blue-600'>Signup</Link></span>
                 </form>
             </div>
         </div>

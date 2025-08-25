@@ -14,10 +14,8 @@ export const register = async (req, res) => {
                 success: false
             });
         };
-        const file = req.file;
-        const fileUri = getDataUri(file);
-        const cloudResponse = await cloudinary.uploader.upload(fileUri.content);
 
+        // Check if user already exists
         const user = await User.findOne({ email });
         if (user) {
             return res.status(400).json({
@@ -25,7 +23,17 @@ export const register = async (req, res) => {
                 success: false,
             })
         }
+
         const hashedPassword = await bcrypt.hash(password, 10);
+
+        // Handle file upload if present
+        let profilePhoto = "";
+        const file = req.file;
+        if (file) {
+            const fileUri = getDataUri(file);
+            const cloudResponse = await cloudinary.uploader.upload(fileUri.content);
+            profilePhoto = cloudResponse.secure_url;
+        }
 
         await User.create({
             fullname,
@@ -34,7 +42,7 @@ export const register = async (req, res) => {
             password: hashedPassword,
             role,
             profile:{
-                profilePhoto:cloudResponse.secure_url,
+                profilePhoto: profilePhoto,
             }
         });
 
@@ -44,6 +52,10 @@ export const register = async (req, res) => {
         });
     } catch (error) {
         console.log(error);
+        return res.status(500).json({
+            message: "Internal server error",
+            success: false
+        });
     }
 }
 export const login = async (req, res) => {
@@ -81,7 +93,7 @@ export const login = async (req, res) => {
         const tokenData = {
             userId: user._id
         }
-        const token = await jwt.sign(tokenData, process.env.SECRET_KEY, { expiresIn: '1d' });
+        const token = await jwt.sign(tokenData, process.env.JWT_SECRET, { expiresIn: '1d' });
 
         user = {
             _id: user._id,

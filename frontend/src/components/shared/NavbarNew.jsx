@@ -6,7 +6,7 @@ import {
 } from "../ui/popover"
 import { Button } from "../ui/button"
 import { Avatar, AvatarImage } from "../ui/avatar"
-import { LogOut, User2, Home, Briefcase, Search, Building, TrendingUp, Menu, X } from "lucide-react"
+import { LogOut, User2, Home, Briefcase, Search, Building, TrendingUp, Menu, X, Users } from "lucide-react"
 import { Link, useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import axios from "axios"
@@ -73,7 +73,7 @@ const Navbar = () => {
                                         </Link>
                                     </li>
                                 </>
-                            ) : (
+                            ) : user && user.role === 'faculty' ? (
                                 <>
                                     <li>
                                         <Link to="/" className='flex items-center gap-2 text-gray-700 hover:text-red-700 transition-colors px-3 py-2 rounded-lg hover:bg-red-50'>
@@ -82,9 +82,42 @@ const Navbar = () => {
                                         </Link>
                                     </li>
                                     <li>
+                                        <Link to="/faculty/students" className='flex items-center gap-2 text-gray-700 hover:text-red-700 transition-colors px-3 py-2 rounded-lg hover:bg-red-50'>
+                                            <Users className='w-4 h-4' />
+                                            Students
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/faculty/placements" className='flex items-center gap-2 text-gray-700 hover:text-red-700 transition-colors px-3 py-2 rounded-lg hover:bg-red-50'>
+                                            <TrendingUp className='w-4 h-4' />
+                                            Placements
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/browse" className='flex items-center gap-2 text-gray-700 hover:text-red-700 transition-colors px-3 py-2 rounded-lg hover:bg-red-50'>
+                                            <Search className='w-4 h-4' />
+                                            Browse
+                                        </Link>
+                                    </li>
+                                </>
+                            ) : (
+                                <>
+                                    <li>
+                                        <Link to="/student/dashboard" className='flex items-center gap-2 text-gray-700 hover:text-red-700 transition-colors px-3 py-2 rounded-lg hover:bg-red-50'>
+                                            <Home className='w-4 h-4' />
+                                            Dashboard
+                                        </Link>
+                                    </li>
+                                    <li>
                                         <Link to="/opportunities" className='flex items-center gap-2 text-gray-700 hover:text-red-700 transition-colors px-3 py-2 rounded-lg hover:bg-red-50'>
                                             <TrendingUp className='w-4 h-4' />
                                             Opportunities
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/student/applications" className='flex items-center gap-2 text-gray-700 hover:text-red-700 transition-colors px-3 py-2 rounded-lg hover:bg-red-50'>
+                                            <Briefcase className='w-4 h-4' />
+                                            My Applications
                                         </Link>
                                     </li>
                                     <li>
@@ -135,6 +168,14 @@ const Navbar = () => {
                                         </div>
                                         <div className='p-4 space-y-2'>
                                             {user && user.role === 'student' && (
+                                                <Link to="/student/profile">
+                                                    <Button variant="ghost" className='w-full justify-start gap-2 hover:bg-red-50 hover:text-red-700'>
+                                                        <User2 className='w-4 h-4' />
+                                                        View Profile
+                                                    </Button>
+                                                </Link>
+                                            )}
+                                            {user && user.role !== 'student' && (
                                                 <Link to="/profile">
                                                     <Button variant="ghost" className='w-full justify-start gap-2 hover:bg-red-50 hover:text-red-700'>
                                                         <User2 className='w-4 h-4' />

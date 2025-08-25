@@ -15,6 +15,11 @@ import PostJob from './components/admin/PostJob'
 import Applicants from './components/admin/Applicants'
 import ProtectedRoute from './components/admin/ProtectedRoute'
 import OpportunitiesPage from './components/OpportunitiesPage'
+import FacultyStudents from './components/faculty/FacultyStudents'
+import FacultyPlacements from './components/faculty/FacultyPlacements'
+import StudentDashboard from './components/student/StudentDashboard'
+import StudentProfile from './components/student/StudentProfile'
+import StudentApplications from './components/student/StudentApplications'
 
 
 const appRouter = createBrowserRouter([
@@ -74,6 +79,28 @@ const appRouter = createBrowserRouter([
   {
     path:"/admin/jobs/:id/applicants",
     element:<ProtectedRoute><Applicants/></ProtectedRoute> 
+  },
+  // faculty routes
+  {
+    path:"/faculty/students",
+    element: <ProtectedRoute allowedRoles={['faculty']}><FacultyStudents/></ProtectedRoute>
+  },
+  {
+    path:"/faculty/placements",
+    element:<ProtectedRoute allowedRoles={['faculty']}><FacultyPlacements/></ProtectedRoute> 
+  },
+  // student routes
+  {
+    path:"/student/dashboard",
+    element: <ProtectedRoute allowedRoles={['student']}><StudentDashboard/></ProtectedRoute>
+  },
+  {
+    path:"/student/profile",
+    element:<ProtectedRoute allowedRoles={['student']}><StudentProfile/></ProtectedRoute> 
+  },
+  {
+    path:"/student/applications",
+    element:<ProtectedRoute allowedRoles={['student']}><StudentApplications/></ProtectedRoute> 
   },
 
 ])
