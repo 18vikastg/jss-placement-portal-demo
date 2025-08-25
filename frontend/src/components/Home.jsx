@@ -1,8 +1,12 @@
-import React, { useEffect } from 'react'
-import Navbar from './shared/Navbar'
+import { useEffect } from 'react'
+import Navbar from './shared/NavbarNew'
 import HeroSection from './HeroSection'
 import CategoryCarousel from './CategoryCarousel'
 import LatestJobs from './LatestJobs'
+import FeaturesSection from './FeaturesSection'
+import CompanyShowcase from './CompanyShowcase'
+import TestimonialsSection from './TestimonialsSection'
+import CTASection from './CTASection'
 import Footer from './shared/Footer'
 import useGetAllJobs from '@/hooks/useGetAllJobs'
 import { useSelector } from 'react-redux'
@@ -16,13 +20,17 @@ const Home = () => {
     if (user?.role === 'recruiter') {
       navigate("/admin/companies");
     }
-  }, []);
+  }, [user?.role, navigate]);
   return (
-    <div>
+    <div className='min-h-screen bg-white'>
       <Navbar />
       <HeroSection />
+      <FeaturesSection />
+      <CompanyShowcase />
       <CategoryCarousel />
       <LatestJobs />
+      <TestimonialsSection />
+      <CTASection />
       <Footer />
     </div>
   )

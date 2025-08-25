@@ -1,0 +1,146 @@
+// Copy and paste these commands one by one in mongosh
+
+// 1. Switch to jobportal database
+use jobportal
+
+// 2. Clear existing data (optional)
+db.users.deleteMany({})
+db.companies.deleteMany({})
+db.jobs.deleteMany({})
+db.applications.deleteMany({})
+
+// 3. Create sample users
+db.users.insertMany([
+  {
+    fullname: "John Doe",
+    email: "john.student@example.com", 
+    phoneNumber: 9876543210,
+    password: "$2b$10$hashedpassword1",
+    role: "student",
+    profile: {
+      bio: "Passionate software developer",
+      skills: ["JavaScript", "React", "Node.js"],
+      resume: "",
+      resumeOriginalName: "",
+      company: null,
+      profilePhoto: ""
+    },
+    createdAt: new Date(),
+    updatedAt: new Date()
+  },
+  {
+    fullname: "Jane Smith", 
+    email: "jane.recruiter@techcorp.com",
+    phoneNumber: 9876543211,
+    password: "$2b$10$hashedpassword2", 
+    role: "recruiter",
+    profile: {
+      bio: "Senior HR Manager at TechCorp",
+      skills: ["Recruitment", "HR Management"],
+      resume: "",
+      resumeOriginalName: "",
+      company: null,
+      profilePhoto: ""
+    },
+    createdAt: new Date(),
+    updatedAt: new Date()
+  }
+])
+
+// 4. Get user IDs
+var recruiterId = db.users.findOne({email: "jane.recruiter@techcorp.com"})._id
+var studentId = db.users.findOne({email: "john.student@example.com"})._id
+
+// 5. Create sample companies
+db.companies.insertMany([
+  {
+    name: "TechCorp Solutions",
+    description: "Leading technology company",
+    website: "https://techcorp.com", 
+    location: "San Francisco, CA",
+    logo: "",
+    userId: recruiterId,
+    createdAt: new Date(),
+    updatedAt: new Date()
+  },
+  {
+    name: "InnovateTech",
+    description: "Startup focused on mobile development",
+    website: "https://innovatetech.io",
+    location: "New York, NY", 
+    logo: "",
+    userId: recruiterId,
+    createdAt: new Date(),
+    updatedAt: new Date()
+  }
+])
+
+// 6. Get company IDs
+var companyId1 = db.companies.findOne({name: "TechCorp Solutions"})._id
+var companyId2 = db.companies.findOne({name: "InnovateTech"})._id
+
+// 7. Create sample jobs
+db.jobs.insertMany([
+  {
+    title: "Frontend Developer",
+    description: "Build user-facing features using React",
+    requirements: ["React", "JavaScript", "CSS"],
+    salary: 75000,
+    experienceLevel: 2,
+    location: "San Francisco, CA",
+    jobType: "Full-time", 
+    position: 3,
+    company: companyId1,
+    created_by: recruiterId,
+    applications: [],
+    createdAt: new Date(),
+    updatedAt: new Date()
+  },
+  {
+    title: "Full Stack Developer",
+    description: "Work on frontend and backend technologies",
+    requirements: ["Node.js", "React", "MongoDB"],
+    salary: 85000,
+    experienceLevel: 3,
+    location: "New York, NY",
+    jobType: "Full-time",
+    position: 2, 
+    company: companyId2,
+    created_by: recruiterId,
+    applications: [],
+    createdAt: new Date(),
+    updatedAt: new Date()
+  }
+])
+
+// 8. Get job IDs
+var jobId1 = db.jobs.findOne({title: "Frontend Developer"})._id
+var jobId2 = db.jobs.findOne({title: "Full Stack Developer"})._id
+
+// 9. Create sample applications
+db.applications.insertMany([
+  {
+    job: jobId1,
+    applicant: studentId, 
+    status: "pending",
+    createdAt: new Date(),
+    updatedAt: new Date()
+  },
+  {
+    job: jobId2,
+    applicant: studentId,
+    status: "accepted", 
+    createdAt: new Date(),
+    updatedAt: new Date()
+  }
+])
+
+// 10. Create indexes
+db.users.createIndex({ email: 1 }, { unique: true })
+db.companies.createIndex({ name: 1 }, { unique: true })
+
+// 11. Verify data
+print("Users:", db.users.countDocuments())
+print("Companies:", db.companies.countDocuments()) 
+print("Jobs:", db.jobs.countDocuments())
+print("Applications:", db.applications.countDocuments())
