@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import Navbar from './shared/NavbarNew'
 import { Badge } from './ui/badge'
 import { Button } from './ui/button'
 import { useParams } from 'react-router-dom';
@@ -51,8 +52,10 @@ const JobDescription = () => {
     },[jobId,dispatch, user?._id]);
 
     return (
-        <div className='max-w-7xl mx-auto my-10'>
-            <div className='flex items-center justify-between'>
+        <div>
+            <Navbar />
+            <div className='max-w-7xl mx-auto my-10'>
+                <div className='flex items-center justify-between'>
                 <div>
                     <h1 className='font-bold text-xl'>{singleJob?.title}</h1>
                     <div className='flex items-center gap-2 mt-4'>
@@ -78,6 +81,7 @@ const JobDescription = () => {
                 <h1 className='font-bold my-1'>Total Applicants: <span className='pl-4 font-normal text-gray-800'>{singleJob?.applications?.length}</span></h1>
                 <h1 className='font-bold my-1'>Posted Date: <span className='pl-4 font-normal text-gray-800'>{singleJob?.createdAt.split("T")[0]}</span></h1>
             </div>
+        </div>
         </div>
     )
 }

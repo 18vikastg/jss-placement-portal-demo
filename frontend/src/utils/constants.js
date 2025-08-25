@@ -3,7 +3,7 @@ export const JOB_API_END_POINT="http://localhost:8001/api/v1/job";
 export const APPLICATION_API_END_POINT="http://localhost:8001/api/v1/application";
 export const COMPANY_API_END_POINT="http://localhost:8001/api/v1/company";
 
-// Tech Roles Data
+// Tech Roles Data with Job Search Links
 export const TECH_ROLES = [
     {
         id: 1,
@@ -13,7 +13,13 @@ export const TECH_ROLES = [
         skills: ["React", "Node.js", "MongoDB", "Express"],
         level: "Mid-Senior",
         avgSalary: "₹8-15 LPA",
-        icon: "💻"
+        icon: "💻",
+        searchLinks: {
+            naukri: "https://www.naukri.com/full-stack-developer-jobs",
+            linkedin: "https://www.linkedin.com/jobs/search/?keywords=full%20stack%20developer&location=India",
+            indeed: "https://in.indeed.com/jobs?q=full+stack+developer&l=India",
+            glassdoor: "https://www.glassdoor.co.in/Job/india-full-stack-developer-jobs-SRCH_IL.0,5_IN115_KO6,27.htm"
+        }
     },
     {
         id: 2,
@@ -23,7 +29,13 @@ export const TECH_ROLES = [
         skills: ["React", "JavaScript", "CSS", "HTML"],
         level: "Entry-Mid",
         avgSalary: "₹6-12 LPA",
-        icon: "🎨"
+        icon: "🎨",
+        searchLinks: {
+            naukri: "https://www.naukri.com/frontend-developer-jobs",
+            linkedin: "https://www.linkedin.com/jobs/search/?keywords=frontend%20developer&location=India",
+            indeed: "https://in.indeed.com/jobs?q=frontend+developer&l=India",
+            glassdoor: "https://www.glassdoor.co.in/Job/india-frontend-developer-jobs-SRCH_IL.0,5_IN115_KO6,24.htm"
+        }
     },
     {
         id: 3,
@@ -33,7 +45,13 @@ export const TECH_ROLES = [
         skills: ["Node.js", "Python", "Java", "Database"],
         level: "Mid-Senior",
         avgSalary: "₹7-14 LPA",
-        icon: "⚙️"
+        icon: "⚙️",
+        searchLinks: {
+            naukri: "https://www.naukri.com/backend-developer-jobs",
+            linkedin: "https://www.linkedin.com/jobs/search/?keywords=backend%20developer&location=India",
+            indeed: "https://in.indeed.com/jobs?q=backend+developer&l=India",
+            glassdoor: "https://www.glassdoor.co.in/Job/india-backend-developer-jobs-SRCH_IL.0,5_IN115_KO6,23.htm"
+        }
     },
     {
         id: 4,
@@ -43,37 +61,61 @@ export const TECH_ROLES = [
         skills: ["Python", "Machine Learning", "SQL", "Statistics"],
         level: "Mid-Senior",
         avgSalary: "₹10-20 LPA",
-        icon: "📊"
+        icon: "📊",
+        searchLinks: {
+            naukri: "https://www.naukri.com/data-scientist-jobs",
+            linkedin: "https://www.linkedin.com/jobs/search/?keywords=data%20scientist&location=India",
+            indeed: "https://in.indeed.com/jobs?q=data+scientist&l=India",
+            glassdoor: "https://www.glassdoor.co.in/Job/india-data-scientist-jobs-SRCH_IL.0,5_IN115_KO6,20.htm"
+        }
     },
     {
         id: 5,
         title: "DevOps Engineer",
-        category: "Operations",
-        description: "Manage deployment pipelines and cloud infrastructure",
+        category: "Infrastructure",
+        description: "Automate deployment and manage cloud infrastructure",
         skills: ["AWS", "Docker", "Kubernetes", "CI/CD"],
         level: "Mid-Senior",
         avgSalary: "₹9-18 LPA",
-        icon: "🚀"
+        icon: "�",
+        searchLinks: {
+            naukri: "https://www.naukri.com/devops-engineer-jobs",
+            linkedin: "https://www.linkedin.com/jobs/search/?keywords=devops%20engineer&location=India",
+            indeed: "https://in.indeed.com/jobs?q=devops+engineer&l=India",
+            glassdoor: "https://www.glassdoor.co.in/Job/india-devops-engineer-jobs-SRCH_IL.0,5_IN115_KO6,21.htm"
+        }
     },
     {
         id: 6,
-        title: "Mobile Developer",
-        category: "Development",
-        description: "Build native and cross-platform mobile applications",
-        skills: ["React Native", "Flutter", "iOS", "Android"],
-        level: "Mid-Senior",
-        avgSalary: "₹8-16 LPA",
-        icon: "📱"
+        title: "UI/UX Designer",
+        category: "Design",
+        description: "Design intuitive and beautiful user experiences",
+        skills: ["Figma", "Adobe XD", "Prototyping", "User Research"],
+        level: "Entry-Mid",
+        avgSalary: "₹6-14 LPA",
+        icon: "🎨",
+        searchLinks: {
+            naukri: "https://www.naukri.com/ui-ux-designer-jobs",
+            linkedin: "https://www.linkedin.com/jobs/search/?keywords=ui%20ux%20designer&location=India",
+            indeed: "https://in.indeed.com/jobs?q=ui+ux+designer&l=India",
+            glassdoor: "https://www.glassdoor.co.in/Job/india-ui-ux-designer-jobs-SRCH_IL.0,5_IN115_KO6,21.htm"
+        }
     },
     {
         id: 7,
-        title: "UI/UX Designer",
-        category: "Design",
-        description: "Design user-centered digital experiences",
-        skills: ["Figma", "Adobe XD", "Prototyping", "User Research"],
-        level: "Entry-Mid",
+        title: "Product Manager",
+        category: "Management",
+        description: "Drive product strategy and coordinate development teams",
+        skills: ["Strategy", "Analytics", "Communication", "Agile"],
+        level: "Mid-Senior",
         avgSalary: "₹5-12 LPA",
-        icon: "🎯"
+        icon: "🎯",
+        searchLinks: {
+            naukri: "https://www.naukri.com/product-manager-jobs",
+            linkedin: "https://www.linkedin.com/jobs/search/?keywords=product%20manager&location=India",
+            indeed: "https://in.indeed.com/jobs?q=product+manager&l=India",
+            glassdoor: "https://www.glassdoor.co.in/Job/india-product-manager-jobs-SRCH_IL.0,5_IN115_KO6,21.htm"
+        }
     },
     {
         id: 8,
@@ -83,11 +125,17 @@ export const TECH_ROLES = [
         skills: ["Python", "TensorFlow", "MLOps", "Cloud"],
         level: "Senior",
         avgSalary: "₹12-25 LPA",
-        icon: "🤖"
+        icon: "🤖",
+        searchLinks: {
+            naukri: "https://www.naukri.com/machine-learning-engineer-jobs",
+            linkedin: "https://www.linkedin.com/jobs/search/?keywords=machine%20learning%20engineer&location=India",
+            indeed: "https://in.indeed.com/jobs?q=machine+learning+engineer&l=India",
+            glassdoor: "https://www.glassdoor.co.in/Job/india-machine-learning-engineer-jobs-SRCH_IL.0,5_IN115_KO6,30.htm"
+        }
     }
 ];
 
-// Companies Data
+// Companies Data with Career Page Links
 export const COMPANIES = [
     {
         id: 1,
@@ -101,7 +149,13 @@ export const COMPANIES = [
         techStack: ["JavaScript", "Python", "Go", "Java"],
         benefits: ["Health Insurance", "Stock Options", "Flexible Hours", "Learning Budget"],
         rating: 4.8,
-        founded: 1998
+        founded: 1998,
+        careerLinks: {
+            main: "https://careers.google.com/",
+            india: "https://careers.google.com/locations/india/",
+            students: "https://careers.google.com/students/",
+            search: "https://careers.google.com/jobs/results/?location=India"
+        }
     },
     {
         id: 2,
@@ -115,7 +169,13 @@ export const COMPANIES = [
         techStack: ["C#", "Azure", "TypeScript", "Python"],
         benefits: ["Health Insurance", "Stock Purchase Plan", "Remote Work", "Professional Development"],
         rating: 4.7,
-        founded: 1975
+        founded: 1975,
+        careerLinks: {
+            main: "https://careers.microsoft.com/",
+            india: "https://careers.microsoft.com/v2/global/en/locations/india.html",
+            students: "https://careers.microsoft.com/v2/global/en/students-and-graduates.html",
+            search: "https://careers.microsoft.com/v2/global/en/search?lc=India"
+        }
     },
     {
         id: 3,
@@ -129,7 +189,13 @@ export const COMPANIES = [
         techStack: ["Java", "Python", "AWS", "React"],
         benefits: ["Health Coverage", "Stock Awards", "Career Growth", "Innovation Time"],
         rating: 4.5,
-        founded: 1994
+        founded: 1994,
+        careerLinks: {
+            main: "https://www.amazon.jobs/",
+            india: "https://www.amazon.jobs/en/locations/india",
+            students: "https://www.amazon.jobs/en/teams/university-recruiting",
+            search: "https://www.amazon.jobs/en/search?base_query=&loc_query=India"
+        }
     },
     {
         id: 4,
@@ -143,7 +209,13 @@ export const COMPANIES = [
         techStack: ["Java", "Angular", "Spring", "Oracle"],
         benefits: ["Medical Insurance", "Training Programs", "Flexible Work", "Performance Bonus"],
         rating: 4.3,
-        founded: 1981
+        founded: 1981,
+        careerLinks: {
+            main: "https://www.infosys.com/careers/",
+            india: "https://www.infosys.com/careers/job-opportunities/",
+            students: "https://www.infosys.com/careers/students/",
+            search: "https://careers.infosys.com/apply"
+        }
     },
     {
         id: 5,
@@ -157,7 +229,73 @@ export const COMPANIES = [
         techStack: ["Java", "Python", ".NET", "React"],
         benefits: ["Health Benefits", "Skill Development", "Global Opportunities", "Work-Life Balance"],
         rating: 4.2,
-        founded: 1968
+        founded: 1968,
+        careerLinks: {
+            main: "https://www.tcs.com/careers",
+            india: "https://www.tcs.com/careers/tcs-india",
+            students: "https://www.tcs.com/careers/students-and-graduates",
+            search: "https://ibegin.tcs.com/iBegin/"
+        }
+    },
+    {
+        id: 6,
+        name: "Flipkart",
+        logo: "https://logo.clearbit.com/flipkart.com",
+        industry: "E-commerce",
+        location: "Bangalore",
+        employeeCount: "8,000+",
+        openPositions: 22,
+        description: "India's leading e-commerce marketplace with innovative technology",
+        techStack: ["Java", "React", "Node.js", "Scala"],
+        benefits: ["Health Insurance", "Stock Options", "Learning Budget", "Flexible Hours"],
+        rating: 4.4,
+        founded: 2007,
+        careerLinks: {
+            main: "https://www.flipkartcareers.com/",
+            india: "https://www.flipkartcareers.com/#!/joblist",
+            students: "https://www.flipkartcareers.com/#!/early-careers",
+            search: "https://www.flipkartcareers.com/#!/joblist"
+        }
+    },
+    {
+        id: 7,
+        name: "Wipro",
+        logo: "https://logo.clearbit.com/wipro.com",
+        industry: "IT Services",
+        location: "Hyderabad",
+        employeeCount: "12,000+",
+        openPositions: 30,
+        description: "Global information technology, consulting and business process services",
+        techStack: ["Java", "Python", "Cloud", "AI/ML"],
+        benefits: ["Medical Coverage", "Professional Growth", "Innovation Labs", "Global Exposure"],
+        rating: 4.1,
+        founded: 1945,
+        careerLinks: {
+            main: "https://careers.wipro.com/",
+            india: "https://careers.wipro.com/careers-in-india",
+            students: "https://careers.wipro.com/early-careers",
+            search: "https://careers.wipro.com/job-search"
+        }
+    },
+    {
+        id: 8,
+        name: "Accenture",
+        logo: "https://logo.clearbit.com/accenture.com",
+        industry: "Consulting",
+        location: "Pune",
+        employeeCount: "15,000+",
+        openPositions: 28,
+        description: "Global professional services company with leading capabilities in digital",
+        techStack: ["Java", "Angular", "Cloud", "Blockchain"],
+        benefits: ["Health Insurance", "Career Coaching", "Innovation Time", "Global Projects"],
+        rating: 4.3,
+        founded: 1989,
+        careerLinks: {
+            main: "https://www.accenture.com/in-en/careers",
+            india: "https://www.accenture.com/in-en/careers/local/india",
+            students: "https://www.accenture.com/in-en/careers/jobsearch?jk=entry%20level",
+            search: "https://www.accenture.com/in-en/careers/jobsearch"
+        }
     },
     {
         id: 6,

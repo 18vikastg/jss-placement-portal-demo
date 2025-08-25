@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import Navbar from './shared/Navbar'
+import Navbar from './shared/NavbarNew'
 import { useDispatch, useSelector } from 'react-redux';
 import { setSearchedQuery } from '@/redux/jobSlice';
 import useGetAllJobs from '@/hooks/useGetAllJobs';
@@ -14,6 +14,8 @@ import {
 } from 'lucide-react';
 import { Button } from './ui/button';
 import { SAMPLE_JOBS, TECH_ROLES, COMPANIES } from '@/utils/constants';
+import { showJobSearchOptions } from '@/utils/redirectHelpers';
+import JobSearchModal from './JobSearchModal';
 
 const Jobs = () => {
     useGetAllJobs();
@@ -28,6 +30,8 @@ const Jobs = () => {
     const [filteredJobs, setFilteredJobs] = useState([]);
     const [suggestions, setSuggestions] = useState([]);
     const [showSuggestions, setShowSuggestions] = useState(false);
+    const [modalData, setModalData] = useState(null);
+    const [showModal, setShowModal] = useState(false);
 
     // Use sample data if no backend jobs available
     const jobsToDisplay = allJobs.length > 0 ? allJobs : SAMPLE_JOBS;
@@ -90,12 +94,28 @@ const Jobs = () => {
     const handleSearch = () => {
         dispatch(setSearchedQuery(localSearchQuery));
         setShowSuggestions(false);
+        
+        // Show job search options modal if query matches company or role
+        if (localSearchQuery.trim()) {
+            const searchOptions = showJobSearchOptions(localSearchQuery);
+            if (searchOptions.options.length > 0) {
+                setModalData(searchOptions);
+                setShowModal(true);
+            }
+        }
     };
 
     const handleSuggestionClick = (suggestion) => {
         setLocalSearchQuery(suggestion.value);
         dispatch(setSearchedQuery(suggestion.value));
         setShowSuggestions(false);
+        
+        // Show modal for the selected suggestion
+        const searchOptions = showJobSearchOptions(suggestion.value);
+        if (searchOptions.options.length > 0) {
+            setModalData(searchOptions);
+            setShowModal(true);
+        }
     };
 
     const handleKeyPress = (e) => {
@@ -339,6 +359,13 @@ const Jobs = () => {
                     </div>
                 )}
             </div>
+
+            {/* Job Search Modal */}
+            <JobSearchModal 
+                isOpen={showModal}
+                onClose={() => setShowModal(false)}
+                searchData={modalData}
+            />
         </div>
     )
 }

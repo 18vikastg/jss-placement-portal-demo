@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Navbar from '../shared/Navbar'
+import Navbar from '../shared/NavbarNew'
 import { Input } from '../ui/input'
 import { Button } from '../ui/button' 
 import { useNavigate } from 'react-router-dom' 

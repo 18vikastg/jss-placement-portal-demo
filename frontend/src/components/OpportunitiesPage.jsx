@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Navbar from './shared/NavbarNew';
 import { 
     Search, 
     Filter, 
@@ -32,6 +33,7 @@ const OpportunitiesPage = () => {
 
     return (
         <div className="min-h-screen bg-gray-50">
+            <Navbar />
             {/* Hero Section */}
             <div className="bg-gradient-to-br from-red-600 via-red-700 to-red-800 text-white py-20">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
