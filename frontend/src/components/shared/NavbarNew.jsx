@@ -88,12 +88,6 @@ const Navbar = () => {
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link to="/jobs" className='flex items-center gap-2 text-gray-700 hover:text-red-700 transition-colors px-3 py-2 rounded-lg hover:bg-red-50'>
-                                            <Briefcase className='w-4 h-4' />
-                                            Jobs
-                                        </Link>
-                                    </li>
-                                    <li>
                                         <Link to="/browse" className='flex items-center gap-2 text-gray-700 hover:text-red-700 transition-colors px-3 py-2 rounded-lg hover:bg-red-50'>
                                             <Search className='w-4 h-4' />
                                             Browse

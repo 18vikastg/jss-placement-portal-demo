@@ -31,12 +31,12 @@ const appRouter = createBrowserRouter([
     element: <Signup />
   },
   {
-    path: "/jobs",
-    element: <Jobs />
-  },
-  {
     path: "/opportunities",
     element: <OpportunitiesPage />
+  },
+  {
+    path: "/jobs",
+    element: <Jobs />
   },
   {
     path: "/description/:id",

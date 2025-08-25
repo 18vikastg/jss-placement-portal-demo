@@ -146,10 +146,10 @@ const CategoryCarousel = () => {
                 {/* View All Categories Button */}
                 <div className="text-center mt-12">
                     <Button 
-                        onClick={() => navigate("/jobs")}
+                        onClick={() => navigate("/opportunities")}
                         className="bg-gradient-to-r from-red-600 to-red-800 hover:from-red-700 hover:to-red-900 text-white px-8 py-3 text-lg font-semibold"
                     >
-                        View All Job Categories
+                        Explore All Tech Roles
                     </Button>
                 </div>
             </div>
