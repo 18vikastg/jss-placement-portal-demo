@@ -45,7 +45,21 @@ const Login = () => {
             });
             if (res.data.success) {
                 dispatch(setUser(res.data.user));
-                navigate("/");
+                // Role-based navigation
+                const userRole = res.data.user.role;
+                switch (userRole) {
+                    case 'student':
+                        navigate("/student/dashboard");
+                        break;
+                    case 'faculty':
+                        navigate("/faculty/dashboard");
+                        break;
+                    case 'recruiter':
+                        navigate("/recruiter/dashboard");
+                        break;
+                    default:
+                        navigate("/");
+                }
                 toast.success(res.data.message);
             }
         } catch (error) {
@@ -57,7 +71,21 @@ const Login = () => {
     }
     useEffect(()=>{
         if(user){
-            navigate("/");
+            // Role-based redirection
+            const userRole = user.role;
+            switch (userRole) {
+                case 'student':
+                    navigate("/student/dashboard");
+                    break;
+                case 'faculty':
+                    navigate("/faculty/dashboard");
+                    break;
+                case 'recruiter':
+                    navigate("/recruiter/dashboard");
+                    break;
+                default:
+                    navigate("/");
+            }
         }
     },[user, navigate])
     return (

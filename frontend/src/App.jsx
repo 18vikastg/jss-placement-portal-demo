@@ -17,7 +17,9 @@ import ProtectedRoute from './components/admin/ProtectedRoute'
 import OpportunitiesPage from './components/OpportunitiesPage'
 import FacultyStudents from './components/faculty/FacultyStudents'
 import FacultyPlacements from './components/faculty/FacultyPlacements'
-import StudentDashboard from './components/student/StudentDashboard'
+import FacultyDashboard from './components/faculty/FacultyDashboard'
+import RecruiterDashboard from './components/recruiter/RecruiterDashboard'
+import StudentDashboard from './components/student/StudentDashboardNew'
 import StudentProfile from './components/student/StudentProfile'
 import StudentApplications from './components/student/StudentApplications'
 
@@ -82,12 +84,21 @@ const appRouter = createBrowserRouter([
   },
   // faculty routes
   {
+    path:"/faculty/dashboard",
+    element: <ProtectedRoute allowedRoles={['faculty']}><FacultyDashboard/></ProtectedRoute>
+  },
+  {
     path:"/faculty/students",
     element: <ProtectedRoute allowedRoles={['faculty']}><FacultyStudents/></ProtectedRoute>
   },
   {
     path:"/faculty/placements",
     element:<ProtectedRoute allowedRoles={['faculty']}><FacultyPlacements/></ProtectedRoute> 
+  },
+  // recruiter routes
+  {
+    path:"/recruiter/dashboard",
+    element: <ProtectedRoute allowedRoles={['recruiter']}><RecruiterDashboard/></ProtectedRoute>
   },
   // student routes
   {

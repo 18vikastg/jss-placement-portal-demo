@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import Navbar from '../shared/NavbarNew'
 import { useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
 import { 
     User, 
     FileText, 
@@ -25,14 +24,14 @@ import {
     Phone,
     Mail,
     MapPin,
-    Upload
+    Upload,
+    X
 } from 'lucide-react'
 import { Button } from '../ui/button'
 import { Badge } from '../ui/badge'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card'
 import { Input } from '../ui/input'
 import { Label } from '../ui/label'
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '../ui/dialog'
 
 const StudentDashboard = () => {
     const { user } = useSelector(store => store.auth)
@@ -117,27 +116,15 @@ const StudentDashboard = () => {
         }
     ]
 
-    // Profile completion items
-    const profileItems = [
-        { name: 'Personal Information', completed: true, icon: User },
-        { name: 'Academic Details', completed: false, icon: GraduationCap },
-        { name: 'Skills & Projects', completed: false, icon: Code },
-        { name: 'Resume Upload', completed: false, icon: FileText },
-        { name: 'Photo Upload', completed: false, icon: User }
-    ]
-
     const handlePersonalSubmit = (e) => {
         e.preventDefault()
-        // Handle personal data submission
         console.log('Personal Data:', personalData)
         setShowPersonalForm(false)
-        // Update profile completion
         setProfileCompletion(prev => Math.min(prev + 15, 100))
     }
 
     const handleAcademicSubmit = (e) => {
         e.preventDefault()
-        // Handle academic data submission
         console.log('Academic Data:', academicData)
         setShowAcademicForm(false)
         setProfileCompletion(prev => Math.min(prev + 20, 100))
@@ -145,7 +132,6 @@ const StudentDashboard = () => {
 
     const handleSkillsSubmit = (e) => {
         e.preventDefault()
-        // Handle skills data submission
         console.log('Skills Data:', skillsData)
         setShowSkillsForm(false)
         setProfileCompletion(prev => Math.min(prev + 25, 100))
@@ -356,226 +342,301 @@ const StudentDashboard = () => {
                                 </div>
                             </CardContent>
                         </Card>
-                    </Card>
-
-                    <Card className="bg-white shadow-md hover:shadow-lg transition-shadow">
-                        <CardContent className="p-6">
-                            <div className="flex items-center justify-between">
-                                <div>
-                                    <p className="text-gray-500 text-sm">Upcoming Interviews</p>
-                                    <p className="text-3xl font-bold text-orange-600">{stats.upcomingInterviews}</p>
-                                </div>
-                                <Calendar className="w-10 h-10 text-orange-600" />
-                            </div>
-                        </CardContent>
-                    </Card>
-
-                    <Card className="bg-white shadow-md hover:shadow-lg transition-shadow">
-                        <CardContent className="p-6">
-                            <div className="flex items-center justify-between">
-                                <div>
-                                    <p className="text-gray-500 text-sm">Completed Drives</p>
-                                    <p className="text-3xl font-bold text-green-600">{stats.completedDrives}</p>
-                                </div>
-                                <CheckCircle className="w-10 h-10 text-green-600" />
-                            </div>
-                        </CardContent>
-                    </Card>
-
-                    <Card className="bg-white shadow-md hover:shadow-lg transition-shadow">
-                        <CardContent className="p-6">
-                            <div className="flex items-center justify-between">
-                                <div>
-                                    <p className="text-gray-500 text-sm">New Notifications</p>
-                                    <p className="text-3xl font-bold text-red-600">{stats.notifications}</p>
-                                </div>
-                                <Bell className="w-10 h-10 text-red-600" />
-                            </div>
-                        </CardContent>
-                    </Card>
-                </div>
-
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    {/* Main Content Area */}
-                    <div className="lg:col-span-2 space-y-8">
-                        {/* Quick Actions */}
-                        <Card className="bg-white shadow-md">
-                            <CardHeader>
-                                <CardTitle className="flex items-center gap-2">
-                                    <Target className="w-5 h-5 text-red-600" />
-                                    Quick Actions
-                                </CardTitle>
-                                <CardDescription>
-                                    Fast access to key placement activities
-                                </CardDescription>
-                            </CardHeader>
-                            <CardContent>
-                                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                                    <Button className="h-20 flex flex-col items-center gap-2 bg-blue-50 hover:bg-blue-100 text-blue-700 border-blue-200">
-                                        <Briefcase className="w-6 h-6" />
-                                        <span className="text-sm">Browse Jobs</span>
-                                    </Button>
-                                    <Button className="h-20 flex flex-col items-center gap-2 bg-green-50 hover:bg-green-100 text-green-700 border-green-200">
-                                        <User className="w-6 h-6" />
-                                        <span className="text-sm">Update Profile</span>
-                                    </Button>
-                                    <Button className="h-20 flex flex-col items-center gap-2 bg-purple-50 hover:bg-purple-100 text-purple-700 border-purple-200">
-                                        <BookOpen className="w-6 h-6" />
-                                        <span className="text-sm">Practice Tests</span>
-                                    </Button>
-                                    <Button className="h-20 flex flex-col items-center gap-2 bg-orange-50 hover:bg-orange-100 text-orange-700 border-orange-200">
-                                        <Award className="w-6 h-6" />
-                                        <span className="text-sm">Certificates</span>
-                                    </Button>
-                                </div>
-                            </CardContent>
-                        </Card>
 
                         {/* Upcoming Placement Drives */}
-                        <Card className="bg-white shadow-md">
-                            <CardHeader>
-                                <CardTitle className="flex items-center gap-2">
-                                    <Briefcase className="w-5 h-5 text-red-600" />
+                        <Card className="bg-white shadow-lg">
+                            <CardHeader className="pb-4">
+                                <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
+                                    <Briefcase className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
                                     Upcoming Placement Drives
                                 </CardTitle>
-                                <CardDescription>
-                                    Don't miss these exciting opportunities
+                                <CardDescription className="text-sm sm:text-base">
+                                    Don&apos;t miss these exciting opportunities
                                 </CardDescription>
                             </CardHeader>
-                            <CardContent>
-                                <div className="space-y-4">
-                                    {upcomingDrives.map((drive) => (
-                                        <div key={drive.id} className="border rounded-lg p-4 hover:bg-gray-50 transition-colors">
-                                            <div className="flex items-center justify-between">
-                                                <div className="flex items-center gap-4">
-                                                    <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold">
-                                                        {drive.company.charAt(0)}
-                                                    </div>
-                                                    <div>
-                                                        <h3 className="font-semibold text-gray-900">{drive.company}</h3>
-                                                        <p className="text-gray-600">{drive.role}</p>
-                                                        <div className="flex items-center gap-4 mt-1">
-                                                            <Badge variant="outline" className="text-green-600 border-green-200">
-                                                                ₹{drive.package}
-                                                            </Badge>
-                                                            <span className="text-sm text-gray-500">
-                                                                Min CGPA: {drive.eligibility}
-                                                            </span>
-                                                        </div>
-                                                    </div>
+                            <CardContent className="space-y-4">
+                                {upcomingDrives.map((drive) => (
+                                    <div key={drive.id} className="border rounded-lg p-4 hover:shadow-md transition-shadow">
+                                        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                                            <div className="flex items-center gap-3 flex-1">
+                                                <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
+                                                    <Briefcase className="w-6 h-6 text-gray-600" />
                                                 </div>
-                                                <div className="text-right">
-                                                    <p className="text-sm text-gray-500">Deadline</p>
-                                                    <p className="font-semibold text-red-600">{drive.deadline}</p>
-                                                    <Button size="sm" className="mt-2 bg-red-600 hover:bg-red-700">
-                                                        Apply Now
-                                                    </Button>
+                                                <div className="flex-1">
+                                                    <h4 className="font-semibold text-sm sm:text-base">{drive.company}</h4>
+                                                    <p className="text-gray-600 text-xs sm:text-sm">{drive.role}</p>
+                                                    <div className="flex flex-wrap items-center gap-2 mt-1">
+                                                        <Badge className="bg-green-100 text-green-800 text-xs">
+                                                            {drive.package}
+                                                        </Badge>
+                                                        <Badge className="bg-blue-100 text-blue-800 text-xs">
+                                                            Min {drive.eligibility}
+                                                        </Badge>
+                                                    </div>
                                                 </div>
                                             </div>
+                                            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2">
+                                                <div className="text-right">
+                                                    <p className="text-xs text-gray-500">Deadline</p>
+                                                    <p className="text-sm font-medium">{drive.deadline}</p>
+                                                </div>
+                                                <Button size="sm" className="bg-red-600 hover:bg-red-700 text-white text-xs">
+                                                    Apply Now
+                                                </Button>
+                                            </div>
                                         </div>
-                                    ))}
-                                </div>
+                                    </div>
+                                ))}
                             </CardContent>
                         </Card>
                     </div>
 
-                    {/* Sidebar */}
-                    <div className="space-y-6">
+                    {/* Right Sidebar */}
+                    <div className="space-y-6 sm:space-y-8">
                         {/* Recent Notifications */}
-                        <Card className="bg-white shadow-md">
-                            <CardHeader>
-                                <CardTitle className="flex items-center gap-2">
-                                    <Bell className="w-5 h-5 text-red-600" />
-                                    Recent Updates
+                        <Card className="bg-white shadow-lg">
+                            <CardHeader className="pb-4">
+                                <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
+                                    <Bell className="w-5 h-5 sm:w-6 sm:h-6 text-red-600" />
+                                    Recent Notifications
                                 </CardTitle>
                             </CardHeader>
-                            <CardContent>
-                                <div className="space-y-3">
-                                    {recentNotifications.map((notification) => (
-                                        <div key={notification.id} className="border-l-4 border-red-200 pl-3 py-2">
-                                            <p className="text-sm text-gray-800">{notification.message}</p>
-                                            <p className="text-xs text-gray-500 mt-1">{notification.time}</p>
+                            <CardContent className="space-y-3">
+                                {recentNotifications.map((notification) => (
+                                    <div key={notification.id} className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg">
+                                        <div className="w-2 h-2 bg-red-600 rounded-full mt-2 flex-shrink-0"></div>
+                                        <div className="flex-1">
+                                            <p className="text-sm font-medium text-gray-900 mb-1">
+                                                {notification.message}
+                                            </p>
+                                            <p className="text-xs text-gray-500">{notification.time}</p>
                                         </div>
-                                    ))}
-                                </div>
-                                <Button variant="outline" className="w-full mt-4">
+                                    </div>
+                                ))}
+                                <Button variant="outline" size="sm" className="w-full mt-4 text-xs sm:text-sm">
                                     View All Notifications
                                 </Button>
                             </CardContent>
                         </Card>
 
                         {/* Quick Links */}
-                        <Card className="bg-white shadow-md">
-                            <CardHeader>
-                                <CardTitle className="flex items-center gap-2">
-                                    <Star className="w-5 h-5 text-red-600" />
+                        <Card className="bg-white shadow-lg">
+                            <CardHeader className="pb-4">
+                                <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
+                                    <Star className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-600" />
                                     Quick Links
                                 </CardTitle>
                             </CardHeader>
-                            <CardContent>
-                                <div className="space-y-2">
-                                    <Button variant="ghost" className="w-full justify-start">
-                                        <FileText className="w-4 h-4 mr-2" />
-                                        Resume Builder
-                                    </Button>
-                                    <Button variant="ghost" className="w-full justify-start">
-                                        <Users className="w-4 h-4 mr-2" />
-                                        Alumni Network
-                                    </Button>
-                                    <Button variant="ghost" className="w-full justify-start">
-                                        <TrendingUp className="w-4 h-4 mr-2" />
-                                        Placement Statistics
-                                    </Button>
-                                    <Button variant="ghost" className="w-full justify-start">
-                                        <Clock className="w-4 h-4 mr-2" />
-                                        Interview Schedule
-                                    </Button>
-                                </div>
-                            </CardContent>
-                        </Card>
-
-                        {/* Placement Progress */}
-                        <Card className="bg-white shadow-md">
-                            <CardHeader>
-                                <CardTitle className="flex items-center gap-2">
-                                    <TrendingUp className="w-5 h-5 text-red-600" />
-                                    Your Progress
-                                </CardTitle>
-                            </CardHeader>
-                            <CardContent>
-                                <div className="space-y-4">
-                                    <div>
-                                        <div className="flex justify-between text-sm">
-                                            <span>Profile Completion</span>
-                                            <span>85%</span>
-                                        </div>
-                                        <div className="w-full bg-gray-200 rounded-full h-2 mt-1">
-                                            <div className="bg-green-600 h-2 rounded-full" style={{width: '85%'}}></div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div className="flex justify-between text-sm">
-                                            <span>Applications Sent</span>
-                                            <span>5/10</span>
-                                        </div>
-                                        <div className="w-full bg-gray-200 rounded-full h-2 mt-1">
-                                            <div className="bg-blue-600 h-2 rounded-full" style={{width: '50%'}}></div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div className="flex justify-between text-sm">
-                                            <span>Skill Assessment</span>
-                                            <span>70%</span>
-                                        </div>
-                                        <div className="w-full bg-gray-200 rounded-full h-2 mt-1">
-                                            <div className="bg-purple-600 h-2 rounded-full" style={{width: '70%'}}></div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <CardContent className="space-y-3">
+                                <Button variant="outline" size="sm" className="w-full justify-start text-xs sm:text-sm">
+                                    <FileText className="w-4 h-4 mr-2" />
+                                    View Applications
+                                </Button>
+                                <Button variant="outline" size="sm" className="w-full justify-start text-xs sm:text-sm">
+                                    <Calendar className="w-4 h-4 mr-2" />
+                                    Interview Schedule
+                                </Button>
+                                <Button variant="outline" size="sm" className="w-full justify-start text-xs sm:text-sm">
+                                    <BookOpen className="w-4 h-4 mr-2" />
+                                    Placement Resources
+                                </Button>
+                                <Button variant="outline" size="sm" className="w-full justify-start text-xs sm:text-sm">
+                                    <Users className="w-4 h-4 mr-2" />
+                                    Placement Committee
+                                </Button>
                             </CardContent>
                         </Card>
                     </div>
                 </div>
+
+                {/* Personal Information Modal */}
+                {showPersonalForm && (
+                    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+                        <Card className="w-full max-w-md max-h-[90vh] overflow-y-auto">
+                            <CardHeader>
+                                <CardTitle className="flex items-center justify-between">
+                                    Personal Information
+                                    <Button
+                                        variant="ghost"
+                                        size="sm"
+                                        onClick={() => setShowPersonalForm(false)}
+                                    >
+                                        <X className="w-4 h-4" />
+                                    </Button>
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <form onSubmit={handlePersonalSubmit} className="space-y-4">
+                                    <div>
+                                        <Label htmlFor="usn">USN</Label>
+                                        <Input
+                                            id="usn"
+                                            placeholder="e.g., 1JS22CS001"
+                                            value={personalData.usn}
+                                            onChange={(e) => setPersonalData(prev => ({...prev, usn: e.target.value}))}
+                                        />
+                                    </div>
+                                    <div>
+                                        <Label htmlFor="phone">Phone Number</Label>
+                                        <Input
+                                            id="phone"
+                                            placeholder="+91 9876543210"
+                                            value={personalData.phone}
+                                            onChange={(e) => setPersonalData(prev => ({...prev, phone: e.target.value}))}
+                                        />
+                                    </div>
+                                    <div>
+                                        <Label htmlFor="address">Address</Label>
+                                        <Input
+                                            id="address"
+                                            placeholder="Your address"
+                                            value={personalData.address}
+                                            onChange={(e) => setPersonalData(prev => ({...prev, address: e.target.value}))}
+                                        />
+                                    </div>
+                                    <div>
+                                        <Label htmlFor="dob">Date of Birth</Label>
+                                        <Input
+                                            id="dob"
+                                            type="date"
+                                            value={personalData.dateOfBirth}
+                                            onChange={(e) => setPersonalData(prev => ({...prev, dateOfBirth: e.target.value}))}
+                                        />
+                                    </div>
+                                    <Button type="submit" className="w-full bg-red-600 hover:bg-red-700 text-white">
+                                        Save Personal Information
+                                    </Button>
+                                </form>
+                            </CardContent>
+                        </Card>
+                    </div>
+                )}
+
+                {/* Academic Information Modal */}
+                {showAcademicForm && (
+                    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+                        <Card className="w-full max-w-md max-h-[90vh] overflow-y-auto">
+                            <CardHeader>
+                                <CardTitle className="flex items-center justify-between">
+                                    Academic Details
+                                    <Button
+                                        variant="ghost"
+                                        size="sm"
+                                        onClick={() => setShowAcademicForm(false)}
+                                    >
+                                        <X className="w-4 h-4" />
+                                    </Button>
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <form onSubmit={handleAcademicSubmit} className="space-y-4">
+                                    <div>
+                                        <Label htmlFor="branch">Branch</Label>
+                                        <Input
+                                            id="branch"
+                                            placeholder="e.g., Computer Science Engineering"
+                                            value={academicData.branch}
+                                            onChange={(e) => setAcademicData(prev => ({...prev, branch: e.target.value}))}
+                                        />
+                                    </div>
+                                    <div>
+                                        <Label htmlFor="semester">Current Semester</Label>
+                                        <Input
+                                            id="semester"
+                                            placeholder="e.g., 6"
+                                            value={academicData.semester}
+                                            onChange={(e) => setAcademicData(prev => ({...prev, semester: e.target.value}))}
+                                        />
+                                    </div>
+                                    <div>
+                                        <Label htmlFor="cgpa">Current CGPA</Label>
+                                        <Input
+                                            id="cgpa"
+                                            placeholder="e.g., 8.5"
+                                            value={academicData.cgpa}
+                                            onChange={(e) => setAcademicData(prev => ({...prev, cgpa: e.target.value}))}
+                                        />
+                                    </div>
+                                    <div>
+                                        <Label htmlFor="tenthMarks">10th Marks (%)</Label>
+                                        <Input
+                                            id="tenthMarks"
+                                            placeholder="e.g., 85.5"
+                                            value={academicData.tenthMarks}
+                                            onChange={(e) => setAcademicData(prev => ({...prev, tenthMarks: e.target.value}))}
+                                        />
+                                    </div>
+                                    <div>
+                                        <Label htmlFor="twelfthMarks">12th/Diploma Marks (%)</Label>
+                                        <Input
+                                            id="twelfthMarks"
+                                            placeholder="e.g., 90.2"
+                                            value={academicData.twelfthMarks}
+                                            onChange={(e) => setAcademicData(prev => ({...prev, twelfthMarks: e.target.value}))}
+                                        />
+                                    </div>
+                                    <Button type="submit" className="w-full bg-red-600 hover:bg-red-700 text-white">
+                                        Save Academic Details
+                                    </Button>
+                                </form>
+                            </CardContent>
+                        </Card>
+                    </div>
+                )}
+
+                {/* Skills Information Modal */}
+                {showSkillsForm && (
+                    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+                        <Card className="w-full max-w-md max-h-[90vh] overflow-y-auto">
+                            <CardHeader>
+                                <CardTitle className="flex items-center justify-between">
+                                    Skills & Projects
+                                    <Button
+                                        variant="ghost"
+                                        size="sm"
+                                        onClick={() => setShowSkillsForm(false)}
+                                    >
+                                        <X className="w-4 h-4" />
+                                    </Button>
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <form onSubmit={handleSkillsSubmit} className="space-y-4">
+                                    <div>
+                                        <Label htmlFor="technicalSkills">Technical Skills</Label>
+                                        <Input
+                                            id="technicalSkills"
+                                            placeholder="e.g., JavaScript, Python, React"
+                                            value={skillsData.technicalSkills}
+                                            onChange={(e) => setSkillsData(prev => ({...prev, technicalSkills: e.target.value}))}
+                                        />
+                                    </div>
+                                    <div>
+                                        <Label htmlFor="projects">Projects</Label>
+                                        <Input
+                                            id="projects"
+                                            placeholder="Brief description of your projects"
+                                            value={skillsData.projects}
+                                            onChange={(e) => setSkillsData(prev => ({...prev, projects: e.target.value}))}
+                                        />
+                                    </div>
+                                    <div>
+                                        <Label htmlFor="internships">Internships/Experience</Label>
+                                        <Input
+                                            id="internships"
+                                            placeholder="Internship details"
+                                            value={skillsData.internships}
+                                            onChange={(e) => setSkillsData(prev => ({...prev, internships: e.target.value}))}
+                                        />
+                                    </div>
+                                    <Button type="submit" className="w-full bg-red-600 hover:bg-red-700 text-white">
+                                        Save Skills & Projects
+                                    </Button>
+                                </form>
+                            </CardContent>
+                        </Card>
+                    </div>
+                )}
             </div>
         </div>
     )

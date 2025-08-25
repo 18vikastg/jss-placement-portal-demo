@@ -61,6 +61,12 @@ const Navbar = () => {
                             user && user.role === 'recruiter' ? (
                                 <>
                                     <li>
+                                        <Link to="/recruiter/dashboard" className='flex items-center gap-2 text-gray-700 hover:text-red-700 transition-colors px-3 py-2 rounded-lg hover:bg-red-50'>
+                                            <Home className='w-4 h-4' />
+                                            Dashboard
+                                        </Link>
+                                    </li>
+                                    <li>
                                         <Link to="/admin/companies" className='flex items-center gap-2 text-gray-700 hover:text-red-700 transition-colors px-3 py-2 rounded-lg hover:bg-red-50'>
                                             <Building className='w-4 h-4' />
                                             Companies
@@ -76,9 +82,9 @@ const Navbar = () => {
                             ) : user && user.role === 'faculty' ? (
                                 <>
                                     <li>
-                                        <Link to="/" className='flex items-center gap-2 text-gray-700 hover:text-red-700 transition-colors px-3 py-2 rounded-lg hover:bg-red-50'>
+                                        <Link to="/faculty/dashboard" className='flex items-center gap-2 text-gray-700 hover:text-red-700 transition-colors px-3 py-2 rounded-lg hover:bg-red-50'>
                                             <Home className='w-4 h-4' />
-                                            Home
+                                            Dashboard
                                         </Link>
                                     </li>
                                     <li>
@@ -100,7 +106,7 @@ const Navbar = () => {
                                         </Link>
                                     </li>
                                 </>
-                            ) : (
+                            ) : user && user.role === 'student' ? (
                                 <>
                                     <li>
                                         <Link to="/student/dashboard" className='flex items-center gap-2 text-gray-700 hover:text-red-700 transition-colors px-3 py-2 rounded-lg hover:bg-red-50'>
@@ -118,6 +124,21 @@ const Navbar = () => {
                                         <Link to="/student/applications" className='flex items-center gap-2 text-gray-700 hover:text-red-700 transition-colors px-3 py-2 rounded-lg hover:bg-red-50'>
                                             <Briefcase className='w-4 h-4' />
                                             My Applications
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/browse" className='flex items-center gap-2 text-gray-700 hover:text-red-700 transition-colors px-3 py-2 rounded-lg hover:bg-red-50'>
+                                            <Search className='w-4 h-4' />
+                                            Browse
+                                        </Link>
+                                    </li>
+                                </>
+                            ) : (
+                                <>
+                                    <li>
+                                        <Link to="/" className='flex items-center gap-2 text-gray-700 hover:text-red-700 transition-colors px-3 py-2 rounded-lg hover:bg-red-50'>
+                                            <Home className='w-4 h-4' />
+                                            Home
                                         </Link>
                                     </li>
                                     <li>
@@ -212,6 +233,10 @@ const Navbar = () => {
                     <div className='px-4 py-4 space-y-2'>
                         {user && user.role === 'recruiter' ? (
                             <>
+                                <Link to="/recruiter/dashboard" className='flex items-center gap-2 text-gray-700 hover:text-red-700 transition-colors px-3 py-2 rounded-lg hover:bg-red-50'>
+                                    <Home className='w-4 h-4' />
+                                    Dashboard
+                                </Link>
                                 <Link to="/admin/companies" className='flex items-center gap-2 text-gray-700 hover:text-red-700 transition-colors px-3 py-2 rounded-lg hover:bg-red-50'>
                                     <Building className='w-4 h-4' />
                                     Companies
@@ -221,15 +246,49 @@ const Navbar = () => {
                                     Jobs
                                 </Link>
                             </>
+                        ) : user && user.role === 'faculty' ? (
+                            <>
+                                <Link to="/faculty/dashboard" className='flex items-center gap-2 text-gray-700 hover:text-red-700 transition-colors px-3 py-2 rounded-lg hover:bg-red-50'>
+                                    <Home className='w-4 h-4' />
+                                    Dashboard
+                                </Link>
+                                <Link to="/faculty/students" className='flex items-center gap-2 text-gray-700 hover:text-red-700 transition-colors px-3 py-2 rounded-lg hover:bg-red-50'>
+                                    <Users className='w-4 h-4' />
+                                    Students
+                                </Link>
+                                <Link to="/faculty/placements" className='flex items-center gap-2 text-gray-700 hover:text-red-700 transition-colors px-3 py-2 rounded-lg hover:bg-red-50'>
+                                    <TrendingUp className='w-4 h-4' />
+                                    Placements
+                                </Link>
+                                <Link to="/browse" className='flex items-center gap-2 text-gray-700 hover:text-red-700 transition-colors px-3 py-2 rounded-lg hover:bg-red-50'>
+                                    <Search className='w-4 h-4' />
+                                    Browse
+                                </Link>
+                            </>
+                        ) : user && user.role === 'student' ? (
+                            <>
+                                <Link to="/student/dashboard" className='flex items-center gap-2 text-gray-700 hover:text-red-700 transition-colors px-3 py-2 rounded-lg hover:bg-red-50'>
+                                    <Home className='w-4 h-4' />
+                                    Dashboard
+                                </Link>
+                                <Link to="/opportunities" className='flex items-center gap-2 text-gray-700 hover:text-red-700 transition-colors px-3 py-2 rounded-lg hover:bg-red-50'>
+                                    <TrendingUp className='w-4 h-4' />
+                                    Opportunities
+                                </Link>
+                                <Link to="/student/applications" className='flex items-center gap-2 text-gray-700 hover:text-red-700 transition-colors px-3 py-2 rounded-lg hover:bg-red-50'>
+                                    <Briefcase className='w-4 h-4' />
+                                    My Applications
+                                </Link>
+                                <Link to="/browse" className='flex items-center gap-2 text-gray-700 hover:text-red-700 transition-colors px-3 py-2 rounded-lg hover:bg-red-50'>
+                                    <Search className='w-4 h-4' />
+                                    Browse
+                                </Link>
+                            </>
                         ) : (
                             <>
                                 <Link to="/" className='flex items-center gap-2 text-gray-700 hover:text-red-700 transition-colors px-3 py-2 rounded-lg hover:bg-red-50'>
                                     <Home className='w-4 h-4' />
                                     Home
-                                </Link>
-                                <Link to="/jobs" className='flex items-center gap-2 text-gray-700 hover:text-red-700 transition-colors px-3 py-2 rounded-lg hover:bg-red-50'>
-                                    <Briefcase className='w-4 h-4' />
-                                    Opportunities
                                 </Link>
                                 <Link to="/browse" className='flex items-center gap-2 text-gray-700 hover:text-red-700 transition-colors px-3 py-2 rounded-lg hover:bg-red-50'>
                                     <Search className='w-4 h-4' />
