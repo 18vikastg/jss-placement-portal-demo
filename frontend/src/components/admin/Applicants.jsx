@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import Navbar from '../shared/Navbar'
 import ApplicantsTable from './ApplicantsTable'
 import axios from 'axios';
-import { APPLICATION_API_END_POINT } from '@/utils/constant';
+import { APPLICATION_API_END_POINT } from '@/utils/constants';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setAllApplicants } from '@/redux/applicationSlice';

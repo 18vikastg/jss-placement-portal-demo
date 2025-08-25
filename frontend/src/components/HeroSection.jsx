@@ -4,13 +4,13 @@ import { Search, TrendingUp, Users, Building, Award } from 'lucide-react'
 import { useDispatch } from 'react-redux';
 import { setSearchedQuery } from '@/redux/jobSlice';
 import { useNavigate } from 'react-router-dom';
+import SmartSearchBar from './SmartSearchBar';
 
 const HeroSection = () => {
-    const [query, setQuery] = useState("");
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const searchJobHandler = () => {
+    const handleSearch = (query) => {
         dispatch(setSearchedQuery(query));
         navigate("/browse");
     }
@@ -36,18 +36,7 @@ const HeroSection = () => {
                             </p>
                         </div>
                         
-                        <div className='flex w-full max-w-2xl mx-auto shadow-2xl bg-white rounded-2xl p-2 border border-gray-100'>
-                            <input
-                                type="text"
-                                placeholder='Search for companies, roles, or technologies...'
-                                onChange={(e) => setQuery(e.target.value)}
-                                className='flex-1 outline-none border-none px-6 py-4 text-lg rounded-l-2xl'
-                            />
-                            <Button onClick={searchJobHandler} className="px-8 py-4 bg-gradient-to-r from-red-700 to-red-900 hover:from-red-800 hover:to-red-950 rounded-xl text-white font-semibold">
-                                <Search className='h-5 w-5 mr-2' />
-                                Search Opportunities
-                            </Button>
-                        </div>
+                        <SmartSearchBar onSearch={handleSearch} />
 
                         {/* Stats Section */}
                         <div className='flex flex-wrap justify-center gap-8 mt-12'>

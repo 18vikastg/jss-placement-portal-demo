@@ -1,15 +1,18 @@
-import React from 'react'
-import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
-import { Button } from '../ui/button'
-import { Avatar, AvatarImage } from '../ui/avatar'
-import { LogOut, User2, Briefcase, Building, Home, Search, Menu, X } from 'lucide-react'
-import { Link, useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import axios from 'axios'
-import { USER_API_END_POINT } from '@/utils/constant'
-import { setUser } from '@/redux/authSlice'
-import { toast } from 'sonner'
-import { useState } from 'react'
+import React, { useState } from 'react'
+import { 
+    Popover, 
+    PopoverContent, 
+    PopoverTrigger 
+} from "../ui/popover"
+import { Button } from "../ui/button"
+import { Avatar, AvatarImage } from "../ui/avatar"
+import { LogOut, User2, Home, Briefcase, Search, Building, TrendingUp, Menu, X } from "lucide-react"
+import { Link, useNavigate } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import axios from "axios"
+import { USER_API_END_POINT } from "@/utils/constants"
+import { setUser } from "@/redux/authSlice"
+import { toast } from "sonner"
 
 const Navbar = () => {
     const { user } = useSelector(store => store.auth);
@@ -79,9 +82,15 @@ const Navbar = () => {
                                         </Link>
                                     </li>
                                     <li>
+                                        <Link to="/opportunities" className='flex items-center gap-2 text-gray-700 hover:text-red-700 transition-colors px-3 py-2 rounded-lg hover:bg-red-50'>
+                                            <TrendingUp className='w-4 h-4' />
+                                            Opportunities
+                                        </Link>
+                                    </li>
+                                    <li>
                                         <Link to="/jobs" className='flex items-center gap-2 text-gray-700 hover:text-red-700 transition-colors px-3 py-2 rounded-lg hover:bg-red-50'>
                                             <Briefcase className='w-4 h-4' />
-                                            Opportunities
+                                            Jobs
                                         </Link>
                                     </li>
                                     <li>
