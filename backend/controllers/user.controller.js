@@ -41,8 +41,83 @@ export const register = async (req, res) => {
             phoneNumber,
             password: hashedPassword,
             role,
-            profile:{
+            profile: {
                 profilePhoto: profilePhoto,
+                bio: "",
+                skills: [],
+                resume: "",
+                resumeOriginalName: "",
+                company: null,
+                // Preplink Profile Structure
+                personalInfo: {
+                    usn: "",
+                    alternatePhone: "",
+                    address: {
+                        current: "",
+                        permanent: ""
+                    },
+                    dateOfBirth: null,
+                    gender: "",
+                    bloodGroup: "",
+                    fatherName: "",
+                    motherName: "",
+                    guardianContact: ""
+                },
+                academicInfo: {
+                    department: "",
+                    batch: "",
+                    semester: null,
+                    cgpa: null,
+                    percentage: null,
+                    tenthMarks: {
+                        percentage: null,
+                        board: "",
+                        yearOfPassing: null
+                    },
+                    twelfthMarks: {
+                        percentage: null,
+                        board: "",
+                        yearOfPassing: null
+                    },
+                    backlogs: {
+                        count: 0,
+                        subjects: []
+                    },
+                    achievements: []
+                },
+                skillsAndProjects: {
+                    programmingLanguages: [],
+                    frameworks: [],
+                    databases: [],
+                    tools: [],
+                    certifications: [],
+                    projects: []
+                },
+                documents: {
+                    resume: {
+                        fileUrl: "",
+                        fileName: "",
+                        uploadDate: null
+                    },
+                    profilePicture: {
+                        fileUrl: profilePhoto,
+                        fileName: ""
+                    },
+                    certificates: []
+                },
+                placementPreferences: {
+                    interestedDomains: [],
+                    jobTypes: [],
+                    locationPreferences: [],
+                    expectedSalary: {
+                        min: null,
+                        max: null
+                    },
+                    workPreference: "",
+                    companySize: []
+                },
+                profileCompletion: 0,
+                lastUpdated: new Date()
             }
         });
 
@@ -125,19 +200,46 @@ export const logout = async (req, res) => {
 }
 export const updateProfile = async (req, res) => {
     try {
-        const { fullname, email, phoneNumber, bio, skills } = req.body;
+        const { 
+            fullname, 
+            email, 
+            phoneNumber, 
+            bio, 
+            skills, 
+            // Student specific fields
+            studentId,
+            branch,
+            semester,
+            cgpa,
+            tenthMarks,
+            twelfthMarks,
+            address,
+            dateOfBirth,
+            projects,
+            internships,
+            // Placement preferences
+            preferredDomains,
+            locationPreferences,
+            expectedSalary,
+            // Academic achievements
+            achievements,
+            backlogs
+        } = req.body;
         
         const file = req.file;
-        // cloudinary ayega idhar
-        const fileUri = getDataUri(file);
-        const cloudResponse = await cloudinary.uploader.upload(fileUri.content);
-
-
+        let cloudResponse;
+        
+        // Handle file upload only if file exists
+        if (file) {
+            const fileUri = getDataUri(file);
+            cloudResponse = await cloudinary.uploader.upload(fileUri.content);
+        }
 
         let skillsArray;
         if(skills){
-            skillsArray = skills.split(",");
+            skillsArray = typeof skills === 'string' ? skills.split(",") : skills;
         }
+        
         const userId = req.id; // middleware authentication
         let user = await User.findById(userId);
 
@@ -147,19 +249,40 @@ export const updateProfile = async (req, res) => {
                 success: false
             })
         }
-        // updating data
+        
+        // updating basic data
         if(fullname) user.fullname = fullname
         if(email) user.email = email
-        if(phoneNumber)  user.phoneNumber = phoneNumber
+        if(phoneNumber) user.phoneNumber = phoneNumber
         if(bio) user.profile.bio = bio
         if(skills) user.profile.skills = skillsArray
+        
+        // Student specific fields
+        if(studentId) user.profile.studentId = studentId
+        if(branch) user.profile.branch = branch
+        if(semester) user.profile.semester = semester
+        if(cgpa) user.profile.cgpa = cgpa
+        if(tenthMarks) user.profile.tenthMarks = tenthMarks
+        if(twelfthMarks) user.profile.twelfthMarks = twelfthMarks
+        if(address) user.profile.address = address
+        if(dateOfBirth) user.profile.dateOfBirth = dateOfBirth
+        if(projects) user.profile.projects = projects
+        if(internships) user.profile.internships = internships
+        
+        // Placement preferences
+        if(preferredDomains) user.profile.preferredDomains = Array.isArray(preferredDomains) ? preferredDomains : preferredDomains.split(',')
+        if(locationPreferences) user.profile.locationPreferences = Array.isArray(locationPreferences) ? locationPreferences : locationPreferences.split(',')
+        if(expectedSalary) user.profile.expectedSalary = expectedSalary
+        
+        // Academic achievements
+        if(achievements) user.profile.achievements = achievements
+        if(backlogs !== undefined) user.profile.backlogs = backlogs
       
-        // resume comes later here...
+        // resume upload
         if(cloudResponse){
             user.profile.resume = cloudResponse.secure_url // save the cloudinary url
             user.profile.resumeOriginalName = file.originalname // Save the original file name
         }
-
 
         await user.save();
 
@@ -179,5 +302,9 @@ export const updateProfile = async (req, res) => {
         })
     } catch (error) {
         console.log(error);
+        return res.status(500).json({
+            message: "Internal server error",
+            success: false
+        });
     }
 }

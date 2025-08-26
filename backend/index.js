@@ -8,6 +8,7 @@ import companyRoute from "./routes/company.route.js";
 import jobRoute from "./routes/job.route.js";
 import applicationRoute from "./routes/application.route.js";
 import facultyRoute from "./routes/faculty.route.js";
+import profileRoute from "./routes/profile.route.js";
 
 dotenv.config({});
 
@@ -18,7 +19,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
 const corsOptions = {
-    origin:['http://localhost:5173', 'http://localhost:5174'],
+    origin:['http://localhost:5173', 'http://localhost:5174', 'http://localhost:5175'],
     credentials:true
 }
 
@@ -33,6 +34,7 @@ app.use("/api/v1/company", companyRoute);
 app.use("/api/v1/job", jobRoute);
 app.use("/api/v1/application", applicationRoute);
 app.use("/api/v1/faculty", facultyRoute);
+app.use("/api/v1/profile", profileRoute);
 
 
 

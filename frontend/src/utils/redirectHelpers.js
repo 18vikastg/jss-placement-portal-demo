@@ -1,4 +1,4 @@
-import { COMPANIES, TECH_ROLES } from './constants';
+import { COMPANIES, TECH_ROLES } from './constant';
 
 // Function to redirect to company career page
 export const redirectToCompanyCareer = (companyName) => {

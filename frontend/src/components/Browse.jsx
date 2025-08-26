@@ -68,7 +68,7 @@ const Browse = () => {
         if (localSearchQuery) {
             filtered = filtered.filter(job =>
                 job.title.toLowerCase().includes(localSearchQuery.toLowerCase()) ||
-                job.company.toLowerCase().includes(localSearchQuery.toLowerCase()) ||
+                (job.company?.name || job.company || '').toLowerCase().includes(localSearchQuery.toLowerCase()) ||
                 (job.skills && job.skills.some(skill => skill.toLowerCase().includes(localSearchQuery.toLowerCase())))
             );
         }
@@ -80,7 +80,7 @@ const Browse = () => {
 
         // Company filter
         if (selectedCompany !== 'All') {
-            filtered = filtered.filter(job => job.company === selectedCompany);
+            filtered = filtered.filter(job => (job.company?.name || job.company) === selectedCompany);
         }
 
         // Salary filter
@@ -288,7 +288,7 @@ const Browse = () => {
                                         </div>
                                         <div>
                                             <h3 className="font-bold text-lg text-gray-900">{job.title}</h3>
-                                            <p className="text-red-600 font-semibold">{job.company}</p>
+                                            <p className="text-red-600 font-semibold">{job.company?.name || job.company}</p>
                                         </div>
                                     </div>
                                 </div>
