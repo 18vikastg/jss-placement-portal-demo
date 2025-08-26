@@ -54,6 +54,14 @@ const Navbar = () => {
                                     <li><Link to="/">Home</Link></li>
                                     <li><Link to="/jobs">Jobs</Link></li>
                                     <li><Link to="/browse">Browse</Link></li>
+                                    <li>
+                                        <Link 
+                                            to="/preparation" 
+                                            className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-3 py-2 rounded-lg font-medium hover:from-purple-700 hover:to-blue-700 transition-all duration-200"
+                                        >
+                                            📚 Prep Hub
+                                        </Link>
+                                    </li>
                                 </>
                             )
                         }

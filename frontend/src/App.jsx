@@ -22,6 +22,8 @@ import RecruiterDashboard from './components/recruiter/RecruiterDashboard'
 import StudentDashboard from './components/student/StudentDashboardPreplink'
 import StudentProfile from './components/student/StudentProfile'
 import StudentApplications from './components/student/StudentApplications'
+import PreparationHub from './components/PreparationHub'
+import PreparationDashboard from './components/PreparationDashboard'
 
 
 const appRouter = createBrowserRouter([
@@ -56,6 +58,15 @@ const appRouter = createBrowserRouter([
   {
     path: "/profile",
     element: <Profile />
+  },
+  // Preparation Hub routes
+  {
+    path: "/preparation",
+    element: <PreparationHub />
+  },
+  {
+    path: "/preparation/dashboard",
+    element: <ProtectedRoute><PreparationDashboard /></ProtectedRoute>
   },
   // admin ke liye yha se start hoga
   {

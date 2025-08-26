@@ -11,6 +11,7 @@ import facultyRoute from "./routes/faculty.route.js";
 import recruiterRoute from "./routes/recruiter.route.js";
 import facultyAuthRoute from "./routes/facultyAuth.route.js";
 import recruiterAuthRoute from "./routes/recruiterAuth.route.js";
+import preparationRoute from "./routes/preparation.route.js";
 
 dotenv.config({});
 
@@ -41,6 +42,7 @@ app.use("/api/v1/faculty", facultyRoute);
 app.use("/api/v1/recruiter", recruiterRoute);
 app.use("/api/v1/auth/faculty", facultyAuthRoute);
 app.use("/api/v1/auth/recruiter", recruiterAuthRoute);
+app.use("/api/v1/preparation", preparationRoute);
 
 
 

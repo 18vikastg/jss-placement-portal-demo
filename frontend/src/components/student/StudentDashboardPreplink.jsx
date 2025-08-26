@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react'
 import Navbar from '../shared/NavbarNew'
 import { useSelector, useDispatch } from 'react-redux'
 import { setUser } from '@/redux/authSlice'
+import { Link } from 'react-router-dom'
 import useGetProfile from '@/hooks/useGetProfile'
 import useUpdateProfile from '@/hooks/useUpdateProfile'
 import { toast } from 'sonner'
@@ -455,6 +456,61 @@ const StudentDashboardPreplink = () => {
                     </CardContent>
                 </Card>
 
+                {/* Preparation Hub - Prominent Section */}
+                <Card className="bg-gradient-to-br from-purple-600 to-blue-600 shadow-lg mb-6 sm:mb-8 text-white">
+                    <CardHeader className="pb-4">
+                        <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
+                            <BookOpen className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                            🚀 Preparation Hub
+                        </CardTitle>
+                        <CardDescription className="text-blue-100 text-sm sm:text-base">
+                            Access curated resources, practice materials, and track your preparation progress
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                            <div className="bg-white/10 rounded-lg p-4">
+                                <h4 className="font-semibold mb-2 flex items-center gap-2">
+                                    <Code className="w-4 h-4" />
+                                    Coding & DSA
+                                </h4>
+                                <p className="text-sm text-blue-100 mb-3">Master data structures and algorithms with curated problems</p>
+                                <Badge className="bg-white/20 text-white border-white/30">6 Resources</Badge>
+                            </div>
+                            <div className="bg-white/10 rounded-lg p-4">
+                                <h4 className="font-semibold mb-2 flex items-center gap-2">
+                                    <Target className="w-4 h-4" />
+                                    Aptitude & Reasoning
+                                </h4>
+                                <p className="text-sm text-blue-100 mb-3">Strengthen your logical and quantitative skills</p>
+                                <Badge className="bg-white/20 text-white border-white/30">5 Resources</Badge>
+                            </div>
+                        </div>
+                        <div className="flex flex-col sm:flex-row gap-3">
+                            <Link to="/preparation" className="flex-1">
+                                <Button 
+                                    size="lg" 
+                                    className="w-full bg-white text-purple-600 hover:bg-gray-100 font-semibold text-sm sm:text-base"
+                                >
+                                    <BookOpen className="w-4 h-4 mr-2" />
+                                    Start Preparing Now
+                                    <ArrowRight className="w-4 h-4 ml-2" />
+                                </Button>
+                            </Link>
+                            <Link to="/preparation/dashboard">
+                                <Button 
+                                    size="lg" 
+                                    variant="outline" 
+                                    className="border-white text-white hover:bg-white hover:text-purple-600 font-semibold text-sm sm:text-base"
+                                >
+                                    <TrendingUp className="w-4 h-4 mr-2" />
+                                    View Progress
+                                </Button>
+                            </Link>
+                        </div>
+                    </CardContent>
+                </Card>
+
                 {/* Placement Opportunities - Show when profile is complete */}
                 {profileCompletion === 100 && (
                     <Card className="bg-white shadow-lg mb-6 sm:mb-8">
@@ -598,6 +654,18 @@ const StudentDashboardPreplink = () => {
                                     Set Placement Preferences
                                 </Button>
                             )}
+                            
+                            {/* Always show Preparation Hub button */}
+                            <Link to="/preparation">
+                                <Button 
+                                    size="sm" 
+                                    className="w-full justify-start text-xs sm:text-sm bg-purple-600 hover:bg-purple-700 text-white"
+                                >
+                                    <BookOpen className="w-4 h-4 mr-2" />
+                                    Access Preparation Hub
+                                    <ArrowRight className="w-4 h-4 ml-auto" />
+                                </Button>
+                            </Link>
                         </CardContent>
                     </Card>
                 )}

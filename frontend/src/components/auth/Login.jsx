@@ -57,7 +57,8 @@ const Login = () => {
 
             const res = await axios.post(apiEndpoint, {
                 email: input.email,
-                password: input.password
+                password: input.password,
+                role: input.role
             }, {
                 headers: {
                     "Content-Type": "application/json"
