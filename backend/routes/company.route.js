@@ -6,6 +6,8 @@ import { singleUpload } from "../middlewares/mutler.js";
 
 const router = express.Router();
 
+// Public route to get all companies (for testing and recruitment purposes)
+router.route("/public").get(getCompany);
 // Only recruiters can register companies
 router.route("/register").post(isAuthenticated, authorizeRoles('recruiter'), registerCompany);
 // Only recruiters can get their companies

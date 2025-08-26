@@ -8,7 +8,9 @@ import companyRoute from "./routes/company.route.js";
 import jobRoute from "./routes/job.route.js";
 import applicationRoute from "./routes/application.route.js";
 import facultyRoute from "./routes/faculty.route.js";
-import profileRoute from "./routes/profile.route.js";
+import recruiterRoute from "./routes/recruiter.route.js";
+import facultyAuthRoute from "./routes/facultyAuth.route.js";
+import recruiterAuthRoute from "./routes/recruiterAuth.route.js";
 
 dotenv.config({});
 
@@ -19,13 +21,15 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
 const corsOptions = {
-    origin:['http://localhost:5173', 'http://localhost:5174', 'http://localhost:5175'],
+    origin:['http://localhost:5173', 'http://localhost:5174', 'http://localhost:5175', 'http://localhost:5176', 'http://localhost:5177'],
     credentials:true
 }
 
 app.use(cors(corsOptions));
 
-const PORT = process.env.PORT || 8001;
+const PORT = process.env.PORT || 8002;
+
+console.log(`Starting server on port ${PORT}`);
 
 
 // api's
@@ -34,7 +38,9 @@ app.use("/api/v1/company", companyRoute);
 app.use("/api/v1/job", jobRoute);
 app.use("/api/v1/application", applicationRoute);
 app.use("/api/v1/faculty", facultyRoute);
-app.use("/api/v1/profile", profileRoute);
+app.use("/api/v1/recruiter", recruiterRoute);
+app.use("/api/v1/auth/faculty", facultyAuthRoute);
+app.use("/api/v1/auth/recruiter", recruiterAuthRoute);
 
 
 

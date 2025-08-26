@@ -6,7 +6,7 @@ import { RadioGroup } from '../ui/radio-group'
 import { Button } from '../ui/button'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import { USER_API_END_POINT } from '@/utils/constants'
+import { USER_API_END_POINT, FACULTY_AUTH_API_END_POINT, RECRUITER_AUTH_API_END_POINT } from '@/utils/constant'
 import { toast } from 'sonner'
 import { useDispatch, useSelector } from 'react-redux'
 import { setLoading } from '@/redux/authSlice'
@@ -44,7 +44,18 @@ const Signup = () => {
 
         try {
             dispatch(setLoading(true));
-            const res = await axios.post(`${USER_API_END_POINT}/register`, input, {
+            
+            // Determine the correct API endpoint based on role
+            let apiEndpoint;
+            if (input.role === 'student') {
+                apiEndpoint = `${USER_API_END_POINT}/register`;
+            } else if (input.role === 'faculty') {
+                apiEndpoint = `${FACULTY_AUTH_API_END_POINT}/register`;
+            } else if (input.role === 'recruiter') {
+                apiEndpoint = `${RECRUITER_AUTH_API_END_POINT}/register`;
+            }
+            
+            const res = await axios.post(apiEndpoint, input, {
                 headers: { 'Content-Type': "application/json" },
                 withCredentials: true,
             });

@@ -22,7 +22,6 @@ import RecruiterDashboard from './components/recruiter/RecruiterDashboard'
 import StudentDashboard from './components/student/StudentDashboardPreplink'
 import StudentProfile from './components/student/StudentProfile'
 import StudentApplications from './components/student/StudentApplications'
-import ProfileTestComponent from './components/ProfileTestComponent'
 
 
 const appRouter = createBrowserRouter([
@@ -113,11 +112,6 @@ const appRouter = createBrowserRouter([
   {
     path:"/student/applications",
     element:<ProtectedRoute allowedRoles={['student']}><StudentApplications/></ProtectedRoute> 
-  },
-  // test route for profile system
-  {
-    path:"/test/profile",
-    element: <ProfileTestComponent/>
   },
 
 ])

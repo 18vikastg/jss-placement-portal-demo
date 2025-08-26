@@ -1,8 +1,11 @@
 export const USER_API_END_POINT="http://localhost:8001/api/v1/user";
-export const PROFILE_API_END_POINT="http://localhost:8001/api/v1/profile";
 export const JOB_API_END_POINT="http://localhost:8001/api/v1/job";
 export const APPLICATION_API_END_POINT="http://localhost:8001/api/v1/application";
 export const COMPANY_API_END_POINT="http://localhost:8001/api/v1/company";
+export const FACULTY_API_END_POINT="http://localhost:8001/api/v1/faculty";
+export const RECRUITER_API_END_POINT="http://localhost:8001/api/v1/recruiter";
+export const FACULTY_AUTH_API_END_POINT="http://localhost:8001/api/v1/auth/faculty";
+export const RECRUITER_AUTH_API_END_POINT="http://localhost:8001/api/v1/auth/recruiter";
 
 // Tech Roles Data
 export const TECH_ROLES = [

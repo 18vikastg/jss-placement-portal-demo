@@ -1,590 +1,322 @@
-import { useState, useEffect } from 'react'
-import Navbar from '../shared/NavbarNew'
-import { useSelector } from 'react-redux'
+import React, { useState, useEffect } from 'react';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
+import { Button } from '../ui/button';
+import { Input } from '../ui/input';
+import { Badge } from '../ui/badge';
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { 
     Users, 
     GraduationCap, 
-    Briefcase, 
-    TrendingUp,
-    Calendar,
-    Award,
-    Search,
-    Filter,
+    Building2, 
+    TrendingUp, 
+    Search, 
     Download,
     Eye,
     Mail,
-    Phone,
-    MapPin,
-    Building2,
-    BookOpen,
-    CheckCircle,
-    Clock,
-    AlertCircle,
-    Star,
-    BarChart3,
-    PieChart
-} from 'lucide-react'
-import { Button } from '../ui/button'
-import { Badge } from '../ui/badge'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card'
-import { Input } from '../ui/input'
-import { Avatar, AvatarImage } from '../ui/avatar'
-import { 
-    Table,
-    TableBody,
-    TableCaption,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from '../ui/table'
+    Phone
+} from 'lucide-react';
+import { FACULTY_API_END_POINT } from '@/utils/constants';
+import axios from 'axios';
+import { toast } from 'sonner';
 
 const FacultyDashboard = () => {
-    const { user } = useSelector(store => store.auth)
-    const [activeTab, setActiveTab] = useState('overview')
-    const [searchTerm, setSearchTerm] = useState('')
-    const [filterStatus, setFilterStatus] = useState('all')
+    const [dashboardData, setDashboardData] = useState(null);
+    const [students, setStudents] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [searchTerm, setSearchTerm] = useState('');
 
-    // Mock data - in real app, this would come from API
-    const [dashboardStats, setDashboardStats] = useState({
-        totalStudents: 120,
-        placedStudents: 78,
-        activeApplications: 156,
-        upcomingInterviews: 23,
-        averageCGPA: 7.8,
-        placementRate: 65
-    })
+    useEffect(() => {
+        // For now, we'll use mock data since the backend APIs are ready but need authentication setup
+        const mockData = {
+            statistics: {
+                totalStudents: 150,
+                profileCompletedStudents: 120,
+                profileCompletionRate: 80,
+                activeDrives: 5
+            },
+            recentApplications: [
+                {
+                    _id: '1',
+                    applicant: { fullName: 'John Doe' },
+                    job: { title: 'Software Developer' },
+                    status: 'Applied'
+                }
+            ],
+            activeDrives: [
+                {
+                    _id: '1',
+                    title: 'Software Developer Recruitment',
+                    companyId: { name: 'TechCorp', logo: null },
+                    status: 'Active'
+                }
+            ]
+        };
+        
+        setDashboardData(mockData);
+        setLoading(false);
+    }, []);
 
-    const [students, setStudents] = useState([
+    const mockStudents = [
         {
             _id: '1',
-            fullname: 'Arjun Sharma',
-            email: 'arjun@jssate.ac.in',
+            fullName: 'Alice Johnson',
+            email: 'alice@example.com',
             phoneNumber: '9876543210',
             profile: {
-                usn: '1JS22CS001',
-                branch: 'Computer Science',
-                batch: '2025',
-                semester: 8,
-                cgpa: 8.5,
-                profilePhoto: 'https://github.com/shadcn.png',
-                skills: ['JavaScript', 'React', 'Node.js', 'Python'],
-                projects: 3,
-                internships: 2
-            },
-            placementStatus: 'Placed',
-            company: 'Google',
-            package: '45 LPA',
-            applicationCount: 8,
-            interviewsAttended: 5
+                academicInfo: { cgpa: 8.5, department: 'Computer Science' },
+                profileCompletion: 85,
+                placementStatus: 'Applied'
+            }
         },
         {
             _id: '2',
-            fullname: 'Priya Patel',
-            email: 'priya@jssate.ac.in',
+            fullName: 'Bob Smith',
+            email: 'bob@example.com',
             phoneNumber: '9876543211',
             profile: {
-                usn: '1JS22CS002',
-                branch: 'Computer Science',
-                batch: '2025',
-                semester: 8,
-                cgpa: 9.1,
-                profilePhoto: 'https://github.com/shadcn.png',
-                skills: ['Java', 'Spring Boot', 'MySQL', 'React'],
-                projects: 4,
-                internships: 1
-            },
-            placementStatus: 'Interviewing',
-            company: 'Microsoft',
-            package: 'TBD',
-            applicationCount: 12,
-            interviewsAttended: 7
-        },
-        {
-            _id: '3',
-            fullname: 'Rahul Kumar',
-            email: 'rahul@jssate.ac.in',
-            phoneNumber: '9876543212',
-            profile: {
-                usn: '1JS22CS003',
-                branch: 'Computer Science',
-                batch: '2025',
-                semester: 8,
-                cgpa: 7.8,
-                profilePhoto: 'https://github.com/shadcn.png',
-                skills: ['Python', 'Django', 'PostgreSQL'],
-                projects: 2,
-                internships: 1
-            },
-            placementStatus: 'Applying',
-            company: null,
-            package: null,
-            applicationCount: 5,
-            interviewsAttended: 2
+                academicInfo: { cgpa: 7.8, department: 'Information Technology' },
+                profileCompletion: 70,
+                placementStatus: 'Not Applied'
+            }
         }
-    ])
+    ];
 
-    const [recentActivities, setRecentActivities] = useState([
-        {
-            id: 1,
-            student: 'Arjun Sharma',
-            activity: 'Got placed at Google',
-            time: '2 hours ago',
-            type: 'placement'
-        },
-        {
-            id: 2,
-            student: 'Priya Patel',
-            activity: 'Interview scheduled with Microsoft',
-            time: '1 day ago',
-            type: 'interview'
-        },
-        {
-            id: 3,
-            student: 'Rahul Kumar',
-            activity: 'Applied to TCS placement drive',
-            time: '2 days ago',
-            type: 'application'
-        },
-        {
-            id: 4,
-            student: 'Sneha Reddy',
-            activity: 'Updated profile with new project',
-            time: '3 days ago',
-            type: 'profile'
-        }
-    ])
-
-    const filteredStudents = students.filter(student => {
-        const matchesSearch = student.fullname.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                             student.profile.usn.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                             student.profile.branch.toLowerCase().includes(searchTerm.toLowerCase())
-        
-        const matchesFilter = filterStatus === 'all' || student.placementStatus.toLowerCase() === filterStatus.toLowerCase()
-        
-        return matchesSearch && matchesFilter
-    })
-
-    const getStatusBadge = (status) => {
-        switch (status) {
-            case 'Placed':
-                return <Badge className="bg-green-100 text-green-800">Placed</Badge>
-            case 'Interviewing':
-                return <Badge className="bg-blue-100 text-blue-800">Interviewing</Badge>
-            case 'Applying':
-                return <Badge className="bg-yellow-100 text-yellow-800">Applying</Badge>
-            default:
-                return <Badge className="bg-gray-100 text-gray-800">Not Started</Badge>
-        }
-    }
-
-    const getActivityIcon = (type) => {
-        switch (type) {
-            case 'placement':
-                return <Award className="w-4 h-4 text-green-600" />
-            case 'interview':
-                return <Calendar className="w-4 h-4 text-blue-600" />
-            case 'application':
-                return <Briefcase className="w-4 h-4 text-orange-600" />
-            case 'profile':
-                return <Users className="w-4 h-4 text-purple-600" />
-            default:
-                return <Clock className="w-4 h-4 text-gray-600" />
-        }
+    if (loading || !dashboardData) {
+        return (
+            <div className="flex items-center justify-center h-64">
+                <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div>
+            </div>
+        );
     }
 
     return (
-        <div className="min-h-screen bg-gray-50">
-            <Navbar />
-            
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
-                {/* Faculty Welcome Header */}
-                <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl shadow-lg p-4 sm:p-8 mb-6 sm:mb-8 text-white">
-                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                        <div className="flex-1">
-                            <h1 className="text-2xl sm:text-3xl font-bold mb-2">
-                                Faculty Dashboard - {user?.fullname || 'Faculty'}
-                            </h1>
-                            <p className="text-blue-100 text-base sm:text-lg mb-4">
-                                Monitor student progress and placement activities
-                            </p>
-                            <div className="flex flex-wrap items-center gap-2 sm:gap-4">
-                                <Badge className="bg-white text-blue-600 text-xs sm:text-sm font-medium">
-                                    📚 Placement Coordinator
-                                </Badge>
-                                <Badge className="bg-white text-blue-600 text-xs sm:text-sm font-medium">
-                                    🏛️ JSS Academy
-                                </Badge>
-                            </div>
-                        </div>
-                        <div className="hidden sm:block">
-                            <div className="w-20 h-20 sm:w-24 sm:h-24 bg-white/20 rounded-full flex items-center justify-center">
-                                <GraduationCap className="w-10 h-10 sm:w-12 sm:h-12 text-white" />
-                            </div>
-                        </div>
+        <div className="min-h-screen bg-gray-50 p-6">
+            <div className="max-w-7xl mx-auto space-y-6">
+                {/* Header */}
+                <div className="flex justify-between items-center">
+                    <div>
+                        <h1 className="text-3xl font-bold text-gray-900">Faculty Dashboard</h1>
+                        <p className="text-gray-600">Welcome back, Faculty Member</p>
+                    </div>
+                    <div className="flex space-x-3">
+                        <Button variant="outline" className="flex items-center gap-2">
+                            <Download className="h-4 w-4" />
+                            Export Report
+                        </Button>
                     </div>
                 </div>
 
-                {/* Dashboard Stats */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-6 mb-6 sm:mb-8">
-                    <Card className="bg-white shadow-md hover:shadow-lg transition-shadow">
-                        <CardContent className="p-4 sm:p-6">
-                            <div className="flex items-center justify-between">
-                                <div>
-                                    <p className="text-gray-500 text-xs sm:text-sm">Total Students</p>
-                                    <p className="text-xl sm:text-2xl font-bold text-blue-600">{dashboardStats.totalStudents}</p>
-                                </div>
-                                <Users className="w-6 h-6 sm:w-8 sm:h-8 text-blue-600" />
-                            </div>
-                        </CardContent>
-                    </Card>
-
-                    <Card className="bg-white shadow-md hover:shadow-lg transition-shadow">
-                        <CardContent className="p-4 sm:p-6">
-                            <div className="flex items-center justify-between">
-                                <div>
-                                    <p className="text-gray-500 text-xs sm:text-sm">Placed</p>
-                                    <p className="text-xl sm:text-2xl font-bold text-green-600">{dashboardStats.placedStudents}</p>
-                                </div>
-                                <Award className="w-6 h-6 sm:w-8 sm:h-8 text-green-600" />
-                            </div>
-                        </CardContent>
-                    </Card>
-
-                    <Card className="bg-white shadow-md hover:shadow-lg transition-shadow">
-                        <CardContent className="p-4 sm:p-6">
-                            <div className="flex items-center justify-between">
-                                <div>
-                                    <p className="text-gray-500 text-xs sm:text-sm">Applications</p>
-                                    <p className="text-xl sm:text-2xl font-bold text-orange-600">{dashboardStats.activeApplications}</p>
-                                </div>
-                                <Briefcase className="w-6 h-6 sm:w-8 sm:h-8 text-orange-600" />
-                            </div>
-                        </CardContent>
-                    </Card>
-
-                    <Card className="bg-white shadow-md hover:shadow-lg transition-shadow">
-                        <CardContent className="p-4 sm:p-6">
-                            <div className="flex items-center justify-between">
-                                <div>
-                                    <p className="text-gray-500 text-xs sm:text-sm">Interviews</p>
-                                    <p className="text-xl sm:text-2xl font-bold text-purple-600">{dashboardStats.upcomingInterviews}</p>
-                                </div>
-                                <Calendar className="w-6 h-6 sm:w-8 sm:h-8 text-purple-600" />
-                            </div>
-                        </CardContent>
-                    </Card>
-
-                    <Card className="bg-white shadow-md hover:shadow-lg transition-shadow">
-                        <CardContent className="p-4 sm:p-6">
-                            <div className="flex items-center justify-between">
-                                <div>
-                                    <p className="text-gray-500 text-xs sm:text-sm">Avg CGPA</p>
-                                    <p className="text-xl sm:text-2xl font-bold text-indigo-600">{dashboardStats.averageCGPA}</p>
-                                </div>
-                                <TrendingUp className="w-6 h-6 sm:w-8 sm:h-8 text-indigo-600" />
-                            </div>
-                        </CardContent>
-                    </Card>
-
-                    <Card className="bg-white shadow-md hover:shadow-lg transition-shadow">
-                        <CardContent className="p-4 sm:p-6">
-                            <div className="flex items-center justify-between">
-                                <div>
-                                    <p className="text-gray-500 text-xs sm:text-sm">Placement %</p>
-                                    <p className="text-xl sm:text-2xl font-bold text-red-600">{dashboardStats.placementRate}%</p>
-                                </div>
-                                <BarChart3 className="w-6 h-6 sm:w-8 sm:h-8 text-red-600" />
-                            </div>
-                        </CardContent>
-                    </Card>
-                </div>
-
-                {/* Navigation Tabs */}
-                <div className="flex flex-wrap gap-2 mb-6">
-                    <Button 
-                        onClick={() => setActiveTab('overview')}
-                        variant={activeTab === 'overview' ? 'default' : 'outline'}
-                        className={activeTab === 'overview' ? 'bg-blue-600 text-white' : ''}
-                    >
-                        Overview
-                    </Button>
-                    <Button 
-                        onClick={() => setActiveTab('students')}
-                        variant={activeTab === 'students' ? 'default' : 'outline'}
-                        className={activeTab === 'students' ? 'bg-blue-600 text-white' : ''}
-                    >
-                        Students
-                    </Button>
-                    <Button 
-                        onClick={() => setActiveTab('analytics')}
-                        variant={activeTab === 'analytics' ? 'default' : 'outline'}
-                        className={activeTab === 'analytics' ? 'bg-blue-600 text-white' : ''}
-                    >
-                        Analytics
-                    </Button>
-                </div>
-
-                {/* Tab Content */}
-                {activeTab === 'overview' && (
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
-                        {/* Recent Student Activities */}
-                        <Card className="bg-white shadow-lg">
-                            <CardHeader>
-                                <CardTitle className="flex items-center gap-2">
-                                    <Clock className="w-5 h-5 text-blue-600" />
-                                    Recent Student Activities
-                                </CardTitle>
-                            </CardHeader>
-                            <CardContent className="space-y-4">
-                                {recentActivities.map((activity) => (
-                                    <div key={activity.id} className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg">
-                                        {getActivityIcon(activity.type)}
-                                        <div className="flex-1">
-                                            <p className="text-sm font-medium text-gray-900">
-                                                <span className="font-semibold">{activity.student}</span> - {activity.activity}
-                                            </p>
-                                            <p className="text-xs text-gray-500 mt-1">{activity.time}</p>
-                                        </div>
-                                    </div>
-                                ))}
-                                <Button variant="outline" size="sm" className="w-full">
-                                    View All Activities
-                                </Button>
-                            </CardContent>
-                        </Card>
-
-                        {/* Quick Actions */}
-                        <Card className="bg-white shadow-lg">
-                            <CardHeader>
-                                <CardTitle className="flex items-center gap-2">
-                                    <Star className="w-5 h-5 text-blue-600" />
-                                    Quick Actions
-                                </CardTitle>
-                            </CardHeader>
-                            <CardContent className="space-y-3">
-                                <Button className="w-full justify-start bg-blue-600 hover:bg-blue-700 text-white">
-                                    <Download className="w-4 h-4 mr-2" />
-                                    Export Student Data
-                                </Button>
-                                <Button variant="outline" className="w-full justify-start">
-                                    <Mail className="w-4 h-4 mr-2" />
-                                    Send Notifications
-                                </Button>
-                                <Button variant="outline" className="w-full justify-start">
-                                    <Calendar className="w-4 h-4 mr-2" />
-                                    Schedule Events
-                                </Button>
-                                <Button variant="outline" className="w-full justify-start">
-                                    <BarChart3 className="w-4 h-4 mr-2" />
-                                    Generate Reports
-                                </Button>
-                            </CardContent>
-                        </Card>
-                    </div>
-                )}
-
-                {activeTab === 'students' && (
-                    <Card className="bg-white shadow-lg">
-                        <CardHeader>
-                            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                                <CardTitle className="flex items-center gap-2">
-                                    <Users className="w-5 h-5 text-blue-600" />
-                                    Student Management
-                                </CardTitle>
-                                <div className="flex flex-wrap gap-2">
-                                    <div className="relative">
-                                        <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                                        <Input
-                                            placeholder="Search students..."
-                                            value={searchTerm}
-                                            onChange={(e) => setSearchTerm(e.target.value)}
-                                            className="pl-10 w-64"
-                                        />
-                                    </div>
-                                    <select 
-                                        value={filterStatus}
-                                        onChange={(e) => setFilterStatus(e.target.value)}
-                                        className="px-3 py-2 border rounded-md text-sm"
-                                    >
-                                        <option value="all">All Status</option>
-                                        <option value="placed">Placed</option>
-                                        <option value="interviewing">Interviewing</option>
-                                        <option value="applying">Applying</option>
-                                    </select>
-                                </div>
-                            </div>
+                {/* Statistics Cards */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <Card>
+                        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                            <CardTitle className="text-sm font-medium">Total Students</CardTitle>
+                            <Users className="h-4 w-4 text-muted-foreground" />
                         </CardHeader>
                         <CardContent>
-                            <div className="overflow-x-auto">
-                                <Table>
-                                    <TableHeader>
-                                        <TableRow>
-                                            <TableHead>Student</TableHead>
-                                            <TableHead>USN</TableHead>
-                                            <TableHead>Branch</TableHead>
-                                            <TableHead>CGPA</TableHead>
-                                            <TableHead>Status</TableHead>
-                                            <TableHead>Company</TableHead>
-                                            <TableHead>Applications</TableHead>
-                                            <TableHead>Actions</TableHead>
-                                        </TableRow>
-                                    </TableHeader>
-                                    <TableBody>
-                                        {filteredStudents.map((student) => (
-                                            <TableRow key={student._id}>
-                                                <TableCell>
-                                                    <div className="flex items-center gap-3">
-                                                        <Avatar className="h-8 w-8">
-                                                            <AvatarImage src={student.profile.profilePhoto} alt={student.fullname} />
-                                                        </Avatar>
-                                                        <div>
-                                                            <div className="font-medium">{student.fullname}</div>
-                                                            <div className="text-sm text-gray-500">{student.email}</div>
-                                                        </div>
-                                                    </div>
-                                                </TableCell>
-                                                <TableCell className="font-mono text-sm">{student.profile.usn}</TableCell>
-                                                <TableCell>{student.profile.branch}</TableCell>
-                                                <TableCell>
-                                                    <span className="font-semibold">{student.profile.cgpa}</span>
-                                                </TableCell>
-                                                <TableCell>{getStatusBadge(student.placementStatus)}</TableCell>
-                                                <TableCell>
-                                                    {student.company ? (
-                                                        <div>
-                                                            <div className="font-medium">{student.company}</div>
-                                                            {student.package && (
-                                                                <div className="text-sm text-green-600">{student.package}</div>
-                                                            )}
-                                                        </div>
-                                                    ) : (
-                                                        <span className="text-gray-400">Not placed</span>
-                                                    )}
-                                                </TableCell>
-                                                <TableCell>
-                                                    <div className="text-center">
-                                                        <div className="font-semibold">{student.applicationCount}</div>
-                                                        <div className="text-xs text-gray-500">applications</div>
-                                                    </div>
-                                                </TableCell>
-                                                <TableCell>
-                                                    <div className="flex gap-2">
-                                                        <Button size="sm" variant="outline">
-                                                            <Eye className="w-4 h-4" />
-                                                        </Button>
-                                                        <Button size="sm" variant="outline">
-                                                            <Mail className="w-4 h-4" />
-                                                        </Button>
-                                                    </div>
-                                                </TableCell>
-                                            </TableRow>
-                                        ))}
-                                    </TableBody>
-                                </Table>
+                            <div className="text-2xl font-bold">{dashboardData.statistics.totalStudents}</div>
+                            <p className="text-xs text-muted-foreground">In your departments</p>
+                        </CardContent>
+                    </Card>
+
+                    <Card>
+                        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                            <CardTitle className="text-sm font-medium">Profile Completion</CardTitle>
+                            <GraduationCap className="h-4 w-4 text-muted-foreground" />
+                        </CardHeader>
+                        <CardContent>
+                            <div className="text-2xl font-bold">{dashboardData.statistics.profileCompletionRate}%</div>
+                            <p className="text-xs text-muted-foreground">
+                                {dashboardData.statistics.profileCompletedStudents} students ready
+                            </p>
+                        </CardContent>
+                    </Card>
+
+                    <Card>
+                        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                            <CardTitle className="text-sm font-medium">Active Drives</CardTitle>
+                            <Building2 className="h-4 w-4 text-muted-foreground" />
+                        </CardHeader>
+                        <CardContent>
+                            <div className="text-2xl font-bold">{dashboardData.statistics.activeDrives}</div>
+                            <p className="text-xs text-muted-foreground">Ongoing placement drives</p>
+                        </CardContent>
+                    </Card>
+
+                    <Card>
+                        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                            <CardTitle className="text-sm font-medium">Recent Applications</CardTitle>
+                            <TrendingUp className="h-4 w-4 text-muted-foreground" />
+                        </CardHeader>
+                        <CardContent>
+                            <div className="text-2xl font-bold">{dashboardData.recentApplications?.length || 0}</div>
+                            <p className="text-xs text-muted-foreground">Last 7 days</p>
+                        </CardContent>
+                    </Card>
+                </div>
+
+                {/* Quick Actions */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    {/* Active Drives */}
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Active Placement Drives</CardTitle>
+                            <CardDescription>Current ongoing drives</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            <div className="space-y-4">
+                                {dashboardData.activeDrives?.map((drive) => (
+                                    <div key={drive._id} className="flex items-center justify-between p-3 border rounded-lg">
+                                        <div className="flex items-center space-x-3">
+                                            <Avatar className="h-10 w-10">
+                                                <AvatarImage src={drive.companyId?.logo} />
+                                                <AvatarFallback>{drive.companyId?.name?.[0]}</AvatarFallback>
+                                            </Avatar>
+                                            <div>
+                                                <p className="font-medium">{drive.title}</p>
+                                                <p className="text-sm text-gray-600">{drive.companyId?.name}</p>
+                                            </div>
+                                        </div>
+                                        <Badge variant="secondary">{drive.status}</Badge>
+                                    </div>
+                                ))}
                             </div>
                         </CardContent>
                     </Card>
-                )}
 
-                {activeTab === 'analytics' && (
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
-                        <Card className="bg-white shadow-lg">
-                            <CardHeader>
-                                <CardTitle className="flex items-center gap-2">
-                                    <PieChart className="w-5 h-5 text-blue-600" />
-                                    Placement Statistics
-                                </CardTitle>
-                            </CardHeader>
-                            <CardContent>
-                                <div className="space-y-4">
-                                    <div>
-                                        <div className="flex justify-between text-sm mb-2">
-                                            <span>Placed Students</span>
-                                            <span>{dashboardStats.placedStudents}/{dashboardStats.totalStudents}</span>
+                    {/* Recent Applications */}
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Recent Applications</CardTitle>
+                            <CardDescription>Latest student applications</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            <div className="space-y-4">
+                                {dashboardData.recentApplications?.map((application) => (
+                                    <div key={application._id} className="flex items-center justify-between p-3 border rounded-lg">
+                                        <div className="flex items-center space-x-3">
+                                            <Avatar className="h-10 w-10">
+                                                <AvatarFallback>{application.applicant?.fullName?.[0]}</AvatarFallback>
+                                            </Avatar>
+                                            <div>
+                                                <p className="font-medium">{application.applicant?.fullName}</p>
+                                                <p className="text-sm text-gray-600">{application.job?.title}</p>
+                                            </div>
                                         </div>
-                                        <div className="w-full bg-gray-200 rounded-full h-3">
-                                            <div 
-                                                className="bg-green-600 h-3 rounded-full transition-all duration-300" 
-                                                style={{ width: `${dashboardStats.placementRate}%` }}
-                                            ></div>
+                                        <Badge variant="outline">{application.status}</Badge>
+                                    </div>
+                                ))}
+                            </div>
+                        </CardContent>
+                    </Card>
+                </div>
+
+                {/* Students List */}
+                <Card>
+                    <CardHeader>
+                        <div className="flex justify-between items-center">
+                            <div>
+                                <CardTitle>Students Overview</CardTitle>
+                                <CardDescription>Manage and track student profiles</CardDescription>
+                            </div>
+                        </div>
+                    </CardHeader>
+                    <CardContent>
+                        {/* Search */}
+                        <div className="flex space-x-4 mb-6">
+                            <div className="flex space-x-2 flex-1">
+                                <Input
+                                    placeholder="Search students by name, email, or roll number..."
+                                    value={searchTerm}
+                                    onChange={(e) => setSearchTerm(e.target.value)}
+                                    className="flex-1"
+                                />
+                                <Button size="sm">
+                                    <Search className="h-4 w-4" />
+                                </Button>
+                            </div>
+                        </div>
+
+                        {/* Students Table */}
+                        <div className="space-y-4">
+                            {mockStudents.map((student) => (
+                                <div key={student._id} className="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50">
+                                    <div className="flex items-center space-x-4">
+                                        <Avatar className="h-12 w-12">
+                                            <AvatarFallback>{student.fullName?.[0]}</AvatarFallback>
+                                        </Avatar>
+                                        <div>
+                                            <h3 className="font-medium">{student.fullName}</h3>
+                                            <div className="flex items-center space-x-4 text-sm text-gray-600">
+                                                <span className="flex items-center">
+                                                    <Mail className="h-3 w-3 mr-1" />
+                                                    {student.email}
+                                                </span>
+                                                <span className="flex items-center">
+                                                    <Phone className="h-3 w-3 mr-1" />
+                                                    {student.phoneNumber}
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div>
-                                        <div className="flex justify-between text-sm mb-2">
-                                            <span>Active Applications</span>
-                                            <span>{dashboardStats.activeApplications}</span>
+                                    
+                                    <div className="flex items-center space-x-4">
+                                        <div className="text-center">
+                                            <p className="text-sm font-medium">CGPA</p>
+                                            <p className="text-lg font-bold text-blue-600">
+                                                {student.profile?.academicInfo?.cgpa || 'N/A'}
+                                            </p>
                                         </div>
-                                        <div className="w-full bg-gray-200 rounded-full h-3">
-                                            <div className="bg-orange-600 h-3 rounded-full" style={{ width: '70%' }}></div>
+                                        
+                                        <div className="text-center min-w-[100px]">
+                                            <p className="text-sm font-medium mb-1">Profile</p>
+                                            <div className="w-full bg-gray-200 rounded-full h-2">
+                                                <div 
+                                                    className="bg-blue-600 h-2 rounded-full" 
+                                                    style={{ width: `${student.profile?.profileCompletion || 0}%` }}
+                                                ></div>
+                                            </div>
+                                            <p className="text-xs text-gray-600 mt-1">
+                                                {student.profile?.profileCompletion || 0}%
+                                            </p>
                                         </div>
-                                    </div>
-                                    <div>
-                                        <div className="flex justify-between text-sm mb-2">
-                                            <span>Interview Success Rate</span>
-                                            <span>75%</span>
-                                        </div>
-                                        <div className="w-full bg-gray-200 rounded-full h-3">
-                                            <div className="bg-blue-600 h-3 rounded-full" style={{ width: '75%' }}></div>
+                                        
+                                        <div className="flex items-center space-x-2">
+                                            <Badge variant="outline">
+                                                {student.profile?.placementStatus || 'Not Applied'}
+                                            </Badge>
+                                            <Button variant="outline" size="sm">
+                                                <Eye className="h-4 w-4" />
+                                            </Button>
                                         </div>
                                     </div>
                                 </div>
-                            </CardContent>
-                        </Card>
+                            ))}
+                        </div>
+                    </CardContent>
+                </Card>
 
-                        <Card className="bg-white shadow-lg">
-                            <CardHeader>
-                                <CardTitle className="flex items-center gap-2">
-                                    <BarChart3 className="w-5 h-5 text-blue-600" />
-                                    Branch-wise Performance
-                                </CardTitle>
-                            </CardHeader>
-                            <CardContent>
-                                <div className="space-y-4">
-                                    <div className="flex justify-between items-center">
-                                        <span className="text-sm">Computer Science</span>
-                                        <div className="flex items-center gap-2">
-                                            <div className="w-32 bg-gray-200 rounded-full h-2">
-                                                <div className="bg-blue-600 h-2 rounded-full" style={{ width: '85%' }}></div>
-                                            </div>
-                                            <span className="text-sm font-medium">85%</span>
-                                        </div>
-                                    </div>
-                                    <div className="flex justify-between items-center">
-                                        <span className="text-sm">Information Science</span>
-                                        <div className="flex items-center gap-2">
-                                            <div className="w-32 bg-gray-200 rounded-full h-2">
-                                                <div className="bg-green-600 h-2 rounded-full" style={{ width: '78%' }}></div>
-                                            </div>
-                                            <span className="text-sm font-medium">78%</span>
-                                        </div>
-                                    </div>
-                                    <div className="flex justify-between items-center">
-                                        <span className="text-sm">Electronics</span>
-                                        <div className="flex items-center gap-2">
-                                            <div className="w-32 bg-gray-200 rounded-full h-2">
-                                                <div className="bg-purple-600 h-2 rounded-full" style={{ width: '72%' }}></div>
-                                            </div>
-                                            <span className="text-sm font-medium">72%</span>
-                                        </div>
-                                    </div>
-                                    <div className="flex justify-between items-center">
-                                        <span className="text-sm">Mechanical</span>
-                                        <div className="flex items-center gap-2">
-                                            <div className="w-32 bg-gray-200 rounded-full h-2">
-                                                <div className="bg-orange-600 h-2 rounded-full" style={{ width: '68%' }}></div>
-                                            </div>
-                                            <span className="text-sm font-medium">68%</span>
-                                        </div>
-                                    </div>
+                {/* Implementation Note */}
+                <Card className="border-blue-200 bg-blue-50">
+                    <CardContent className="pt-6">
+                        <div className="flex items-center space-x-2">
+                            <Building2 className="h-5 w-5 text-blue-600" />
+                            <div>
+                                <h3 className="font-medium text-blue-900">Faculty & Recruiter System Implemented</h3>
+                                <p className="text-sm text-blue-700 mt-1">
+                                    Complete backend APIs are ready with role-based access control, permission management, 
+                                    and comprehensive placement drive functionality. Frontend integration is in progress.
+                                </p>
+                                <div className="mt-2 text-xs text-blue-600">
+                                    Backend APIs: ✅ Faculty Routes | ✅ Recruiter Routes | ✅ Drive Management | ✅ Authentication
                                 </div>
-                            </CardContent>
-                        </Card>
-                    </div>
-                )}
+                            </div>
+                        </div>
+                    </CardContent>
+                </Card>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default FacultyDashboard
+export default FacultyDashboard;

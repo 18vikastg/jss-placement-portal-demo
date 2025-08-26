@@ -48,7 +48,7 @@ export const register = async (req, res) => {
                 resume: "",
                 resumeOriginalName: "",
                 company: null,
-                // Preplink Profile Structure
+                // Preplink Profile Structure - only set non-enum fields initially
                 personalInfo: {
                     usn: "",
                     alternatePhone: "",
@@ -56,8 +56,7 @@ export const register = async (req, res) => {
                         current: "",
                         permanent: ""
                     },
-                    dateOfBirth: null,
-                    gender: "",
+                    // Don't set gender to empty string - let it be undefined initially
                     bloodGroup: "",
                     fatherName: "",
                     motherName: "",
@@ -113,7 +112,7 @@ export const register = async (req, res) => {
                         min: null,
                         max: null
                     },
-                    workPreference: "",
+                    // Don't set workPreference to empty string - let it be undefined
                     companySize: []
                 },
                 profileCompletion: 0,
@@ -126,10 +125,15 @@ export const register = async (req, res) => {
             success: true
         });
     } catch (error) {
-        console.log(error);
+        console.log("User registration error:", error);
+        console.log("Error details:", error.message);
+        if (error.name === 'ValidationError') {
+            console.log("Validation errors:", error.errors);
+        }
         return res.status(500).json({
             message: "Internal server error",
-            success: false
+            success: false,
+            error: error.message
         });
     }
 }

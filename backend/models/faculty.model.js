@@ -25,18 +25,21 @@ const facultySchema = new mongoose.Schema({
     },
     department: {
         type: String,
-        required: true,
-        enum: ['Computer Science', 'Information Technology', 'Electronics', 'Mechanical', 'Civil', 'Electrical', 'Chemical', 'Other']
+        required: false,  // Changed to false for signup
+        enum: ['Computer Science', 'Information Technology', 'Electronics', 'Mechanical', 'Civil', 'Electrical', 'Chemical', 'General', 'Other'],
+        default: 'General'
     },
     designation: {
         type: String,
-        required: true,
-        enum: ['Assistant Professor', 'Associate Professor', 'Professor', 'HOD', 'Dean', 'Placement Officer']
+        required: false,  // Changed to false for signup
+        enum: ['Assistant Professor', 'Associate Professor', 'Professor', 'HOD', 'Dean', 'Placement Officer', 'Faculty'],
+        default: 'Faculty'
     },
     employeeId: {
         type: String,
-        required: true,
-        unique: true
+        required: false,  // Changed to false for signup
+        unique: true,
+        sparse: true  // Allow null/undefined values to be non-unique
     },
     experience: {
         type: Number, // years of experience
@@ -57,7 +60,7 @@ const facultySchema = new mongoose.Schema({
     },
     assignedDepartments: [{
         type: String,
-        enum: ['Computer Science', 'Information Technology', 'Electronics', 'Mechanical', 'Civil', 'Electrical', 'Chemical', 'All']
+        enum: ['Computer Science', 'Information Technology', 'Electronics', 'Mechanical', 'Civil', 'Electrical', 'Chemical', 'General', 'All']
     }],
     isActive: {
         type: Boolean,

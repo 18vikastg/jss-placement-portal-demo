@@ -3,6 +3,8 @@ export const PROFILE_API_END_POINT="http://localhost:8001/api/v1/profile";
 export const JOB_API_END_POINT="http://localhost:8001/api/v1/job";
 export const APPLICATION_API_END_POINT="http://localhost:8001/api/v1/application";
 export const COMPANY_API_END_POINT="http://localhost:8001/api/v1/company";
+export const FACULTY_API_END_POINT="http://localhost:8001/api/v1/faculty";
+export const RECRUITER_API_END_POINT="http://localhost:8001/api/v1/recruiter";
 
 // Tech Roles Data with Job Search Links
 export const TECH_ROLES = [

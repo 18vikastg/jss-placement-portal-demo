@@ -6,7 +6,7 @@ import {
     getApplicationsOverview,
     generateDepartmentReport
 } from "../controllers/faculty.controller.js";
-import isAuthenticated from "../middlewares/isAuthenticated.js";
+import { isAuthenticated } from "../middlewares/isAuthenticated.js";
 import { isFaculty, hasPermission } from "../middlewares/roleAuth.js";
 
 const router = express.Router();

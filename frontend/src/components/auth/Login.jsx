@@ -6,7 +6,7 @@ import { RadioGroup } from '../ui/radio-group'
 import { Button } from '../ui/button'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import { USER_API_END_POINT } from '@/utils/constants'
+import { USER_API_END_POINT, FACULTY_AUTH_API_END_POINT, RECRUITER_AUTH_API_END_POINT } from '@/utils/constant'
 import { toast } from 'sonner'
 import { useDispatch, useSelector } from 'react-redux'
 import { setLoading, setUser } from '@/redux/authSlice'
@@ -37,16 +37,52 @@ const Login = () => {
 
         try {
             dispatch(setLoading(true));
-            const res = await axios.post(`${USER_API_END_POINT}/login`, input, {
+            
+            // Choose API endpoint based on role
+            let apiEndpoint;
+            switch(input.role) {
+                case 'student':
+                    apiEndpoint = `${USER_API_END_POINT}/login`;
+                    break;
+                case 'faculty':
+                    apiEndpoint = `${FACULTY_AUTH_API_END_POINT}/login`;
+                    break;
+                case 'recruiter':
+                    apiEndpoint = `${RECRUITER_AUTH_API_END_POINT}/login`;
+                    break;
+                default:
+                    toast.error("Invalid role selected");
+                    return;
+            }
+
+            const res = await axios.post(apiEndpoint, {
+                email: input.email,
+                password: input.password
+            }, {
                 headers: {
                     "Content-Type": "application/json"
                 },
                 withCredentials: true,
             });
+            
             if (res.data.success) {
-                dispatch(setUser(res.data.user));
+                // Set user data based on role
+                let userData;
+                switch(input.role) {
+                    case 'student':
+                        userData = res.data.user;
+                        break;
+                    case 'faculty':
+                        userData = { ...res.data.faculty, role: 'faculty' };
+                        break;
+                    case 'recruiter':
+                        userData = { ...res.data.recruiter, role: 'recruiter' };
+                        break;
+                }
+                
+                dispatch(setUser(userData));
                 // Role-based navigation
-                const userRole = res.data.user.role;
+                const userRole = input.role;
                 switch (userRole) {
                     case 'student':
                         navigate("/student/dashboard");

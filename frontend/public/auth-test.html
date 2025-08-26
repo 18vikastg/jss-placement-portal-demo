@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Auth Test</title>
+</head>
+<body>
+    <h1>Authentication Test</h1>
+    
+    <div>
+        <h2>Faculty Login Test</h2>
+        <button onclick="testFacultyLogin()">Test Faculty Login</button>
+        <div id="faculty-result"></div>
+    </div>
+    
+    <div>
+        <h2>Recruiter Login Test</h2>
+        <button onclick="testRecruiterLogin()">Test Recruiter Login</button>
+        <div id="recruiter-result"></div>
+    </div>
+    
+    <div>
+        <h2>Student Login Test</h2>
+        <button onclick="testStudentLogin()">Test Student Login</button>
+        <div id="student-result"></div>
+    </div>
+
+    <script>
+        async function testFacultyLogin() {
+            try {
+                const response = await fetch('http://localhost:8001/api/v1/auth/faculty/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify({
+                        email: 'complete.faculty@college.edu',
+                        password: 'faculty123'
+                    })
+                });
+                const result = await response.json();
+                document.getElementById('faculty-result').innerHTML = `
+                    <p>Status: ${response.status}</p>
+                    <p>Response: ${JSON.stringify(result, null, 2)}</p>
+                `;
+            } catch (error) {
+                document.getElementById('faculty-result').innerHTML = `Error: ${error.message}`;
+            }
+        }
+
+        async function testRecruiterLogin() {
+            try {
+                const response = await fetch('http://localhost:8001/api/v1/auth/recruiter/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify({
+                        email: 'demo.recruiter@demotech.com',
+                        password: 'recruiter123'
+                    })
+                });
+                const result = await response.json();
+                document.getElementById('recruiter-result').innerHTML = `
+                    <p>Status: ${response.status}</p>
+                    <p>Response: ${JSON.stringify(result, null, 2)}</p>
+                `;
+            } catch (error) {
+                document.getElementById('recruiter-result').innerHTML = `Error: ${error.message}`;
+            }
+        }
+
+        async function testStudentLogin() {
+            try {
+                const response = await fetch('http://localhost:8001/api/v1/user/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify({
+                        email: 'complete.student@college.edu',
+                        password: 'student123',
+                        role: 'student'
+                    })
+                });
+                const result = await response.json();
+                document.getElementById('student-result').innerHTML = `
+                    <p>Status: ${response.status}</p>
+                    <p>Response: ${JSON.stringify(result, null, 2)}</p>
+                `;
+            } catch (error) {
+                document.getElementById('student-result').innerHTML = `Error: ${error.message}`;
+            }
+        }
+    </script>
+</body>
+</html>
