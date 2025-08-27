@@ -16,8 +16,17 @@ const HeroSection = () => {
     }
 
     return (
-        <div className='bg-gradient-to-br from-red-50 via-orange-50 to-yellow-50 min-h-[80vh] flex items-center'>
-            <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full'>
+        <div className='relative bg-gradient-to-br from-red-50 via-orange-50 to-yellow-50 min-h-[80vh] flex items-center overflow-hidden'>
+            {/* JSS Front Building Background */}
+            <div 
+                className='absolute right-0 top-0 w-1/2 h-full opacity-5 bg-no-repeat bg-right bg-contain'
+                style={{
+                    backgroundImage: "url('/jss front.jpeg')",
+                    filter: 'grayscale(100%)'
+                }}
+            ></div>
+            
+            <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10'>
                 <div className='text-center'>
                     <div className='flex flex-col gap-8 my-10'>
                         <div className='space-y-6'>
