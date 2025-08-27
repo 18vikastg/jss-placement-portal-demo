@@ -1,0 +1,682 @@
+import { useState, useEffect, useCallback } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import Navbar from '../shared/NavbarNew'
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+import useGetProfile from '@/hooks/useGetProfile'
+import useUpdateProfile from '@/hooks/useUpdateProfile'
+import { toast } from 'sonner'
+import { 
+    User, 
+    FileText, 
+    Briefcase, 
+    TrendingUp,
+    Target,
+    BookOpen,
+    CheckCircle,
+    Star,
+    Plus,
+    ArrowRight,
+    GraduationCap,
+    Code,
+    X,
+    Sparkles,
+    Heart,
+    Zap,
+    Award,
+    Calendar,
+    Clock,
+    Users,
+    Lightbulb,
+    Brain,
+    Coffee,
+    Trophy
+} from 'lucide-react'
+import { Button } from '../ui/button'
+import { Badge } from '../ui/badge'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card'
+import { Progress } from '../ui/progress'
+import Scene3D from '../3D/AnimatedBackground'
+
+// Import form components
+import PersonalInfoForm from '../profile/PersonalInfoForm'
+import AcademicInfoForm from '../profile/AcademicInfoForm'
+import SkillsProjectsForm from '../profile/SkillsProjectsForm'
+import DocumentsForm from '../profile/DocumentsForm'
+import PlacementPreferencesForm from '../profile/PlacementPreferencesForm'
+
+const StudentDashboardEnhanced = () => {
+    const { user } = useSelector(store => store.auth)
+    
+    // Use custom hooks for profile management
+    const { loading: profileLoading } = useGetProfile()
+    const { 
+        updatePersonalInfo, 
+        updateAcademicInfo, 
+        updateSkillsAndProjects, 
+        updatePlacementPreferences,
+        uploadDocument,
+        loading: updateLoading 
+    } = useUpdateProfile()
+
+    // Form states
+    const [showPersonalForm, setShowPersonalForm] = useState(false)
+    const [showAcademicForm, setShowAcademicForm] = useState(false)
+    const [showSkillsForm, setShowSkillsForm] = useState(false)
+    const [showResumeForm, setShowResumeForm] = useState(false)
+    const [showPreferencesForm, setShowPreferencesForm] = useState(false)
+
+    // Get current hour for greeting
+    const getCurrentGreeting = () => {
+        const hour = new Date().getHours()
+        if (hour < 12) return { text: "Good Morning", emoji: "🌅", color: "from-orange-400 to-yellow-400" }
+        if (hour < 17) return { text: "Good Afternoon", emoji: "☀️", color: "from-blue-400 to-cyan-400" }
+        return { text: "Good Evening", emoji: "🌙", color: "from-purple-400 to-pink-400" }
+    }
+
+    const greeting = getCurrentGreeting()
+
+    // Enhanced profile completion calculation
+    const calculateProfileCompletion = useCallback(() => {
+        const profile = user?.profile || {}
+        
+        if (profile.profileCompletion !== undefined) {
+            return profile.profileCompletion
+        }
+        
+        let completion = 0
+        
+        // Personal Information (20%)
+        const personalInfo = profile.personalInfo || {}
+        const personalFields = [
+            personalInfo.usn, 
+            personalInfo.dateOfBirth, 
+            personalInfo.address?.current, 
+            personalInfo.gender
+        ]
+        const personalCompleted = personalFields.filter(field => field && field !== '').length
+        completion += (personalCompleted / personalFields.length) * 20
+        
+        // Academic Information (20%)
+        const academicInfo = profile.academicInfo || {}
+        const academicFields = [
+            academicInfo.department,
+            academicInfo.semester,
+            academicInfo.cgpa,
+            academicInfo.tenthMarks?.percentage,
+            academicInfo.twelfthMarks?.percentage
+        ]
+        const academicCompleted = academicFields.filter(field => field !== undefined && field !== null && field !== '').length
+        completion += (academicCompleted / academicFields.length) * 20
+        
+        // Skills & Projects (20%)
+        const skillsInfo = profile.skillsAndProjects || {}
+        const skillsFields = [
+            skillsInfo.technicalSkills?.length > 0,
+            skillsInfo.projects?.length > 0,
+            skillsInfo.internships?.length > 0,
+            skillsInfo.achievements?.length > 0,
+            skillsInfo.certifications?.length > 0
+        ]
+        const skillsCompleted = skillsFields.filter(field => field).length
+        completion += (skillsCompleted / skillsFields.length) * 20
+        
+        // Resume & Documents (20%)
+        const documentsInfo = profile.documents || {}
+        const documentFields = [
+            documentsInfo.resume,
+            documentsInfo.profilePhoto,
+            documentsInfo.certificates?.length > 0
+        ]
+        const documentsCompleted = documentFields.filter(field => field).length
+        completion += (documentsCompleted / documentFields.length) * 20
+        
+        // Placement Preferences (20%)
+        const preferencesInfo = profile.placementPreferences || {}
+        const preferenceFields = [
+            preferencesInfo.preferredRoles?.length > 0,
+            preferencesInfo.preferredLocations?.length > 0,
+            preferencesInfo.expectedSalary,
+            preferencesInfo.jobType,
+            preferencesInfo.industries?.length > 0
+        ]
+        const preferencesCompleted = preferenceFields.filter(field => field).length
+        completion += (preferencesCompleted / preferenceFields.length) * 20
+        
+        return Math.round(completion)
+    }, [user])
+
+    const profileCompletion = calculateProfileCompletion()
+
+    const getSectionCompletion = () => {
+        const profile = user?.profile || {}
+        
+        return {
+            personal: profile.personalInfo ? 20 : 0,
+            academic: profile.academicInfo ? 20 : 0,
+            skills: profile.skillsAndProjects ? 20 : 0,
+            resume: profile.documents?.resume ? 20 : 0,
+            preferences: profile.placementPreferences ? 20 : 0
+        }
+    }
+
+    // Animation variants
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1
+            }
+        }
+    }
+
+    const itemVariants = {
+        hidden: { y: 20, opacity: 0 },
+        visible: {
+            y: 0,
+            opacity: 1,
+            transition: {
+                type: "spring",
+                stiffness: 100
+            }
+        }
+    }
+
+    const cardVariants = {
+        hidden: { scale: 0.8, opacity: 0 },
+        visible: {
+            scale: 1,
+            opacity: 1,
+            transition: {
+                type: "spring",
+                stiffness: 100,
+                damping: 15
+            }
+        }
+    }
+
+    // Quick actions data
+    const quickActions = [
+        {
+            title: "View Opportunities",
+            description: "Explore latest job openings",
+            icon: Briefcase,
+            color: "from-blue-500 to-cyan-500",
+            link: "/opportunities",
+            stats: "50+ active"
+        },
+        {
+            title: "My Applications",
+            description: "Track your applications",
+            icon: FileText,
+            color: "from-green-500 to-emerald-500",
+            link: "/student/applications",
+            stats: "3 pending"
+        },
+        {
+            title: "Browse Companies",
+            description: "Discover top companies",
+            icon: Users,
+            color: "from-purple-500 to-pink-500",
+            link: "/browse",
+            stats: "100+ companies"
+        }
+    ]
+
+    // Achievement data
+    const achievements = [
+        { icon: Star, label: "Profile Stars", value: Math.floor(profileCompletion / 20), max: 5 },
+        { icon: Award, label: "Skill Badges", value: 8, max: 10 },
+        { icon: Target, label: "Goals Met", value: 6, max: 8 },
+        { icon: Lightbulb, label: "Resources Used", value: 12, max: 15 }
+    ]
+
+    return (
+        <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-blue-50">
+            <Navbar />
+            
+            <motion.div 
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+                className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8"
+            >
+                {/* Personalized Welcome Header */}
+                <motion.div 
+                    variants={cardVariants}
+                    className="relative bg-gradient-to-r from-purple-600 via-blue-600 to-emerald-600 rounded-3xl shadow-2xl p-8 mb-8 text-white overflow-hidden"
+                >
+                    {/* 3D Background */}
+                    <div className="absolute inset-0 opacity-10">
+                        <Scene3D variant="particles" />
+                    </div>
+                    
+                    <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-6">
+                        <div className="flex-1 text-center lg:text-left">
+                            <motion.div
+                                initial={{ x: -50, opacity: 0 }}
+                                animate={{ x: 0, opacity: 1 }}
+                                transition={{ delay: 0.2 }}
+                                className="space-y-4"
+                            >
+                                <h1 className="text-3xl lg:text-4xl font-bold">
+                                    {greeting.text}, {user?.fullname || 'Student'}! {greeting.emoji}
+                                </h1>
+                                <p className="text-lg text-white/90">
+                                    {profileCompletion === 100 
+                                        ? "🎉 Amazing! Your profile is complete and you're ready to conquer the placement world!" 
+                                        : profileCompletion >= 80
+                                        ? "🚀 You're almost there! Just a few more steps to complete your journey."
+                                        : profileCompletion >= 50
+                                        ? "💪 Great progress! Keep building your profile to unlock more opportunities."
+                                        : "✨ Welcome to your placement journey! Let's build an amazing profile together."
+                                    }
+                                </p>
+                                
+                                {/* Personal badges */}
+                                <div className="flex flex-wrap gap-3 justify-center lg:justify-start">
+                                    <Badge className="bg-white/20 text-white border-white/30 px-4 py-2 text-sm">
+                                        <GraduationCap className="w-4 h-4 mr-2" />
+                                        {user?.profile?.academicInfo?.semester ? `Semester ${user.profile.academicInfo.semester}` : 'Set Semester'}
+                                    </Badge>
+                                    <Badge className="bg-white/20 text-white border-white/30 px-4 py-2 text-sm">
+                                        <Code className="w-4 h-4 mr-2" />
+                                        {user?.profile?.academicInfo?.department || 'Set Department'}
+                                    </Badge>
+                                    <Badge className="bg-white/20 text-white border-white/30 px-4 py-2 text-sm">
+                                        <Target className="w-4 h-4 mr-2" />
+                                        {user?.profile?.academicInfo?.cgpa ? `CGPA: ${user.profile.academicInfo.cgpa}` : 'Set CGPA'}
+                                    </Badge>
+                                </div>
+                            </motion.div>
+                        </div>
+                        
+                        {/* Profile avatar with completion ring */}
+                        <motion.div 
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            transition={{ delay: 0.4, type: "spring" }}
+                            className="relative"
+                        >
+                            <div className="relative w-32 h-32">
+                                {/* Completion ring */}
+                                <svg className="w-32 h-32 transform -rotate-90" viewBox="0 0 100 100">
+                                    <circle
+                                        cx="50"
+                                        cy="50"
+                                        r="40"
+                                        stroke="rgba(255,255,255,0.2)"
+                                        strokeWidth="6"
+                                        fill="none"
+                                    />
+                                    <motion.circle
+                                        cx="50"
+                                        cy="50"
+                                        r="40"
+                                        stroke="white"
+                                        strokeWidth="6"
+                                        fill="none"
+                                        strokeLinecap="round"
+                                        strokeDasharray={`${2 * Math.PI * 40}`}
+                                        initial={{ strokeDashoffset: `${2 * Math.PI * 40}` }}
+                                        animate={{ strokeDashoffset: `${2 * Math.PI * 40 * (1 - profileCompletion / 100)}` }}
+                                        transition={{ duration: 2, ease: "easeOut" }}
+                                    />
+                                </svg>
+                                
+                                {/* Avatar */}
+                                <div className="absolute inset-2 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center overflow-hidden">
+                                    {user?.profile?.documents?.profilePhoto ? (
+                                        <img 
+                                            src={user.profile.documents.profilePhoto} 
+                                            alt="Profile" 
+                                            className="w-full h-full object-cover"
+                                        />
+                                    ) : (
+                                        <User className="w-12 h-12 text-white" />
+                                    )}
+                                </div>
+                                
+                                {/* Completion percentage */}
+                                <div className="absolute inset-0 flex items-center justify-center">
+                                    <span className="text-white font-bold text-lg">{profileCompletion}%</span>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </div>
+                </motion.div>
+
+                {/* Quick Actions and Stats Row */}
+                <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
+                    {/* Quick Actions */}
+                    {quickActions.map((action, index) => {
+                        const IconComponent = action.icon
+                        return (
+                            <motion.div
+                                key={action.title}
+                                variants={itemVariants}
+                                whileHover={{ scale: 1.05, y: -5 }}
+                                whileTap={{ scale: 0.95 }}
+                            >
+                                <Link to={action.link}>
+                                    <Card className="h-full bg-white/80 backdrop-blur-sm border border-gray-200 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group">
+                                        <CardContent className="p-6">
+                                            <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${action.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                                                <IconComponent className="w-7 h-7 text-white" />
+                                            </div>
+                                            <h3 className="font-semibold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors">
+                                                {action.title}
+                                            </h3>
+                                            <p className="text-sm text-gray-600 mb-3">{action.description}</p>
+                                            <Badge className="bg-purple-100 text-purple-700 text-xs">
+                                                {action.stats}
+                                            </Badge>
+                                        </CardContent>
+                                    </Card>
+                                </Link>
+                            </motion.div>
+                        )
+                    })}
+                    
+                    {/* Preparation Hub Card */}
+                    <motion.div
+                        variants={itemVariants}
+                        whileHover={{ scale: 1.05, y: -5 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        <Link to="/preparation">
+                            <Card className="h-full bg-gradient-to-br from-purple-600 to-blue-600 border-0 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group text-white">
+                                <CardContent className="p-6 relative">
+                                    <div className="absolute top-2 right-2">
+                                        <Sparkles className="w-5 h-5 text-yellow-300 animate-pulse" />
+                                    </div>
+                                    <div className="w-14 h-14 rounded-2xl bg-white/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                                        <BookOpen className="w-7 h-7 text-white" />
+                                    </div>
+                                    <h3 className="font-semibold mb-2">📚 Prep Hub</h3>
+                                    <p className="text-sm text-white/90 mb-3">Boost your skills with curated resources</p>
+                                    <Badge className="bg-white/20 text-white border-white/30 text-xs">
+                                        19 Resources
+                                    </Badge>
+                                </CardContent>
+                            </Card>
+                        </Link>
+                    </motion.div>
+                </div>
+
+                {/* Achievement Section */}
+                <motion.div variants={itemVariants} className="mb-8">
+                    <Card className="bg-white/80 backdrop-blur-sm border border-gray-200 rounded-3xl shadow-lg">
+                        <CardHeader className="pb-4">
+                            <CardTitle className="flex items-center gap-2 text-xl">
+                                <Trophy className="w-6 h-6 text-yellow-500" />
+                                Your Achievements
+                            </CardTitle>
+                            <CardDescription>Track your progress and celebrate milestones</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+                                {achievements.map((achievement, index) => {
+                                    const IconComponent = achievement.icon
+                                    const percentage = (achievement.value / achievement.max) * 100
+                                    
+                                    return (
+                                        <motion.div
+                                            key={achievement.label}
+                                            initial={{ scale: 0, opacity: 0 }}
+                                            animate={{ scale: 1, opacity: 1 }}
+                                            transition={{ delay: index * 0.1 }}
+                                            className="text-center"
+                                        >
+                                            <div className="relative w-20 h-20 mx-auto mb-3">
+                                                <svg className="w-20 h-20 transform -rotate-90" viewBox="0 0 100 100">
+                                                    <circle
+                                                        cx="50"
+                                                        cy="50"
+                                                        r="35"
+                                                        stroke="rgba(139, 92, 246, 0.1)"
+                                                        strokeWidth="8"
+                                                        fill="none"
+                                                    />
+                                                    <motion.circle
+                                                        cx="50"
+                                                        cy="50"
+                                                        r="35"
+                                                        stroke="rgb(139, 92, 246)"
+                                                        strokeWidth="8"
+                                                        fill="none"
+                                                        strokeLinecap="round"
+                                                        strokeDasharray={`${2 * Math.PI * 35}`}
+                                                        initial={{ strokeDashoffset: `${2 * Math.PI * 35}` }}
+                                                        animate={{ strokeDashoffset: `${2 * Math.PI * 35 * (1 - percentage / 100)}` }}
+                                                        transition={{ duration: 1.5, delay: index * 0.2 }}
+                                                    />
+                                                </svg>
+                                                <div className="absolute inset-0 flex items-center justify-center">
+                                                    <IconComponent className="w-8 h-8 text-purple-600" />
+                                                </div>
+                                            </div>
+                                            <div className="font-semibold text-gray-900">{achievement.value}/{achievement.max}</div>
+                                            <div className="text-sm text-gray-600">{achievement.label}</div>
+                                        </motion.div>
+                                    )
+                                })}
+                            </div>
+                        </CardContent>
+                    </Card>
+                </motion.div>
+
+                {/* Profile Completion Progress */}
+                <motion.div variants={itemVariants} className="mb-8">
+                    <Card className="bg-white/80 backdrop-blur-sm border border-gray-200 rounded-3xl shadow-lg">
+                        <CardHeader className="pb-4">
+                            <CardTitle className="flex items-center gap-2 text-xl">
+                                <Target className="w-6 h-6 text-blue-600" />
+                                Profile Completion Journey
+                            </CardTitle>
+                            <CardDescription>Complete your profile to unlock all opportunities</CardDescription>
+                        </CardHeader>
+                        <CardContent className="space-y-6">
+                            {/* Overall Progress */}
+                            <div className="space-y-3">
+                                <div className="flex justify-between items-center">
+                                    <span className="font-medium text-gray-700">Overall Progress</span>
+                                    <span className="font-bold text-purple-600 text-lg">{profileCompletion}%</span>
+                                </div>
+                                <div className="relative">
+                                    <Progress value={profileCompletion} className="h-4 bg-gray-100" />
+                                    <motion.div
+                                        className="absolute top-0 left-0 h-4 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full"
+                                        initial={{ width: 0 }}
+                                        animate={{ width: `${profileCompletion}%` }}
+                                        transition={{ duration: 2, ease: "easeOut" }}
+                                    />
+                                </div>
+                                {profileCompletion === 100 && (
+                                    <motion.p 
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        className="text-green-600 font-medium flex items-center gap-2"
+                                    >
+                                        <CheckCircle className="w-5 h-5" />
+                                        🎉 Profile Complete! You're ready for placements!
+                                    </motion.p>
+                                )}
+                            </div>
+
+                            {/* Section Breakdown */}
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                {[
+                                    { key: 'personal', title: 'Personal Info', icon: User, onClick: () => setShowPersonalForm(true) },
+                                    { key: 'academic', title: 'Academic Info', icon: GraduationCap, onClick: () => setShowAcademicForm(true) },
+                                    { key: 'skills', title: 'Skills & Projects', icon: Code, onClick: () => setShowSkillsForm(true) },
+                                    { key: 'resume', title: 'Resume & Docs', icon: FileText, onClick: () => setShowResumeForm(true) },
+                                    { key: 'preferences', title: 'Preferences', icon: Target, onClick: () => setShowPreferencesForm(true) }
+                                ].map((section) => {
+                                    const IconComponent = section.icon
+                                    const isComplete = getSectionCompletion()[section.key] === 20
+                                    
+                                    return (
+                                        <motion.div
+                                            key={section.key}
+                                            whileHover={{ scale: 1.02 }}
+                                            whileTap={{ scale: 0.98 }}
+                                            onClick={section.onClick}
+                                            className={`p-4 rounded-2xl border-2 cursor-pointer transition-all duration-300 ${
+                                                isComplete 
+                                                    ? 'border-green-500 bg-green-50 shadow-lg' 
+                                                    : 'border-gray-200 bg-gray-50 hover:border-purple-300 hover:bg-purple-50'
+                                            }`}
+                                        >
+                                            <div className="flex items-center justify-between mb-3">
+                                                <div className="flex items-center gap-2">
+                                                    <IconComponent className={`w-5 h-5 ${isComplete ? 'text-green-600' : 'text-gray-600'}`} />
+                                                    <span className="font-medium text-sm">{section.title}</span>
+                                                </div>
+                                                {isComplete ? (
+                                                    <CheckCircle className="w-5 h-5 text-green-600" />
+                                                ) : (
+                                                    <Plus className="w-5 h-5 text-gray-400" />
+                                                )}
+                                            </div>
+                                            <div className="w-full bg-gray-200 rounded-full h-2">
+                                                <motion.div 
+                                                    className={`h-2 rounded-full ${isComplete ? 'bg-green-500' : 'bg-purple-500'}`}
+                                                    initial={{ width: 0 }}
+                                                    animate={{ width: `${isComplete ? 100 : 0}%` }}
+                                                    transition={{ duration: 1, delay: 0.2 }}
+                                                />
+                                            </div>
+                                            <span className="text-xs font-medium text-gray-700 mt-2 block">
+                                                {isComplete ? 'Completed' : 'Complete to unlock'}
+                                            </span>
+                                        </motion.div>
+                                    )
+                                })}
+                            </div>
+                        </CardContent>
+                    </Card>
+                </motion.div>
+
+                {/* Quick Actions for Incomplete Profiles */}
+                {profileCompletion < 100 && (
+                    <motion.div variants={itemVariants}>
+                        <Card className="bg-gradient-to-br from-orange-50 to-red-50 border border-orange-200 rounded-3xl shadow-lg">
+                            <CardHeader className="pb-4">
+                                <CardTitle className="flex items-center gap-2 text-xl text-orange-800">
+                                    <Zap className="w-6 h-6 text-orange-600" />
+                                    Quick Actions to Boost Your Profile
+                                </CardTitle>
+                                <CardDescription className="text-orange-700">
+                                    Complete these sections to unlock more opportunities
+                                </CardDescription>
+                            </CardHeader>
+                            <CardContent className="space-y-3">
+                                {getSectionCompletion().personal !== 20 && (
+                                    <motion.div whileHover={{ x: 5 }}>
+                                        <Button 
+                                            onClick={() => setShowPersonalForm(true)}
+                                            variant="outline" 
+                                            size="lg" 
+                                            className="w-full justify-start border-2 border-orange-200 hover:bg-orange-100 hover:border-orange-300 text-orange-800"
+                                        >
+                                            <User className="w-5 h-5 mr-3" />
+                                            Complete Personal Information
+                                            <ArrowRight className="w-5 h-5 ml-auto" />
+                                        </Button>
+                                    </motion.div>
+                                )}
+                                
+                                {getSectionCompletion().academic !== 20 && (
+                                    <motion.div whileHover={{ x: 5 }}>
+                                        <Button 
+                                            onClick={() => setShowAcademicForm(true)}
+                                            variant="outline" 
+                                            size="lg" 
+                                            className="w-full justify-start border-2 border-orange-200 hover:bg-orange-100 hover:border-orange-300 text-orange-800"
+                                        >
+                                            <GraduationCap className="w-5 h-5 mr-3" />
+                                            Add Academic Details
+                                            <ArrowRight className="w-5 h-5 ml-auto" />
+                                        </Button>
+                                    </motion.div>
+                                )}
+                                
+                                {getSectionCompletion().skills !== 20 && (
+                                    <motion.div whileHover={{ x: 5 }}>
+                                        <Button 
+                                            onClick={() => setShowSkillsForm(true)}
+                                            variant="outline" 
+                                            size="lg" 
+                                            className="w-full justify-start border-2 border-orange-200 hover:bg-orange-100 hover:border-orange-300 text-orange-800"
+                                        >
+                                            <Code className="w-5 h-5 mr-3" />
+                                            Add Skills & Projects
+                                            <ArrowRight className="w-5 h-5 ml-auto" />
+                                        </Button>
+                                    </motion.div>
+                                )}
+                                
+                                {/* Always show Preparation Hub button */}
+                                <motion.div whileHover={{ x: 5 }}>
+                                    <Link to="/preparation">
+                                        <Button 
+                                            size="lg" 
+                                            className="w-full justify-start bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white shadow-lg"
+                                        >
+                                            <BookOpen className="w-5 h-5 mr-3" />
+                                            🚀 Access Preparation Hub
+                                            <Heart className="w-5 h-5 ml-auto text-pink-200" />
+                                        </Button>
+                                    </Link>
+                                </motion.div>
+                            </CardContent>
+                        </Card>
+                    </motion.div>
+                )}
+            </motion.div>
+
+            {/* Modal Forms */}
+            <AnimatePresence>
+                {showPersonalForm && (
+                    <motion.div 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50"
+                    >
+                        <motion.div
+                            initial={{ scale: 0.9, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0.9, opacity: 0 }}
+                            className="w-full max-w-md"
+                        >
+                            <Card className="rounded-3xl shadow-2xl">
+                                <CardHeader>
+                                    <CardTitle className="flex items-center justify-between">
+                                        Personal Information
+                                        <Button variant="ghost" size="sm" onClick={() => setShowPersonalForm(false)}>
+                                            <X className="w-4 h-4" />
+                                        </Button>
+                                    </CardTitle>
+                                </CardHeader>
+                                <CardContent>
+                                    <PersonalInfoForm 
+                                        user={user} 
+                                        onSubmit={updatePersonalInfo}
+                                        onClose={() => setShowPersonalForm(false)}
+                                    />
+                                </CardContent>
+                            </Card>
+                        </motion.div>
+                    </motion.div>
+                )}
+                
+                {/* Add other modals similarly */}
+            </AnimatePresence>
+        </div>
+    )
+}
+
+export default StudentDashboardEnhanced

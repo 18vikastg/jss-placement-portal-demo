@@ -20,9 +20,11 @@ import FacultyPlacements from './components/faculty/FacultyPlacements'
 import FacultyDashboard from './components/faculty/FacultyDashboard'
 import RecruiterDashboard from './components/recruiter/RecruiterDashboard'
 import StudentDashboard from './components/student/StudentDashboardPreplink'
+import StudentDashboardEnhanced from './components/student/StudentDashboardEnhanced'
 import StudentProfile from './components/student/StudentProfile'
 import StudentApplications from './components/student/StudentApplications'
 import PreparationHub from './components/PreparationHub'
+import PreparationHubEnhanced from './components/PreparationHubEnhanced'
 import PreparationDashboard from './components/PreparationDashboard'
 
 
@@ -62,6 +64,10 @@ const appRouter = createBrowserRouter([
   // Preparation Hub routes
   {
     path: "/preparation",
+    element: <PreparationHubEnhanced />
+  },
+  {
+    path: "/preparation/classic",
     element: <PreparationHub />
   },
   {
@@ -114,6 +120,10 @@ const appRouter = createBrowserRouter([
   // student routes
   {
     path:"/student/dashboard",
+    element: <ProtectedRoute allowedRoles={['student']}><StudentDashboardEnhanced/></ProtectedRoute>
+  },
+  {
+    path:"/student/dashboard/classic",
     element: <ProtectedRoute allowedRoles={['student']}><StudentDashboard/></ProtectedRoute>
   },
   {
