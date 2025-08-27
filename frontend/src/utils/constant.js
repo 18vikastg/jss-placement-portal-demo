@@ -1,12 +1,15 @@
-export const USER_API_END_POINT="http://localhost:8001/api/v1/user";
-export const JOB_API_END_POINT="http://localhost:8001/api/v1/job";
-export const APPLICATION_API_END_POINT="http://localhost:8001/api/v1/application";
-export const COMPANY_API_END_POINT="http://localhost:8001/api/v1/company";
-export const FACULTY_API_END_POINT="http://localhost:8001/api/v1/faculty";
-export const RECRUITER_API_END_POINT="http://localhost:8001/api/v1/recruiter";
-export const FACULTY_AUTH_API_END_POINT="http://localhost:8001/api/v1/auth/faculty";
-export const RECRUITER_AUTH_API_END_POINT="http://localhost:8001/api/v1/auth/recruiter";
-export const PREPARATION_API_END_POINT="http://localhost:8001/api/v1/preparation";
+// Get API base URL from environment variables
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8001";
+
+export const USER_API_END_POINT=`${API_BASE_URL}/api/v1/user`;
+export const JOB_API_END_POINT=`${API_BASE_URL}/api/v1/job`;
+export const APPLICATION_API_END_POINT=`${API_BASE_URL}/api/v1/application`;
+export const COMPANY_API_END_POINT=`${API_BASE_URL}/api/v1/company`;
+export const FACULTY_API_END_POINT=`${API_BASE_URL}/api/v1/faculty`;
+export const RECRUITER_API_END_POINT=`${API_BASE_URL}/api/v1/recruiter`;
+export const FACULTY_AUTH_API_END_POINT=`${API_BASE_URL}/api/v1/auth/faculty`;
+export const RECRUITER_AUTH_API_END_POINT=`${API_BASE_URL}/api/v1/auth/recruiter`;
+export const PREPARATION_API_END_POINT=`${API_BASE_URL}/api/v1/preparation`;
 
 // Tech Roles Data
 export const TECH_ROLES = [
