@@ -19,17 +19,12 @@ import {
     ArrowRight,
     GraduationCap,
     Code,
-    X,
     Sparkles,
     Heart,
     Zap,
     Award,
-    Calendar,
-    Clock,
     Users,
     Lightbulb,
-    Brain,
-    Coffee,
     Trophy
 } from 'lucide-react'
 import { Button } from '../ui/button'
@@ -49,7 +44,7 @@ const StudentDashboardEnhanced = () => {
     const { user } = useSelector(store => store.auth)
     
     // Use custom hooks for profile management
-    const { loading: profileLoading } = useGetProfile()
+    useGetProfile() // Load profile data
     const { 
         updatePersonalInfo, 
         updateAcademicInfo, 
@@ -618,6 +613,36 @@ const StudentDashboardEnhanced = () => {
                                     </motion.div>
                                 )}
                                 
+                                {getSectionCompletion().documents !== 20 && (
+                                    <motion.div whileHover={{ x: 5 }}>
+                                        <Button 
+                                            onClick={() => setShowResumeForm(true)}
+                                            variant="outline" 
+                                            size="lg" 
+                                            className="w-full justify-start border-2 border-green-200 hover:bg-green-100 hover:border-green-300 text-green-800"
+                                        >
+                                            <FileText className="w-5 h-5 mr-3" />
+                                            Upload Resume & Documents
+                                            <ArrowRight className="w-5 h-5 ml-auto" />
+                                        </Button>
+                                    </motion.div>
+                                )}
+                                
+                                {getSectionCompletion().preferences !== 20 && (
+                                    <motion.div whileHover={{ x: 5 }}>
+                                        <Button 
+                                            onClick={() => setShowPreferencesForm(true)}
+                                            variant="outline" 
+                                            size="lg" 
+                                            className="w-full justify-start border-2 border-purple-200 hover:bg-purple-100 hover:border-purple-300 text-purple-800"
+                                        >
+                                            <Target className="w-5 h-5 mr-3" />
+                                            Set Placement Preferences
+                                            <ArrowRight className="w-5 h-5 ml-auto" />
+                                        </Button>
+                                    </motion.div>
+                                )}
+                                
                                 {/* Always show Preparation Hub button */}
                                 <motion.div whileHover={{ x: 5 }}>
                                     <Link to="/preparation">
@@ -639,6 +664,7 @@ const StudentDashboardEnhanced = () => {
 
             {/* Modal Forms */}
             <AnimatePresence>
+                {/* Personal Info Form */}
                 {showPersonalForm && (
                     <motion.div 
                         initial={{ opacity: 0 }}
@@ -650,30 +676,158 @@ const StudentDashboardEnhanced = () => {
                             initial={{ scale: 0.9, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0.9, opacity: 0 }}
-                            className="w-full max-w-md"
+                            className="w-full max-w-2xl max-h-[90vh] overflow-y-auto"
                         >
-                            <Card className="rounded-3xl shadow-2xl">
-                                <CardHeader>
-                                    <CardTitle className="flex items-center justify-between">
-                                        Personal Information
-                                        <Button variant="ghost" size="sm" onClick={() => setShowPersonalForm(false)}>
-                                            <X className="w-4 h-4" />
-                                        </Button>
-                                    </CardTitle>
-                                </CardHeader>
-                                <CardContent>
-                                    <PersonalInfoForm 
-                                        user={user} 
-                                        onSubmit={updatePersonalInfo}
-                                        onClose={() => setShowPersonalForm(false)}
-                                    />
-                                </CardContent>
-                            </Card>
+                            <PersonalInfoForm 
+                                isOpen={showPersonalForm}
+                                onClose={() => setShowPersonalForm(false)}
+                                user={user} 
+                                onUpdate={async (data) => {
+                                    try {
+                                        await updatePersonalInfo(data)
+                                        toast.success('Personal information updated successfully!')
+                                        setShowPersonalForm(false)
+                                    } catch (error) {
+                                        toast.error('Failed to update personal information')
+                                    }
+                                }}
+                                loading={updateLoading}
+                            />
                         </motion.div>
                     </motion.div>
                 )}
-                
-                {/* Add other modals similarly */}
+
+                {/* Academic Info Form */}
+                {showAcademicForm && (
+                    <motion.div 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50"
+                    >
+                        <motion.div
+                            initial={{ scale: 0.9, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0.9, opacity: 0 }}
+                            className="w-full max-w-2xl max-h-[90vh] overflow-y-auto"
+                        >
+                            <AcademicInfoForm 
+                                isOpen={showAcademicForm}
+                                onClose={() => setShowAcademicForm(false)}
+                                user={user} 
+                                onUpdate={async (data) => {
+                                    try {
+                                        await updateAcademicInfo(data)
+                                        toast.success('Academic information updated successfully!')
+                                        setShowAcademicForm(false)
+                                    } catch (error) {
+                                        toast.error('Failed to update academic information')
+                                    }
+                                }}
+                                loading={updateLoading}
+                            />
+                        </motion.div>
+                    </motion.div>
+                )}
+
+                {/* Skills & Projects Form */}
+                {showSkillsForm && (
+                    <motion.div 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50"
+                    >
+                        <motion.div
+                            initial={{ scale: 0.9, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0.9, opacity: 0 }}
+                            className="w-full max-w-3xl max-h-[90vh] overflow-y-auto"
+                        >
+                            <SkillsProjectsForm 
+                                isOpen={showSkillsForm}
+                                onClose={() => setShowSkillsForm(false)}
+                                user={user} 
+                                onUpdate={async (data) => {
+                                    try {
+                                        await updateSkillsAndProjects(data)
+                                        toast.success('Skills and projects updated successfully!')
+                                        setShowSkillsForm(false)
+                                    } catch (error) {
+                                        toast.error('Failed to update skills and projects')
+                                    }
+                                }}
+                                loading={updateLoading}
+                            />
+                        </motion.div>
+                    </motion.div>
+                )}
+
+                {/* Documents Form */}
+                {showResumeForm && (
+                    <motion.div 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50"
+                    >
+                        <motion.div
+                            initial={{ scale: 0.9, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0.9, opacity: 0 }}
+                            className="w-full max-w-2xl max-h-[90vh] overflow-y-auto"
+                        >
+                            <DocumentsForm 
+                                isOpen={showResumeForm}
+                                onClose={() => setShowResumeForm(false)}
+                                user={user} 
+                                onUpdate={async (data) => {
+                                    try {
+                                        await uploadDocument(data)
+                                        toast.success('Documents updated successfully!')
+                                        setShowResumeForm(false)
+                                    } catch (error) {
+                                        toast.error('Failed to update documents')
+                                    }
+                                }}
+                                loading={updateLoading}
+                            />
+                        </motion.div>
+                    </motion.div>
+                )}
+
+                {/* Placement Preferences Form */}
+                {showPreferencesForm && (
+                    <motion.div 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50"
+                    >
+                        <motion.div
+                            initial={{ scale: 0.9, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0.9, opacity: 0 }}
+                            className="w-full max-w-2xl max-h-[90vh] overflow-y-auto"
+                        >
+                            <PlacementPreferencesForm 
+                                isOpen={showPreferencesForm}
+                                onClose={() => setShowPreferencesForm(false)}
+                                user={user} 
+                                onUpdate={async (data) => {
+                                    try {
+                                        await updatePlacementPreferences(data)
+                                        toast.success('Placement preferences updated successfully!')
+                                        setShowPreferencesForm(false)
+                                    } catch (error) {
+                                        toast.error('Failed to update placement preferences')
+                                    }
+                                }}
+                                loading={updateLoading}
+                            />
+                        </motion.div>
+                    </motion.div>
+                )}
             </AnimatePresence>
         </div>
     )
