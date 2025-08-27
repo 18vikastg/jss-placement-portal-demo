@@ -45,6 +45,20 @@ const PORT = process.env.PORT || 8002;
 
 console.log(`Starting server on port ${PORT}`);
 
+// Root route
+app.get('/', (req, res) => {
+    res.json({
+        message: "JSS Placement Portal API is running!",
+        status: "healthy",
+        timestamp: new Date().toISOString(),
+        endpoints: {
+            users: "/api/v1/user",
+            jobs: "/api/v1/job",
+            companies: "/api/v1/company",
+            applications: "/api/v1/application"
+        }
+    });
+});
 
 // api's
 app.use("/api/v1/user", userRoute);
