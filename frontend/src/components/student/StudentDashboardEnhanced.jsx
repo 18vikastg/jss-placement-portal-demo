@@ -25,7 +25,8 @@ import {
     Award,
     Users,
     Lightbulb,
-    Trophy
+    Trophy,
+    Mic
 } from 'lucide-react'
 import { Button } from '../ui/button'
 import { Badge } from '../ui/badge'
@@ -216,6 +217,14 @@ const StudentDashboardEnhanced = () => {
             color: "from-purple-500 to-pink-500",
             link: "/browse",
             stats: "100+ companies"
+        },
+        {
+            title: "AI Mock Interview",
+            description: "Practice with AI interviewer",
+            icon: Mic,
+            color: "from-emerald-500 to-teal-500",
+            link: "/student/mock-interview",
+            stats: "AI-powered"
         }
     ]
 

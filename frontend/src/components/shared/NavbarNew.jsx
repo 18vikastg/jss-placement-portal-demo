@@ -6,7 +6,7 @@ import {
 } from "../ui/popover"
 import { Button } from "../ui/button"
 import { Avatar, AvatarImage } from "../ui/avatar"
-import { LogOut, User2, Home, Briefcase, Search, Building, TrendingUp, Menu, X, Users, BookOpen } from "lucide-react"
+import { LogOut, User2, Home, Briefcase, Search, Building, TrendingUp, Menu, X, Users, BookOpen, Mic } from "lucide-react"
 import { Link, useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import axios from "axios"
@@ -139,6 +139,15 @@ const Navbar = () => {
                                         >
                                             <BookOpen className='w-4 h-4' />
                                             📚 Prep Hub
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link 
+                                            to="/student/mock-interview" 
+                                            className='flex items-center gap-2 bg-gradient-to-r from-emerald-600 to-teal-600 text-white hover:from-emerald-700 hover:to-teal-700 transition-all duration-200 px-3 py-2 rounded-lg font-medium shadow-md hover:shadow-lg'
+                                        >
+                                            <Mic className='w-4 h-4' />
+                                            🎤 Practice
                                         </Link>
                                     </li>
                                 </>
@@ -299,6 +308,14 @@ const Navbar = () => {
                                 >
                                     <BookOpen className='w-4 h-4' />
                                     📚 Prep Hub
+                                </Link>
+                                <Link 
+                                    to="/student/mock-interview" 
+                                    className='flex items-center gap-2 bg-gradient-to-r from-emerald-600 to-teal-600 text-white hover:from-emerald-700 hover:to-teal-700 transition-all duration-200 px-3 py-2 rounded-lg font-medium shadow-md'
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                >
+                                    <Mic className='w-4 h-4' />
+                                    🎤 Practice
                                 </Link>
                             </>
                         ) : (
