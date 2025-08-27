@@ -30,7 +30,17 @@ const Navbar = () => {
             }
         } catch (error) {
             console.log(error);
-            toast.error(error.response.data.message);
+            // Handle different types of errors
+            if (error.response?.data?.message) {
+                toast.error(error.response.data.message);
+            } else if (error.code === 'ERR_NETWORK' || error.code === 'ERR_CONNECTION_REFUSED') {
+                // If server is down, still log out the user locally
+                dispatch(setUser(null));
+                navigate("/");
+                toast.error("Server connection failed. You have been logged out locally.");
+            } else {
+                toast.error("Logout failed. Please try again.");
+            }
         }
     }
 

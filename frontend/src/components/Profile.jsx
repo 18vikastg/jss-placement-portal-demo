@@ -19,37 +19,39 @@ const Profile = () => {
     
     // Calculate profile completion based on actual user data
     const calculateProfileCompletion = () => {
-        const profile = user?.profile || {}
-        let completion = 0
+        if (!user) return 0;
         
-        // Basic info (30%)
-        if (user?.fullname && user.fullname.trim()) completion += 8
-        if (user?.email && user.email.trim()) completion += 7
-        if (user?.phoneNumber) completion += 7
-        if (profile?.bio && profile.bio.trim()) completion += 8
+        let completion = 0;
+        
+        // Basic registration info is already complete (fullname, email, phone)
+        completion += 30; // Base registration data
+        
+        // Bio (15%)
+        if (user?.profile?.bio && user.profile.bio.trim()) completion += 15;
         
         // Academic info (25%)
-        if (profile?.branch && profile.branch.trim()) completion += 8
-        if (profile?.semester) completion += 8
-        if (profile?.cgpa) completion += 9
+        if (user?.profile?.branch && user.profile.branch.trim()) completion += 8;
+        if (user?.profile?.semester) completion += 8;
+        if (user?.profile?.cgpa) completion += 9;
         
-        // Skills (20%) - check for actual skills with content
-        const hasValidSkills = profile?.skills && profile.skills.some(skill => skill && skill.trim())
-        if (hasValidSkills) completion += 20
+        // Skills (15%)
+        if (user?.profile?.skills && user.profile.skills.length > 0 && user.profile.skills.some(skill => skill && skill.trim())) {
+            completion += 15;
+        }
         
-        // Documents (25%)
-        if (profile?.resume && profile.resume.trim()) completion += 25
+        // Resume (15%)
+        if (user?.profile?.resume && user.profile.resume.trim()) completion += 15;
         
-        return Math.min(Math.round(completion), 100)
+        return Math.min(Math.round(completion), 100);
     }
     
     const profileCompletion = calculateProfileCompletion()
     
-    // Profile sections for completion tracking - based on actual data structure
+    // Profile sections for completion tracking - only show what user has actually entered
     const profileSections = [
         {
             title: 'Personal Information',
-            completed: !!(user?.fullname?.trim() && user?.email?.trim() && user?.phoneNumber && user?.profile?.bio?.trim()),
+            completed: !!(user?.profile?.bio && user.profile.bio.trim()),
             icon: User,
             color: 'bg-blue-500'
         },
@@ -61,13 +63,13 @@ const Profile = () => {
         },
         {
             title: 'Skills',
-            completed: !!(user?.profile?.skills && user.profile.skills.some(skill => skill && skill.trim())),
+            completed: !!(user?.profile?.skills && user.profile.skills.length > 0 && user.profile.skills.some(skill => skill && skill.trim())),
             icon: Code,
             color: 'bg-purple-500'
         },
         {
             title: 'Resume',
-            completed: !!(user?.profile?.resume?.trim()),
+            completed: !!(user?.profile?.resume && user.profile.resume.trim()),
             icon: FileText,
             color: 'bg-orange-500'
         }
@@ -88,15 +90,19 @@ const Profile = () => {
                         <div className='flex flex-col sm:flex-row items-center lg:items-start gap-6 flex-1'>
                             <Avatar className="h-32 w-32 ring-4 ring-blue-100">
                                 <AvatarImage 
-                                    src={user?.profile?.profilePhoto && user.profile.profilePhoto.trim() !== "" ? user.profile.profilePhoto : "https://www.shutterstock.com/image-vector/circle-line-simple-design-logo-600nw-2174926871.jpg"} 
+                                    src={user?.profile?.profilePhoto && user.profile.profilePhoto.trim() && !user.profile.profilePhoto.includes('shutterstock') 
+                                        ? user.profile.profilePhoto 
+                                        : "https://www.shutterstock.com/image-vector/circle-line-simple-design-logo-600nw-2174926871.jpg"} 
                                     alt="profile" 
                                 />
                             </Avatar>
                             <div className='text-center sm:text-left flex-1'>
-                                <h1 className='font-bold text-3xl text-gray-900 mb-2'>{user?.fullname || 'No Name'}</h1>
-                                <p className='text-gray-600 text-lg mb-4'>{user?.profile?.bio?.trim() || 'No bio added yet'}</p>
+                                <h1 className='font-bold text-3xl text-gray-900 mb-2'>{user?.fullname || 'Unknown User'}</h1>
+                                <p className='text-gray-600 text-lg mb-4'>
+                                    {user?.profile?.bio && user.profile.bio.trim() ? user.profile.bio.trim() : 'No bio added yet'}
+                                </p>
                                 
-                                {/* Quick Info Badges - Only show if data exists */}
+                                {/* Academic Badges - Only show if data exists */}
                                 <div className='flex flex-wrap gap-2 justify-center sm:justify-start mb-4'>
                                     {user?.profile?.branch?.trim() && (
                                         <Badge className="bg-blue-100 text-blue-800 border-blue-200">
@@ -116,20 +122,16 @@ const Profile = () => {
                                     )}
                                 </div>
                                 
-                                {/* Contact Info - Only show if data exists */}
+                                {/* Contact Info - From registration only */}
                                 <div className='space-y-3'>
-                                    {user?.email?.trim() && (
-                                        <div className='flex items-center gap-3 text-gray-600'>
-                                            <Mail className="w-5 h-5" />
-                                            <span>{user.email}</span>
-                                        </div>
-                                    )}
-                                    {user?.phoneNumber && (
-                                        <div className='flex items-center gap-3 text-gray-600'>
-                                            <Phone className="w-5 h-5" />
-                                            <span>{user.phoneNumber}</span>
-                                        </div>
-                                    )}
+                                    <div className='flex items-center gap-3 text-gray-600'>
+                                        <Mail className="w-5 h-5" />
+                                        <span>{user?.email}</span>
+                                    </div>
+                                    <div className='flex items-center gap-3 text-gray-600'>
+                                        <Phone className="w-5 h-5" />
+                                        <span>{user?.phoneNumber}</span>
+                                    </div>
                                     {user?.profile?.address?.trim() && (
                                         <div className='flex items-center gap-3 text-gray-600'>
                                             <MapPin className="w-5 h-5" />
@@ -199,9 +201,9 @@ const Profile = () => {
                         Skills & Expertise
                     </h2>
                     <div className='flex flex-wrap gap-3'>
-                        {user?.profile?.skills && user.profile.skills.length > 0 ? (
+                        {user?.profile?.skills && user.profile.skills.length > 0 && user.profile.skills.some(skill => skill && skill.trim()) ? (
                             user.profile.skills
-                                .filter(skill => skill && skill.trim()) // Filter out empty/null skills
+                                .filter(skill => skill && skill.trim())
                                 .map((skill, index) => (
                                     <Badge key={index} className="bg-purple-100 text-purple-800 border-purple-200 px-4 py-2 text-sm">
                                         {skill.trim()}
@@ -236,14 +238,14 @@ const Profile = () => {
                         Resume
                     </h2>
                     <div className='space-y-4'>
-                        {user?.profile?.resume?.trim() ? (
+                        {user?.profile?.resume && user.profile.resume.trim() ? (
                             <div className="flex items-center justify-between p-4 bg-orange-50 rounded-xl border border-orange-200">
                                 <div className="flex items-center gap-3">
                                     <div className="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center">
                                         <FileText className="w-6 h-6 text-white" />
                                     </div>
                                     <div>
-                                        <p className="font-medium text-gray-900">{user?.profile?.resumeOriginalName?.trim() || 'Resume.pdf'}</p>
+                                        <p className="font-medium text-gray-900">{user?.profile?.resumeOriginalName || 'Resume.pdf'}</p>
                                         <p className="text-sm text-gray-600">Uploaded resume</p>
                                     </div>
                                 </div>

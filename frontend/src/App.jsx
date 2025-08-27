@@ -21,7 +21,6 @@ import FacultyDashboard from './components/faculty/FacultyDashboard'
 import RecruiterDashboard from './components/recruiter/RecruiterDashboard'
 import StudentDashboard from './components/student/StudentDashboardPreplink'
 import StudentDashboardEnhanced from './components/student/StudentDashboardEnhanced'
-import StudentProfile from './components/student/StudentProfile'
 import StudentApplications from './components/student/StudentApplications'
 import MockInterviewPage from './components/student/MockInterviewPage'
 import PreparationHub from './components/PreparationHub'
@@ -129,7 +128,7 @@ const appRouter = createBrowserRouter([
   },
   {
     path:"/student/profile",
-    element:<ProtectedRoute allowedRoles={['student']}><StudentProfile/></ProtectedRoute> 
+    element:<ProtectedRoute allowedRoles={['student']}><Profile/></ProtectedRoute> 
   },
   {
     path:"/student/applications",
