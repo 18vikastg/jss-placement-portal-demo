@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setUser } from "@/redux/authSlice";
-import { PROFILE_API_END_POINT } from "@/utils/constants";
+import { USER_API_END_POINT } from "@/utils/constant";
 import axios from "axios";
 
 const useUpdateProfile = () => {
@@ -14,7 +14,7 @@ const useUpdateProfile = () => {
             setLoading(true);
             setError(null);
             
-            const res = await axios.put(`${PROFILE_API_END_POINT}/personal`, data, {
+            const res = await axios.post(`${USER_API_END_POINT}/profile/update`, data, {
                 withCredentials: true
             });
             
@@ -36,7 +36,7 @@ const useUpdateProfile = () => {
             setLoading(true);
             setError(null);
             
-            const res = await axios.put(`${PROFILE_API_END_POINT}/academic`, data, {
+            const res = await axios.post(`${USER_API_END_POINT}/profile/update`, data, {
                 withCredentials: true
             });
             
@@ -58,7 +58,7 @@ const useUpdateProfile = () => {
             setLoading(true);
             setError(null);
             
-            const res = await axios.put(`${PROFILE_API_END_POINT}/skills`, data, {
+            const res = await axios.post(`${USER_API_END_POINT}/profile/update`, data, {
                 withCredentials: true
             });
             
@@ -80,7 +80,7 @@ const useUpdateProfile = () => {
             setLoading(true);
             setError(null);
             
-            const res = await axios.put(`${PROFILE_API_END_POINT}/preferences`, data, {
+            const res = await axios.post(`${USER_API_END_POINT}/profile/update`, data, {
                 withCredentials: true
             });
             
@@ -104,14 +104,13 @@ const useUpdateProfile = () => {
             
             const formData = new FormData();
             formData.append('file', file);
-            formData.append('documentType', documentType);
             
-            // Add additional data for certificates
+            // Add additional data
             Object.keys(additionalData).forEach(key => {
                 formData.append(key, additionalData[key]);
             });
             
-            const res = await axios.post(`${PROFILE_API_END_POINT}/upload`, formData, {
+            const res = await axios.post(`${USER_API_END_POINT}/profile/update`, formData, {
                 withCredentials: true,
                 headers: {
                     'Content-Type': 'multipart/form-data'
@@ -132,19 +131,9 @@ const useUpdateProfile = () => {
     };
 
     const getProfileCompletion = async () => {
-        try {
-            const res = await axios.get(`${PROFILE_API_END_POINT}/completion`, {
-                withCredentials: true
-            });
-            
-            if (res.data.success) {
-                return res.data.completion;
-            }
-        } catch (error) {
-            console.error("Error getting profile completion:", error);
-            setError(error.response?.data?.message || "Failed to get profile completion");
-            throw error;
-        }
+        // Since we don't have a dedicated completion endpoint, 
+        // we'll calculate it on the frontend based on user data
+        return 0; // Placeholder - this can be calculated based on user profile data
     };
 
     return {
