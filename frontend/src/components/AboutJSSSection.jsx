@@ -71,10 +71,17 @@ const AboutJSSSection = () => {
                         </div>
 
                         <div className="flex flex-col sm:flex-row gap-4">
-                            <Button className="bg-red-700 hover:bg-red-800 text-white px-8 py-3">
+                            <Button 
+                                className="bg-red-700 hover:bg-red-800 text-white px-8 py-3"
+                                onClick={() => window.open('https://www.jssateb.ac.in/', '_blank')}
+                            >
                                 Learn More About JSS
                             </Button>
-                            <Button variant="outline" className="border-red-700 text-red-700 hover:bg-red-50 px-8 py-3">
+                            <Button 
+                                variant="outline" 
+                                className="border-red-700 text-red-700 hover:bg-red-50 px-8 py-3"
+                                onClick={() => window.open('https://www.jssateb.ac.in/', '_blank')}
+                            >
                                 Campus Virtual Tour
                             </Button>
                         </div>
