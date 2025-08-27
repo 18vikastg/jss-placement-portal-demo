@@ -217,6 +217,33 @@ const CollegePlacementStats = () => {
                 </div>
             </div>
 
+            {/* Analytics Call-to-Action */}
+            <div className="bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-lg p-6">
+                <div className="flex items-center justify-between">
+                    <div>
+                        <h3 className="text-xl font-semibold text-gray-900 mb-2">📊 Want More Detailed Insights?</h3>
+                        <p className="text-gray-700 mb-4">
+                            Explore our comprehensive analytics dashboard with interactive charts, department-wise trends, 
+                            multi-year comparisons, and detailed placement statistics.
+                        </p>
+                        <div className="flex flex-wrap gap-2 text-sm text-gray-600">
+                            <span className="bg-blue-100 px-3 py-1 rounded-full">📈 Interactive Charts</span>
+                            <span className="bg-purple-100 px-3 py-1 rounded-full">🏢 Department Analysis</span>
+                            <span className="bg-green-100 px-3 py-1 rounded-full">📊 Trend Visualization</span>
+                            <span className="bg-orange-100 px-3 py-1 rounded-full">💼 Recruiter Insights</span>
+                        </div>
+                    </div>
+                    <div className="flex-shrink-0 ml-6">
+                        <button 
+                            onClick={() => window.location.href = '/placement/analytics'}
+                            className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-200 shadow-lg flex items-center gap-2"
+                        >
+                            📊 View Analytics Dashboard
+                        </button>
+                    </div>
+                </div>
+            </div>
+
             {/* Department-wise Statistics */}
             <div className="bg-white rounded-lg shadow-md p-6">
                 <h3 className="text-xl font-semibold mb-4 flex items-center">
@@ -310,7 +337,7 @@ const CollegePlacementStats = () => {
             {/* Contact Information */}
             <div className="bg-gradient-to-r from-gray-800 to-gray-900 text-white rounded-lg p-6">
                 <h3 className="text-xl font-semibold mb-4">Training & Placement Cell</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div>
                         <h4 className="font-semibold mb-2">Contact Information</h4>
                         <p className="text-gray-300">JSS Academy of Technical Education</p>
@@ -326,6 +353,16 @@ const CollegePlacementStats = () => {
                             className="mt-2 bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded transition-colors"
                         >
                             Visit Official Placement Page
+                        </button>
+                    </div>
+                    <div>
+                        <h4 className="font-semibold mb-2">📊 Detailed Analytics</h4>
+                        <p className="text-gray-300">Explore comprehensive placement trends, department-wise analysis, and interactive charts</p>
+                        <button 
+                            onClick={() => window.location.href = '/placement/analytics'}
+                            className="mt-2 bg-green-600 hover:bg-green-700 px-4 py-2 rounded transition-colors flex items-center gap-2"
+                        >
+                            📈 View Analytics Dashboard
                         </button>
                     </div>
                 </div>

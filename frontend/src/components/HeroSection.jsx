@@ -77,6 +77,19 @@ const HeroSection = () => {
                                 </div>
                             </div>
                         </div>
+
+                        {/* Analytics Feature Banner */}
+                        <div className='mt-8 flex flex-col sm:flex-row items-center justify-center gap-4'>
+                            <div className='bg-gradient-to-r from-blue-100 to-purple-100 px-6 py-3 rounded-full text-sm font-medium text-gray-700'>
+                                📊 New Feature: Interactive Placement Analytics
+                            </div>
+                            <button 
+                                onClick={() => navigate('/placement/analytics')}
+                                className='bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-full font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-200 shadow-lg'
+                            >
+                                Explore Analytics →
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

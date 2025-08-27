@@ -58,14 +58,36 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-6">Quick Links</h3>
             <ul className="space-y-3">
-              {['Find Jobs', 'Browse Companies', 'Career Resources', 'Placement Cell', 'Student Portal'].map((link, index) => (
-                <li key={index}>
-                  <Link to="#" className="text-gray-300 hover:text-red-400 transition-colors flex items-center group">
-                    <ArrowRight className="w-4 h-4 mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
-                    {link}
-                  </Link>
-                </li>
-              ))}
+              <li>
+                <Link to="/jobs" className="text-gray-300 hover:text-red-400 transition-colors flex items-center group">
+                  <ArrowRight className="w-4 h-4 mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  Find Jobs
+                </Link>
+              </li>
+              <li>
+                <Link to="/browse" className="text-gray-300 hover:text-red-400 transition-colors flex items-center group">
+                  <ArrowRight className="w-4 h-4 mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  Browse Companies
+                </Link>
+              </li>
+              <li>
+                <Link to="/placement/analytics" className="text-gray-300 hover:text-red-400 transition-colors flex items-center group">
+                  <ArrowRight className="w-4 h-4 mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  📊 Placement Analytics
+                </Link>
+              </li>
+              <li>
+                <Link to="/preparation" className="text-gray-300 hover:text-red-400 transition-colors flex items-center group">
+                  <ArrowRight className="w-4 h-4 mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  📚 Preparation Hub
+                </Link>
+              </li>
+              <li>
+                <Link to="#" className="text-gray-300 hover:text-red-400 transition-colors flex items-center group">
+                  <ArrowRight className="w-4 h-4 mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  Student Portal
+                </Link>
+              </li>
             </ul>
           </div>
 

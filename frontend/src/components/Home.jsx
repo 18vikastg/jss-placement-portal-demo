@@ -9,6 +9,7 @@ import TestimonialsSection from './TestimonialsSection'
 import CTASection from './CTASection'
 import AboutJSSSection from './AboutJSSSection'
 import CollegePlacementStats from './CollegePlacementStats'
+import WelcomeModal from './WelcomeModal'
 import Footer from './shared/Footer'
 import useGetAllJobs from '@/hooks/useGetAllJobs'
 import { useSelector } from 'react-redux'
@@ -25,6 +26,7 @@ const Home = () => {
   }, [user?.role, navigate]);
   return (
     <div className='min-h-screen bg-white'>
+      <WelcomeModal />
       <Navbar />
       <HeroSection />
       <AboutJSSSection />
