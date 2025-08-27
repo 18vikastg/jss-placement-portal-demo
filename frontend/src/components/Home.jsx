@@ -8,6 +8,7 @@ import CompanyShowcase from './CompanyShowcase'
 import TestimonialsSection from './TestimonialsSection'
 import CTASection from './CTASection'
 import AboutJSSSection from './AboutJSSSection'
+import CollegePlacementStats from './CollegePlacementStats'
 import Footer from './shared/Footer'
 import useGetAllJobs from '@/hooks/useGetAllJobs'
 import { useSelector } from 'react-redux'
@@ -27,6 +28,7 @@ const Home = () => {
       <Navbar />
       <HeroSection />
       <AboutJSSSection />
+      <CollegePlacementStats />
       <FeaturesSection />
       <CompanyShowcase />
       <CategoryCarousel />

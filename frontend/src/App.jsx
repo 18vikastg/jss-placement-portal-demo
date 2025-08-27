@@ -26,6 +26,7 @@ import MockInterviewPage from './components/student/MockInterviewPage'
 import PreparationHub from './components/PreparationHub'
 import PreparationHubEnhanced from './components/PreparationHubEnhanced'
 import PreparationDashboard from './components/PreparationDashboard'
+import PlacementDashboard from './components/PlacementDashboard'
 
 
 const appRouter = createBrowserRouter([
@@ -73,6 +74,10 @@ const appRouter = createBrowserRouter([
   {
     path: "/preparation/dashboard",
     element: <ProtectedRoute><PreparationDashboard /></ProtectedRoute>
+  },
+  {
+    path: "/placement/analytics",
+    element: <PlacementDashboard />
   },
   // admin ke liye yha se start hoga
   {

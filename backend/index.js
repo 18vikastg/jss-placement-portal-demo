@@ -13,6 +13,7 @@ import facultyAuthRoute from "./routes/facultyAuth.route.js";
 import recruiterAuthRoute from "./routes/recruiterAuth.route.js";
 import preparationRoute from "./routes/preparation.route.js";
 import mockInterviewRoute from "./routes/mockInterview.route.js";
+import placementStatsRoute from "./routes/placementStats.route.js";
 
 dotenv.config({});
 
@@ -41,7 +42,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-const PORT = process.env.PORT || 8002;
+const PORT = process.env.PORT || 8001;
 
 console.log(`Starting server on port ${PORT}`);
 
@@ -71,6 +72,17 @@ app.use("/api/v1/auth/faculty", facultyAuthRoute);
 app.use("/api/v1/auth/recruiter", recruiterAuthRoute);
 app.use("/api/v1/preparation", preparationRoute);
 app.use("/api/v1/student/mock-interview", mockInterviewRoute);
+app.use("/api/v1/placement", placementStatsRoute);
+
+// Health check endpoint
+app.get('/health', (req, res) => {
+    res.json({ status: 'OK', message: 'Server is running' });
+});
+
+// Test placement endpoint
+app.get('/test-placement', (req, res) => {
+    res.json({ message: 'Placement endpoint test successful' });
+});
 
 
 
