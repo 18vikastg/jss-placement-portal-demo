@@ -23,7 +23,15 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
 const corsOptions = {
-    origin:['http://localhost:5173', 'http://localhost:5174', 'http://localhost:5175', 'http://localhost:5176', 'http://localhost:5177'],
+    origin:[
+        'http://localhost:5173', 
+        'http://localhost:5174', 
+        'http://localhost:5175', 
+        'http://localhost:5176', 
+        'http://localhost:5177',
+        'https://jss-placement-portal-qzvy4afdx-vikas-t-gs-projects.vercel.app',
+        'https://jss-placement-portal.vercel.app'
+    ],
     credentials:true
 }
 
