@@ -30,9 +30,13 @@ const corsOptions = {
         'http://localhost:5176', 
         'http://localhost:5177',
         'https://jss-placement-portal-qzvy4afdx-vikas-t-gs-projects.vercel.app',
-        'https://jss-placement-portal.vercel.app'
+        'https://jss-placement-portal.vercel.app',
+        'https://jss-placement-portal-vikas-t-gs-projects.vercel.app'
     ],
-    credentials:true
+    credentials:true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+    optionsSuccessStatus: 200
 }
 
 app.use(cors(corsOptions));
