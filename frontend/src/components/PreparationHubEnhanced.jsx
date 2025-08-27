@@ -498,7 +498,14 @@ const PreparationHubEnhanced = () => {
                                             >
                                                 <Button 
                                                     className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold py-3 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
-                                                    onClick={() => window.open(resource.link, '_blank')}
+                                                    onClick={() => {
+                                                        if (resource.url) {
+                                                            window.open(resource.url, '_blank')
+                                                        } else {
+                                                            console.error('No URL found for resource:', resource)
+                                                            toast.error('Sorry, no link available for this resource')
+                                                        }
+                                                    }}
                                                 >
                                                     <Lightbulb className="w-5 h-5 mr-2" />
                                                     Start Learning

@@ -1,6 +1,6 @@
 import { PreparationResource } from "../models/preparationResource.model.js";
 
-const preparationResources = [
+export const preparationResources = [
     // APTITUDE RESOURCES
     {
         title: "Complete Quantitative Aptitude for Placements",
@@ -8,8 +8,8 @@ const preparationResources = [
         category: "Aptitude",
         subcategory: "Quantitative Aptitude",
         type: "Course",
-        url: "https://www.indiabix.com/aptitude/questions-and-answers/",
-        provider: "IndiaBix",
+        url: "https://www.khanacademy.org/math/arithmetic",
+        provider: "Khan Academy",
         difficulty: "Beginner",
         duration: "4-6 weeks",
         isPremium: false,
@@ -30,8 +30,8 @@ const preparationResources = [
         category: "Aptitude",
         subcategory: "Logical Reasoning",
         type: "Practice Test",
-        url: "https://www.indiabix.com/logical-reasoning/questions-and-answers/",
-        provider: "IndiaBix",
+        url: "https://www.khanacademy.org/math/geometry/logic-and-proof",
+        provider: "Khan Academy",
         difficulty: "Intermediate",
         duration: "3-4 weeks",
         isPremium: false,
@@ -52,8 +52,8 @@ const preparationResources = [
         category: "Aptitude",
         subcategory: "Verbal Ability",
         type: "Course",
-        url: "https://www.indiabix.com/verbal-ability/questions-and-answers/",
-        provider: "IndiaBix",
+        url: "https://www.coursera.org/learn/english-for-career-development",
+        provider: "Coursera",
         difficulty: "Beginner",
         duration: "2-3 weeks",
         isPremium: false,
@@ -190,8 +190,8 @@ const preparationResources = [
         category: "Communication Skills",
         subcategory: "Soft Skills",
         type: "Video",
-        url: "https://www.youtube.com/playlist?list=PLrAXtmrdJmu6T7u-yheqMYwDz4xH2JhQV",
-        provider: "YouTube - Various Creators",
+        url: "https://www.coursera.org/learn/communication-strategies",
+        provider: "Coursera - University of California",
         difficulty: "Beginner",
         duration: "4-6 hours",
         isPremium: false,
@@ -419,8 +419,8 @@ const preparationResources = [
         category: "Communication Skills",
         subcategory: "Group Discussion",
         type: "Article",
-        url: "https://www.indiabix.com/group-discussion/topics-with-answers/",
-        provider: "IndiaBix",
+        url: "https://www.edx.org/learn/communication/university-of-washington-speaking-to-inform-discussing-complex-ideas-with-clear-explanations-and-dynamic-slides",
+        provider: "edX - University of Washington",
         difficulty: "Intermediate",
         duration: "2-3 weeks",
         isPremium: false,
