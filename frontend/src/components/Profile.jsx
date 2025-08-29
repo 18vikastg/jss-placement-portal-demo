@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import Navbar from './shared/NavbarNew'
+import Navbar from './shared/Navbar'
 import { Avatar, AvatarImage } from './ui/avatar'
 import { Button } from './ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card'
@@ -8,7 +8,7 @@ import { Progress } from './ui/progress'
 import { Mail, Pen, User, GraduationCap, Code, FileText, MapPin, Phone, Star, Target, Briefcase, Download } from 'lucide-react'
 import { Badge } from './ui/badge'
 import AppliedJobTable from './AppliedJobTable'
-import UpdateProfileDialog from './UpdateProfileDialog'
+import EnhancedProfileDialog from './EnhancedProfileDialog'
 import { useSelector } from 'react-redux'
 import useGetAppliedJobs from '@/hooks/useGetAppliedJobs'
 
@@ -288,7 +288,7 @@ const Profile = () => {
                 </motion.div>
             </div>
             
-            <UpdateProfileDialog open={open} setOpen={setOpen}/>
+            <EnhancedProfileDialog open={open} setOpen={setOpen}/>
         </div>
     )
 }
