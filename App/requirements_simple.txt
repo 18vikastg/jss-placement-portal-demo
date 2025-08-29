@@ -1,0 +1,17 @@
+streamlit
+pandas
+numpy
+PyMySQL
+nltk
+plotly
+matplotlib
+Pillow
+geocoder
+geopy
+requests
+python-dateutil
+docx2txt
+streamlit-tags
+pdfminer3
+pyresparser
+spacy

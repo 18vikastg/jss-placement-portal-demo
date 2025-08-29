@@ -1,0 +1,49 @@
+# Core Streamlit and Web Framework
+streamlit>=1.28.0
+
+# Data Processing and Analysis
+pandas>=1.5.0
+numpy>=1.24.0
+
+# Database Connectivity
+PyMySQL>=1.0.2
+
+# Natural Language Processing
+nltk>=3.8
+
+# PDF Processing - keeping pdfminer3 for compatibility
+pdfminer3>=2018.12.3.0
+pdfminer.six>=20220524
+
+# Data Visualization
+plotly>=5.15.0
+matplotlib>=3.7.0
+
+# Resume Parsing
+pyresparser>=1.0.6
+
+# Image Processing
+Pillow>=10.0.0
+
+# Geographic and Location Services
+geocoder>=1.38.1
+geopy>=2.3.0
+
+# Utility Libraries
+requests>=2.31.0
+python-dateutil>=2.8.2
+
+# Document Processing
+docx2txt>=0.8
+
+# Security and Cryptography - relaxed version
+cryptography>=37.0.0
+
+# Additional Streamlit Components
+streamlit-tags>=1.2.8
+
+# Development and Debugging
+rich>=13.0.0
+
+# Additional dependencies for pyresparser
+spacy>=3.4.0,<3.5.0

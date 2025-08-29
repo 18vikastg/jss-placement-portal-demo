@@ -1,0 +1,12 @@
+# Railway doesn't use Docker - this prevents confusion
+Dockerfile*
+.dockerignore
+.git
+.gitignore
+.venv
+__pycache__
+*.pyc
+*.pyo
+*.log
+.DS_Store
+node_modules
