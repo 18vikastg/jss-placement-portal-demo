@@ -56,10 +56,11 @@ const Navbar = () => {
                             className='h-12 w-auto object-contain'
                         />
                         <div className='flex flex-col'>
-                            <h1 className='text-2xl font-bold bg-gradient-to-r from-red-700 to-red-900 bg-clip-text text-transparent'>
-                                PrepLink
+                            <h1 className='text-3xl font-black bg-gradient-to-r from-red-800 to-red-950 bg-clip-text text-transparent tracking-tight'>
+                                <span className='text-red-900'>JSSATE</span>
+                                <span className='text-amber-600 ml-2 text-xl font-bold'>PrepLink</span>
                             </h1>
-                            <span className='text-xs text-gray-600 font-medium'>JSSATE Bengaluru</span>
+                            <p className='text-xs text-gray-600 font-semibold tracking-wide uppercase'>JSS Academy • Technical Education</p>
                         </div>
                     </Link>
                 </div>
@@ -145,7 +146,7 @@ const Navbar = () => {
                                     <li>
                                         <Link 
                                             to="/preparation" 
-                                            className='flex items-center gap-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-700 hover:to-blue-700 transition-all duration-200 px-3 py-2 rounded-lg font-medium shadow-md hover:shadow-lg'
+                                            className='flex items-center gap-2 bg-gradient-to-r from-red-700 to-red-800 text-white hover:from-red-800 hover:to-red-900 transition-all duration-200 px-3 py-2 rounded-lg font-medium shadow-md hover:shadow-lg'
                                         >
                                             <BookOpen className='w-4 h-4' />
                                             📚 Prep Hub
@@ -154,7 +155,7 @@ const Navbar = () => {
                                     <li>
                                         <Link 
                                             to="/student/mock-interview" 
-                                            className='flex items-center gap-2 bg-gradient-to-r from-emerald-600 to-teal-600 text-white hover:from-emerald-700 hover:to-teal-700 transition-all duration-200 px-3 py-2 rounded-lg font-medium shadow-md hover:shadow-lg'
+                                            className='flex items-center gap-2 bg-gradient-to-r from-amber-600 to-yellow-700 text-white hover:from-amber-700 hover:to-yellow-800 transition-all duration-200 px-3 py-2 rounded-lg font-medium shadow-md hover:shadow-lg'
                                         >
                                             <Mic className='w-4 h-4' />
                                             🎤 Practice
@@ -313,7 +314,7 @@ const Navbar = () => {
                                 </Link>
                                 <Link 
                                     to="/preparation" 
-                                    className='flex items-center gap-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-700 hover:to-blue-700 transition-all duration-200 px-3 py-2 rounded-lg font-medium shadow-md'
+                                    className='flex items-center gap-2 bg-gradient-to-r from-red-700 to-red-800 text-white hover:from-red-800 hover:to-red-900 transition-all duration-200 px-3 py-2 rounded-lg font-medium shadow-md'
                                     onClick={() => setIsMobileMenuOpen(false)}
                                 >
                                     <BookOpen className='w-4 h-4' />
@@ -321,7 +322,7 @@ const Navbar = () => {
                                 </Link>
                                 <Link 
                                     to="/student/mock-interview" 
-                                    className='flex items-center gap-2 bg-gradient-to-r from-emerald-600 to-teal-600 text-white hover:from-emerald-700 hover:to-teal-700 transition-all duration-200 px-3 py-2 rounded-lg font-medium shadow-md'
+                                    className='flex items-center gap-2 bg-gradient-to-r from-amber-600 to-yellow-700 text-white hover:from-amber-700 hover:to-yellow-800 transition-all duration-200 px-3 py-2 rounded-lg font-medium shadow-md'
                                     onClick={() => setIsMobileMenuOpen(false)}
                                 >
                                     <Mic className='w-4 h-4' />
