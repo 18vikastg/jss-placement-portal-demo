@@ -17,6 +17,8 @@ const Profile = () => {
     const [open, setOpen] = useState(false);
     const {user} = useSelector(store=>store.auth);
     
+    console.log('Current user in Profile:', user);
+    
     // Calculate profile completion based on actual user data
     const calculateProfileCompletion = () => {
         if (!user) return 0;

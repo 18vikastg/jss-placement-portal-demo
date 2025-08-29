@@ -50,6 +50,43 @@ const userSchema = new mongoose.Schema({
             type:String,
             default:""
         },
+        // Simple fields for basic profile (compatibility with existing frontend)
+        skills: [{ type: String }],
+        branch: { type: String },
+        semester: { type: Number },
+        cgpa: { type: Number },
+        university: { type: String, default: 'JSS Academy of Technical Education' },
+        year: { type: String },
+        address: { type: String },
+        dateOfBirth: { type: Date },
+        resume: { type: String },
+        resumeOriginalName: { type: String },
+        // Advanced structured fields
+        experiences: [{
+            title: { type: String },
+            company: { type: String },
+            duration: { type: String },
+            description: { type: String },
+            id: { type: Number }
+        }],
+        projects: [{
+            title: { type: String },
+            description: { type: String },
+            technologies: { type: String },
+            link: { type: String },
+            id: { type: Number }
+        }],
+        certifications: [{
+            name: { type: String },
+            issuer: { type: String },
+            date: { type: String },
+            id: { type: Number }
+        }],
+        socialLinks: {
+            github: { type: String },
+            linkedin: { type: String },
+            portfolio: { type: String }
+        },
         // Profile completion tracking
         profileCompletion: {
             type: Number,

@@ -28,7 +28,7 @@ import {
 } from 'lucide-react'
 import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
-import { USER_API_END_POINT } from '@/utils/constants'
+import { USER_API_END_POINT } from '@/utils/constant'
 import { setUser } from '@/redux/authSlice'
 import { toast } from 'sonner'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs'
@@ -227,19 +227,31 @@ const EnhancedProfileDialog = ({ open, setOpen }) => {
     const saveProfile = async () => {
         try {
             setLoading(true);
+            console.log('Starting profile save...');
+            console.log('Profile data to save:', profileData);
+            
             const formData = new FormData();
             
-            // Add all profile data to formData
+            // Add all profile data to formData, but exclude resume if it's null
             Object.keys(profileData).forEach(key => {
+                if (key === 'resume' && (profileData[key] === null || profileData[key] === '')) {
+                    // Skip empty resume
+                    return;
+                }
                 if (key === 'socialLinks') {
                     formData.append('socialLinks', JSON.stringify(profileData.socialLinks));
+                    console.log('Added socialLinks:', profileData.socialLinks);
                 } else if (Array.isArray(profileData[key])) {
                     formData.append(key, JSON.stringify(profileData[key]));
-                } else if (profileData[key] !== null && profileData[key] !== '') {
+                    console.log(`Added array ${key}:`, profileData[key]);
+                } else if (profileData[key] !== null && profileData[key] !== '' && profileData[key] !== undefined) {
                     formData.append(key, profileData[key]);
+                    console.log(`Added ${key}:`, profileData[key]);
                 }
             });
 
+            console.log('Sending request to:', `${USER_API_END_POINT}/profile/enhanced-update`);
+            
             const res = await axios.post(`${USER_API_END_POINT}/profile/enhanced-update`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
@@ -247,14 +259,22 @@ const EnhancedProfileDialog = ({ open, setOpen }) => {
                 withCredentials: true
             });
 
+            console.log('Response received:', res.data);
+
             if (res.data.success) {
                 dispatch(setUser(res.data.user));
                 toast.success('Profile updated successfully!');
                 setOpen(false);
+            } else {
+                console.log('Update failed:', res.data.message);
+                toast.error(res.data.message || 'Failed to update profile');
             }
         } catch (error) {
-            console.log(error);
-            toast.error(error.response?.data?.message || 'Failed to update profile');
+            console.log('Profile update error:', error);
+            console.log('Error response:', error.response?.data);
+            console.log('Error status:', error.response?.status);
+            console.log('Error message:', error.message);
+            toast.error(error.response?.data?.message || error.message || 'Failed to update profile');
         } finally {
             setLoading(false);
         }

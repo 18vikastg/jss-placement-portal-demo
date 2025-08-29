@@ -265,21 +265,42 @@ export const updateEnhancedProfile = async (req, res) => {
             socialLinks
         } = req.body;
 
+        console.log('Received profile update data:', {
+            fullname,
+            email,
+            phoneNumber,
+            bio,
+            address,
+            dateOfBirth,
+            branch,
+            semester,
+            cgpa,
+            university,
+            year,
+            skills: typeof skills === 'string' ? 'JSON string' : skills,
+            experiences: typeof experiences === 'string' ? 'JSON string' : experiences,
+            projects: typeof projects === 'string' ? 'JSON string' : projects,
+            certifications: typeof certifications === 'string' ? 'JSON string' : certifications,
+            socialLinks: typeof socialLinks === 'string' ? 'JSON string' : socialLinks
+        });
+
         // Handle file upload if present (resume)
         let resumeUrl = "";
+        let resumeOriginalName = "";
         const file = req.file;
         if (file) {
             const fileUri = getDataUri(file);
             const cloudResponse = await cloudinary.uploader.upload(fileUri.content);
             resumeUrl = cloudResponse.secure_url;
+            resumeOriginalName = file.originalname;
         }
 
         // Parse JSON strings back to objects/arrays
-        const parsedSkills = typeof skills === 'string' ? JSON.parse(skills) : skills;
-        const parsedExperiences = typeof experiences === 'string' ? JSON.parse(experiences) : experiences;
-        const parsedProjects = typeof projects === 'string' ? JSON.parse(projects) : projects;
-        const parsedCertifications = typeof certifications === 'string' ? JSON.parse(certifications) : certifications;
-        const parsedSocialLinks = typeof socialLinks === 'string' ? JSON.parse(socialLinks) : socialLinks;
+        const parsedSkills = skills ? (typeof skills === 'string' ? JSON.parse(skills) : skills) : [];
+        const parsedExperiences = experiences ? (typeof experiences === 'string' ? JSON.parse(experiences) : experiences) : [];
+        const parsedProjects = projects ? (typeof projects === 'string' ? JSON.parse(projects) : projects) : [];
+        const parsedCertifications = certifications ? (typeof certifications === 'string' ? JSON.parse(certifications) : certifications) : [];
+        const parsedSocialLinks = socialLinks ? (typeof socialLinks === 'string' ? JSON.parse(socialLinks) : socialLinks) : {};
 
         const user = await User.findById(userId);
         if (!user) {
@@ -294,23 +315,31 @@ export const updateEnhancedProfile = async (req, res) => {
         if (email) user.email = email;
         if (phoneNumber) user.phoneNumber = phoneNumber;
 
-        // Update profile data
-        if (bio) user.profile.bio = bio;
-        if (address) user.profile.address = address;
-        if (dateOfBirth) user.profile.dateOfBirth = dateOfBirth;
-        if (branch) user.profile.branch = branch;
-        if (semester) user.profile.semester = semester;
-        if (cgpa) user.profile.cgpa = cgpa;
-        if (university) user.profile.university = university;
-        if (year) user.profile.year = year;
-        if (parsedSkills) user.profile.skills = parsedSkills;
-        if (parsedExperiences) user.profile.experiences = parsedExperiences;
-        if (parsedProjects) user.profile.projects = parsedProjects;
-        if (parsedCertifications) user.profile.certifications = parsedCertifications;
-        if (parsedSocialLinks) user.profile.socialLinks = parsedSocialLinks;
-        if (resumeUrl) user.profile.resume = resumeUrl;
+        // Update profile data with proper handling
+        if (bio !== undefined) user.profile.bio = bio;
+        if (address !== undefined) user.profile.address = address;
+        if (dateOfBirth !== undefined) user.profile.dateOfBirth = dateOfBirth;
+        if (branch !== undefined) user.profile.branch = branch;
+        if (semester !== undefined) user.profile.semester = semester;
+        if (cgpa !== undefined) user.profile.cgpa = cgpa;
+        if (university !== undefined) user.profile.university = university;
+        if (year !== undefined) user.profile.year = year;
+        
+        // Always update arrays/objects, even if empty
+        user.profile.skills = parsedSkills;
+        user.profile.experiences = parsedExperiences;
+        user.profile.projects = parsedProjects;
+        user.profile.certifications = parsedCertifications;
+        user.profile.socialLinks = parsedSocialLinks;
+        
+        if (resumeUrl) {
+            user.profile.resume = resumeUrl;
+            user.profile.resumeOriginalName = resumeOriginalName;
+        }
 
         await user.save();
+
+        console.log('Profile updated successfully for user:', userId);
 
         const updatedUser = {
             _id: user._id,
@@ -327,10 +356,11 @@ export const updateEnhancedProfile = async (req, res) => {
             success: true
         });
     } catch (error) {
-        console.log(error);
+        console.log('Enhanced profile update error:', error);
         return res.status(500).json({
             message: "Internal server error",
-            success: false
+            success: false,
+            error: error.message
         });
     }
 };
