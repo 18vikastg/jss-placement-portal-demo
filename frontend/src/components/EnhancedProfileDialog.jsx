@@ -98,6 +98,19 @@ const EnhancedProfileDialog = ({ open, setOpen }) => {
         date: ''
     });
 
+    // Helper function to format date for HTML date input
+    const formatDateForInput = (dateString) => {
+        if (!dateString) return '';
+        try {
+            const date = new Date(dateString);
+            if (isNaN(date.getTime())) return '';
+            return date.toISOString().split('T')[0]; // YYYY-MM-DD format
+        } catch (error) {
+            console.log('Date formatting error:', error);
+            return '';
+        }
+    };
+
     // Initialize profile data when user data is available
     useEffect(() => {
         if (user) {
@@ -105,22 +118,22 @@ const EnhancedProfileDialog = ({ open, setOpen }) => {
                 fullname: user.fullname || '',
                 email: user.email || '',
                 phoneNumber: user.phoneNumber || '',
-                bio: user.profile?.bio || '',
-                address: user.profile?.address || '',
-                dateOfBirth: user.profile?.dateOfBirth || '',
-                branch: user.profile?.branch || '',
-                semester: user.profile?.semester || '',
-                cgpa: user.profile?.cgpa || '',
-                university: user.profile?.university || 'JSS Academy of Technical Education',
-                year: user.profile?.year || '',
-                skills: user.profile?.skills || [],
-                experiences: user.profile?.experiences || [],
-                projects: user.profile?.projects || [],
-                certifications: user.profile?.certifications || [],
+                bio: user.profile?.bio || user.bio || '',
+                address: user.profile?.address || user.address || '',
+                dateOfBirth: formatDateForInput(user.profile?.dateOfBirth || user.dateOfBirth),
+                branch: user.profile?.branch || user.branch || '',
+                semester: user.profile?.semester || user.semester || '',
+                cgpa: user.profile?.cgpa || user.cgpa || '',
+                university: user.profile?.university || user.university || 'JSS Academy of Technical Education',
+                year: user.profile?.year || user.year || '',
+                skills: user.profile?.skills || user.skills || [],
+                experiences: user.profile?.experiences || user.experiences || [],
+                projects: user.profile?.projects || user.projects || [],
+                certifications: user.profile?.certifications || user.certifications || [],
                 socialLinks: {
-                    github: user.profile?.socialLinks?.github || '',
-                    linkedin: user.profile?.socialLinks?.linkedin || '',
-                    portfolio: user.profile?.socialLinks?.portfolio || ''
+                    github: user.profile?.socialLinks?.github || user.socialLinks?.github || '',
+                    linkedin: user.profile?.socialLinks?.linkedin || user.socialLinks?.linkedin || '',
+                    portfolio: user.profile?.socialLinks?.portfolio || user.socialLinks?.portfolio || ''
                 },
                 resume: user.profile?.resume || null
             });
@@ -232,23 +245,39 @@ const EnhancedProfileDialog = ({ open, setOpen }) => {
             
             const formData = new FormData();
             
-            // Add all profile data to formData, but exclude resume if it's null
-            Object.keys(profileData).forEach(key => {
-                if (key === 'resume' && (profileData[key] === null || profileData[key] === '')) {
-                    // Skip empty resume
-                    return;
-                }
-                if (key === 'socialLinks') {
-                    formData.append('socialLinks', JSON.stringify(profileData.socialLinks));
-                    console.log('Added socialLinks:', profileData.socialLinks);
-                } else if (Array.isArray(profileData[key])) {
-                    formData.append(key, JSON.stringify(profileData[key]));
-                    console.log(`Added array ${key}:`, profileData[key]);
-                } else if (profileData[key] !== null && profileData[key] !== '' && profileData[key] !== undefined) {
-                    formData.append(key, profileData[key]);
-                    console.log(`Added ${key}:`, profileData[key]);
-                }
-            });
+            // Basic info
+            formData.append('fullname', profileData.fullname || '');
+            formData.append('email', profileData.email || '');
+            formData.append('phoneNumber', profileData.phoneNumber || '');
+            formData.append('bio', profileData.bio || '');
+            formData.append('address', profileData.address || '');
+            formData.append('dateOfBirth', profileData.dateOfBirth || '');
+            
+            // Academic info
+            formData.append('branch', profileData.branch || '');
+            formData.append('semester', profileData.semester || '');
+            formData.append('cgpa', profileData.cgpa || '');
+            formData.append('university', profileData.university || '');
+            formData.append('year', profileData.year || '');
+            
+            // Arrays - always send, even if empty
+            formData.append('skills', JSON.stringify(profileData.skills || []));
+            formData.append('experiences', JSON.stringify(profileData.experiences || []));
+            formData.append('projects', JSON.stringify(profileData.projects || []));
+            formData.append('certifications', JSON.stringify(profileData.certifications || []));
+            
+            // Social links
+            formData.append('socialLinks', JSON.stringify(profileData.socialLinks || {}));
+            
+            // Resume file (only if exists)
+            if (profileData.resume && profileData.resume instanceof File) {
+                formData.append('resume', profileData.resume);
+            }
+            
+            console.log('FormData contents:');
+            for (let [key, value] of formData.entries()) {
+                console.log(`${key}:`, value);
+            }
 
             console.log('Sending request to:', `${USER_API_END_POINT}/profile/enhanced-update`);
             
@@ -283,9 +312,10 @@ const EnhancedProfileDialog = ({ open, setOpen }) => {
     const generateResume = async () => {
         try {
             setGenerateResumeLoading(true);
-            const response = await axios.post(`${USER_API_END_POINT}/profile/generate-resume`, {
-                profileData
-            }, {
+            console.log('Generating resume for user...');
+            
+            // Just send a GET-like request since backend will use database data
+            const response = await axios.post(`${USER_API_END_POINT}/profile/generate-resume`, {}, {
                 responseType: 'blob',
                 withCredentials: true
             });
@@ -294,7 +324,7 @@ const EnhancedProfileDialog = ({ open, setOpen }) => {
             const url = window.URL.createObjectURL(new Blob([response.data]));
             const link = document.createElement('a');
             link.href = url;
-            link.setAttribute('download', `${profileData.fullname}_Resume.pdf`);
+            link.setAttribute('download', `${profileData.fullname || 'Resume'}_Resume.pdf`);
             document.body.appendChild(link);
             link.click();
             link.remove();
@@ -302,8 +332,9 @@ const EnhancedProfileDialog = ({ open, setOpen }) => {
 
             toast.success('Resume generated and downloaded successfully!');
         } catch (error) {
-            console.log(error);
-            toast.error('Failed to generate resume');
+            console.log('Resume generation error:', error);
+            console.log('Error response:', error.response?.data);
+            toast.error(error.response?.data?.message || 'Failed to generate resume');
         } finally {
             setGenerateResumeLoading(false);
         }

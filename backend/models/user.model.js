@@ -44,6 +44,7 @@ const userSchema = new mongoose.Schema({
         enum:['student','faculty','recruiter'],
         required:true
     },
+// Enhanced Profile Schema with proper validation
     profile:{
         bio:{type:String},
         profilePhoto:{
@@ -51,7 +52,16 @@ const userSchema = new mongoose.Schema({
             default:""
         },
         // Simple fields for basic profile (compatibility with existing frontend)
-        skills: [{ type: String }],
+        skills: {
+            type: [String],
+            default: [],
+            validate: {
+                validator: function(arr) {
+                    return Array.isArray(arr);
+                },
+                message: 'Skills must be an array of strings'
+            }
+        },
         branch: { type: String },
         semester: { type: Number },
         cgpa: { type: Number },
@@ -61,31 +71,91 @@ const userSchema = new mongoose.Schema({
         dateOfBirth: { type: Date },
         resume: { type: String },
         resumeOriginalName: { type: String },
-        // Advanced structured fields
-        experiences: [{
-            title: { type: String },
-            company: { type: String },
-            duration: { type: String },
-            description: { type: String },
-            id: { type: Number }
-        }],
-        projects: [{
-            title: { type: String },
-            description: { type: String },
-            technologies: { type: String },
-            link: { type: String },
-            id: { type: Number }
-        }],
-        certifications: [{
-            name: { type: String },
-            issuer: { type: String },
-            date: { type: String },
-            id: { type: Number }
-        }],
+        
+        // Advanced structured fields with proper validation
+        experiences: {
+            type: [{
+                title: { 
+                    type: String, 
+                    required: function() { return this.parent().length > 0; },
+                    trim: true 
+                },
+                company: { 
+                    type: String, 
+                    required: function() { return this.parent().length > 0; },
+                    trim: true 
+                },
+                duration: { type: String, trim: true },
+                description: { type: String, trim: true },
+                id: { type: Number }
+            }],
+            default: [],
+            validate: {
+                validator: function(arr) {
+                    return Array.isArray(arr);
+                },
+                message: 'Experiences must be an array'
+            }
+        },
+        
+        projects: {
+            type: [{
+                title: { 
+                    type: String, 
+                    required: function() { return this.parent().length > 0; },
+                    trim: true 
+                },
+                description: { 
+                    type: String, 
+                    required: function() { return this.parent().length > 0; },
+                    trim: true 
+                },
+                technologies: { type: String, trim: true },
+                link: { type: String, trim: true },
+                id: { type: Number }
+            }],
+            default: [],
+            validate: {
+                validator: function(arr) {
+                    return Array.isArray(arr);
+                },
+                message: 'Projects must be an array'
+            }
+        },
+        
+        certifications: {
+            type: [{
+                name: { 
+                    type: String, 
+                    required: function() { return this.parent().length > 0; },
+                    trim: true 
+                },
+                issuer: { type: String, trim: true },
+                date: { type: String, trim: true },
+                id: { type: Number }
+            }],
+            default: [],
+            validate: {
+                validator: function(arr) {
+                    return Array.isArray(arr);
+                },
+                message: 'Certifications must be an array'
+            }
+        },
+        
         socialLinks: {
-            github: { type: String },
-            linkedin: { type: String },
-            portfolio: { type: String }
+            type: {
+                github: { type: String, trim: true, default: '' },
+                linkedin: { type: String, trim: true, default: '' },
+                portfolio: { type: String, trim: true, default: '' }
+            },
+            default: function() {
+                return {
+                    github: '',
+                    linkedin: '',
+                    portfolio: ''
+                };
+            }
         },
         // Profile completion tracking
         profileCompletion: {
@@ -209,5 +279,61 @@ const userSchema = new mongoose.Schema({
         employeeId:{type:String} // For faculty
     }
 },{timestamps:true});
+
+// Mongoose middleware for data validation and sanitization
+userSchema.pre('save', function(next) {
+    console.log('Pre-save middleware triggered');
+    
+    // Ensure profile exists
+    if (!this.profile) {
+        this.profile = {};
+    }
+    
+    // Sanitize and validate arrays
+    const arrayFields = ['skills', 'experiences', 'projects', 'certifications'];
+    
+    arrayFields.forEach(field => {
+        if (this.profile[field] === undefined || this.profile[field] === null) {
+            this.profile[field] = [];
+        }
+        
+        if (!Array.isArray(this.profile[field])) {
+            console.log(`Warning: ${field} is not an array, converting to empty array`);
+            this.profile[field] = [];
+        }
+        
+        // Remove empty/invalid entries
+        if (field === 'skills') {
+            this.profile[field] = this.profile[field].filter(skill => 
+                skill && typeof skill === 'string' && skill.trim().length > 0
+            );
+        } else {
+            this.profile[field] = this.profile[field].filter(item => 
+                item && typeof item === 'object' && 
+                ((field === 'experiences' && item.title && item.company) ||
+                 (field === 'projects' && item.title && item.description) ||
+                 (field === 'certifications' && item.name))
+            );
+        }
+    });
+    
+    // Ensure socialLinks is an object
+    if (!this.profile.socialLinks || typeof this.profile.socialLinks !== 'object') {
+        this.profile.socialLinks = {
+            github: '',
+            linkedin: '',
+            portfolio: ''
+        };
+    }
+    
+    console.log('Pre-save validation complete:', {
+        skills: this.profile.skills?.length || 0,
+        experiences: this.profile.experiences?.length || 0,
+        projects: this.profile.projects?.length || 0,
+        certifications: this.profile.certifications?.length || 0
+    });
+    
+    next();
+});
 
 export const User = mongoose.model('User', userSchema);
