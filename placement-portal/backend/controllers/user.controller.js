@@ -133,7 +133,12 @@ export const login = async (req, res) => {
             profile: user.profile
         }
 
-        return res.status(200).cookie("token", token, { maxAge: 1 * 24 * 60 * 60 * 1000, httpsOnly: true, sameSite: 'strict' }).json({
+        return res.status(200).cookie("token", token, { 
+            maxAge: 1 * 24 * 60 * 60 * 1000, 
+            httpOnly: true, 
+            sameSite: 'strict',
+            secure: process.env.NODE_ENV === 'production' // Only use secure in production
+        }).json({
             message: `Welcome back ${user.fullname}`,
             user,
             success: true
@@ -225,7 +230,8 @@ export const updateEnhancedProfile = async (req, res) => {
         
         console.log('User ID:', userId);
         console.log('Request body:', req.body);
-        console.log('Request file:', req.file?.originalname);
+        console.log('Request files:', req.files);
+        console.log('Request file (single):', req.file?.originalname);
 
         const {
             fullname,
@@ -289,15 +295,58 @@ export const updateEnhancedProfile = async (req, res) => {
             socialLinks: parsedSocialLinks
         });
 
-        // Handle file upload for profile photo
+        // Handle file uploads for profile photo and resume
+        if (req.files) {
+            // Handle resume upload
+            if (req.files.resume && req.files.resume[0]) {
+                try {
+                    const resumeFile = req.files.resume[0];
+                    const fileUri = getDataUri(resumeFile);
+                    const cloudResponse = await cloudinary.uploader.upload(fileUri.content);
+                    user.profile.resume = cloudResponse.secure_url;
+                    user.profile.resumeOriginalName = resumeFile.originalname;
+                    console.log('Resume uploaded:', cloudResponse.secure_url);
+                } catch (error) {
+                    console.log('Error uploading resume:', error);
+                }
+            }
+            
+            // Handle profile photo upload
+            if (req.files.profilePhoto && req.files.profilePhoto[0]) {
+                try {
+                    const photoFile = req.files.profilePhoto[0];
+                    const fileUri = getDataUri(photoFile);
+                    const cloudResponse = await cloudinary.uploader.upload(fileUri.content);
+                    user.profile.profilePhoto = cloudResponse.secure_url;
+                    console.log('Profile photo uploaded:', cloudResponse.secure_url);
+                } catch (error) {
+                    console.log('Error uploading profile photo:', error);
+                }
+            }
+            
+            // Handle generic file upload (backward compatibility)
+            if (req.files.file && req.files.file[0]) {
+                try {
+                    const file = req.files.file[0];
+                    const fileUri = getDataUri(file);
+                    const cloudResponse = await cloudinary.uploader.upload(fileUri.content);
+                    user.profile.profilePhoto = cloudResponse.secure_url;
+                    console.log('File uploaded:', cloudResponse.secure_url);
+                } catch (error) {
+                    console.log('Error uploading file:', error);
+                }
+            }
+        }
+        
+        // Fallback for single file upload (backward compatibility)
         if (req.file) {
             try {
                 const fileUri = getDataUri(req.file);
                 const cloudResponse = await cloudinary.uploader.upload(fileUri.content);
                 user.profile.profilePhoto = cloudResponse.secure_url;
-                console.log('Profile photo uploaded:', cloudResponse.secure_url);
+                console.log('Profile photo uploaded (fallback):', cloudResponse.secure_url);
             } catch (error) {
-                console.log('Error uploading profile photo:', error);
+                console.log('Error uploading profile photo (fallback):', error);
             }
         }
 
