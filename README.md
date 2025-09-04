@@ -1,5 +1,122 @@
 <<<<<<< HEAD
-# JSS Placement Portal
+# JSS Placement Portal Demo
+
+A comprehensive placement portal system built for JSS Academy of Technical Education. This full-stack web application facilitates placement activities for students, faculty, and recruiters.
+
+## 🚀 Features
+
+### For Students
+- **User Authentication**: Secure login/register system
+- **Profile Management**: Complete profile setup with resume upload
+- **Job Applications**: Browse and apply for job opportunities
+- **Application Tracking**: Track application status and feedback
+- **Preparation Hub**: Access study materials and practice resources
+- **Interview Scheduling**: Schedule and manage interview slots
+
+### For Faculty
+- **Student Management**: View and manage student profiles
+- **Placement Coordination**: Coordinate placement activities
+- **Progress Tracking**: Monitor student placement progress
+- **Report Generation**: Generate placement statistics and reports
+
+### For Recruiters
+- **Company Profile**: Manage company information and requirements
+- **Job Posting**: Create and manage job postings
+- **Application Review**: Review student applications
+- **Interview Management**: Schedule and conduct interviews
+
+## 🛠️ Tech Stack
+
+### Frontend
+- **React.js** - UI framework
+- **Vite** - Build tool
+- **Tailwind CSS** - Styling
+- **Redux Toolkit** - State management
+- **React Router** - Navigation
+- **Axios** - HTTP client
+
+### Backend
+- **Node.js** - Runtime environment
+- **Express.js** - Web framework
+- **MongoDB** - Database
+- **Mongoose** - ODM
+- **JWT** - Authentication
+- **Bcrypt** - Password hashing
+- **Cloudinary** - File storage
+
+## 📦 Installation
+
+### Prerequisites
+- Node.js (v18 or higher)
+- MongoDB
+- Git
+
+### Clone the Repository
+```bash
+git clone https://github.com/18vikastg/jss-placement-portal-demo.git
+cd jss-placement-portal-demo
+```
+
+### Backend Setup
+```bash
+cd placement-portal/backend
+npm install
+
+# Create .env file
+cp .env.example .env
+# Edit .env file with your configurations
+```
+
+### Frontend Setup
+```bash
+cd ../frontend
+npm install
+
+# Create .env file
+cp .env.example .env
+# Edit .env file with your configurations
+```
+
+## 🚀 Running the Application
+
+### Start Backend Server
+```bash
+cd placement-portal/backend
+npm start
+```
+Server will run on `http://localhost:8001`
+
+### Start Frontend Development Server
+```bash
+cd placement-portal/frontend
+npm run dev
+```
+Application will be available at `http://localhost:5173`
+
+## 👥 Test Users
+
+### Student Account
+- **Email**: patel@gmail.com
+- **Password**: patel@gmail.com
+- **Role**: Student
+
+### Alternative Student Account
+- **Email**: test@student.com
+- **Password**: password123
+- **Role**: Student
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👨‍💻 Author
+
+**Vikas T G**
+- GitHub: [@18vikastg](https://github.com/18vikastg)
+
+---
+
+⭐ Star this repository if you found it helpful!
 
 A comprehensive full-stack job placement portal built for JSS Academy of Technical Education students and recruiters. This platform facilitates seamless interaction between students, faculty, and recruiters for job placements and career development.
 

@@ -84,20 +84,26 @@ export const login = async (req, res) => {
     try {
         const { email, password, role } = req.body;
         
+        console.log('Login attempt:', { email, password: '***', role });
+        
         if (!email || !password || !role) {
+            console.log('Missing fields:', { email: !!email, password: !!password, role: !!role });
             return res.status(400).json({
                 message: "Something is missing",
                 success: false
             });
         };
         let user = await User.findOne({ email });
+        console.log('User found:', !!user);
         if (!user) {
+            console.log('No user found with email:', email);
             return res.status(400).json({
                 message: "Incorrect email or password.",
                 success: false,
             })
         }
         const isPasswordMatch = await bcrypt.compare(password, user.password);
+        console.log('Password match:', isPasswordMatch);
         if (!isPasswordMatch) {
             return res.status(400).json({
                 message: "Incorrect email or password.",
@@ -105,6 +111,7 @@ export const login = async (req, res) => {
             })
         };
         // check role is correct or not
+        console.log('Role check:', { provided: role, userRole: user.role });
         if (role !== user.role) {
             return res.status(400).json({
                 message: "Account doesn't exist with current role.",
@@ -132,7 +139,11 @@ export const login = async (req, res) => {
             success: true
         })
     } catch (error) {
-        console.log(error);
+        console.log('Login error:', error);
+        return res.status(500).json({
+            message: "Internal server error",
+            success: false
+        });
     }
 }
 
