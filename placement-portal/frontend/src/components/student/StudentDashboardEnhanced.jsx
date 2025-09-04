@@ -226,6 +226,14 @@ const StudentDashboardEnhanced = () => {
             color: "from-emerald-500 to-teal-500",
             link: "/student/mock-interview",
             stats: "AI-powered"
+        },
+        {
+            title: "Analyse Resume",
+            description: "AI-powered resume analysis",
+            icon: FileText,
+            color: "from-red-500 to-orange-500",
+            link: "/resume-analyser-info",
+            stats: "Smart AI"
         }
     ]
 

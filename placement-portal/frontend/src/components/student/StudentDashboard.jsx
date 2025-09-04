@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import Navbar from '../shared/NavbarNew'
 import { useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { 
     User, 
     FileText, 
@@ -25,7 +25,8 @@ import {
     Phone,
     Mail,
     MapPin,
-    Upload
+    Upload,
+    Brain
 } from 'lucide-react'
 import { Button } from '../ui/button'
 import { Badge } from '../ui/badge'
@@ -423,6 +424,16 @@ const StudentDashboard = () => {
                                         <BookOpen className="w-6 h-6" />
                                         <span className="text-sm">Practice Tests</span>
                                     </Button>
+                                    <Link to="/resume-analyser-info">
+                                        <Button className="h-20 w-full flex flex-col items-center gap-2 bg-red-50 hover:bg-red-100 text-red-700 border-red-200">
+                                            <FileText className="w-6 h-6" />
+                                            <span className="text-sm">Analyse Resume</span>
+                                        </Button>
+                                    </Link>
+                                </div>
+                                
+                                {/* Additional row for more actions */}
+                                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
                                     <Button className="h-20 flex flex-col items-center gap-2 bg-orange-50 hover:bg-orange-100 text-orange-700 border-orange-200">
                                         <Award className="w-6 h-6" />
                                         <span className="text-sm">Certificates</span>
