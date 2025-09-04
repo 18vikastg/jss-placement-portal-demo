@@ -276,7 +276,70 @@ const userSchema = new mongoose.Schema({
         // For non-student roles
         company:{type:mongoose.Schema.Types.ObjectId, ref:'Company'},
         designation:{type:String}, // For faculty/recruiters
-        employeeId:{type:String} // For faculty
+        employeeId:{type:String}, // For faculty
+
+        // Resume Analysis Integration
+        resume_analysis: [{
+            analysisId: { type: String, required: true },
+            userId: { type: String, required: true },
+            fileName: { type: String, required: true },
+            fileSize: { type: Number },
+            resumeUrl: { type: String },
+            extractedData: {
+                name: { type: String },
+                email: { type: String },
+                phone: { type: String },
+                skills: [{ type: String }],
+                education: [{
+                    degree: { type: String },
+                    institution: { type: String },
+                    year: { type: String }
+                }],
+                experience: [{
+                    title: { type: String },
+                    company: { type: String },
+                    duration: { type: String },
+                    description: { type: String }
+                }],
+                projects: [{
+                    name: { type: String },
+                    description: { type: String },
+                    technologies: [{ type: String }]
+                }],
+                certifications: [{ type: String }],
+                languages: [{ type: String }]
+            },
+            analysisScore: { type: Number, min: 0, max: 100 },
+            experienceLevel: { 
+                type: String, 
+                enum: ['Entry Level', 'Junior', 'Mid Level', 'Senior', 'Executive'],
+                default: 'Entry Level'
+            },
+            recommendations: [{
+                category: { type: String },
+                priority: { type: String, enum: ['High', 'Medium', 'Low'] },
+                suggestion: { type: String },
+                impact: { type: String }
+            }],
+            analysisDate: { type: Date, default: Date.now },
+            fileInfo: {
+                format: { type: String },
+                pages: { type: Number },
+                wordCount: { type: Number }
+            }
+        }],
+
+        // Latest Resume Analysis Summary
+        latestResumeAnalysis: {
+            score: { type: Number, min: 0, max: 100 },
+            level: { 
+                type: String, 
+                enum: ['Entry Level', 'Junior', 'Mid Level', 'Senior', 'Executive'],
+                default: 'Entry Level'
+            },
+            analyzedAt: { type: Date },
+            fileName: { type: String }
+        }
     }
 },{timestamps:true});
 

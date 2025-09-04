@@ -14,6 +14,7 @@ import recruiterAuthRoute from "./routes/recruiterAuth.route.js";
 import preparationRoute from "./routes/preparation.route.js";
 import mockInterviewRoute from "./routes/mockInterview.route.js";
 import placementStatsRoute from "./routes/placementStats.route.js";
+import resumeAnalysisRoute from "./routes/resumeAnalysis.route.js";
 
 dotenv.config({});
 
@@ -56,7 +57,8 @@ app.get('/', (req, res) => {
             users: "/api/v1/user",
             jobs: "/api/v1/job",
             companies: "/api/v1/company",
-            applications: "/api/v1/application"
+            applications: "/api/v1/application",
+            resumeAnalysis: "/api/v1/resume"
         }
     });
 });
@@ -73,6 +75,7 @@ app.use("/api/v1/auth/recruiter", recruiterAuthRoute);
 app.use("/api/v1/preparation", preparationRoute);
 app.use("/api/v1/student/mock-interview", mockInterviewRoute);
 app.use("/api/v1/placement", placementStatsRoute);
+app.use("/api/v1/resume", resumeAnalysisRoute);
 
 // Health check endpoint
 app.get('/health', (req, res) => {

@@ -33,6 +33,7 @@ import { Badge } from '../ui/badge'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card'
 import { Progress } from '../ui/progress'
 import Scene3D from '../3D/AnimatedBackground'
+import ResumeAnalysisCard from '../ResumeAnalysisCard'
 
 // Import form components
 import PersonalInfoForm from '../profile/PersonalInfoForm'
@@ -669,6 +670,11 @@ const StudentDashboardEnhanced = () => {
                         </Card>
                     </motion.div>
                 )}
+
+                {/* Resume Analysis Card */}
+                <motion.div variants={itemVariants}>
+                    <ResumeAnalysisCard />
+                </motion.div>
             </motion.div>
 
             {/* Modal Forms */}
