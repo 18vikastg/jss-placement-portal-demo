@@ -34,7 +34,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui
 import { Input } from '../ui/input'
 import { Label } from '../ui/label'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '../ui/dialog'
-import ResumeAnalysisCard from '../ResumeAnalysisCard'
 
 const StudentDashboard = () => {
     const { user } = useSelector(store => store.auth)
@@ -514,9 +513,6 @@ const StudentDashboard = () => {
                                 </Button>
                             </CardContent>
                         </Card>
-
-                        {/* Resume Analysis */}
-                        <ResumeAnalysisCard />
 
                         {/* Quick Links */}
                         <Card className="bg-white shadow-md">
