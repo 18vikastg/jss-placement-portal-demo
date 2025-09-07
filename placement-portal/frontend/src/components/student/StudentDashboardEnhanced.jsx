@@ -26,7 +26,8 @@ import {
     Users,
     Lightbulb,
     Trophy,
-    Mic
+    Mic,
+    Brain
 } from 'lucide-react'
 import { Button } from '../ui/button'
 import { Badge } from '../ui/badge'
@@ -233,6 +234,42 @@ const StudentDashboardEnhanced = () => {
             color: "from-red-500 to-orange-500",
             link: "/resume-analyser-info",
             stats: "Smart AI"
+        },
+        {
+            title: "Career Guide & Roadmaps",
+            description: "AI-generated career paths",
+            icon: Target,
+            color: "from-indigo-500 to-purple-500",
+            link: "http://localhost:3000/career-guide",
+            stats: "AI Coach",
+            external: true
+        },
+        {
+            title: "AI Resume Builder",
+            description: "Build professional resumes",
+            icon: Award,
+            color: "from-pink-500 to-rose-500",
+            link: "http://localhost:3000/resume",
+            stats: "Smart Build",
+            external: true
+        },
+        {
+            title: "Interview Preparation",
+            description: "AI interview practice",
+            icon: Brain,
+            color: "from-cyan-500 to-blue-500",
+            link: "http://localhost:3000/interview",
+            stats: "AI Trainer",
+            external: true
+        },
+        {
+            title: "Cover Letter Generator",
+            description: "AI-powered cover letters",
+            icon: Sparkles,
+            color: "from-orange-500 to-red-500",
+            link: "http://localhost:3000/ai-cover-letter",
+            stats: "AI Writer",
+            external: true
         }
     ]
 
@@ -362,8 +399,25 @@ const StudentDashboardEnhanced = () => {
                 {/* Quick Actions and Stats Row */}
                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
                     {/* Quick Actions */}
-                    {quickActions.map((action, index) => {
+                    {quickActions.map((action) => {
                         const IconComponent = action.icon
+                        const ActionCard = (
+                            <Card className="h-full bg-white/80 backdrop-blur-sm border border-gray-200 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group">
+                                <CardContent className="p-6">
+                                    <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${action.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                                        <IconComponent className="w-7 h-7 text-white" />
+                                    </div>
+                                    <h3 className="font-semibold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors">
+                                        {action.title}
+                                    </h3>
+                                    <p className="text-sm text-gray-600 mb-3">{action.description}</p>
+                                    <Badge className="bg-purple-100 text-purple-700 text-xs">
+                                        {action.stats}
+                                    </Badge>
+                                </CardContent>
+                            </Card>
+                        )
+
                         return (
                             <motion.div
                                 key={action.title}
@@ -371,22 +425,15 @@ const StudentDashboardEnhanced = () => {
                                 whileHover={{ scale: 1.05, y: -5 }}
                                 whileTap={{ scale: 0.95 }}
                             >
-                                <Link to={action.link}>
-                                    <Card className="h-full bg-white/80 backdrop-blur-sm border border-gray-200 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group">
-                                        <CardContent className="p-6">
-                                            <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${action.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                                                <IconComponent className="w-7 h-7 text-white" />
-                                            </div>
-                                            <h3 className="font-semibold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors">
-                                                {action.title}
-                                            </h3>
-                                            <p className="text-sm text-gray-600 mb-3">{action.description}</p>
-                                            <Badge className="bg-purple-100 text-purple-700 text-xs">
-                                                {action.stats}
-                                            </Badge>
-                                        </CardContent>
-                                    </Card>
-                                </Link>
+                                {action.external ? (
+                                    <a href={action.link} target="_blank" rel="noopener noreferrer">
+                                        {ActionCard}
+                                    </a>
+                                ) : (
+                                    <Link to={action.link}>
+                                        {ActionCard}
+                                    </Link>
+                                )}
                             </motion.div>
                         )
                     })}
