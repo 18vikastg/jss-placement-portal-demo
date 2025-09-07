@@ -438,19 +438,19 @@ const StudentDashboard = () => {
                                         <Award className="w-6 h-6" />
                                         <span className="text-sm">Certificates</span>
                                     </Button>
-                                    <a href="http://localhost:3000/career-guide" target="_blank" rel="noopener noreferrer" className="w-full">
+                                    <a href="http://localhost:3001/career-guide" target="_blank" rel="noopener noreferrer" className="w-full">
                                         <Button className="h-20 w-full flex flex-col items-center gap-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border-indigo-200">
                                             <Target className="w-6 h-6" />
                                             <span className="text-sm">Career Guide</span>
                                         </Button>
                                     </a>
-                                    <a href="http://localhost:3000/resume" target="_blank" rel="noopener noreferrer" className="w-full">
+                                    <a href="http://localhost:3001/resume" target="_blank" rel="noopener noreferrer" className="w-full">
                                         <Button className="h-20 w-full flex flex-col items-center gap-2 bg-pink-50 hover:bg-pink-100 text-pink-700 border-pink-200">
                                             <FileText className="w-6 h-6" />
                                             <span className="text-sm">AI Resume Builder</span>
                                         </Button>
                                     </a>
-                                    <a href="http://localhost:3000/interview" target="_blank" rel="noopener noreferrer" className="w-full">
+                                    <a href="http://localhost:3001/interview" target="_blank" rel="noopener noreferrer" className="w-full">
                                         <Button className="h-20 w-full flex flex-col items-center gap-2 bg-cyan-50 hover:bg-cyan-100 text-cyan-700 border-cyan-200">
                                             <Brain className="w-6 h-6" />
                                             <span className="text-sm">Interview Prep</span>
@@ -460,7 +460,7 @@ const StudentDashboard = () => {
                                 
                                 {/* Third row for Cover Letter Generator */}
                                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
-                                    <a href="http://localhost:3000/ai-cover-letter" target="_blank" rel="noopener noreferrer" className="w-full">
+                                    <a href="http://localhost:3001/ai-cover-letter" target="_blank" rel="noopener noreferrer" className="w-full">
                                         <Button className="h-20 w-full flex flex-col items-center gap-2 bg-yellow-50 hover:bg-yellow-100 text-yellow-700 border-yellow-200">
                                             <Sparkles className="w-6 h-6" />
                                             <span className="text-sm">Cover Letter</span>
