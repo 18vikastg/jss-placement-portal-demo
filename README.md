@@ -422,6 +422,34 @@ mongodb+srv://username:password@cluster.mongodb.net/jobportal
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
+## 🔧 GitHub Contributions Fix
+
+**Having trouble with your GitHub contribution streak not showing up?** 
+
+This is a common issue when git is configured with placeholder emails. Your commits won't count toward your GitHub contribution graph if they're made with emails like `your-email@example.com` or bot emails.
+
+### Quick Fix
+```bash
+# Run our automated fix script
+./fix-git-config.sh
+
+# Or verify your current configuration
+./verify-git-config.sh
+```
+
+### Manual Fix
+```bash
+# Set correct git configuration
+git config user.name "Vikas T. G"
+git config user.email "152787656+18vikastg@users.noreply.github.com"
+
+# Make it global for all repositories
+git config --global user.name "Vikas T. G"
+git config --global user.email "152787656+18vikastg@users.noreply.github.com"
+```
+
+📚 **For detailed instructions and troubleshooting**: See [`GITHUB_CONTRIBUTIONS_FIX.md`](./GITHUB_CONTRIBUTIONS_FIX.md)
+
 ## 📝 API Documentation
 
 ### Authentication Endpoints
