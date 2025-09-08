@@ -235,9 +235,7 @@ const StudentDashboardEnhanced = () => {
             link: "/resume-analyser-info",
             stats: "Smart AI"
         },
-        {
-            title: "Career Guide & Roadmaps",
-            description: "AI-generated career paths",
+        description: "AI-generated career paths",
             icon: Target,
             color: "from-indigo-500 to-purple-500",
             link: "http://localhost:3001/career-guide",
@@ -248,8 +246,32 @@ const StudentDashboardEnhanced = () => {
             title: "AI Resume Builder",
             description: "Build professional resumes",
             icon: Award,
-            color: "from-pink-500 to-rose-500",
+            color: "from-green-500 to-teal-500",
             link: "http://localhost:3001/resume",
+            stats: "Templates",
+            external: true
+        },
+        {
+            title: "Interview Prep",
+            description: "Practice mock interviews",
+            icon: MessageCircle,
+            color: "from-red-500 to-pink-500",
+            link: "http://localhost:3001/interview",
+            stats: "AI Feedback",
+            external: true
+        },
+        {
+            title: "Cover Letter Generator",
+            description: "AI-powered cover letters",
+            icon: FileText,
+            color: "from-yellow-500 to-orange-500",
+            link: "http://localhost:3001/ai-cover-letter",
+        {
+            title: "AI Resume Builder",
+            description: "Build professional resumes",
+            icon: Award,
+            color: "from-pink-500 to-rose-500",
+            link: "http://localhost:3000/resume",
             stats: "Smart Build",
             external: true
         },
@@ -258,7 +280,7 @@ const StudentDashboardEnhanced = () => {
             description: "AI interview practice",
             icon: Brain,
             color: "from-cyan-500 to-blue-500",
-            link: "http://localhost:3001/interview",
+            link: "http://localhost:3000/interview",
             stats: "AI Trainer",
             external: true
         },
@@ -267,7 +289,7 @@ const StudentDashboardEnhanced = () => {
             description: "AI-powered cover letters",
             icon: Sparkles,
             color: "from-orange-500 to-red-500",
-            link: "http://localhost:3001/ai-cover-letter",
+            link: "http://localhost:3000/ai-cover-letter",
             stats: "AI Writer",
             external: true
         }
