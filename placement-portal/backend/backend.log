@@ -1,0 +1,18 @@
+
+> backend@1.0.0 dev
+> nodemon index.js
+
+[33m[nodemon] 3.1.3[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching path(s): *.*[39m
+[33m[nodemon] watching extensions: js,mjs,cjs,json[39m
+[32m[nodemon] starting `node index.js`[39m
+Starting server on port 8001
+Server running at port 8001
+mongodb connected successfully
+Token received: No token
+Token length: N/A
+Token first 20 chars: N/A
+Token received: No token
+Token length: N/A
+Token first 20 chars: N/A
