@@ -6,7 +6,7 @@ import {
 } from "../ui/popover"
 import { Button } from "../ui/button"
 import { Avatar, AvatarImage } from "../ui/avatar"
-import { LogOut, User2, Home, Briefcase, Search, Building, TrendingUp, Menu, X, Users, BookOpen, Mic } from "lucide-react"
+import { LogOut, User2, Home, Briefcase, Search, Building, TrendingUp, Menu, X, Users, BookOpen, Mic, Globe } from "lucide-react"
 import { Link, useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import axios from "axios"
@@ -159,6 +159,15 @@ const Navbar = () => {
                                         >
                                             <Mic className='w-4 h-4' />
                                             🎤 Practice
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link 
+                                            to="/student/linkfolio" 
+                                            className='flex items-center gap-2 bg-gradient-to-r from-purple-600 to-blue-700 text-white hover:from-purple-700 hover:to-blue-800 transition-all duration-200 px-3 py-2 rounded-lg font-medium shadow-md hover:shadow-lg'
+                                        >
+                                            <Globe className='w-4 h-4' />
+                                            🌐 LinkFolio
                                         </Link>
                                     </li>
                                 </>
@@ -327,6 +336,14 @@ const Navbar = () => {
                                 >
                                     <Mic className='w-4 h-4' />
                                     🎤 Practice
+                                </Link>
+                                <Link 
+                                    to="/student/linkfolio" 
+                                    className='flex items-center gap-2 bg-gradient-to-r from-purple-600 to-blue-700 text-white hover:from-purple-700 hover:to-blue-800 transition-all duration-200 px-3 py-2 rounded-lg font-medium shadow-md'
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                >
+                                    <Globe className='w-4 h-4' />
+                                    🌐 LinkFolio
                                 </Link>
                             </>
                         ) : (

@@ -302,38 +302,6 @@ const StudentDashboard = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
                     {/* Left Column */}
                     <div className="lg:col-span-2 space-y-6 sm:space-y-8">
-                        {/* LinkFolio Feature Card - Prominent Display */}
-                        <Card className="bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-xl border-0">
-                            <CardHeader className="pb-4">
-                                <CardTitle className="flex items-center gap-3 text-xl sm:text-2xl">
-                                    <Portfolio className="w-6 h-6 sm:w-8 sm:h-8" />
-                                    LinkFolio Portfolio Builder
-                                </CardTitle>
-                                <CardDescription className="text-purple-100 text-sm sm:text-base">
-                                    Create your professional portfolio and stand out to recruiters
-                                </CardDescription>
-                            </CardHeader>
-                            <CardContent>
-                                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                                    <div>
-                                        <p className="text-purple-100 text-sm mb-2">
-                                            ✨ 5-step portfolio builder ✨ Professional showcase ✨ Alumni networking
-                                        </p>
-                                        <p className="text-purple-200 text-xs">
-                                            Build your profile • Showcase projects • Connect with JSS alumni
-                                        </p>
-                                    </div>
-                                    <Button 
-                                        onClick={() => setShowLinkFolio(true)}
-                                        className="bg-white text-purple-600 hover:bg-purple-50 font-semibold px-6 py-3 rounded-lg transition-all hover:scale-105"
-                                    >
-                                        <Portfolio className="w-4 h-4 mr-2" />
-                                        Create Portfolio
-                                    </Button>
-                                </div>
-                            </CardContent>
-                        </Card>
-
                         {/* Quick Actions - Enhanced */}
                         <Card className="bg-white shadow-lg">
                             <CardHeader className="pb-4">
@@ -379,6 +347,17 @@ const StudentDashboard = () => {
                                         <div className="text-left">
                                             <div className="font-medium text-sm sm:text-base">Skills & Projects</div>
                                             <div className="text-xs opacity-70">Technical skills, Projects</div>
+                                        </div>
+                                    </Button>
+
+                                    <Button 
+                                        onClick={() => setShowLinkFolio(true)}
+                                        className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white flex items-center justify-center gap-2 p-4 h-auto"
+                                    >
+                                        <Portfolio className="w-4 h-4 sm:w-5 sm:h-5" />
+                                        <div className="text-left">
+                                            <div className="font-medium text-sm sm:text-base">LinkFolio Portfolio</div>
+                                            <div className="text-xs opacity-90">Professional portfolio builder</div>
                                         </div>
                                     </Button>
 
@@ -665,7 +644,7 @@ const StudentDashboard = () => {
                     </div>
                 </div>
             </div>
-
+            
             {/* LinkFolio Modal */}
             {showLinkFolio && (
                 <LinkFolioMain onClose={() => setShowLinkFolio(false)} />

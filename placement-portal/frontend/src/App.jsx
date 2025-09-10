@@ -28,6 +28,7 @@ import PreparationHubEnhanced from './components/PreparationHubEnhanced'
 import PreparationDashboard from './components/PreparationDashboard'
 import PlacementDashboard from './components/PlacementDashboard'
 import ResumeAnalyserInfo from './components/ResumeAnalyserInfo'
+import LinkFolioMain from './components/linkfolio/LinkFolioMain'
 
 
 const appRouter = createBrowserRouter([
@@ -143,6 +144,10 @@ const appRouter = createBrowserRouter([
   {
     path:"/student/mock-interview",
     element:<ProtectedRoute allowedRoles={['student']}><MockInterviewPage/></ProtectedRoute> 
+  },
+  {
+    path:"/student/linkfolio",
+    element:<ProtectedRoute allowedRoles={['student']}><LinkFolioMain/></ProtectedRoute> 
   },
   {
     path:"/resume-analyser-info",
