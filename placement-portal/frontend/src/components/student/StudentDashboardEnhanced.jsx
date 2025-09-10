@@ -27,7 +27,8 @@ import {
     Lightbulb,
     Trophy,
     Mic,
-    Brain
+    Brain,
+    Globe
 } from 'lucide-react'
 import { Button } from '../ui/button'
 import { Badge } from '../ui/badge'
@@ -195,6 +196,15 @@ const StudentDashboardEnhanced = () => {
 
     // Quick actions data
     const quickActions = [
+        {
+            title: "Portfolio Builder",
+            description: "Create your professional portfolio",
+            icon: Globe,
+            color: "from-red-500 to-red-600",
+            link: "/student/linkfolio",
+            stats: "🚀 New!",
+            featured: true
+        },
         {
             title: "View Opportunities",
             description: "Explore latest job openings",
@@ -402,16 +412,37 @@ const StudentDashboardEnhanced = () => {
                     {quickActions.map((action) => {
                         const IconComponent = action.icon
                         const ActionCard = (
-                            <Card className="h-full bg-white/80 backdrop-blur-sm border border-gray-200 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group">
+                            <Card className={`h-full backdrop-blur-sm border rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group ${
+                                action.featured 
+                                    ? 'bg-gradient-to-br from-red-50 to-orange-50 border-red-200 ring-2 ring-red-100' 
+                                    : 'bg-white/80 border-gray-200'
+                            }`}>
                                 <CardContent className="p-6">
-                                    <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${action.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                                    {action.featured && (
+                                        <div className="absolute top-2 right-2">
+                                            <Badge className="bg-red-500 text-white text-xs animate-pulse">
+                                                Featured
+                                            </Badge>
+                                        </div>
+                                    )}
+                                    <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${action.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 ${
+                                        action.featured ? 'shadow-lg' : ''
+                                    }`}>
                                         <IconComponent className="w-7 h-7 text-white" />
                                     </div>
-                                    <h3 className="font-semibold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors">
+                                    <h3 className={`font-semibold mb-2 group-hover:text-purple-600 transition-colors ${
+                                        action.featured ? 'text-red-900' : 'text-gray-900'
+                                    }`}>
                                         {action.title}
                                     </h3>
-                                    <p className="text-sm text-gray-600 mb-3">{action.description}</p>
-                                    <Badge className="bg-purple-100 text-purple-700 text-xs">
+                                    <p className={`text-sm mb-3 ${
+                                        action.featured ? 'text-red-700' : 'text-gray-600'
+                                    }`}>{action.description}</p>
+                                    <Badge className={
+                                        action.featured 
+                                            ? 'bg-red-100 text-red-700 text-xs font-medium' 
+                                            : 'bg-purple-100 text-purple-700 text-xs'
+                                    }>
                                         {action.stats}
                                     </Badge>
                                 </CardContent>
