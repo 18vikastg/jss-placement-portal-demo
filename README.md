@@ -1,512 +1,605 @@
-<<<<<<< HEAD
-# JSS Placement Portal Demo
+# 🎓 JSS Placement Portal - Complete Career Development Platform
 
-A comprehensive placement portal system built for JSS Academy of Technical Education. This full-stack web application facilitates placement activities for students, faculty, and recruiters.
+<div align="center">
+
+![JSS Placement Portal](https://img.shields.io/badge/JSS-Placement%20Portal-red?style=for-the-badge&logo=graduation-cap)
+![React](https://img.shields.io/badge/React-18-blue?style=for-the-badge&logo=react)
+![Node.js](https://img.shields.io/badge/Node.js-Express-green?style=for-the-badge&logo=node.js)
+![MongoDB](https://img.shields.io/badge/MongoDB-Database-green?style=for-the-badge&logo=mongodb)
+![AI Powered](https://img.shields.io/badge/AI-Powered-purple?style=for-the-badge&logo=artificial-intelligence)
+
+**A comprehensive full-stack placement portal system built for JSS Academy of Technical Education**
+
+[🚀 Live Demo](https://jss-placement-portal.vercel.app) • [📖 Documentation](#-features) • [💻 Installation](#-installation) • [🤝 Contributing](#-contributing)
+
+</div>
+
+---
+
+## 🌟 Overview
+
+The JSS Placement Portal is a comprehensive career development platform that facilitates seamless interaction between students, faculty, and recruiters. It combines traditional placement portal functionality with cutting-edge features like AI-powered resume analysis, professional portfolio building, and alumni networking.
+
+### 🎯 Key Highlights
+- **Complete MERN Stack Implementation** with modern React patterns
+- **AI-Powered Resume Analysis** with ML-based insights and recommendations
+- **Professional Portfolio Builder** (NewLinkFolio Integration)
+- **Alumni Networking Platform** with messaging and scheduling
+- **Comprehensive Placement Management** for all stakeholders
+- **Real-time Analytics** and progress tracking
+
+---
 
 ## 🚀 Features
 
-### For Students
-- **User Authentication**: Secure login/register system
-- **Profile Management**: Complete profile setup with resume upload
-- **Job Applications**: Browse and apply for job opportunities
-- **Application Tracking**: Track application status and feedback
-- **Preparation Hub**: Access study materials and practice resources
-- **Interview Scheduling**: Schedule and manage interview slots
+### 👨‍🎓 **For Students**
 
-### For Faculty
-- **Student Management**: View and manage student profiles
-- **Placement Coordination**: Coordinate placement activities
-- **Progress Tracking**: Monitor student placement progress
-- **Report Generation**: Generate placement statistics and reports
+#### 🔐 **Authentication & Profile Management**
+- Secure JWT-based authentication system
+- Complete profile setup with skills, education, and experience
+- Profile completion tracking with progress indicators
+- Resume upload and management with Cloudinary integration
 
-### For Recruiters
-- **Company Profile**: Manage company information and requirements
-- **Job Posting**: Create and manage job postings
-- **Application Review**: Review student applications
-- **Interview Management**: Schedule and conduct interviews
+#### 💼 **Job Discovery & Applications**
+- Advanced job search with filtering by company, location, salary, and requirements
+- One-click job applications with application status tracking
+- Personalized job recommendations based on profile and skills
+- Application history and analytics dashboard
+
+#### 🎯 **Preparation Hub**
+- Access to curated study materials and preparation resources
+- Mock interview scheduling and practice sessions
+- Skill-based learning paths and recommendations
+- Progress tracking and performance analytics
+
+#### 🤖 **AI Resume Analyzer**
+- **Intelligent Resume Parsing** with NLP-powered extraction
+- **AI-Powered Recommendations** for skill enhancement
+- **Comprehensive Analysis** with experience level assessment
+- **Quality Scoring** with detailed feedback and improvement suggestions
+- **Career Path Predictions** based on profile analysis
+
+#### 🌐 **LinkFolio - Professional Portfolio Builder**
+- **Complete Portfolio Creation** with step-by-step guidance
+- **Professional Templates** with JSS Academy branding
+- **Skills & Experience Showcase** with visual representations
+- **Portfolio Analytics** with view tracking and engagement metrics
+- **Export & Share Options** for easy distribution
+
+#### 👥 **Alumni Network (AlumniLink)**
+- **Connect with JSS Alumni** working at top companies (Google, Microsoft, Amazon, Flipkart)
+- **Real-time Messaging System** with read/unread status tracking
+- **Meeting Scheduling** with calendar integration
+- **Alumni Search & Filter** by company, skills, and graduation year
+- **Mentorship Requests** and professional guidance
+- **Networking Events** and alumni meetup coordination
+
+#### 📊 **Analytics Dashboard**
+- Profile completion percentage and recommendations
+- Application success rates and interview conversion
+- Skill development tracking and progress visualization
+- Notification center with priority-based alerts
+
+### 🏢 **For Recruiters**
+
+#### 🏬 **Company Management**
+- Comprehensive company profile setup with branding
+- Team member management and role assignments
+- Company analytics and recruitment metrics
+
+#### 💼 **Job Posting & Management**
+- Advanced job posting with detailed requirements and specifications
+- Bulk job posting capabilities for placement drives
+- Job performance analytics and application insights
+- Custom application forms and screening questions
+
+#### 👥 **Candidate Management**
+- Advanced candidate filtering and search capabilities
+- Resume analysis integration for candidate assessment
+- Interview scheduling and calendar management
+- Application tracking with status updates and feedback
+
+#### 📈 **Recruitment Analytics**
+- Application conversion rates and funnel analysis
+- Time-to-hire metrics and recruitment efficiency
+- Candidate quality assessment and scoring
+- Custom reporting and data export capabilities
+
+### 👨‍🏫 **For Faculty**
+
+#### 📊 **Student Management**
+- Complete student profile oversight and monitoring
+- Placement progress tracking and success metrics
+- Academic performance correlation with placement outcomes
+- Student mentoring and guidance tools
+
+#### 📚 **Resource Management**
+- Preparation material creation and curation
+- Study plan creation and assignment
+- Progress monitoring and assessment tools
+- Resource usage analytics and effectiveness tracking
+
+#### 📈 **Analytics & Reporting**
+- Comprehensive placement statistics and trends
+- Department-wise performance analysis
+- Industry placement patterns and insights
+- Custom report generation for administrative purposes
+
+### 🔧 **Admin Features**
+
+#### 🎛️ **System Management**
+- User role management and permissions
+- System configuration and settings
+- Database management and backup tools
+- Performance monitoring and optimization
+
+#### 📊 **Analytics Dashboard**
+- Platform usage statistics and user engagement
+- Feature adoption rates and user behavior analysis
+- System performance metrics and health monitoring
+- Custom dashboard creation and reporting
+
+---
 
 ## 🛠️ Tech Stack
 
-### Frontend
-- **React.js** - UI framework
-- **Vite** - Build tool
-- **Tailwind CSS** - Styling
-- **Redux Toolkit** - State management
-- **React Router** - Navigation
-- **Axios** - HTTP client
+### **Frontend Technologies**
+```
+React 18               - Modern UI library with hooks and context
+Vite                  - Fast build tool and development server
+Redux Toolkit         - Predictable state management
+React Router DOM      - Client-side routing with lazy loading
+Tailwind CSS          - Utility-first CSS framework
+Radix UI              - Accessible component primitives
+Framer Motion         - Smooth animations and transitions
+Recharts              - Responsive data visualization
+Lucide React          - Beautiful icon library
+Axios                 - HTTP client with interceptors
+```
 
-### Backend
-- **Node.js** - Runtime environment
-- **Express.js** - Web framework
-- **MongoDB** - Database
-- **Mongoose** - ODM
-- **JWT** - Authentication
-- **Bcrypt** - Password hashing
-- **Cloudinary** - File storage
+### **Backend Technologies**
+```
+Node.js               - JavaScript runtime environment
+Express.js            - Fast web application framework
+MongoDB               - NoSQL database with flexible schema
+Mongoose              - Elegant MongoDB ODM with validation
+JWT                   - Secure authentication tokens
+Bcrypt                - Password hashing and security
+Cloudinary            - Image and file upload management
+Multer                - File upload middleware
+CORS                  - Cross-origin resource sharing
+Helmet                - Security middleware for Express
+```
 
-## 📦 Installation
+### **AI & Machine Learning**
+```
+Python 3.11+          - Core AI processing language
+Streamlit             - AI dashboard and interface
+spaCy                 - Advanced NLP processing
+NLTK                  - Natural language toolkit
+PyResParser           - Resume parsing engine
+PDFMiner3             - PDF text extraction
+Plotly                - Interactive AI visualizations
+MySQL                 - AI data storage and analytics
+```
 
-### Prerequisites
-- Node.js (v18 or higher)
-- MongoDB
-- Git
+### **Development & Deployment**
+```
+Vercel                - Frontend and backend hosting
+MongoDB Atlas         - Cloud database hosting
+Git & GitHub          - Version control and collaboration
+ESLint                - Code linting and quality
+Prettier              - Code formatting
+Husky                 - Git hooks for quality control
+```
 
-### Clone the Repository
+---
+
+## 🏗️ Project Architecture
+
+```
+jss-placement-portal/
+├── 📁 placement-portal/
+│   ├── 📁 frontend/                 # React Frontend Application
+│   │   ├── 📁 src/
+│   │   │   ├── 📁 components/       # Reusable UI Components
+│   │   │   │   ├── 📁 auth/         # Authentication Components
+│   │   │   │   ├── 📁 student/      # Student Dashboard & Features
+│   │   │   │   ├── 📁 recruiter/    # Recruiter Management
+│   │   │   │   ├── 📁 admin/        # Admin Panel Components
+│   │   │   │   ├── 📁 linkfolio/    # Portfolio Builder (NewLinkFolio)
+│   │   │   │   ├── 📁 shared/       # Shared Components
+│   │   │   │   ├── 📁 ui/           # UI Component Library
+│   │   │   │   └── 📁 3D/           # 3D Animations & Effects
+│   │   │   ├── 📁 hooks/            # Custom React Hooks
+│   │   │   ├── 📁 redux/            # State Management
+│   │   │   ├── 📁 utils/            # Utility Functions
+│   │   │   └── 📁 assets/           # Static Assets
+│   │   └── 📁 public/               # Public Static Files
+│   │
+│   └── 📁 backend/                  # Node.js Backend API
+│       ├── 📁 controllers/          # Business Logic Controllers
+│       ├── 📁 models/               # Database Models & Schemas
+│       ├── 📁 routes/               # API Route Definitions
+│       ├── 📁 middlewares/          # Custom Middleware
+│       ├── 📁 utils/                # Backend Utilities
+│       └── 📁 config/               # Configuration Files
+│
+├── 📁 ai-resume-analyser/           # AI-Powered Resume Analysis
+│   ├── 📁 App/                      # Streamlit Application
+│   │   ├── App.py                   # Main AI Application
+│   │   ├── config.py                # AI Configuration
+│   │   └── requirements.txt         # AI Dependencies
+│   └── 📁 pyresparser/              # Resume Parsing Engine
+│
+├── 📁 NewLinkFolio-main/           # Original Portfolio Source
+│   └── 📁 NewLinkFolio-main/       # Source HTML Application
+│       └── index.html               # 3000+ lines of portfolio features
+│
+├── 📁 database-backup/              # MongoDB Backup Files
+├── 📄 README.md                     # Project Documentation
+└── 📄 LICENSE                       # MIT License
+```
+
+---
+
+## 🚀 Installation & Setup
+
+### 📋 Prerequisites
+- **Node.js** (v18.0.0 or higher)
+- **MongoDB** (v6.0 or higher) or MongoDB Atlas account
+- **Python** (v3.11+ for AI features)
+- **Git** for version control
+- **Cloudinary** account for file uploads
+
+### 🔧 Environment Setup
+
+#### 1. **Clone the Repository**
 ```bash
 git clone https://github.com/18vikastg/jss-placement-portal-demo.git
 cd jss-placement-portal-demo
 ```
 
-### Backend Setup
+#### 2. **Backend Configuration**
 ```bash
 cd placement-portal/backend
 npm install
 
-# Create .env file
+# Create environment file
 cp .env.example .env
-# Edit .env file with your configurations
 ```
 
-### Frontend Setup
+**Backend Environment Variables (.env):**
+```env
+# Database Configuration
+MONGO_URI=mongodb://localhost:27017/jobportal
+# Or for production: mongodb+srv://username:password@cluster.mongodb.net/jobportal
+
+# Authentication
+JWT_SECRET=your_super_secure_jwt_secret_key_minimum_32_characters
+
+# Cloudinary Configuration (for file uploads)
+CLOUD_NAME=your_cloudinary_cloud_name
+API_KEY=your_cloudinary_api_key
+API_SECRET=your_cloudinary_api_secret
+
+# Server Configuration
+PORT=8001
+NODE_ENV=development
+```
+
+#### 3. **Frontend Configuration**
 ```bash
 cd ../frontend
 npm install
 
-# Create .env file
-cp .env.example .env
-# Edit .env file with your configurations
+# Create environment files
+cp .env.example .env.development
+cp .env.example .env.production
 ```
 
-## 🚀 Running the Application
+**Frontend Environment Variables:**
+```env
+# Development (.env.development)
+VITE_API_BASE_URL=http://localhost:8001
+VITE_NODE_ENV=development
 
-### Start Backend Server
+# Production (.env.production)
+VITE_API_BASE_URL=https://your-backend-domain.vercel.app
+VITE_NODE_ENV=production
+```
+
+#### 4. **AI Resume Analyzer Setup**
 ```bash
+cd ../../ai-resume-analyser/App
+pip install -r requirements.txt
+
+# Download required NLP models
+python -m spacy download en_core_web_sm
+
+# Set up MySQL database for AI features
+mysql -u root -p
+CREATE DATABASE resume_analyzer_db;
+```
+
+#### 5. **Database Setup**
+```bash
+# Import sample data (optional)
+cd ../../database-backup
+mongorestore --host localhost:27017 --db jobportal jobportal/
+```
+
+### 🏃‍♂️ Running the Application
+
+#### **Development Mode**
+```bash
+# Terminal 1: Start Backend Server
 cd placement-portal/backend
-npm start
-```
-Server will run on `http://localhost:8001`
+npm run dev
+# Backend runs on http://localhost:8001
 
-### Start Frontend Development Server
-```bash
+# Terminal 2: Start Frontend Development Server
 cd placement-portal/frontend
 npm run dev
+# Frontend runs on http://localhost:5173
+
+# Terminal 3: Start AI Resume Analyzer
+cd ai-resume-analyser/App
+streamlit run App.py
+# AI service runs on http://localhost:8501
 ```
-Application will be available at `http://localhost:5173`
 
-## 👥 Test Users
+#### **Production Build**
+```bash
+# Build frontend for production
+cd placement-portal/frontend
+npm run build
 
-### Student Account
-- **Email**: patel@gmail.com
-- **Password**: patel@gmail.com
-- **Role**: Student
-
-### Alternative Student Account
-- **Email**: test@student.com
-- **Password**: password123
-- **Role**: Student
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 👨‍💻 Author
-
-**Vikas T G**
-- GitHub: [@18vikastg](https://github.com/18vikastg)
+# Start backend in production mode
+cd ../backend
+npm start
+```
 
 ---
 
-⭐ Star this repository if you found it helpful!
+## 🌐 Live Demo & Deployment
 
-A comprehensive full-stack job placement portal built for JSS Academy of Technical Education students and recruiters. This platform facilitates seamless interaction between students, faculty, and recruiters for job placements and career development.
+### **🔗 Live URLs**
+- **Main Portal**: [https://jss-placement-portal.vercel.app](https://jss-placement-portal.vercel.app)
+- **Backend API**: [https://jss-placement-portal-backend.vercel.app](https://jss-placement-portal-backend.vercel.app)
 
-## 🚀 Live Demo
+### **🧪 Test Accounts**
 
-- **Frontend**: [https://jss-placement-portal.vercel.app](https://jss-placement-portal.vercel.app)
-- **Backend API**: [https://jss-placement-portal-fcucq0za1-vikas-t-gs-projects.vercel.app](https://jss-placement-portal-fcucq0za1-vikas-t-gs-projects.vercel.app)
-
-## 🌟 Features
-
-### For Students
-- **Profile Management**: Complete profile setup with skills, education, and experience
-- **Job Search & Filter**: Advanced filtering by company, location, salary, and requirements
-- **Application Tracking**: Track application status and history
-- **Preparation Hub**: Access study materials and preparation resources
-- **Mock Interviews**: Schedule and take practice interviews
-- **Dashboard Analytics**: View profile completion and application statistics
-
-### For Recruiters
-- **Company Profile**: Manage company information and branding
-- **Job Posting**: Create and manage job listings with detailed requirements
-- **Candidate Management**: View and filter applications
-- **Interview Scheduling**: Coordinate with candidates for interviews
-
-### For Faculty
-- **Student Oversight**: Monitor student progress and placements
-- **Resource Management**: Add and manage preparation materials
-- **Analytics Dashboard**: Track placement statistics and trends
-
-## 🛠️ Tech Stack
-
-### Frontend
-- **React 18** - Modern UI library
-- **Vite** - Fast build tool and development server
-- **Redux Toolkit** - State management
-- **React Router DOM** - Client-side routing
-- **Tailwind CSS** - Utility-first CSS framework
-- **Radix UI** - Accessible component library
-- **Framer Motion** - Animation library
-- **Recharts** - Data visualization
-- **Axios** - HTTP client
-
-### Backend
-- **Node.js** - Runtime environment
-- **Express.js** - Web application framework
-- **MongoDB** - NoSQL database
-- **Mongoose** - MongoDB ODM
-- **JWT** - Authentication
-- **Bcrypt** - Password hashing
-- **Cloudinary** - Image upload and management
-- **Multer** - File upload middleware
-- **CORS** - Cross-origin resource sharing
-
-### Deployment
-- **Vercel** - Frontend and Backend hosting
-- **MongoDB Atlas** - Cloud database (production)
-- **Git & GitHub** - Version control
-
-## 🏗️ Project Structure
-
+#### **Student Account**
 ```
-jss-placement-portal/
-├── frontend/                 # React frontend application
-│   ├── src/
-│   │   ├── components/      # Reusable UI components
-│   │   │   ├── admin/       # Admin-specific components
-│   │   │   ├── auth/        # Authentication components
-│   │   │   ├── shared/      # Shared components
-│   │   │   └── ui/          # UI component library
-│   │   ├── hooks/           # Custom React hooks
-│   │   ├── redux/           # State management
-│   │   ├── utils/           # Utility functions and constants
-│   │   └── assets/          # Static assets
-│   ├── public/              # Public assets
-│   ├── package.json         # Frontend dependencies
-│   └── vercel.json          # Frontend deployment config
-├── backend/                 # Node.js backend API
-│   ├── controllers/         # Route controllers
-│   ├── models/              # Database models
-│   ├── routes/              # API routes
-│   ├── middlewares/         # Custom middleware
-│   ├── utils/               # Utility functions
-│   ├── package.json         # Backend dependencies
-│   └── vercel.json          # Backend deployment config
-├── database-backup/         # MongoDB backup files
-├── README.md               # Project documentation
-└── LICENSE                 # MIT License
+Email: patel@gmail.com
+Password: patel@gmail.com
+Role: Student
+Features: Complete access to all student features
 ```
 
-## 🚀 Getting Started
-
-### Prerequisites
-- Node.js (v16 or higher)
-- MongoDB (local or Atlas)
-- Cloudinary account
-- Git
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/18vikastg/jss-placement-portal.git
-   cd jss-placement-portal
-   ```
-
-2. **Backend Setup**
-   ```bash
-   cd backend
-   npm install
-   
-   # Create .env file
-   cp .env.example .env
-   
-   # Update .env with your credentials
-   MONGO_URI=mongodb://localhost:27017/jobportal
-   JWT_SECRET=your_super_secret_jwt_key
-   CLOUD_NAME=your_cloudinary_cloud_name
-   API_KEY=your_cloudinary_api_key
-   API_SECRET=your_cloudinary_api_secret
-   PORT=8001
-   
-   # Start backend server
-   npm run dev
-   ```
-
-3. **Frontend Setup**
-   ```bash
-   cd ../frontend
-   npm install
-   
-   # Create environment files
-   # .env.development
-   VITE_API_BASE_URL=http://localhost:8001
-   
-   # .env.production
-   VITE_API_BASE_URL=https://your-backend-url.vercel.app
-   
-   # Start frontend development server
-   npm run dev
-   ```
-
-4. **Database Setup**
-   ```bash
-   # If using local MongoDB backup
-   mongorestore --host localhost:27017 --db jobportal database-backup/jobportal/
-   ```
-
-## 🔧 Configuration
-
-### Environment Variables
-
-#### Backend (.env)
-```env
-MONGO_URI=mongodb://localhost:27017/jobportal
-JWT_SECRET=your_jwt_secret_key_here_make_it_very_long_and_secure
-CLOUD_NAME=your_cloudinary_cloud_name
-API_KEY=your_cloudinary_api_key
-API_SECRET=your_cloudinary_api_secret
-PORT=8001
+#### **Recruiter Account**
+```
+Email: recruiter@company.com
+Password: recruiter123
+Role: Recruiter
+Features: Job posting, candidate management
 ```
 
-#### Frontend (.env.development / .env.production)
-```env
-VITE_API_BASE_URL=http://localhost:8001
-VITE_NODE_ENV=development
+#### **Faculty Account**
+```
+Email: faculty@jssateb.ac.in
+Password: faculty123
+Role: Faculty
+Features: Student management, analytics
 ```
 
-### MongoDB Collections
-The application uses the following MongoDB collections:
-- `users` - Student, recruiter, and faculty accounts
-- `companies` - Company profiles and information
-- `jobs` - Job listings and requirements
-- `applications` - Job applications and status
-- `faculties` - Faculty member profiles
-- `recruiters` - Recruiter profiles
-- `preparationresources` - Study materials and resources
-- `drives` - Placement drive information
-- `mockinterviewlogs` - Mock interview records
-- `studyplans` - Student study plans
-- `userprogresses` - Student progress tracking
+#### **AI Resume Analyzer Admin**
+```
+Username: admin
+Password: admin@resume-analyzer
+Features: Analytics dashboard, user data management
+```
 
-## 🚀 Deployment
+---
 
-### Frontend Deployment (Vercel)
+## 📱 Feature Showcase
+
+### 🎨 **LinkFolio Portfolio Builder**
+The integrated NewLinkFolio-main features provide a complete portfolio building experience:
+
+- **🏠 Landing Page**: Professional welcome interface with JSS branding
+- **📝 Account Creation**: Streamlined signup process for new users
+- **👤 Profile Builder**: Step-by-step profile creation with:
+  - Personal information management
+  - Skills assessment and tracking
+  - Education and experience documentation
+  - Career objective setting
+  - Professional photo upload
+- **📊 Portfolio Display**: Beautiful portfolio showcase with:
+  - Responsive design across all devices
+  - Professional templates and layouts
+  - Skills visualization and progress tracking
+  - Contact information and social links
+- **🎓 Alumni Network**: Connect with JSS alumni featuring:
+  - Alumni directory with company affiliations
+  - Direct messaging and communication
+  - Meeting scheduling and calendar integration
+  - Mentorship request system
+- **📈 Analytics**: Portfolio performance tracking with:
+  - View statistics and engagement metrics
+  - Profile completion progress
+  - Interaction tracking and insights
+
+### 🤖 **AI Resume Analyzer**
+Advanced artificial intelligence features for resume enhancement:
+
+- **📄 Intelligent Parsing**: Extract structured data from PDF resumes
+- **🧠 NLP Analysis**: Advanced natural language processing for content analysis
+- **⭐ Quality Scoring**: Comprehensive resume scoring with improvement suggestions
+- **🎯 Skill Recommendations**: Personalized skill enhancement suggestions
+- **📊 Career Insights**: Data-driven career path predictions
+- **📈 Progress Tracking**: Monitor resume improvement over time
+
+### 📊 **Analytics Dashboard**
+Comprehensive analytics for all user types:
+
+- **Student Analytics**:
+  - Application success rates and conversion metrics
+  - Profile completion tracking and recommendations
+  - Skill development progress and growth areas
+  - Interview performance and feedback analysis
+
+- **Recruiter Analytics**:
+  - Job posting performance and application metrics
+  - Candidate quality assessment and filtering
+  - Time-to-hire optimization and efficiency tracking
+  - Recruitment funnel analysis and conversion rates
+
+- **Faculty Analytics**:
+  - Student placement success rates and trends
+  - Department-wise performance comparisons
+  - Industry placement patterns and insights
+  - Academic correlation with placement outcomes
+
+---
+
+## 🧪 Test Accounts & Usage
+
+### **👥 Pre-configured Test Users**
+
+#### **Student Access**
+- **Primary**: patel@gmail.com / patel@gmail.com
+- **Secondary**: test@student.com / password123
+- **Features**: Portfolio builder, job applications, AI resume analysis, alumni networking
+
+#### **Recruiter Dashboard**
+- **Email**: recruiter@company.com / recruiter123
+- **Features**: Job posting, candidate management, application review, analytics
+
+#### **Faculty Panel**
+- **Email**: faculty@jssateb.ac.in / faculty123
+- **Features**: Student oversight, resource management, placement analytics
+
+#### **AI System Admin**
+- **Credentials**: admin / admin@resume-analyzer
+- **Features**: AI analytics, user data management, system insights
+
+---
+
+## 📞 Support & Help
+
+### **Getting Help**
+- **📧 Email Support**: [vikastg2000@gmail.com](mailto:vikastg2000@gmail.com)
+- **🐛 Bug Reports**: [Create an Issue](https://github.com/18vikastg/jss-placement-portal-demo/issues)
+- **💡 Feature Requests**: [Feature Request Template](https://github.com/18vikastg/jss-placement-portal-demo/issues/new)
+- **📖 Documentation**: Check this README and code comments
+
+### **Common Issues & Solutions**
 ```bash
-cd frontend
-npm run build
-vercel --prod
+# Database connection issues
+1. Check MongoDB service status
+2. Verify connection string in .env
+3. Ensure network connectivity
+
+# Build failures
+1. Clear node_modules: rm -rf node_modules && npm install
+2. Clear cache: npm cache clean --force
+3. Check Node.js version compatibility
+
+# Authentication issues
+1. Verify JWT_SECRET in environment
+2. Check token expiration settings
+3. Clear browser localStorage
 ```
 
-### Backend Deployment (Vercel)
-```bash
-cd backend
-vercel --prod
-```
-
-### Environment Variables Setup
-Add the following environment variables in Vercel dashboard:
-- `MONGO_URI` - MongoDB Atlas connection string
-- `JWT_SECRET` - JWT secret key
-- `CLOUD_NAME` - Cloudinary cloud name
-- `API_KEY` - Cloudinary API key
-- `API_SECRET` - Cloudinary API secret
-
-## 🧪 Development Journey
-
-This project was developed through several key phases:
-
-### Phase 1: Authentication & User Management
-- ✅ Implemented JWT-based authentication
-- ✅ Created user registration and login systems
-- ✅ Set up role-based access control (Student, Recruiter, Faculty)
-- ✅ Fixed profile data synchronization issues
-
-### Phase 2: Core Features Development
-- ✅ Built comprehensive job posting and application system
-- ✅ Developed student profile management with skills tracking
-- ✅ Created company profile management for recruiters
-- ✅ Implemented advanced job search and filtering
-
-### Phase 3: Advanced Features
-- ✅ Added preparation hub with study materials
-- ✅ Implemented mock interview system
-- ✅ Created analytics dashboards
-- ✅ Built file upload system with Cloudinary integration
-
-### Phase 4: UI/UX Enhancement
-- ✅ Fixed dummy data issues - profile now shows real user data
-- ✅ Improved data synchronization between components
-- ✅ Enhanced responsive design
-- ✅ Implemented modern UI components with Radix UI
-
-### Phase 5: Deployment & Production
-- ✅ Configured Vercel deployment for both frontend and backend
-- ✅ Set up MongoDB Atlas for production database
-- ✅ Fixed CORS issues for cross-origin requests
-- ✅ Resolved dependency conflicts and build issues
-- ✅ Implemented environment-specific configurations
-
-## 🐛 Common Issues & Solutions
-
-### Development Issues Fixed
-1. **Profile Page Showing Dummy Data**: Fixed by updating routing to use correct Profile component instead of StudentProfile
-2. **Data Synchronization**: Resolved by implementing proper Redux state management
-3. **CORS Errors**: Fixed by updating backend CORS configuration for production URLs
-4. **Build Failures**: Resolved React Three Fiber dependency conflicts
-5. **Environment Configuration**: Implemented proper environment variable handling
-
-### Database Connection
-```bash
-# Local MongoDB connection
-mongodb://localhost:27017/jobportal
-
-# Production MongoDB Atlas connection
-mongodb+srv://username:password@cluster.mongodb.net/jobportal
-```
-
-## 📊 Database Schema
-
-### Users Collection
-```javascript
-{
-  _id: ObjectId,
-  fullname: String,
-  email: String,
-  phoneNumber: String,
-  password: String (hashed),
-  role: String, // 'student', 'recruiter', 'faculty'
-  profile: {
-    bio: String,
-    skills: [String],
-    resume: String,
-    resumeOriginalName: String,
-    company: ObjectId,
-    profilePhoto: String
-  }
-}
-```
-
-### Jobs Collection
-```javascript
-{
-  _id: ObjectId,
-  title: String,
-  description: String,
-  requirements: [String],
-  salary: Number,
-  experienceLevel: Number,
-  location: String,
-  jobType: String,
-  position: Number,
-  company: ObjectId,
-  created_by: ObjectId,
-  applications: [ObjectId]
-}
-```
+---
 
 ## 🤝 Contributing
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+We welcome contributions from the community! Here's how you can help:
 
-## 📝 API Documentation
+### **Getting Started**
+1. **Fork the repository** on GitHub
+2. **Clone your fork** locally
+3. **Create a feature branch** from main
+4. **Make your changes** with proper testing
+5. **Submit a pull request** with detailed description
 
-### Authentication Endpoints
-- `POST /api/v1/user/register` - User registration
-- `POST /api/v1/user/login` - User login
-- `POST /api/v1/user/logout` - User logout
+### **Contribution Guidelines**
+- Follow the existing code style and conventions
+- Write comprehensive tests for new features
+- Update documentation for any API changes
+- Ensure all tests pass before submitting PR
+- Use meaningful commit messages
 
-### User Endpoints
-- `GET /api/v1/user/profile` - Get user profile
-- `POST /api/v1/user/profile/update` - Update user profile
+### **Development Workflow**
+```bash
+# Create feature branch
+git checkout -b feature/amazing-feature
 
-### Job Endpoints
-- `GET /api/v1/job` - Get all jobs
-- `POST /api/v1/job/post` - Create new job (Recruiter only)
-- `GET /api/v1/job/:id` - Get job by ID
+# Make changes and commit
+git add .
+git commit -m "feat: add amazing feature"
 
-### Application Endpoints
-- `POST /api/v1/application/apply/:id` - Apply for job
-- `GET /api/v1/application` - Get user applications
-- `PUT /api/v1/application/status/:id/update` - Update application status
+# Push to your fork
+git push origin feature/amazing-feature
 
-## 📱 Mobile Responsiveness
-
-The application is fully responsive and works seamlessly across:
-- 📱 Mobile devices (320px+)
-- 📱 Tablets (768px+)
-- 💻 Laptops (1024px+)
-- 🖥️ Desktops (1200px+)
-
-## 🔒 Security Features
-
-- JWT-based authentication
-- Password hashing with bcrypt
-- Protected routes and middleware
-- Role-based authorization
-- Input validation and sanitization
-- CORS configuration for secure cross-origin requests
-
-## 🎨 UI Components
-
-Built with modern, accessible components:
-- Custom form controls
-- Interactive data tables
-- Responsive navigation
-- Modal dialogs
-- Loading states
-- Error boundaries
-- Toast notifications
-
-## 📈 Performance Optimizations
-
-- Code splitting with dynamic imports
-- Image optimization with Cloudinary
-- Efficient state management with Redux Toolkit
-- Optimized build process with Vite
-- Lazy loading of components
-- Memoized computations
-
-## 🏆 Achievements
-
-- ✅ Complete MERN stack implementation
-- ✅ Modern React patterns and hooks
-- ✅ Production-ready deployment
-- ✅ Responsive design implementation
-- ✅ Comprehensive state management
-- ✅ File upload and cloud storage
-- ✅ Authentication and authorization
-- ✅ Real-time data synchronization
-
-## 📞 Support
-
-For support, email [vikastg2000@gmail.com](mailto:vikastg2000@gmail.com) or open an issue on GitHub.
-
-## 🙏 Acknowledgments
-
-- JSS Academy of Technical Education for the inspiration
-- React and Node.js communities for excellent documentation
-- Vercel for seamless deployment experience
-- MongoDB for robust database solutions
-- Cloudinary for image management services
+# Create pull request on GitHub
+```
 
 ---
 
-**Made with ❤️ by [Vikas T. G](https://github.com/18vikastg)**
-=======
+## 📄 License
+
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+
+### **MIT License Summary**
+- ✅ **Commercial Use** - Use for commercial purposes
+- ✅ **Modification** - Modify the source code
+- ✅ **Distribution** - Distribute copies of the software
+- ✅ **Private Use** - Use for private purposes
+- ❌ **Liability** - No warranty or liability
+- ❌ **Warranty** - No warranty provided
+
+---
+
+## 🙏 Acknowledgments
+
+### **Technology Partners**
+- **[React Team]** for the amazing UI library
+- **[MongoDB]** for the flexible database solution
+- **[Vercel]** for seamless deployment experience
+- **[Cloudinary]** for robust file management
+- **[Tailwind CSS]** for the utility-first CSS framework
+
+### **Educational Institution**
+- **JSS Academy of Technical Education** for the inspiration and use case
+- **Students and Faculty** for feedback and testing
+- **Placement Cell** for requirements and guidance
+
+### **Open Source Community**
+- **Contributors** who helped improve the project
+- **Issue Reporters** who identified bugs and improvements
+- **Documentation Writers** who enhanced project documentation
+
+---
+
+<div align="center">
+
+### **Made with ❤️ by [Vikas T. G](https://github.com/18vikastg)**
+
+**🎓 Empowering education through technology**
+
+**🚀 Building the future of career development**
+
+---
+
+[![GitHub followers](https://img.shields.io/github/followers/18vikastg?style=social)](https://github.com/18vikastg)
+
+**⭐ Star this repository if you found it helpful!**
+
+</div>
 <p><small>Best View in <a href="https://github.com/settings/appearance">Light Mode</a> and Desktop Site (Recommended)</small></p><br/>
 
 ![AI-Resume-Analyzer](https://socialify.git.ci/18vikastg/ai-resume-analyser/image?description=1&descriptionEditable=Advanced%20AI-Powered%20Resume%20Analysis%20%26%20Career%20Intelligence%20Platform&font=Raleway&language=1&pattern=Plus&theme=Light)
