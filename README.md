@@ -16,6 +16,30 @@
 
 ---
 
+## 🚀 Quick Start Commands
+
+### **For New Users (First Time Setup):**
+```bash
+./complete-setup.sh    # Installs everything from scratch
+```
+
+### **For Daily Development:**
+```bash
+./fast-start.sh        # Quick start (Frontend + Backend) - 10 seconds
+./start-all-services.sh # Complete setup (+ AI Features) - 2 minutes
+./stop-all-services.sh  # Stop all services
+./check-status.sh      # Check service status
+```
+
+### **Access URLs After Starting:**
+| Service | URL | Login |
+|---------|-----|-------|
+| **Main Portal** | http://localhost:5173 | patel@gmail.com / patel@gmail.com |
+| **Backend API** | http://localhost:8001 | (API endpoints) |
+| **AI Analyzer** | http://localhost:8501 | admin / admin@resume-analyzer |
+
+---
+
 ## 🌟 Overview
 
 The JSS Placement Portal is a comprehensive career development platform that facilitates seamless interaction between students, faculty, and recruiters. It combines traditional placement portal functionality with cutting-edge features like AI-powered resume analysis, professional portfolio building, and alumni networking.

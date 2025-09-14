@@ -138,9 +138,15 @@ const Navbar = () => {
                                         </Link>
                                     </li>
                                     <li>
+                                        <Link to="/student/profile" className='flex items-center gap-2 text-gray-700 hover:text-red-700 transition-colors px-3 py-2 rounded-lg hover:bg-red-50'>
+                                            <User2 className='w-4 h-4' />
+                                            Profile
+                                        </Link>
+                                    </li>
+                                    <li>
                                         <Link to="/browse" className='flex items-center gap-2 text-gray-700 hover:text-red-700 transition-colors px-3 py-2 rounded-lg hover:bg-red-50'>
                                             <Search className='w-4 h-4' />
-                                            Browse
+                                            Browse Jobs
                                         </Link>
                                     </li>
                                     <li>
@@ -167,7 +173,7 @@ const Navbar = () => {
                                             className='flex items-center gap-2 bg-gradient-to-r from-purple-600 to-blue-700 text-white hover:from-purple-700 hover:to-blue-800 transition-all duration-200 px-3 py-2 rounded-lg font-medium shadow-md hover:shadow-lg'
                                         >
                                             <Globe className='w-4 h-4' />
-                                            🌐 LinkFolio
+                                            🌐 Portfolio
                                         </Link>
                                     </li>
                                 </>
@@ -317,9 +323,13 @@ const Navbar = () => {
                                     <Briefcase className='w-4 h-4' />
                                     My Applications
                                 </Link>
+                                <Link to="/student/profile" className='flex items-center gap-2 text-gray-700 hover:text-red-700 transition-colors px-3 py-2 rounded-lg hover:bg-red-50'>
+                                    <User2 className='w-4 h-4' />
+                                    Profile
+                                </Link>
                                 <Link to="/browse" className='flex items-center gap-2 text-gray-700 hover:text-red-700 transition-colors px-3 py-2 rounded-lg hover:bg-red-50'>
                                     <Search className='w-4 h-4' />
-                                    Browse
+                                    Browse Jobs
                                 </Link>
                                 <Link 
                                     to="/preparation" 
@@ -343,7 +353,7 @@ const Navbar = () => {
                                     onClick={() => setIsMobileMenuOpen(false)}
                                 >
                                     <Globe className='w-4 h-4' />
-                                    🌐 LinkFolio
+                                    🌐 Portfolio
                                 </Link>
                             </>
                         ) : (

@@ -334,38 +334,6 @@ const StudentDashboard = () => {
                             </CardContent>
                         </Card>
 
-                        {/* Alumni Services Feature Card */}
-                        <Card className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-xl border-0">
-                            <CardHeader className="pb-4">
-                                <CardTitle className="flex items-center gap-3 text-xl sm:text-2xl">
-                                    <Users className="w-6 h-6 sm:w-8 sm:h-8" />
-                                    JSS Alumni Network
-                                </CardTitle>
-                                <CardDescription className="text-blue-100 text-sm sm:text-base">
-                                    Connect with 500+ JSS alumni across top companies worldwide
-                                </CardDescription>
-                            </CardHeader>
-                            <CardContent>
-                                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                                    <div>
-                                        <p className="text-blue-100 text-sm mb-2">
-                                            🤝 Mentorship programs ⭐ Career guidance 🏢 Job referrals
-                                        </p>
-                                        <p className="text-blue-200 text-xs">
-                                            Get mentored • Find opportunities • Build professional network
-                                        </p>
-                                    </div>
-                                    <Button 
-                                        onClick={() => window.location.href = '/student/alumni'}
-                                        className="bg-white text-blue-600 hover:bg-blue-50 font-semibold px-6 py-3 rounded-lg transition-all hover:scale-105"
-                                    >
-                                        <Users className="w-4 h-4 mr-2" />
-                                        Connect Alumni
-                                    </Button>
-                                </div>
-                            </CardContent>
-                        </Card>
-
                         {/* Quick Actions - Enhanced */}
                         <Card className="bg-white shadow-lg">
                             <CardHeader className="pb-4">
