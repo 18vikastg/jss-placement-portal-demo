@@ -25,7 +25,8 @@ import {
     Lock,
     Camera,
     Settings,
-    Megaphone
+    Megaphone,
+    Filter
 } from 'lucide-react';
 import { Button } from '../ui/button';
 import { 
@@ -35,6 +36,10 @@ import {
     notificationsStorage,
     validateProfileData
 } from './storage.js';
+
+import { 
+    filterAlumni
+} from './helpers.js';
 import { Card, CardContent } from '../ui/card';
 import { Badge } from '../ui/badge';
 import { Input } from '../ui/input';
@@ -57,11 +62,10 @@ const NewLinkFolio = ({ onClose }) => {
     const [alumniData, setAlumniData] = useState([]);
     const [filteredAlumni, setFilteredAlumni] = useState([]);
     
-    // Messaging states
+    // Messaging and notification states  
     const [filteredMessages, setFilteredMessages] = useState([]);
-    
-    // Notification states
     const [filteredNotifications, setFilteredNotifications] = useState([]);
+
     
     // Load saved profile data on component mount
     // Load saved profile from localStorage
@@ -825,16 +829,66 @@ const NewLinkFolio = ({ onClose }) => {
         );
     };
 
-    // Alumni Network Component
+    // Enhanced Alumni Network Component with Advanced Search
     const AlumniNetwork = () => {
+        const [localSearchTerm, setLocalSearchTerm] = useState('');
+        const [showFilters, setShowFilters] = useState(false);
+        const [selectedFilters, setSelectedFilters] = useState({
+            company: '',
+            status: '',
+            graduationYear: '',
+            following: false,
+            featured: false
+        });
+
+        // Apply filters function
         const applyFilters = useCallback(() => {
-            // Simple filtering logic - can be enhanced
+            const filtered = filterAlumni(alumniData, {
+                search: localSearchTerm,
+                ...selectedFilters
+            });
+            setFilteredAlumni(filtered);
+        }, [localSearchTerm, selectedFilters]);
+
+        // Debounced search effect
+        useEffect(() => {
+            const timeoutId = setTimeout(applyFilters, 300);
+            return () => clearTimeout(timeoutId);
+        }, [applyFilters]);
+
+        // Initialize filtered alumni
+        useEffect(() => {
             setFilteredAlumni(alumniData);
         }, []);
 
-        useEffect(() => {
-            applyFilters();
-        }, [applyFilters]);
+        // Handle search input change
+        const handleSearchChange = (e) => {
+            setLocalSearchTerm(e.target.value);
+        };
+
+        // Handle filter changes
+        const handleFilterChange = (filterKey, value) => {
+            setSelectedFilters(prev => ({
+                ...prev,
+                [filterKey]: value
+            }));
+        };
+
+        // Clear all filters
+        const clearFilters = () => {
+            setSelectedFilters({
+                company: '',
+                status: '',
+                graduationYear: '',
+                following: false,
+                featured: false
+            });
+            setLocalSearchTerm('');
+        };
+
+        // Get unique values for filter options
+        const getUniqueCompanies = () => [...new Set(alumniData.map(a => a.company))];
+        const getUniqueGraduationYears = () => [...new Set(alumniData.map(a => a.graduationYear))].sort((a, b) => b - a);
 
         return (
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
@@ -844,19 +898,131 @@ const NewLinkFolio = ({ onClose }) => {
                             <div>
                                 <h1 className="text-3xl font-bold text-gray-900 mb-2">AlumniLink</h1>
                                 <p className="text-gray-600">Connect with JSSATE alumni and expand your professional network</p>
+                                <div className="mt-2 flex items-center gap-2">
+                                    <Badge variant="outline" className="text-sm">
+                                        {filteredAlumni.length} alumni found
+                                    </Badge>
+                                    {Object.values(selectedFilters).some(v => v !== '' && v !== false) && (
+                                        <Button 
+                                            variant="ghost" 
+                                            size="sm"
+                                            onClick={clearFilters}
+                                            className="text-red-600 hover:text-red-700"
+                                        >
+                                            Clear filters
+                                        </Button>
+                                    )}
+                                </div>
                             </div>
+                            <Button
+                                variant="outline"
+                                onClick={() => setShowFilters(!showFilters)}
+                                className="flex items-center gap-2"
+                            >
+                                <Filter className="w-4 h-4" />
+                                Filters
+                            </Button>
                         </div>
 
+                        {/* Search Bar */}
                         <div className="relative mb-6">
                             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                 <Search className="h-5 w-5 text-gray-400" />
                             </div>
                             <Input
                                 type="text"
-                                placeholder="Search alumni by name, company, or skills..."
-                                className="pl-10"
+                                placeholder="Search alumni by name, company, skills, or position..."
+                                className="pl-10 pr-10"
+                                value={localSearchTerm}
+                                onChange={handleSearchChange}
                             />
+                            {localSearchTerm && (
+                                <button
+                                    onClick={() => setLocalSearchTerm('')}
+                                    className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                                >
+                                    <X className="h-4 w-4 text-gray-400 hover:text-gray-600" />
+                                </button>
+                            )}
                         </div>
+
+                        {/* Advanced Filters */}
+                        {showFilters && (
+                            <Card className="mb-6 border-2 border-dashed border-gray-200">
+                                <CardContent className="p-4">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                                        {/* Company Filter */}
+                                        <div>
+                                            <Label className="text-sm font-medium mb-2 block">Company</Label>
+                                            <select
+                                                value={selectedFilters.company}
+                                                onChange={(e) => handleFilterChange('company', e.target.value)}
+                                                className="w-full p-2 border border-gray-300 rounded-md text-sm"
+                                            >
+                                                <option value="">All Companies</option>
+                                                {getUniqueCompanies().map(company => (
+                                                    <option key={company} value={company}>{company}</option>
+                                                ))}
+                                            </select>
+                                        </div>
+
+                                        {/* Status Filter */}
+                                        <div>
+                                            <Label className="text-sm font-medium mb-2 block">Status</Label>
+                                            <select
+                                                value={selectedFilters.status}
+                                                onChange={(e) => handleFilterChange('status', e.target.value)}
+                                                className="w-full p-2 border border-gray-300 rounded-md text-sm"
+                                            >
+                                                <option value="">All Status</option>
+                                                <option value="available">Available</option>
+                                                <option value="busy">Busy</option>
+                                            </select>
+                                        </div>
+
+                                        {/* Graduation Year Filter */}
+                                        <div>
+                                            <Label className="text-sm font-medium mb-2 block">Graduation Year</Label>
+                                            <select
+                                                value={selectedFilters.graduationYear}
+                                                onChange={(e) => handleFilterChange('graduationYear', e.target.value)}
+                                                className="w-full p-2 border border-gray-300 rounded-md text-sm"
+                                            >
+                                                <option value="">All Years</option>
+                                                {getUniqueGraduationYears().map(year => (
+                                                    <option key={year} value={year}>{year}</option>
+                                                ))}
+                                            </select>
+                                        </div>
+
+                                        {/* Quick Filters */}
+                                        <div className="space-y-2">
+                                            <Label className="text-sm font-medium block">Quick Filters</Label>
+                                            <div className="space-y-2">
+                                                <label className="flex items-center gap-2">
+                                                    <input
+                                                        type="checkbox"
+                                                        checked={selectedFilters.featured}
+                                                        onChange={(e) => handleFilterChange('featured', e.target.checked)}
+                                                        className="rounded border-gray-300"
+                                                    />
+                                                    <span className="text-sm">Featured Only</span>
+                                                </label>
+                                                <label className="flex items-center gap-2">
+                                                    <input
+                                                        type="checkbox"
+                                                        checked={selectedFilters.following}
+                                                        onChange={(e) => handleFilterChange('following', e.target.checked)}
+                                                        className="rounded border-gray-300"
+                                                    />
+                                                    <span className="text-sm">Following Only</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        )}
                     </CardContent>
                 </Card>
 
