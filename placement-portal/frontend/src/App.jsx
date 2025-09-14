@@ -29,6 +29,7 @@ import PreparationDashboard from './components/PreparationDashboard'
 import PlacementDashboard from './components/PlacementDashboard'
 import ResumeAnalyserInfo from './components/ResumeAnalyserInfo'
 import LinkFolioMainNew from './components/linkfolio/LinkFolioMainNew'
+import NewLinkFolio from './components/linkfolio/NewLinkFolio'
 
 
 const appRouter = createBrowserRouter([
@@ -148,6 +149,10 @@ const appRouter = createBrowserRouter([
   {
     path:"/student/linkfolio",
     element:<ProtectedRoute allowedRoles={['student']}><LinkFolioMainNew/></ProtectedRoute> 
+  },
+  {
+    path:"/student/new-linkfolio",
+    element:<ProtectedRoute allowedRoles={['student']}><NewLinkFolio/></ProtectedRoute> 
   },
   {
     path:"/resume-analyser-info",

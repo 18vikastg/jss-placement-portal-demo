@@ -56,8 +56,62 @@ const LinkFolioMainNew = ({ onClose }) => {
     
     // Alumni network state
     const [alumniData, setAlumniData] = useState([]);
+    const [messages, setMessages] = useState([]);
+    const [notifications, setNotifications] = useState([]);
+    
+    // Alumni interaction state
+    const [followingUsers, setFollowingUsers] = useState(new Set());
+    const [linkedUsers, setLinkedUsers] = useState(new Set());
     const [messagesData, setMessagesData] = useState([]);
     const [notificationsData, setNotificationsData] = useState([]);
+
+    // Alumni interaction handlers
+    const handleFollowToggle = (alumniId) => {
+        setFollowingUsers(prev => {
+            const newSet = new Set(prev);
+            if (newSet.has(alumniId)) {
+                newSet.delete(alumniId);
+            } else {
+                newSet.add(alumniId);
+            }
+            return newSet;
+        });
+        
+        // Update alumni data
+        setAlumniData(prev => prev.map(alumni => 
+            alumni.id === alumniId 
+                ? { ...alumni, isFollowing: !alumni.isFollowing }
+                : alumni
+        ));
+    };
+
+    const handleLinkToggle = (alumniId) => {
+        setLinkedUsers(prev => {
+            const newSet = new Set(prev);
+            if (newSet.has(alumniId)) {
+                newSet.delete(alumniId);
+            } else {
+                newSet.add(alumniId);
+            }
+            return newSet;
+        });
+        
+        // Add a message or notification for linking
+        const alumni = alumniData.find(a => a.id === alumniId);
+        if (alumni) {
+            const newMessage = {
+                id: Date.now(),
+                fromAlumniId: alumniId,
+                fromAlumniName: alumni.name,
+                fromAlumniCompany: alumni.company,
+                message: `Connected with ${alumni.name}`,
+                timestamp: new Date().toISOString(),
+                isRead: false,
+                type: "connection"
+            };
+            setMessagesData(prev => [newMessage, ...prev]);
+        }
+    };
 
     // Load saved data on component mount
     const loadSavedProfile = useCallback(() => {
@@ -209,6 +263,7 @@ const LinkFolioMainNew = ({ onClose }) => {
                 type: "general"
             }
         ];
+        setMessages(messages);
         setMessagesData(messages);
 
         // Initialize notifications - directly from NewLinkFolio-main
@@ -241,6 +296,7 @@ const LinkFolioMainNew = ({ onClose }) => {
                 priority: "low"
             }
         ];
+        setNotifications(notifications);
         setNotificationsData(notifications);
     };
 
@@ -820,16 +876,18 @@ const LinkFolioMainNew = ({ onClose }) => {
                                     variant="outline"
                                     className="flex-1"
                                     size="sm"
+                                    onClick={() => handleFollowToggle(alumni.id)}
                                 >
                                     {alumni.isFollowing ? <UserCheck className="w-4 h-4 mr-1" /> : <UserPlus className="w-4 h-4 mr-1" />}
                                     {alumni.isFollowing ? 'Following' : 'Follow'}
                                 </Button>
                                 <Button
-                                    className="flex-1 bg-gradient-to-r from-red-600 to-red-700 text-white"
+                                    className="flex-1 bg-gradient-to-r from-red-600 to-red-700 text-white hover:from-red-700 hover:to-red-800"
                                     size="sm"
+                                    onClick={() => handleLinkToggle(alumni.id)}
                                 >
                                     <CalendarPlus className="w-4 h-4 mr-1" />
-                                    Link
+                                    {linkedUsers.has(alumni.id) ? 'Linked' : 'Link'}
                                 </Button>
                             </div>
                         </CardContent>

@@ -197,12 +197,21 @@ const StudentDashboardEnhanced = () => {
     // Quick actions data
     const quickActions = [
         {
-            title: "Portfolio Builder",
+            title: "Portfolio Builder (Classic)",
             description: "Create your professional portfolio",
             icon: Globe,
             color: "from-red-500 to-red-600",
             link: "/student/linkfolio",
-            stats: "🚀 New!",
+            stats: "Classic",
+            featured: false
+        },
+        {
+            title: "NewLinkFolio",
+            description: "Enhanced professional networking & portfolio",
+            icon: Sparkles,
+            color: "from-purple-500 to-pink-500",
+            link: "/student/new-linkfolio",
+            stats: "🚀 Enhanced!",
             featured: true
         },
         {
@@ -590,7 +599,7 @@ const StudentDashboardEnhanced = () => {
                                         className="text-green-600 font-medium flex items-center gap-2"
                                     >
                                         <CheckCircle className="w-5 h-5" />
-                                        🎉 Profile Complete! You're ready for placements!
+                                        🎉 Profile Complete! You&apos;re ready for placements!
                                     </motion.p>
                                 )}
                             </div>
