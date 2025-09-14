@@ -86,6 +86,11 @@ const LinkFolioMainNew = ({ onClose }) => {
     };
 
     const handleLinkToggle = (alumniId) => {
+        const alumni = alumniData.find(a => a.id === alumniId);
+        if (!alumni) return;
+
+        const isCurrentlyLinked = linkedUsers.has(alumniId);
+        
         setLinkedUsers(prev => {
             const newSet = new Set(prev);
             if (newSet.has(alumniId)) {
@@ -96,20 +101,58 @@ const LinkFolioMainNew = ({ onClose }) => {
             return newSet;
         });
         
-        // Add a message or notification for linking
-        const alumni = alumniData.find(a => a.id === alumniId);
-        if (alumni) {
+        if (!isCurrentlyLinked) {
+            // Generate meeting time (next available slot or default)
+            const meetingTime = alumni.availableSlots && alumni.availableSlots.length > 0 
+                ? alumni.availableSlots[0].time 
+                : "18:30";
+            
+            // Add notification for scheduled meeting
+            const newNotification = {
+                id: Date.now() + Math.random(),
+                title: `Link with ${alumni.name}@${meetingTime}`,
+                description: `Scheduled meeting reminder with ${alumni.name} from ${alumni.company}`,
+                timestamp: new Date().toISOString(),
+                type: "meeting",
+                isRead: false,
+                priority: "high"
+            };
+            
+            // Add message for successful connection
             const newMessage = {
                 id: Date.now(),
                 fromAlumniId: alumniId,
                 fromAlumniName: alumni.name,
                 fromAlumniCompany: alumni.company,
-                message: `Connected with ${alumni.name}`,
+                message: `Meeting scheduled @ ${meetingTime}`,
                 timestamp: new Date().toISOString(),
                 isRead: false,
-                type: "connection"
+                type: "meeting"
             };
+
+            // Update notifications and messages
+            setNotificationsData(prev => [newNotification, ...prev]);
+            setNotifications(prev => [newNotification, ...prev]);
             setMessagesData(prev => [newMessage, ...prev]);
+            
+            // Show success feedback
+            console.log(`Successfully linked with ${alumni.name}! Meeting scheduled at ${meetingTime}`);
+            
+            // Optional: Show a brief success message (you can implement toast notifications here)
+            if (typeof window !== 'undefined') {
+                // Create a temporary success indicator
+                const successMsg = document.createElement('div');
+                successMsg.className = 'fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg z-50';
+                successMsg.textContent = `✓ Meeting scheduled with ${alumni.name} at ${meetingTime}`;
+                document.body.appendChild(successMsg);
+                
+                // Remove after 3 seconds
+                setTimeout(() => {
+                    if (document.body.contains(successMsg)) {
+                        document.body.removeChild(successMsg);
+                    }
+                }, 3000);
+            }
         }
     };
 
@@ -173,7 +216,12 @@ const LinkFolioMainNew = ({ onClose }) => {
                 status: "available",
                 isFeatured: true,
                 isFollowing: false,
-                lastActive: "2 hours ago"
+                lastActive: "2 hours ago",
+                availableSlots: [
+                    { date: "2025-09-15", time: "10:00", duration: "30 min" },
+                    { date: "2025-09-15", time: "15:30", duration: "45 min" },
+                    { date: "2025-09-16", time: "14:00", duration: "30 min" }
+                ]
             },
             {
                 id: 2,
@@ -187,7 +235,11 @@ const LinkFolioMainNew = ({ onClose }) => {
                 status: "busy",
                 isFeatured: false,
                 isFollowing: true,
-                lastActive: "1 day ago"
+                lastActive: "1 day ago",
+                availableSlots: [
+                    { date: "2025-09-17", time: "09:00", duration: "30 min" },
+                    { date: "2025-09-18", time: "16:00", duration: "45 min" }
+                ]
             },
             {
                 id: 3,
@@ -201,7 +253,11 @@ const LinkFolioMainNew = ({ onClose }) => {
                 status: "available",
                 isFeatured: true,
                 isFollowing: false,
-                lastActive: "30 minutes ago"
+                lastActive: "30 minutes ago",
+                availableSlots: [
+                    { date: "2025-09-15", time: "13:00", duration: "30 min" },
+                    { date: "2025-09-16", time: "10:30", duration: "60 min" }
+                ]
             },
             {
                 id: 4,
@@ -215,7 +271,11 @@ const LinkFolioMainNew = ({ onClose }) => {
                 status: "available",
                 isFeatured: false,
                 isFollowing: true,
-                lastActive: "5 minutes ago"
+                lastActive: "5 minutes ago",
+                availableSlots: [
+                    { date: "2025-09-15", time: "11:00", duration: "45 min" },
+                    { date: "2025-09-16", time: "14:30", duration: "30 min" }
+                ]
             }
         ];
         setAlumniData(alumni);
