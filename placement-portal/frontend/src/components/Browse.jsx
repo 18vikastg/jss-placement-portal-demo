@@ -150,8 +150,8 @@ const Browse = () => {
                         
                         {/* Enhanced Search Bar */}
                         <div className="max-w-3xl mx-auto relative">
-                            <div className="flex bg-white rounded-2xl p-2 shadow-2xl">
-                                <Search className="w-6 h-6 text-gray-400 ml-4 my-auto" />
+                            <div className="flex bg-white rounded-2xl p-2 shadow-2xl items-center">
+                                <Search className="w-6 h-6 text-gray-400 ml-4" />
                                 <input
                                     type="text"
                                     placeholder="Search by role, company, or skills..."
@@ -161,12 +161,15 @@ const Browse = () => {
                                     onFocus={() => localSearchQuery.length > 1 && setShowSuggestions(true)}
                                     className="flex-1 px-4 py-4 text-lg text-gray-800 outline-none"
                                 />
-                                <Button 
-                                    onClick={handleSearch}
-                                    className="bg-red-600 hover:bg-red-700 px-8 py-4 rounded-xl"
-                                >
-                                    Search
-                                </Button>
+                                <div className="flex items-center">
+                                    <Button 
+                                        onClick={handleSearch}
+                                        className="bg-red-600 hover:bg-red-700 px-8 h-12 rounded-xl my-auto flex items-center justify-center gap-2"
+                                    >
+                                        <Search className="w-5 h-5" />
+                                        Search
+                                    </Button>
+                                </div>
                             </div>
 
                             {/* Search Suggestions */}

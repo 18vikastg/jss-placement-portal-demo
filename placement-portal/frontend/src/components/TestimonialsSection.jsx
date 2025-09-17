@@ -6,14 +6,6 @@ const TestimonialsSection = () => {
 
     const testimonials = [
         {
-            name: "Priya Sharma",
-            role: "Software Engineer",
-            company: "Google",
-            image: "https://images.unsplash.com/photo-1494790108755-2616b612b776?w=150&h=150&fit=crop&crop=face",
-            rating: 5,
-            text: "The platform helped me land my dream job at Google. The mentorship program and interview preparation were exceptional. I went from campus to Google in just 3 months!"
-        },
-        {
             name: "Rahul Kumar",
             role: "Data Scientist", 
             company: "Microsoft",
