@@ -301,23 +301,28 @@ const StudentDashboardEnhanced = () => {
     ]
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-blue-50">
+        <div className="min-h-screen bg-gradient-to-br from-red-50/30 via-white to-amber-50/20 relative">
             <Navbar />
+            
+            {/* Professional background pattern */}
+            <div className="absolute inset-0 opacity-40 bg-red-50"></div>
             
             <motion.div 
                 variants={containerVariants}
                 initial="hidden"
                 animate="visible"
-                className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8"
+                className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8"
             >
-                {/* Personalized Welcome Header */}
+                {/* Professional Welcome Header */}
                 <motion.div 
                     variants={cardVariants}
-                    className="relative bg-gradient-to-r from-purple-600 via-blue-600 to-emerald-600 rounded-3xl shadow-2xl p-8 mb-8 text-white overflow-hidden"
+                    className="relative bg-gradient-to-r from-red-700 via-red-800 to-amber-700 rounded-3xl shadow-2xl p-8 mb-8 text-white overflow-hidden border border-red-200/20"
                 >
-                    {/* 3D Background */}
-                    <div className="absolute inset-0 opacity-10">
-                        <Scene3D variant="particles" />
+                    {/* Professional Pattern Background */}
+                    <div className="absolute inset-0 opacity-5">
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent"></div>
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full transform translate-x-32 -translate-y-32"></div>
+                        <div className="absolute bottom-0 left-0 w-96 h-96 bg-amber-300/5 rounded-full transform -translate-x-48 translate-y-48"></div>
                     </div>
                     
                     <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-6">

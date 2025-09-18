@@ -1,9 +1,251 @@
 Starting server on port 8001
 Server running at port 8001
 mongodb connected successfully
-Token received: No token
-Token length: N/A
-Token first 20 chars: N/A
-Token received: No token
-Token length: N/A
-Token first 20 chars: N/A
+Token received: Token exists
+Token length: 176
+Token first 20 chars: eyJhbGciOiJIUzI1NiIs...
+Token received: Token exists
+Token length: 176
+Token first 20 chars: eyJhbGciOiJIUzI1NiIs...
+Token received: Token exists
+Token length: 176
+Token first 20 chars: eyJhbGciOiJIUzI1NiIs...
+Token received: Token exists
+Token length: 176
+Token first 20 chars: eyJhbGciOiJIUzI1NiIs...
+Token received: Token exists
+Token length: 176
+Token first 20 chars: eyJhbGciOiJIUzI1NiIs...
+Token received: Token exists
+Token length: 176
+Token first 20 chars: eyJhbGciOiJIUzI1NiIs...
+Token received: Token exists
+Token length: 176
+Token first 20 chars: eyJhbGciOiJIUzI1NiIs...
+=== UPDATE ENHANCED PROFILE START ===
+User ID: 68acb88c32bf513c941f2f7f
+Request body: [Object: null prototype] {
+  fullname: 'Vikas T. G',
+  email: 'vikastg2000@gmail.com',
+  phoneNumber: '8792283829',
+  bio: 'Student At JSS Academy Of Technical Education',
+  address: 'JSSATEB Boys Hostel, Reflex Housing Layout , After Petrol Pump , RR nagar',
+  dateOfBirth: '2004-08-12',
+  branch: 'Computer Science Engineering',
+  semester: '7',
+  cgpa: '7.9',
+  university: 'JSS Academy of Technical Education',
+  year: '4th Year',
+  skills: '["React.js"]',
+  experiences: '[{"title":"arcolabb","company":"ninnamman","duration":"","description":"","id":1756985786477,"_id":"68b979bbacc561d083f62cc4"}]',
+  projects: '[]',
+  certifications: '[]',
+  socialLinks: '{"github":"18viukastg","linkedin":"","portfolio":"vikastg.vercel.app"}'
+}
+Request files: [Object: null prototype] {}
+Request file (single): undefined
+Current user profile before update: {
+  personalInfo: { address: {} },
+  academicInfo: {
+    tenthMarks: {},
+    twelfthMarks: {},
+    backlogs: { count: 0, subjects: [] },
+    achievements: []
+  },
+  skillsAndProjects: {
+    certifications: [],
+    databases: [],
+    frameworks: [],
+    programmingLanguages: [],
+    projects: [],
+    tools: []
+  },
+  documents: { resume: {}, profilePicture: {}, certificates: [], internships: [] },
+  placementPreferences: {
+    expectedSalary: { currency: 'INR' },
+    companySize: [],
+    interestedDomains: [],
+    jobTypes: [],
+    locationPreferences: []
+  },
+  latestResumeAnalysis: {
+    score: 0,
+    level: 'Entry Level',
+    analyzedAt: 2025-09-04T12:20:05.240Z,
+    fileName: 'Vikas_CV.pdf'
+  },
+  profilePhoto: '',
+  skills: [ 'React.js' ],
+  lastUpdated: 2025-08-26T08:48:21.842Z,
+  profileCompletion: 0,
+  bio: 'i am good guy',
+  address: 'JSSATEB Boys Hostel, Reflex Housing Layout , After Petrol Pump , RR nagar',
+  certifications: [],
+  experiences: [
+    {
+      title: 'arcolabb',
+      company: 'ninnamman',
+      duration: '',
+      description: '',
+      id: 1756985786477,
+      _id: new ObjectId('68b979bbacc561d083f62cc4')
+    }
+  ],
+  projects: [],
+  socialLinks: {
+    github: '18viukastg',
+    linkedin: '',
+    portfolio: 'vikastg.vercel.app',
+    _id: new ObjectId('68c45c1e71b33ab27d1a0810')
+  },
+  university: 'JSS Academy of Technical Education',
+  branch: 'Computer Science Engineering',
+  cgpa: 7.9,
+  semester: 7,
+  year: '4th Year',
+  dateOfBirth: 2004-08-12T00:00:00.000Z,
+  resume_analysis: [
+    {
+      extractedData: [Object],
+      fileInfo: [Object],
+      analysisId: 'analysis_68acb88c32bf513c941f2f7f_1756988405236',
+      userId: '68acb88c32bf513c941f2f7f',
+      fileName: 'Vikas_CV.pdf',
+      fileSize: 190272,
+      resumeUrl: null,
+      analysisScore: 0,
+      experienceLevel: 'Entry Level',
+      analysisDate: 2025-09-04T12:20:05.236Z,
+      _id: new ObjectId('68b983f57da4e55ae0e9f374'),
+      recommendations: []
+    }
+  ]
+}
+Parsing skills: ["React.js"] string
+Successfully parsed skills: [ 'React.js' ]
+Parsing experiences: [{"title":"arcolabb","company":"ninnamman","duration":"","description":"","id":1756985786477,"_id":"68b979bbacc561d083f62cc4"}] string
+Successfully parsed experiences: [
+  {
+    title: 'arcolabb',
+    company: 'ninnamman',
+    duration: '',
+    description: '',
+    id: 1756985786477,
+    _id: '68b979bbacc561d083f62cc4'
+  }
+]
+Parsing projects: [] string
+Successfully parsed projects: []
+Parsing certifications: [] string
+Successfully parsed certifications: []
+Parsed data: {
+  skills: [ 'React.js' ],
+  experiences: [
+    {
+      title: 'arcolabb',
+      company: 'ninnamman',
+      duration: '',
+      description: '',
+      id: 1756985786477,
+      _id: '68b979bbacc561d083f62cc4'
+    }
+  ],
+  projects: [],
+  certifications: [],
+  socialLinks: {
+    github: '18viukastg',
+    linkedin: '',
+    portfolio: 'vikastg.vercel.app'
+  }
+}
+User profile before save: {
+  bio: 'Student At JSS Academy Of Technical Education',
+  skills: [ 'React.js' ],
+  skillsLength: 1,
+  experiences: [
+    {
+      title: 'arcolabb',
+      company: 'ninnamman',
+      duration: '',
+      description: '',
+      id: 1756985786477,
+      _id: new ObjectId('68b979bbacc561d083f62cc4')
+    }
+  ],
+  experiencesLength: 1,
+  projects: [],
+  projectsLength: 0,
+  certifications: [],
+  certificationsLength: 0
+}
+Pre-save middleware triggered
+Pre-save validation complete: { skills: 1, experiences: 1, projects: 0, certifications: 0 }
+User profile after save: {
+  bio: 'Student At JSS Academy Of Technical Education',
+  skills: [ 'React.js' ],
+  skillsLength: 1,
+  experiences: [
+    {
+      title: 'arcolabb',
+      company: 'ninnamman',
+      duration: '',
+      description: '',
+      id: 1756985786477,
+      _id: new ObjectId('68b979bbacc561d083f62cc4')
+    }
+  ],
+  experiencesLength: 1,
+  projects: [],
+  projectsLength: 0,
+  certifications: [],
+  certificationsLength: 0
+}
+=== UPDATE ENHANCED PROFILE END ===
+Token received: Token exists
+Token length: 176
+Token first 20 chars: eyJhbGciOiJIUzI1NiIs...
+Token received: Token exists
+Token length: 176
+Token first 20 chars: eyJhbGciOiJIUzI1NiIs...
+Token received: Token exists
+Token length: 176
+Token first 20 chars: eyJhbGciOiJIUzI1NiIs...
+Token received: Token exists
+Token length: 176
+Token first 20 chars: eyJhbGciOiJIUzI1NiIs...
+Token received: Token exists
+Token length: 176
+Token first 20 chars: eyJhbGciOiJIUzI1NiIs...
+Token received: Token exists
+Token length: 176
+Token first 20 chars: eyJhbGciOiJIUzI1NiIs...
+Token received: Token exists
+Token length: 176
+Token first 20 chars: eyJhbGciOiJIUzI1NiIs...
+Token received: Token exists
+Token length: 176
+Token first 20 chars: eyJhbGciOiJIUzI1NiIs...
+Token received: Token exists
+Token length: 176
+Token first 20 chars: eyJhbGciOiJIUzI1NiIs...
+Token received: Token exists
+Token length: 176
+Token first 20 chars: eyJhbGciOiJIUzI1NiIs...
+Token received: Token exists
+Token length: 176
+Token first 20 chars: eyJhbGciOiJIUzI1NiIs...
+Token received: Token exists
+Token length: 176
+Token first 20 chars: eyJhbGciOiJIUzI1NiIs...
+Token received: Token exists
+Token length: 176
+Token first 20 chars: eyJhbGciOiJIUzI1NiIs...
+Token received: Token exists
+Token length: 176
+Token first 20 chars: eyJhbGciOiJIUzI1NiIs...
+Token received: Token exists
+Token length: 176
+Token first 20 chars: eyJhbGciOiJIUzI1NiIs...
+Token received: Token exists
+Token length: 176
+Token first 20 chars: eyJhbGciOiJIUzI1NiIs...

@@ -46,28 +46,28 @@ const Navbar = () => {
 
     return (
         <nav className='bg-white/95 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50 shadow-sm'>
-            <div className='flex items-center justify-between mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16'>
+            <div className='flex items-center justify-between mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 h-20'>
                 {/* Logo */}
-                <div className='flex items-center'>
-                    <Link to="/" className='flex items-center space-x-3'>
+                <div className='flex items-center flex-shrink-0'>
+                    <Link to="/" className='flex items-center space-x-4'>
                         <img 
                             src="/jss logo.png" 
                             alt="JSS Academy of Technical Education Logo" 
-                            className='h-12 w-auto object-contain'
+                            className='h-14 w-auto object-contain'
                         />
                         <div className='flex flex-col'>
-                            <h1 className='text-3xl font-black bg-gradient-to-r from-red-800 to-red-950 bg-clip-text text-transparent tracking-tight'>
+                            <h1 className='text-3xl font-black bg-gradient-to-r from-red-800 to-red-950 bg-clip-text text-transparent tracking-tight leading-none'>
                                 <span className='text-red-900'>JSSATE</span>
                                 <span className='text-amber-600 ml-2 text-xl font-bold'>PrepLink</span>
                             </h1>
-                            <p className='text-xs text-gray-600 font-semibold tracking-wide uppercase'>JSS Academy • Technical Education</p>
+                            <p className='text-xs text-gray-600 font-semibold tracking-wide uppercase mt-1'>JSS Academy • Technical Education</p>
                         </div>
                     </Link>
                 </div>
 
                 {/* Desktop Navigation */}
-                <div className='hidden md:flex items-center gap-8'>
-                    <ul className='flex font-medium items-center gap-6'>
+                <div className='hidden lg:flex items-center gap-10'>
+                    <ul className='flex font-medium items-center gap-4'>
                         {
                             user && user.role === 'recruiter' ? (
                                 <>
@@ -119,61 +119,55 @@ const Navbar = () => {
                                 </>
                             ) : user && user.role === 'student' ? (
                                 <>
+                                    {/* Core Navigation */}
                                     <li>
-                                        <Link to="/student/dashboard" className='flex items-center gap-2 text-gray-700 hover:text-red-700 transition-colors px-3 py-2 rounded-lg hover:bg-red-50'>
+                                        <Link to="/student/dashboard" className='flex items-center gap-2 text-gray-700 hover:text-red-700 transition-colors px-4 py-2 rounded-lg hover:bg-red-50 font-medium'>
                                             <Home className='w-4 h-4' />
                                             Dashboard
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link to="/opportunities" className='flex items-center gap-2 text-gray-700 hover:text-red-700 transition-colors px-3 py-2 rounded-lg hover:bg-red-50'>
+                                        <Link to="/opportunities" className='flex items-center gap-2 text-gray-700 hover:text-red-700 transition-colors px-4 py-2 rounded-lg hover:bg-red-50 font-medium'>
                                             <TrendingUp className='w-4 h-4' />
-                                            Opportunities
+                                            Jobs
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link to="/student/applications" className='flex items-center gap-2 text-gray-700 hover:text-red-700 transition-colors px-3 py-2 rounded-lg hover:bg-red-50'>
+                                        <Link to="/student/applications" className='flex items-center gap-2 text-gray-700 hover:text-red-700 transition-colors px-4 py-2 rounded-lg hover:bg-red-50 font-medium'>
                                             <Briefcase className='w-4 h-4' />
-                                            My Applications
+                                            Applications
                                         </Link>
                                     </li>
-                                    <li>
-                                        <Link to="/student/profile" className='flex items-center gap-2 text-gray-700 hover:text-red-700 transition-colors px-3 py-2 rounded-lg hover:bg-red-50'>
-                                            <User2 className='w-4 h-4' />
-                                            Profile
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link to="/browse" className='flex items-center gap-2 text-gray-700 hover:text-red-700 transition-colors px-3 py-2 rounded-lg hover:bg-red-50'>
-                                            <Search className='w-4 h-4' />
-                                            Browse Jobs
-                                        </Link>
-                                    </li>
+                                    
+                                    {/* Separator */}
+                                    <li className='border-l border-gray-200 h-8 mx-2'></li>
+                                    
+                                    {/* Tools & Features */}
                                     <li>
                                         <Link 
                                             to="/preparation" 
-                                            className='flex items-center gap-2 bg-gradient-to-r from-red-700 to-red-800 text-white hover:from-red-800 hover:to-red-900 transition-all duration-200 px-3 py-2 rounded-lg font-medium shadow-md hover:shadow-lg'
+                                            className='flex items-center gap-2 bg-gradient-to-r from-red-700 to-red-800 text-white hover:from-red-800 hover:to-red-900 transition-all duration-200 px-4 py-2 rounded-lg font-medium shadow-md hover:shadow-lg text-sm'
                                         >
                                             <BookOpen className='w-4 h-4' />
-                                            📚 Prep Hub
+                                            Prep Hub
                                         </Link>
                                     </li>
                                     <li>
                                         <Link 
                                             to="/student/mock-interview" 
-                                            className='flex items-center gap-2 bg-gradient-to-r from-amber-600 to-yellow-700 text-white hover:from-amber-700 hover:to-yellow-800 transition-all duration-200 px-3 py-2 rounded-lg font-medium shadow-md hover:shadow-lg'
+                                            className='flex items-center gap-2 bg-gradient-to-r from-amber-600 to-yellow-700 text-white hover:from-amber-700 hover:to-yellow-800 transition-all duration-200 px-4 py-2 rounded-lg font-medium shadow-md hover:shadow-lg text-sm'
                                         >
                                             <Mic className='w-4 h-4' />
-                                            🎤 Practice
+                                            Practice
                                         </Link>
                                     </li>
                                     <li>
                                         <Link 
                                             to="/student/linkfolio" 
-                                            className='flex items-center gap-2 bg-gradient-to-r from-purple-600 to-blue-700 text-white hover:from-purple-700 hover:to-blue-800 transition-all duration-200 px-3 py-2 rounded-lg font-medium shadow-md hover:shadow-lg'
+                                            className='flex items-center gap-2 bg-gradient-to-r from-purple-600 to-blue-700 text-white hover:from-purple-700 hover:to-blue-800 transition-all duration-200 px-4 py-2 rounded-lg font-medium shadow-md hover:shadow-lg text-sm'
                                         >
                                             <Globe className='w-4 h-4' />
-                                            🌐 Portfolio
+                                            LinkFolio
                                         </Link>
                                     </li>
                                 </>
@@ -261,10 +255,10 @@ const Navbar = () => {
                 </div>
 
                 {/* Mobile menu button */}
-                <div className='md:hidden'>
+                <div className='lg:hidden'>
                     <button 
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                        className='p-2 text-gray-700 hover:text-purple-600 transition-colors'
+                        className='p-2 text-gray-700 hover:text-red-600 transition-colors'
                     >
                         {isMobileMenuOpen ? <X className='w-6 h-6' /> : <Menu className='w-6 h-6' />}
                     </button>
@@ -273,7 +267,7 @@ const Navbar = () => {
 
             {/* Mobile Navigation */}
             {isMobileMenuOpen && (
-                <div className='md:hidden bg-white border-t border-gray-100'>
+                <div className='lg:hidden bg-white border-t border-gray-100'>
                     <div className='px-4 py-4 space-y-2'>
                         {user && user.role === 'recruiter' ? (
                             <>
