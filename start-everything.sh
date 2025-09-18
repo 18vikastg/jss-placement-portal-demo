@@ -51,6 +51,32 @@ wait_for_service() {
     fi
 }
 
+# Check prerequisites
+echo "[STEP 0] Checking prerequisites..."
+if ! command -v node &> /dev/null; then
+    echo "❌ Node.js is not installed. Please install Node.js first."
+    exit 1
+fi
+
+if ! command -v npm &> /dev/null; then
+    echo "❌ npm is not installed. Please install npm first."
+    exit 1
+fi
+
+if ! command -v python3 &> /dev/null && ! command -v python &> /dev/null; then
+    echo "❌ Python is not installed. Please install Python first."
+    exit 1
+fi
+
+# Check if streamlit is installed
+if ! pip show streamlit &> /dev/null; then
+    echo "📦 Installing Streamlit..."
+    pip install streamlit
+fi
+
+echo "✅ All prerequisites checked"
+echo ""
+
 echo "[STEP 1] Cleaning up existing processes..."
 cleanup_port 5173 "Frontend"
 cleanup_port 8001 "Backend" 
@@ -93,7 +119,32 @@ if [ ! -f "App/App.py" ]; then
     echo "❌ AI Resume Analyzer App.py not found!"
     exit 1
 fi
-nohup streamlit run App/App.py --server.port 8501 --server.address 0.0.0.0 > "$PROJECT_ROOT/logs/ai-resume-analyzer.log" 2>&1 &
+
+# Check and install Python dependencies
+echo "⏳ Checking Python dependencies..."
+if [ ! -f "App/.deps_installed" ]; then
+    echo "📦 Installing Python dependencies (first time setup)..."
+    echo "   This may take 2-3 minutes for the first run..."
+    
+    # Install basic requirements first
+    pip install streamlit pandas pymysql nltk > "$PROJECT_ROOT/logs/ai-resume-deps.log" 2>&1
+    
+    # Then try to install from requirements.txt (might have some optional packages)
+    if [ -f "requirements.txt" ]; then
+        pip install -r requirements.txt >> "$PROJECT_ROOT/logs/ai-resume-deps.log" 2>&1 || echo "⚠️  Some optional packages failed to install, but core packages are ready"
+    fi
+    
+    touch "App/.deps_installed"
+    echo "✅ Dependencies setup completed"
+else
+    echo "✅ Dependencies already installed"
+fi
+
+# Start the Streamlit app
+echo "🚀 Launching Streamlit application..."
+export STREAMLIT_SERVER_PORT=8501
+export STREAMLIT_SERVER_ADDRESS="0.0.0.0"
+nohup streamlit run App/App.py --server.port 8501 --server.address 0.0.0.0 --server.headless true --server.enableCORS false > "$PROJECT_ROOT/logs/ai-resume-analyzer.log" 2>&1 &
 AI_RESUME_PID=$!
 echo "AI Resume Analyzer PID: $AI_RESUME_PID"
 

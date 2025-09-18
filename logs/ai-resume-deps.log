@@ -1,0 +1,4 @@
+Collecting en-core-web-sm@ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.4.1/en_core_web_sm-3.4.1-py3-none-any.whl (from -r requirements.txt (line 19))
+  Downloading https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.4.1/en_core_web_sm-3.4.1-py3-none-any.whl (12.8 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━           9.7/12.8 MB 245.6 kB/s eta 0:00:13
+ERROR: Operation cancelled by user
