@@ -98,13 +98,15 @@ const SmartSearchBar = ({ onSearch }) => {
                     onFocus={() => query.length > 1 && setShowSuggestions(true)}
                     className="flex-1 outline-none border-none px-6 py-4 text-lg rounded-l-2xl"
                 />
-                <Button 
-                    onClick={() => handleSearch()}
-                    className="px-8 py-4 bg-gradient-to-r from-red-700 to-red-900 hover:from-red-800 hover:to-red-950 rounded-xl text-white font-semibold"
-                >
-                    <Search className='h-5 w-5 mr-2' />
-                    Search
-                </Button>
+                <div className="flex items-center">
+                    <Button 
+                        onClick={() => handleSearch()}
+                        className="h-12 my-auto px-8 bg-gradient-to-r from-red-700 to-red-900 hover:from-red-800 hover:to-red-950 rounded-xl text-white font-semibold flex items-center justify-center"
+                    >
+                        <Search className='h-5 w-5 mr-2' />
+                        Search
+                    </Button>
+                </div>
             </div>
 
             {/* Suggestions Dropdown */}

@@ -17,6 +17,8 @@ import { SAMPLE_JOBS, TECH_ROLES, COMPANIES } from '@/utils/constants';
 import { showJobSearchOptions } from '@/utils/redirectHelpers';
 import JobSearchModal from './JobSearchModal';
 
+const MAX_EXAMPLE_COMPANIES = 2;
+
 const Jobs = () => {
     useGetAllJobs();
     const { allJobs, searchedQuery } = useSelector(store => store.job);
@@ -37,6 +39,18 @@ const Jobs = () => {
     const jobsToDisplay = allJobs.length > 0 ? allJobs : SAMPLE_JOBS;
 
     // Filter options
+    // Map each role to a few sample companies (from SAMPLE_JOBS or hardcoded)
+    const roleCompanyMap = {
+        'Full Stack Developer': ['Google', 'TCS', 'Wipro'],
+        'Frontend Developer': ['Microsoft', 'Infosys', 'Adobe'],
+        'Backend Developer': ['Amazon', 'IBM', 'Oracle'],
+        'Data Scientist': ['Flipkart', 'Mu Sigma', 'Dunzo'],
+        'DevOps Engineer': ['Accenture', 'Capgemini', 'Zoho'],
+        'Mobile Developer': ['Paytm', 'Swiggy', 'Ola'],
+        'UI/UX Designer': ['Zomato', 'Freshworks', 'CRED'],
+        'Product Manager': ['Google', 'Microsoft', 'Amazon'],
+        'Machine Learning Engineer': ['Google', 'Amazon', 'Nvidia'],
+    };
     const roles = ['All', ...TECH_ROLES.map(role => role.title)];
     const companies = ['All', ...COMPANIES.map(company => company.name)];
     const salaryRanges = ['All', '0-5 LPA', '5-10 LPA', '10-15 LPA', '15+ LPA'];
@@ -131,7 +145,7 @@ const Jobs = () => {
     }, [dispatch])
 
     return (
-        <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50">
             <Navbar />
             
             {/* Search Header */}
@@ -149,24 +163,34 @@ const Jobs = () => {
                         </p>
                         
                         {/* Enhanced Search Bar */}
-                        <div className="max-w-3xl mx-auto relative">
-                            <div className="flex bg-white rounded-2xl p-2 shadow-2xl">
-                                <Search className="w-6 h-6 text-gray-400 ml-4 my-auto" />
-                                <input
-                                    type="text"
-                                    placeholder="Search by role, company, or skills..."
+                        <div className="max-w-3xl mx-auto relative my-8">
+                            <div className="bg-white rounded-2xl p-2 shadow-2xl flex items-center">
+                                <input 
+                                    type="text" 
+                                    placeholder="Search roles, companies, or skills..." 
                                     value={localSearchQuery}
                                     onChange={(e) => setLocalSearchQuery(e.target.value)}
                                     onKeyPress={handleKeyPress}
                                     onFocus={() => localSearchQuery.length > 1 && setShowSuggestions(true)}
-                                    className="flex-1 px-4 py-4 text-lg text-gray-800 outline-none"
+                                    className="flex-1 outline-none border-none px-6 h-14 text-lg rounded-l-2xl" 
                                 />
-                                <Button 
-                                    onClick={handleSearch}
-                                    className="bg-red-600 hover:bg-red-700 px-8 py-4 rounded-xl"
-                                >
-                                    Search Jobs
-                                </Button>
+                                <div className="flex items-center">
+                                    <button 
+                                        onClick={handleSearch}
+                                        className="inline-flex items-center justify-center whitespace-nowrap text-sm font-semibold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-gradient-to-r from-red-700 to-red-900 hover:from-red-800 hover:to-red-950 text-white px-8 h-12 my-auto rounded-xl"
+                                    >
+                                        <svg xmlns="http://www.w3.org/2000/svg" 
+                                             className="h-5 w-5 mr-2" 
+                                             fill="none" 
+                                             viewBox="0 0 24 24" 
+                                             stroke="currentColor" 
+                                             strokeWidth="2">
+                                            <circle cx="11" cy="11" r="8" />
+                                            <path d="m21 21-4.3-4.3" />
+                                        </svg>
+                                        Search
+                                    </button>
+                                </div>
                             </div>
 
                             {/* Search Suggestions */}
@@ -198,14 +222,19 @@ const Jobs = () => {
             <div className="bg-white shadow-sm border-b">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
                     <div className="flex flex-wrap gap-4 justify-center">
-                        {/* Role Filter */}
+                        {/* Role Filter with Companies */}
                         <select 
                             value={selectedRole}
                             onChange={(e) => setSelectedRole(e.target.value)}
                             className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-red-500"
                         >
                             {roles.map(role => (
-                                <option key={role} value={role}>{role}</option>
+                                <option key={role} value={role}>
+                                    {role}
+                                    {role !== 'All' && roleCompanyMap[role] ?
+                                        `  (e.g. ${roleCompanyMap[role].slice(0, MAX_EXAMPLE_COMPANIES).join(', ')})`
+                                        : ''}
+                                </option>
                             ))}
                         </select>
 

@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Navbar from './shared/NavbarNew';
 import { 
     Search, 
     Filter, 
-    MapPin, 
-    Building2, 
-    Clock, 
+    Building2,
     DollarSign, 
     Users, 
     TrendingUp,
@@ -15,7 +13,19 @@ import {
     Zap
 } from 'lucide-react';
 import { Button } from './ui/button';
-import { TECH_ROLES, COMPANIES } from '@/utils/constants';
+import { TECH_ROLES, COMPANIES } from '../utils/constants';
+// Map each role to a few sample companies (same as Jobs.jsx)
+const roleCompanyMap = {
+    'Full Stack Developer': ['Cognizant'],
+    'Frontend Developer': ['Sasken'],
+    'Backend Developer': ['Infotech'],
+    'Data Scientist': ['Kickdrum'],
+    'DevOps Engineer': ['TCS'],
+    'Mobile Developer': ['Accenture'],
+    'UI/UX Designer': ['Cognizant'],
+    'Product Manager': ['Sasken'],
+    'Machine Learning Engineer': ['Infotech'],
+};
 
 const OpportunitiesPage = () => {
     const [selectedRole, setSelectedRole] = useState(null);
@@ -51,18 +61,23 @@ const OpportunitiesPage = () => {
                         
                         {/* Search Bar */}
                         <div className="max-w-2xl mx-auto relative">
-                            <div className="flex bg-white rounded-2xl p-2 shadow-2xl">
-                                <Search className="w-6 h-6 text-gray-400 ml-4 my-auto" />
-                                <input
-                                    type="text"
-                                    placeholder="Search roles, skills, or technologies..."
-                                    value={searchQuery}
-                                    onChange={(e) => setSearchQuery(e.target.value)}
-                                    className="flex-1 px-4 py-4 text-lg text-gray-800 outline-none rounded-l-2xl"
-                                />
-                                <Button className="bg-red-600 hover:bg-red-700 px-8 py-4 rounded-xl">
-                                    Search
-                                </Button>
+                            <div className="flex items-center bg-white rounded-2xl p-2 shadow-2xl">
+                                <div className="flex items-center w-full">
+                                    <Search className="w-6 h-6 text-gray-400 ml-4" />
+                                    <input
+                                        type="text"
+                                        placeholder="Search roles, skills, or technologies..."
+                                        value={searchQuery}
+                                        onChange={(e) => setSearchQuery(e.target.value)}
+                                        className="flex-1 pl-4 h-12 text-lg text-gray-800 outline-none rounded-l-2xl"
+                                    />
+                                    <div className="flex items-center justify-center">
+                                        <Button className="bg-red-600 hover:bg-red-700 px-8 h-12 flex items-center justify-center rounded-xl">
+                                            <Search className="w-5 h-5 mr-2" />
+                                            Search
+                                        </Button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -118,12 +133,19 @@ const OpportunitiesPage = () => {
                                     }`}
                                 >
                                     <div className="flex items-start gap-4">
-                                        <div className="text-4xl">{role.icon}</div>
+                                        <div className="text-2xl w-12 h-12 flex items-center justify-center bg-red-100 text-red-600 rounded-xl">
+                                            <span role="img" aria-label={role.title}>{role.icon || '💼'}</span>
+                                        </div>
                                         <div className="flex-1">
                                             <div className="flex items-start justify-between mb-3">
                                                 <div>
                                                     <h3 className="text-xl font-bold text-gray-900 mb-1">
                                                         {role.title}
+                                                        {roleCompanyMap[role.title] && (
+                                                            <span className="text-xs text-gray-500 font-normal ml-2">
+                                                                {roleCompanyMap[role.title][0]}
+                                                            </span>
+                                                        )}
                                                     </h3>
                                                     <div className="flex items-center gap-4 text-sm text-gray-500">
                                                         <span className="flex items-center gap-1">
@@ -245,7 +267,9 @@ const OpportunitiesPage = () => {
                         <div className="p-8">
                             <div className="flex items-center justify-between mb-6">
                                 <div className="flex items-center gap-4">
-                                    <div className="text-5xl">{selectedRole.icon}</div>
+                                    <div className="text-5xl w-16 h-16 flex items-center justify-center bg-red-100 text-red-600 rounded-2xl">
+                                        <span role="img" aria-label={selectedRole.title}>{selectedRole.icon || '💼'}</span>
+                                    </div>
                                     <div>
                                         <h2 className="text-3xl font-bold text-gray-900">{selectedRole.title}</h2>
                                         <p className="text-lg text-gray-600">{selectedRole.category} • {selectedRole.level}</p>

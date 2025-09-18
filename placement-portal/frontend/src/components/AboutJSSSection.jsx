@@ -5,7 +5,7 @@ const AboutJSSSection = () => {
     return (
         <section className="py-20 bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center border border-gray-200 rounded-2xl p-4 md:p-8 shadow-sm">
                     {/* Left side - Content */}
                     <div className="space-y-8">
                         <div className="space-y-4">
@@ -104,9 +104,7 @@ const AboutJSSSection = () => {
                             </div>
                         </div>
                         
-                        {/* Decorative elements */}
-                        <div className="absolute -top-4 -right-4 w-24 h-24 bg-red-100 rounded-full opacity-60"></div>
-                        <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-orange-100 rounded-full opacity-40"></div>
+                        {/* Decorative elements removed for codebase cleanliness */}
                     </div>
                 </div>
             </div>
