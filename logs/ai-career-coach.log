@@ -10,14 +10,15 @@
    * /home/vikas/Desktop/jss-placement-portal/ai-career-coach/package-lock.json
    * /home/vikas/Desktop/jss-placement-portal/package-lock.json
 
- ⨯ Failed to start server
-Error: listen EADDRINUSE: address already in use :::3001
-    at <unknown> (Error: listen EADDRINUSE: address already in use :::3001)
-    at new Promise (<anonymous>) {
-  code: 'EADDRINUSE',
-  errno: -98,
-  syscall: 'listen',
-  address: '::',
-  port: 3001
-}
+   ▲ Next.js 15.5.2 (Turbopack)
+   - Local:        http://localhost:3001
+   - Network:      http://192.168.0.111:3001
+   - Environments: .env.local
+   - Experiments (use with caution):
+     · optimizePackageImports
+
+ ✓ Starting...
+ ✓ Compiled middleware in 412ms
+ ✓ Ready in 2.3s
+ ○ Compiling / ...
 [?25h

@@ -1,9 +1,8 @@
+
+> backend@1.0.0 start
+> node index.js
+
 Starting server on port 8001
 Server running at port 8001
 mongodb connected successfully
-Token received: No token
-Token length: N/A
-Token first 20 chars: N/A
-Token received: No token
-Token length: N/A
-Token first 20 chars: N/A
+Killed
