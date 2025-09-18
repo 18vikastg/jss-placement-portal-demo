@@ -62,19 +62,21 @@ const OpportunitiesPage = () => {
                         {/* Search Bar */}
                         <div className="max-w-2xl mx-auto relative">
                             <div className="flex items-center bg-white rounded-2xl p-2 shadow-2xl">
-                                <Search className="w-6 h-6 text-gray-400 ml-4" />
-                                <input
-                                    type="text"
-                                    placeholder="Search roles, skills, or technologies..."
-                                    value={searchQuery}
-                                    onChange={(e) => setSearchQuery(e.target.value)}
-                                    className="flex-1 pl-4 h-12 text-lg text-gray-800 outline-none rounded-l-2xl"
-                                />
-                                <div className="flex items-center justify-center">
-                                    <Button className="bg-red-600 hover:bg-red-700 px-8 h-12 flex items-center justify-center rounded-xl">
-                                        <Search className="w-5 h-5 mr-2" />
-                                        Search
-                                    </Button>
+                                <div className="flex items-center w-full">
+                                    <Search className="w-6 h-6 text-gray-400 ml-4" />
+                                    <input
+                                        type="text"
+                                        placeholder="Search roles, skills, or technologies..."
+                                        value={searchQuery}
+                                        onChange={(e) => setSearchQuery(e.target.value)}
+                                        className="flex-1 pl-4 h-12 text-lg text-gray-800 outline-none rounded-l-2xl"
+                                    />
+                                    <div className="flex items-center justify-center">
+                                        <Button className="bg-red-600 hover:bg-red-700 px-8 h-12 flex items-center justify-center rounded-xl">
+                                            <Search className="w-5 h-5 mr-2" />
+                                            Search
+                                        </Button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
