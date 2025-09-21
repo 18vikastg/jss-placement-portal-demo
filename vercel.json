@@ -11,7 +11,10 @@
     },
     {
       "src": "placement-portal/backend/index.js",
-      "use": "@vercel/node"
+      "use": "@vercel/node",
+      "config": {
+        "maxLambdaSize": "50mb"
+      }
     }
   ],
   "routes": [
@@ -24,22 +27,7 @@
       "dest": "placement-portal/frontend/dist/$1"
     }
   ],
-  "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "/placement-portal/backend/index.js"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/placement-portal/frontend/index.html"
-    }
-  ],
   "env": {
     "NODE_ENV": "production"
-  },
-  "functions": {
-    "placement-portal/backend/index.js": {
-      "maxDuration": 30
-    }
   }
 }
