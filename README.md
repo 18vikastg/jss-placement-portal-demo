@@ -7,7 +7,7 @@
 ![Node.js](https://img.shields.io/badge/Node.js-Express-green?style=for-the-badge&logo=node.js)
 ![MongoDB](https://img.shields.io/badge/MongoDB-Database-green?style=for-the-badge&logo=mongodb)
 ![AI Powered](https://img.shields.io/badge/AI-Powered-purple?style=for-the-badge&logo=artificial-intelligence)
-![Conference Ready](https://img.shields.io/badge/IEEE-Conference%20Ready-gold?style=for-the-badge&logo=ieee)
+
 
 **A comprehensive full-stack placement portal system built for JSS Academy of Technical Education**  
 **✨ Enhanced with Advanced Features & Professional UI - IEEE Conference Ready ✨**
@@ -61,7 +61,7 @@
 
 The JSS Placement Portal is a **complete career development ecosystem** that facilitates seamless interaction between students, faculty, and recruiters. This enhanced version combines traditional placement portal functionality with cutting-edge AI features, professional networking capabilities, and automated service management.
 
-### ✨ **Latest Enhancements (IEEE Conference Ready)**
+
 - **🎨 Professional UI/UX**: Enhanced navigation and JSS Academy branding
 - **🚀 One-Command Startup**: Complete platform launches with single script
 - **🤖 Quad-AI Integration**: Four AI services working in harmony
@@ -941,7 +941,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ---
 
-## 🎯 **IEEE Conference Ready - Recent Enhancements**
+
 
 ### **✨ Latest Updates (September 2025)**
 
@@ -1011,9 +1011,7 @@ This enhanced JSS Placement Portal represents a significant advancement in educa
 - **Service Orchestration** with automated management capabilities
 - **Academic Excellence** with industry-standard technical implementation
 
-**Perfect for IEEE Conference Presentation** - Demonstrating the intersection of academic innovation and industry-standard software engineering practices.
-  - Monitor uploaded resumes and user activity
-  - Track system performance metrics
+
 
 - **📈 Advanced Analytics**
   - Interactive pie charts for various metrics
@@ -1106,7 +1104,7 @@ Access the application at: `http://localhost:8501`
 ### Installation Issues
 📺 [Setup Video Guide](https://youtu.be/WFruijLC1Nc)
 
-For technical support: [Contact Developer](mailto:vikas@example.com)
+For technical support: [Contact Developer](mailto:vikastg2000@gmail.com)
 
 ## Roadmap 🗺️
 - [x] 🎯 Multi-level experience prediction
@@ -1185,7 +1183,7 @@ For major changes, please open an issue first to discuss your ideas.
 
 <div align="center">
   <p>
-    <strong>Built with 💜 and AI by <a href="https://github.com/18vikastg">Vikas TG</a></strong>
+    <strong>Built  by <a href="https://github.com/18vikastg">Vikas TG</a></strong>
   </p>
   <p>
     <em>Empowering careers through intelligent resume analysis</em>
