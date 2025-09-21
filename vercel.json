@@ -1,11 +1,45 @@
 {
-  "buildCommand": "cd frontend && npm install && npm run build",
-  "outputDirectory": "frontend/dist",
-  "framework": "vite",
+  "version": 2,
+  "name": "jss-placement-portal",
+  "builds": [
+    {
+      "src": "placement-portal/frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    },
+    {
+      "src": "placement-portal/backend/index.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "placement-portal/backend/index.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "placement-portal/frontend/dist/$1"
+    }
+  ],
   "rewrites": [
     {
+      "source": "/api/(.*)",
+      "destination": "/placement-portal/backend/index.js"
+    },
+    {
       "source": "/(.*)",
-      "destination": "/index.html"
+      "destination": "/placement-portal/frontend/index.html"
     }
-  ]
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  },
+  "functions": {
+    "placement-portal/backend/index.js": {
+      "maxDuration": 30
+    }
+  }
 }

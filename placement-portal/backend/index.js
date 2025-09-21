@@ -31,9 +31,11 @@ const corsOptions = {
         'http://localhost:5175', 
         'http://localhost:5176', 
         'http://localhost:5177',
-        'https://jss-placement-portal-qzvy4afdx-vikas-t-gs-projects.vercel.app',
+        'https://jss-placement-portal-demo.vercel.app',
         'https://jss-placement-portal.vercel.app',
-        'https://jss-placement-portal-vikas-t-gs-projects.vercel.app'
+        'https://jss-placement-portal-vikas-t-gs-projects.vercel.app',
+        'https://jss-placement-portal-demo-*.vercel.app',
+        /https:\/\/.*\.vercel\.app$/
     ],
     credentials:true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
@@ -89,7 +91,15 @@ app.get('/test-placement', (req, res) => {
 
 
 
-app.listen(PORT,()=>{
-    connectDB();
-    console.log(`Server running at port ${PORT}`);
-})
+// Connect to database on startup
+connectDB();
+
+// For local development
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(PORT, () => {
+        console.log(`Server running at port ${PORT}`);
+    });
+}
+
+// Export for Vercel serverless
+export default app;

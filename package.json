@@ -1,0 +1,29 @@
+{
+  "name": "jss-placement-portal",
+  "version": "1.0.0",
+  "description": "Complete JSS Placement Portal with AI Integration",
+  "scripts": {
+    "build": "cd placement-portal/frontend && npm install && npm run build",
+    "start": "cd placement-portal/backend && npm start",
+    "dev": "concurrently \"cd placement-portal/backend && npm run dev\" \"cd placement-portal/frontend && npm run dev\"",
+    "install-all": "cd placement-portal/backend && npm install && cd ../frontend && npm install"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "placement",
+    "portal", 
+    "react",
+    "nodejs",
+    "mongodb",
+    "AI",
+    "resume-analyzer",
+    "career-guidance"
+  ],
+  "author": "Vikas T. G.",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}
