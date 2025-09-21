@@ -475,19 +475,19 @@ const StudentDashboard = () => {
                                         <Award className="w-6 h-6" />
                                         <span className="text-sm">Certificates</span>
                                     </Button>
-                                    <a href="http://localhost:3001/career-guide" target="_blank" rel="noopener noreferrer" className="w-full">
+                                    <a href="http://localhost:3002/career-guide" target="_blank" rel="noopener noreferrer" className="w-full">
                                         <Button className="h-20 w-full flex flex-col items-center gap-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border-indigo-200">
                                             <Compass className="w-6 h-6" />
                                             <span className="text-sm">Career Guide</span>
                                         </Button>
                                     </a>
-                                    <a href="http://localhost:3001/resume" target="_blank" rel="noopener noreferrer" className="w-full">
+                                    <a href="http://localhost:3002/resume" target="_blank" rel="noopener noreferrer" className="w-full">
                                         <Button className="h-20 w-full flex flex-col items-center gap-2 bg-pink-50 hover:bg-pink-100 text-pink-700 border-pink-200">
                                             <FileText className="w-6 h-6" />
                                             <span className="text-sm">AI Resume Builder</span>
                                         </Button>
                                     </a>
-                                    <a href="http://localhost:3001/interview" target="_blank" rel="noopener noreferrer" className="w-full">
+                                    <a href="http://localhost:3002/interview" target="_blank" rel="noopener noreferrer" className="w-full">
                                         <Button className="h-20 w-full flex flex-col items-center gap-2 bg-cyan-50 hover:bg-cyan-100 text-cyan-700 border-cyan-200">
                                             <MessageCircle className="w-6 h-6" />
                                             <span className="text-sm">Interview Prep</span>
@@ -497,19 +497,19 @@ const StudentDashboard = () => {
                                 
                                 {/* Third row for Cover Letter Generator */}
                                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
-                                    <a href="http://localhost:3001/ai-cover-letter" target="_blank" rel="noopener noreferrer" className="w-full">
+                                    <a href="http://localhost:3002/ai-cover-letter" target="_blank" rel="noopener noreferrer" className="w-full">
                                         <Button className="h-20 w-full flex flex-col items-center gap-2 bg-yellow-50 hover:bg-yellow-100 text-yellow-700 border-yellow-200">
                                             <Mail className="w-6 h-6" />
                                             <span className="text-sm">Cover Letter</span>
                                         </Button>
                                     </a>
-                                    <a href="http://localhost:3001/preparation-hub" target="_blank" rel="noopener noreferrer" className="w-full">
+                                    <a href="http://localhost:3002/preparation-hub" target="_blank" rel="noopener noreferrer" className="w-full">
                                         <Button className="h-20 w-full flex flex-col items-center gap-2 bg-teal-50 hover:bg-teal-100 text-teal-700 border-teal-200">
                                             <BookOpen className="w-6 h-6" />
                                             <span className="text-sm">Prep Hub</span>
                                         </Button>
                                     </a>
-                                    <a href="http://localhost:3001/dashboard" target="_blank" rel="noopener noreferrer" className="w-full">
+                                    <a href="http://localhost:3002/dashboard" target="_blank" rel="noopener noreferrer" className="w-full">
                                         <Button className="h-20 w-full flex flex-col items-center gap-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border-emerald-200">
                                             <Target className="w-6 h-6" />
                                             <span className="text-sm">AI Dashboard</span>
