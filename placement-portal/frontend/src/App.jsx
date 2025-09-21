@@ -29,7 +29,6 @@ import PreparationHub from './components/PreparationHub'
 import PreparationHubEnhanced from './components/PreparationHubEnhanced'
 import PreparationDashboard from './components/PreparationDashboard'
 import PlacementDashboard from './components/PlacementDashboard'
-import PlacementAnalyticsDashboard from './components/analytics/PlacementAnalyticsDashboardNew'
 import ResumeAnalyserInfo from './components/ResumeAnalyserInfo'
 import LinkFolioMainNew from './components/linkfolio/LinkFolioMainNew'
 import NewLinkFolio from './components/linkfolio/NewLinkFolio'
@@ -79,10 +78,6 @@ const appRouter = createBrowserRouter([
   {
     path: "/preparation/dashboard",
     element: <ProtectedRoute><PreparationDashboard /></ProtectedRoute>
-  },
-  {
-    path: "/placement/analytics", 
-    element: <ProtectedRoute><PlacementAnalyticsDashboard /></ProtectedRoute>
   },
   {
     path: "/placement/dashboard",
