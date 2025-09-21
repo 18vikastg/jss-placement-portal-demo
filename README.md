@@ -10,7 +10,7 @@
 **Official Placement Portal of JSS Academy of Technical Education, Bangalore**  
 **🎯 Empowering Students • Connecting Recruiters • Building Careers**
 
-[🌐 Live Portal](https://jssateb-placement-portal.vercel.app) • [� User Guide](#-quick-start) • [🛠️ Admin Panel](#-admin-features) • [� Analytics](#-features)
+[🌐 Live Portal](https://jss-placement-portal-demo.vercel.app) • [📚 User Guide](#-quick-start) • [🛠️ Admin Panel](#-admin-features) • [📊 Analytics](#-features)
 
 ---
 
@@ -26,7 +26,7 @@ JSS Academy of Technical Education, Bangalore is a premier engineering instituti
 ## 🚀 Quick Start
 
 ### **� Production Portal Access**
-Visit our live portal at: **[https://jssateb-placement-portal.vercel.app](https://jssateb-placement-portal.vercel.app)**
+Visit our live portal at: **[https://jss-placement-portal-demo.vercel.app](https://jss-placement-portal-demo.vercel.app)**
 
 ### **👥 User Access Credentials**
 
@@ -725,7 +725,7 @@ Real-time insights for informed decision-making:
 ## 🚀 Deployment & Production
 
 ### **🌐 Production Environment**
-- **Live URL**: [https://jssateb-placement-portal.vercel.app](https://jssateb-placement-portal.vercel.app)
+- **Live URL**: [https://jss-placement-portal-demo.vercel.app](https://jss-placement-portal-demo.vercel.app)
 - **Hosting**: Vercel Edge Network with global CDN
 - **Database**: MongoDB Atlas with automated backups
 - **File Storage**: Cloudinary with 99.9% uptime SLA
@@ -794,7 +794,7 @@ git push origin feature/your-feature-name
 - **Lead Developer**: Vikas T G
 - **Email**: vikastg2000@gmail.com  
 - **GitHub**: [@18vikastg](https://github.com/18vikastg)
-- **LinkedIn**: [Connect on LinkedIn](https://linkedin.com/in/vikastg)
+- **LinkedIn**: [Connect on LinkedIn](https://www.linkedin.com/in/vikas-t-g-09692325a/)
 
 ### **🐛 Issue Reporting**
 - **Bug Reports**: [GitHub Issues](https://github.com/18vikastg/jss-placement-portal-demo/issues)
@@ -842,7 +842,7 @@ Under the guidance of: JSS Academy Placement Cell
 **🎓 Empowering JSS Academy Students • Connecting Global Opportunities • Building Tomorrow's Leaders**
 
 [![JSS Academy](https://img.shields.io/badge/JSS_Academy-Technical_Education-red?style=for-the-badge&logo=graduation-cap)](https://jssateb.ac.in)
-[![Placement Portal](https://img.shields.io/badge/Portal-Live_Now-green?style=for-the-badge&logo=rocket)](https://jssateb-placement-portal.vercel.app)
+[![Placement Portal](https://img.shields.io/badge/Portal-Live_Now-green?style=for-the-badge&logo=rocket)](https://jss-placement-portal-demo.vercel.app)
 
 **Made with ❤️ by the JSS Academy Community**
 
