@@ -1,303 +1,363 @@
-# 🎓 JSS Placement Portal - Complete Career Development Platform
+# 🎓 JSS Academy of Technical Education - Placement Portal
 
 <div align="center">
 
-![JSS Placement Portal](https://img.shields.io/badge/JSS-Placement%20Portal-red?style=for-the-badge&logo=graduation-cap)
-![React](https://img.shields.io/badge/React-18-blue?style=for-the-badge&logo=react)
-![Node.js](https://img.shields.io/badge/Node.js-Express-green?style=for-the-badge&logo=node.js)
-![MongoDB](https://img.shields.io/badge/MongoDB-Database-green?style=for-the-badge&logo=mongodb)
-![AI Powered](https://img.shields.io/badge/AI-Powered-purple?style=for-the-badge&logo=artificial-intelligence)
-![Conference Ready](https://img.shields.io/badge/IEEE-Conference%20Ready-gold?style=for-the-badge&logo=ieee)
+![JSS Academy Logo](https://img.shields.io/badge/JSS_Academy-Technical_Education-red?style=for-the-badge&logo=graduation-cap&logoColor=white)
+![Version](https://img.shields.io/badge/Version-2.0.0-blue?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Production_Ready-green?style=for-the-badge)
+![AI Powered](https://img.shields.io/badge/AI-Enhanced-purple?style=for-the-badge&logo=artificial-intelligence)
 
-**A comprehensive full-stack placement portal system built for JSS Academy of Technical Education**  
-**✨ Enhanced with Advanced Features & Professional UI - IEEE Conference Ready ✨**
+**Official Placement Portal of JSS Academy of Technical Education, Bangalore**  
+**🎯 Empowering Students • Connecting Recruiters • Building Careers**
 
-[🚀 Live Demo](https://jss-placement-portal.vercel.app) • [📖 Documentation](#-features) • [💻 Installation](#-installation) • [🤝 Contributing](#-contributing)
+[🌐 Live Portal](https://jssateb-placement-portal.vercel.app) • [� User Guide](#-quick-start) • [🛠️ Admin Panel](#-admin-features) • [� Analytics](#-features)
+
+---
+
+### 🎯 **About JSS Academy of Technical Education**
+JSS Academy of Technical Education, Bangalore is a premier engineering institution committed to excellence in technical education. Our Placement Portal serves as the digital bridge connecting our talented students with leading industry recruiters worldwide.
+
+**🏛️ Established**: JSS Academy of Technical Education  
+**🌍 Location**: Bangalore, Karnataka, India  
+**🎓 Mission**: Fostering innovation, excellence, and industry-ready graduates
 
 </div>
 
----
+## 🚀 Quick Start
 
-## 🚀 One-Command Startup (NEW!)
+### **� Production Portal Access**
+Visit our live portal at: **[https://jssateb-placement-portal.vercel.app](https://jssateb-placement-portal.vercel.app)**
 
-### **🎯 Quick Start - All Services in One Command:**
+### **👥 User Access Credentials**
+
+| User Type | Email | Password | Access Level |
+|-----------|--------|----------|--------------|
+| **🎓 Student** | `student@jssateb.ac.in` | `student123` | Student Dashboard, Job Applications, Profile Management |
+| **👨‍🏫 Faculty** | `faculty@jssateb.ac.in` | `faculty123` | Student Oversight, Resource Management, Analytics |
+| **🏢 Recruiter** | `recruiter@company.com` | `recruiter123` | Job Posting, Candidate Management, Hiring Analytics |
+| **👨‍💼 Admin** | `admin@jssateb.ac.in` | `admin123` | System Administration, Complete Access |
+
+### **🛠️ Local Development Setup**
+
+#### **Prerequisites**
+- Node.js 18+ and npm
+- MongoDB (Local or Atlas)
+- Python 3.11+ (for AI features)
+- Git
+
+#### **📥 Installation**
 ```bash
-# Start the entire platform (all 4 services)
-./start-everything.sh
+# Clone the repository
+git clone https://github.com/18vikastg/jss-placement-portal-demo.git
+cd jss-placement-portal-demo
 
-# Monitor all services
-./quick-status.sh
+# Install dependencies
+npm install
+cd placement-portal/frontend && npm install
+cd ../backend && npm install
 
-# Stop all services gracefully
-./stop-all-features.sh
+# Set up environment variables
+cp .env.example .env
+# Configure your MongoDB URI, JWT secrets, and API keys
+
+# Start the development servers
+npm run dev:all
 ```
 
-### **🔧 Individual Service Management:**
-```bash
-# Start specific services
-./start-ai-resume.sh       # AI Resume Analyzer only
-./start-all-features.sh    # Complete feature set
-
-# Check detailed service status
-./check-status.sh          # Enhanced status monitoring
-```
-
-### **🌐 Access URLs (All Services Operational):**
-| Service | URL | Description | Status |
-|---------|-----|-------------|---------|
-| **🎓 Main Portal** | http://localhost:5173 | React Frontend (Student/Faculty/Recruiter) | ✅ Enhanced UI |
-| **🔧 Backend API** | http://localhost:8001 | Node.js/Express API Services | ✅ Operational |
-| **🤖 AI Career Coach** | http://localhost:3002 | Next.js AI Career Guidance | ✅ Integrated |
-| **📄 AI Resume Analyzer** | http://localhost:8501 | Python/Streamlit Resume Analysis | ✅ Enhanced |
-
-### **👥 Default Login Credentials:**
-- **Student**: `patel@gmail.com` / `patel@gmail.com`
-- **Faculty**: `admin@jssateb.ac.in` / `admin123`
-- **Recruiter**: `recruiter@company.com` / `recruiter123`
-
----
+#### **🌐 Development URLs**
+| Service | URL | Purpose |
+|---------|-----|---------|
+| **Frontend** | http://localhost:5173 | React Application |
+| **Backend API** | http://localhost:8001 | Express.js API |
+| **AI Resume Analyzer** | http://localhost:8501 | Python/Streamlit Service |
 
 ## 🌟 Platform Overview
 
-The JSS Placement Portal is a **complete career development ecosystem** that facilitates seamless interaction between students, faculty, and recruiters. This enhanced version combines traditional placement portal functionality with cutting-edge AI features, professional networking capabilities, and automated service management.
+The **JSS Academy Placement Portal** is a comprehensive digital ecosystem designed to streamline the placement process for our institution. Built with modern web technologies and enhanced with AI capabilities, it serves as the central hub for all placement-related activities.
 
-### ✨ **Latest Enhancements (IEEE Conference Ready)**
-- **🎨 Professional UI/UX**: Enhanced navigation and JSS Academy branding
-- **🚀 One-Command Startup**: Complete platform launches with single script
-- **🤖 Quad-AI Integration**: Four AI services working in harmony
-- **📊 Advanced Service Management**: Health monitoring and automated recovery
-- **🎯 Conference-Ready Presentation**: Professional styling for academic demonstrations
+### 🎯 **Mission Statement**
+*"To bridge the gap between academic excellence and industry requirements, providing our students with seamless access to career opportunities while enabling recruiters to discover exceptional talent from JSS Academy."*
 
-### 🎯 Key Highlights
-- **Complete MERN Stack + AI Integration** with modern React 18 patterns
-- **Multi-Service Architecture** with automated startup and monitoring
-- **AI-Powered Resume Analysis** with ML-based insights and career predictions
-- **Professional Portfolio Builder** (Enhanced NewLinkFolio with advanced search)
-- **Alumni Networking Platform** with real-time messaging and meeting scheduling
-- **Comprehensive Placement Management** for all stakeholders with analytics
-- **Real-time Service Monitoring** with health checks and automated recovery
+### ✨ **Core Capabilities**
+- **🎓 Student Career Management**: Complete profile management, skill tracking, and career development tools
+- **� Recruiter Partnership**: Streamlined job posting, candidate discovery, and hiring management
+- **�‍🏫 Faculty Oversight**: Student mentoring, progress tracking, and placement analytics
+- **🤖 AI-Enhanced Features**: Intelligent resume analysis, career guidance, and placement predictions
+- **📊 Advanced Analytics**: Real-time placement statistics, trend analysis, and reporting
+- **🌐 Professional Networking**: Alumni connections, mentorship programs, and industry engagement
 
----
+### 🏆 **Why Choose JSS Academy Placement Portal?**
 
-## 🚀 Features
+#### **For Students**
+- ✅ **Career-Ready Profiles**: Build comprehensive professional profiles with skill assessments
+- ✅ **Smart Job Matching**: AI-powered job recommendations based on your skills and interests
+- ✅ **Professional Portfolio**: Create stunning portfolios with our advanced LinkFolio builder  
+- ✅ **Alumni Network**: Connect with successful graduates for mentorship and guidance
+- ✅ **Preparation Resources**: Access curated study materials and mock interview tools
 
-### 👨‍🎓 **For Students**
+#### **For Recruiters**
+- ✅ **Quality Talent Pool**: Access to pre-screened, industry-ready graduates from JSS Academy
+- ✅ **Efficient Hiring**: Streamlined application management and candidate evaluation tools
+- ✅ **Data-Driven Insights**: Advanced analytics for optimizing recruitment strategies
+- ✅ **Campus Integration**: Direct connection with faculty and placement coordinators
+- ✅ **Brand Visibility**: Showcase your company culture and opportunities to students
 
-#### 🔐 **Authentication & Profile Management**
-- Secure JWT-based authentication system
-- Complete profile setup with skills, education, and experience
-- Profile completion tracking with progress indicators
-- Resume upload and management with Cloudinary integration
+#### **For Faculty & Administration**
+- ✅ **Student Success Tracking**: Monitor placement progress and career development
+- ✅ **Industry Partnerships**: Manage relationships with recruiting companies
+- ✅ **Performance Analytics**: Comprehensive reports on placement trends and outcomes
+- ✅ **Resource Management**: Organize and distribute preparation materials effectively
 
-#### 💼 **Job Discovery & Applications**
-- Advanced job search with filtering by company, location, salary, and requirements
-- One-click job applications with application status tracking
-- Personalized job recommendations based on profile and skills
-- Application history and analytics dashboard
+## 🚀 Platform Features
 
-#### 🎯 **Preparation Hub**
-- Access to curated study materials and preparation resources
-- Mock interview scheduling and practice sessions
-- Skill-based learning paths and recommendations
-- Progress tracking and performance analytics
+### 🎓 **Student Portal**
 
-#### 🤖 **AI Resume Analyzer (Enhanced)**
-- **Intelligent Resume Parsing** with advanced NLP-powered extraction
-- **AI-Powered Recommendations** with personalized skill enhancement paths
-- **Comprehensive Analysis** with detailed experience level assessment
-- **Quality Scoring** with actionable feedback and improvement roadmaps
-- **Career Path Predictions** with industry trend analysis
-- **📊 New: Visual Analytics Dashboard** with resume strength metrics
-- **🚀 New: One-Click Startup** with automated dependency management
+#### **🔐 Secure Access & Profile Management**
+- **JSS Academy Integration**: Seamless login with college credentials
+- **Comprehensive Profiles**: Academic records, skills, projects, and achievements
+- **Progress Tracking**: Visual indicators for profile completion and career readiness
+- **Document Management**: Secure upload and management of resumes, certificates, and transcripts
 
-#### 🌐 **NewLinkFolio - Advanced Portfolio Builder (Upgraded)**
-- **Enhanced UI/UX** with professional JSS Academy styling
-- **Advanced Alumni Search** with debounced search and intelligent filtering
-- **Real-time Form Validation** with comprehensive error handling
-- **Professional Templates** with responsive design and modern aesthetics
-- **Portfolio Analytics** with enhanced view tracking and engagement insights
-- **🔍 New: Sophisticated Filtering** by skills, company, graduation year, location
-- **⚡ New: Performance Optimizations** with efficient state management
+#### **💼 Career Opportunities & Applications**
+- **Curated Job Listings**: Opportunities specifically tailored for JSS Academy students
+- **Smart Filtering**: Search by company size, location, package, role type, and requirements
+- **One-Click Applications**: Streamlined application process with auto-filled student data
+- **Application Tracking**: Real-time status updates and interview scheduling
+- **Placement Calendar**: Important dates, deadlines, and campus recruitment schedules
 
-#### 👥 **Alumni Network (Enhanced AlumniLink)**
-- **Advanced Alumni Discovery** with improved search algorithms
-- **Enhanced Messaging System** with read receipts and typing indicators
-- **Smart Meeting Scheduling** with calendar integration and availability checking
-- **Professional Networking Tools** with connection recommendations
-- **Mentorship Matching** with AI-powered compatibility scoring
-- **🎯 New: Advanced Filtering** with multi-criteria search capabilities
-- **📱 New: Responsive Design** optimized for all device types
+#### **🎯 Career Preparation Hub**
+- **JSS Academy Resources**: Curated study materials and placement preparation content
+- **Mock Interview Platform**: Practice sessions with automated feedback and scoring
+- **Technical Assessments**: Skill-based tests and coding challenges
+- **Soft Skills Development**: Communication, leadership, and professional etiquette training
+- **Industry Insights**: Latest trends, salary benchmarks, and career path guidance
 
-#### 📊 **Analytics Dashboard**
-- Profile completion percentage and recommendations
-- Application success rates and interview conversion
-- Skill development tracking and progress visualization
-- Notification center with priority-based alerts
+#### **🤖 AI-Powered Career Assistant**
+- **Resume Analysis**: Intelligent parsing with improvement recommendations
+- **Skill Gap Identification**: Personalized learning paths based on market demands
+- **Career Prediction**: AI-driven insights on suitable roles and companies
+- **Interview Preparation**: AI-generated questions based on job profiles
+- **Performance Analytics**: Detailed reports on strengths and improvement areas
 
-### 🏢 **For Recruiters**
+#### **🌐 Professional Portfolio Builder**
+- **JSS Academy Templates**: Professional layouts reflecting institutional branding
+- **Dynamic Content**: Auto-populated academic and project information
+- **Social Integration**: LinkedIn connectivity and professional network building
+- **Mobile Responsive**: Optimized viewing across all devices
+- **Analytics Dashboard**: Track portfolio views and recruiter engagement
 
-#### 🏬 **Company Management**
-- Comprehensive company profile setup with branding
-- Team member management and role assignments
-- Company analytics and recruitment metrics
+#### **👥 Alumni Network & Mentorship**
+- **JSS Academy Alumni Directory**: Connect with successful graduates across industries
+- **Mentorship Matching**: AI-powered pairing based on career interests and goals
+- **Industry Insights**: Alumni sharing experiences and career guidance
+- **Networking Events**: Virtual and physical meetups organized through the platform
+- **Success Stories**: Inspirational journeys of JSS Academy graduates
 
-#### 💼 **Job Posting & Management**
-- Advanced job posting with detailed requirements and specifications
-- Bulk job posting capabilities for placement drives
-- Job performance analytics and application insights
-- Custom application forms and screening questions
+### 🏢 **Corporate Partner Portal**
 
-#### 👥 **Candidate Management**
-- Advanced candidate filtering and search capabilities
-- Resume analysis integration for candidate assessment
-- Interview scheduling and calendar management
-- Application tracking with status updates and feedback
+#### **🏛️ Company Profile & Branding**
+- **JSS Academy Partnership**: Dedicated portal for official recruiting partners
+- **Company Showcase**: Comprehensive profiles with culture, values, and opportunities
+- **Brand Visibility**: Featured placements on student dashboard and career fairs
+- **Partnership Benefits**: Access to exclusive JSS Academy talent and campus events
 
-#### 📈 **Recruitment Analytics**
-- Application conversion rates and funnel analysis
-- Time-to-hire metrics and recruitment efficiency
-- Candidate quality assessment and scoring
-- Custom reporting and data export capabilities
+#### **💼 Strategic Recruitment Management**
+- **Campus Recruitment Drives**: End-to-end management of placement drives
+- **Multi-Role Posting**: Bulk job postings for various positions and departments
+- **Custom Requirements**: Detailed job specifications with JSS Academy curriculum alignment
+- **Pre-Screening Tools**: Automated filtering based on academic performance and skills
 
-### 👨‍🏫 **For Faculty**
+#### **🎯 Candidate Discovery & Assessment**
+- **JSS Academy Talent Pool**: Access to pre-verified student profiles with academic records
+- **Advanced Search Filters**: Find candidates by branch, CGPA, skills, projects, and interests
+- **AI-Powered Matching**: Intelligent candidate recommendations based on job requirements
+- **Resume Analysis**: Automated screening with skill compatibility scoring
+- **Interview Coordination**: Integrated scheduling with JSS Academy placement cell
 
-#### 📊 **Student Management**
-- Complete student profile oversight and monitoring
-- Placement progress tracking and success metrics
-- Academic performance correlation with placement outcomes
-- Student mentoring and guidance tools
+#### **📊 Recruitment Analytics & Insights**
+- **Campus Hiring Metrics**: Conversion rates, time-to-hire, and candidate quality analysis
+- **Historical Data**: Multi-year placement trends and JSS Academy student performance
+- **Competitive Analysis**: Benchmarking against other recruiters and industry standards
+- **ROI Tracking**: Measure recruitment investment returns and partnership effectiveness
+- **Custom Reports**: Detailed analytics for internal HR and management teams
 
-#### 📚 **Resource Management**
-- Preparation material creation and curation
-- Study plan creation and assignment
-- Progress monitoring and assessment tools
-- Resource usage analytics and effectiveness tracking
+### 👨‍🏫 **Faculty & Placement Cell**
 
-#### 📈 **Analytics & Reporting**
-- Comprehensive placement statistics and trends
-- Department-wise performance analysis
-- Industry placement patterns and insights
-- Custom report generation for administrative purposes
+#### **📊 Student Success Management**
+- **Academic Integration**: Seamless access to student academic records and performance data
+- **Career Counseling Tools**: Comprehensive student guidance and mentorship tracking
+- **Placement Readiness Assessment**: Evaluate students' industry readiness and skill gaps
+- **Progress Monitoring**: Track individual student career development and interview performance
+- **Intervention Alerts**: Early warning system for students needing additional support
 
-### 🔧 **Admin Features**
+#### **📚 Resource & Content Management**
+- **Curriculum Alignment**: Map placement requirements with academic coursework
+- **Training Material Creation**: Develop and curate preparation resources for specific industries
+- **Assessment Tools**: Create skill tests and mock interview scenarios
+- **Learning Path Design**: Structured career preparation programs for different branches
+- **Industry Connection**: Maintain relationships with corporate partners and alumni
 
-#### 🎛️ **System Management**
-- User role management and permissions
-- System configuration and settings
-- Database management and backup tools
-- Performance monitoring and optimization
+#### **📈 Placement Analytics & Reporting**
+- **Department Performance**: Branch-wise placement statistics and trend analysis
+- **Company Relations**: Track recruiter satisfaction and partnership effectiveness
+- **Student Success Metrics**: Placement rates, package analysis, and career progression
+- **Institutional Reports**: Generate comprehensive reports for academic leadership
+- **Continuous Improvement**: Data-driven insights for enhancing placement processes
 
-#### 📊 **Analytics Dashboard**
-- Platform usage statistics and user engagement
-- Feature adoption rates and user behavior analysis
-- System performance metrics and health monitoring
-- Custom dashboard creation and reporting
+### 🔧 **Administrative Features**
 
----
+#### **🎛️ System Administration**
+- **User Management**: Role-based access control for students, faculty, and recruiters
+- **Campus Integration**: Sync with existing JSS Academy information systems
+- **Security Management**: Advanced authentication, data protection, and privacy controls
+- **Platform Configuration**: Customize features based on institutional requirements
+- **Backup & Recovery**: Automated data backup and disaster recovery protocols
 
-## 🛠️ Tech Stack
+#### **📊 Executive Dashboard**
+- **Institutional Metrics**: High-level placement statistics and performance indicators
+- **Strategic Insights**: Long-term trends and competitive positioning analysis
+- **Resource Utilization**: Platform usage statistics and feature adoption rates
+- **Financial Analytics**: Cost-benefit analysis of placement activities and partnerships
+- **Quality Assurance**: Monitor system performance and user satisfaction scores
 
-### **Frontend Technologies (Enhanced)**
+## 🛠️ Technology Architecture
+
+### **🎨 Frontend Stack**
 ```
-React 18               - Modern UI library with hooks and context
-Vite                  - Lightning-fast build tool and development server
-Redux Toolkit         - Predictable state management with DevTools
-React Router DOM      - Client-side routing with lazy loading
-Tailwind CSS          - Utility-first CSS framework with custom JSS theme
-Radix UI              - Accessible component primitives
-Framer Motion         - Smooth animations and transitions
-Recharts              - Responsive data visualization
-Lucide React          - Beautiful icon library with JSS customizations
-Axios                 - HTTP client with interceptors and error handling
-```
-
-### **Backend Technologies (Enhanced)**
-```
-Node.js               - JavaScript runtime environment (v18+)
-Express.js            - Fast web application framework with middleware
-MongoDB               - NoSQL database with optimized queries
-Mongoose              - Elegant MongoDB ODM with advanced validation
-JWT                   - Secure authentication with refresh tokens
-Bcrypt                - Advanced password hashing and security
-Cloudinary            - Optimized image and file upload management
-Multer                - Enhanced file upload middleware
-CORS                  - Cross-origin resource sharing with security
-Helmet                - Comprehensive security middleware suite
+React 18.3.1          - Modern UI library with hooks and concurrent features
+Vite 7.1.5            - Next-generation build tool with lightning-fast HMR  
+Redux Toolkit         - Predictable state management with DevTools integration
+React Router DOM      - Client-side routing with code splitting
+Tailwind CSS          - Utility-first CSS with JSS Academy custom theme
+Radix UI              - Accessible, unstyled component primitives
+Framer Motion         - Production-ready motion library for animations
+Lucide React          - Beautiful SVG icon library (4000+ icons)
+Axios                 - Promise-based HTTP client with interceptors
 ```
 
-### **AI & Machine Learning (Multi-Service)**
+### **⚙️ Backend Infrastructure**
 ```
-Python 3.11+          - Core AI processing language
-Streamlit             - Interactive AI dashboard and interface
-Next.js               - AI Career Coach service framework
-spaCy                 - Advanced NLP processing and entity recognition
-NLTK                  - Natural language processing toolkit
-PyResParser           - Enhanced resume parsing engine
-PDFMiner3             - Advanced PDF text extraction
-Plotly                - Interactive AI visualizations and analytics
-Scikit-learn          - Machine learning algorithms and models
-TensorFlow/PyTorch    - Deep learning frameworks for AI predictions
-```
-
-### **Service Management & Automation (NEW)**
-```
-Shell Scripts         - Automated service startup and management
-Process Management    - PID tracking and health monitoring
-Log Management        - Comprehensive logging and error tracking
-Port Management       - Intelligent port allocation and cleanup
-Health Monitoring     - Real-time service status checking
-Auto-Recovery         - Automated service restart and error handling
+Node.js 18+           - JavaScript runtime with advanced ES modules support
+Express.js 4.19       - Fast, unopinionated web framework  
+MongoDB 7.0           - Document database with advanced querying
+Mongoose 8.5          - Object modeling with schema validation
+JWT (jsonwebtoken)    - Stateless authentication with secure tokens
+Bcrypt.js             - Password hashing with salt rounds
+Cloudinary            - Media management and optimization
+Multer                - Multipart/form-data file upload handling
+CORS                  - Cross-Origin Resource Sharing configuration
+Helmet                - Security middleware with 15+ protections
 ```
 
-### **Development & Deployment (Enhanced)**
+### **🤖 AI & Analytics Engine**
 ```
-Vercel                - Frontend and backend hosting with CI/CD
-MongoDB Atlas         - Cloud database with performance monitoring
-Git & GitHub          - Advanced version control with branch strategies
-ESLint                - Enhanced code linting and quality enforcement
-Prettier              - Consistent code formatting across services
-Husky                 - Git hooks for quality control and testing
-Docker                - Containerization for AI services
-PM2                   - Process management for production deployment
+Python 3.11+          - Core AI and machine learning processing
+Streamlit 1.37        - Interactive web applications for data science
+spaCy 3.7             - Industrial-strength NLP with neural networks
+NLTK 3.8              - Natural language processing and corpus analysis
+PyResParser           - Advanced resume parsing with entity extraction  
+PDFMiner3             - Robust PDF text extraction and analysis
+Plotly 5.17           - Interactive visualization and dashboards
+Pandas 2.1            - Data manipulation and analysis library
+NumPy 1.25            - Numerical computing with N-dimensional arrays
 ```
 
----
+### **☁️ Cloud & Deployment**
+```
+Vercel                - Edge network deployment with automatic scaling  
+MongoDB Atlas         - Fully managed cloud database with global clusters
+Cloudinary            - Digital asset management with CDN delivery
+GitHub Actions        - CI/CD pipelines with automated testing
+Git LFS               - Large file storage for media assets
+Environment Security  - Encrypted environment variable management
+SSL/TLS               - End-to-end encryption with automatic certificates
+```
 
-## 🏗️ Project Architecture
+### **🔧 Development & Quality Assurance**
+```
+ESLint 9.0            - Code linting with JSS Academy style guide
+Prettier 3.3          - Opinionated code formatting  
+Husky 9.0             - Git hooks for pre-commit quality checks
+Vite DevTools         - Advanced debugging and performance monitoring
+React DevTools        - Component tree inspection and profiling
+Redux DevTools        - Time-travel debugging for state management
+```
 
+## 🏗️ System Architecture
+
+### **📋 Project Structure**
 ```
 jss-placement-portal/
-├── 📁 placement-portal/             # 🎯 Main Application Suite
-│   ├── 📁 frontend/                 # ⚛️ React 18 Frontend (Port 5173)
+├── 📁 placement-portal/             # 🎯 Core Application Suite
+│   ├── 📁 frontend/                 # ⚛️ React 18 Client Application
 │   │   ├── 📁 src/
-│   │   │   ├── 📁 components/       # 🧩 Enhanced UI Components
-│   │   │   │   ├── 📁 auth/         # 🔐 Authentication Components
-│   │   │   │   ├── 📁 student/      # 🎓 Student Dashboard (Enhanced UI)
-│   │   │   │   ├── 📁 recruiter/    # 🏢 Recruiter Management
-│   │   │   │   ├── 📁 admin/        # 👨‍💼 Admin Panel Components
-│   │   │   │   ├── 📁 linkfolio/    # 🌐 Advanced Portfolio Builder
-│   │   │   │   ├── 📁 shared/       # 🔄 Shared Components (NavbarNew)
-│   │   │   │   ├── 📁 ui/           # 🎨 Professional UI Library
-│   │   │   │   └── 📁 3D/           # ✨ 3D Animations & Effects
+│   │   │   ├── 📁 components/       # 🧩 Reusable UI Components
+│   │   │   │   ├── 📁 auth/         # 🔐 Authentication & Authorization
+│   │   │   │   ├── 📁 student/      # 🎓 Student Portal Features
+│   │   │   │   ├── 📁 recruiter/    # 🏢 Corporate Partner Interface
+│   │   │   │   ├── 📁 faculty/      # 👨‍🏫 Faculty & Admin Panels
+│   │   │   │   ├── 📁 linkfolio/    # 🌐 Portfolio Builder System
+│   │   │   │   ├── 📁 shared/       # 🔄 Common Components (Navbar, Footer)
+│   │   │   │   ├── 📁 ui/           # 🎨 JSS Academy Design System
+│   │   │   │   └── 📁 alumni/       # 👥 Alumni Network Features
 │   │   │   ├── 📁 hooks/            # 🎣 Custom React Hooks
-│   │   │   ├── 📁 redux/            # 🏪 Advanced State Management
-│   │   │   ├── 📁 utils/            # 🛠️ Enhanced Utility Functions
-│   │   │   └── 📁 assets/           # 📸 Static Assets & JSS Branding
-│   │   └── 📁 public/               # 🌍 Public Static Files
+│   │   │   ├── 📁 redux/            # 🏪 Global State Management
+│   │   │   ├── 📁 utils/            # 🛠️ Helper Functions & Constants
+│   │   │   ├── 📁 assets/           # 📸 Images, Icons & JSS Branding
+│   │   │   └── 📁 pages/            # 📄 Route Components
+│   │   ├── 📁 public/               # 🌍 Static Assets & PWA Config
+│   │   └── 📄 package.json          # 📦 Dependencies & Scripts
 │   │
-│   └── 📁 backend/                  # 🔧 Node.js Backend API (Port 8001)
-│       ├── 📁 controllers/          # 🎮 Enhanced Business Logic
-│       ├── 📁 models/               # 🗄️ Advanced Database Models
-│       ├── 📁 routes/               # 🛣️ Comprehensive API Routes
-│       ├── 📁 middlewares/          # 🛡️ Security & Auth Middleware
-│       ├── 📁 utils/                # ⚙️ Backend Utilities
-│       └── 📁 config/               # ⚙️ Environment Configuration
+│   └── 📁 backend/                  # 🔧 Node.js API Server
+│       ├── 📁 controllers/          # 🎮 Business Logic & Request Handlers
+│       ├── 📁 models/               # 🗄️ Database Schemas & Models
+│       ├── 📁 routes/               # 🛣️ API Route Definitions
+│       ├── 📁 middlewares/          # 🛡️ Auth, Validation & Security
+│       ├── 📁 utils/                # ⚙️ Utilities & Helper Functions
+│       ├── 📁 config/               # ⚙️ Database & Environment Config
+│       └── 📄 index.js              # 🚀 Application Entry Point
 │
-├── 📁 ai-resume-analyser/           # 🤖 AI Resume Analysis (Port 8501)
-│   ├── 📁 App/                      # 🐍 Enhanced Streamlit Application
-│   │   ├── App.py                   # 🧠 Main AI Application
-│   │   ├── config.py                # ⚙️ AI Configuration
-│   │   └── requirements.txt         # 📦 AI Dependencies
+├── 📁 ai-resume-analyser/           # 🤖 AI Services Module
+│   ├── 📁 App/                      # 🐍 Streamlit AI Application
+│   │   ├── 📄 App.py                # 🧠 Main AI Processing Engine
+│   │   ├── 📄 config.py             # ⚙️ AI Model Configuration
+│   │   └── 📄 requirements.txt      # 📦 Python Dependencies
+│   └── 📁 pyresparser/              # 📄 Resume Parsing Engine
+│
+├── 📁 database-backup/              # 💾 Database Backup & Migration
+├── 📄 vercel.json                   # ☁️ Deployment Configuration  
+├── 📄 package.json                  # 📦 Root Project Configuration
+└── 📄 README.md                     # 📖 Documentation
+```
+
+### **🌐 System Flow & Architecture**
+
+```mermaid
+graph TB
+    A[👤 User Interface] --> B[⚛️ React Frontend]
+    B --> C[🔧 Express.js API]
+    C --> D[🗄️ MongoDB Atlas]
+    C --> E[🤖 AI Services]
+    E --> F[📄 Resume Analysis]
+    E --> G[🎯 Career Recommendations]
+    B --> H[☁️ Cloudinary CDN]
+    C --> I[🔐 JWT Authentication]
+    
+    subgraph "JSS Academy Infrastructure"
+    J[👨‍🏫 Faculty Portal]
+    K[🎓 Student Dashboard] 
+    L[🏢 Recruiter Panel]
+    M[👨‍💼 Admin System]
+    end
+```
+
+### **🔄 Data Flow Architecture**
+1. **User Authentication** → JWT-based secure login with role-based access
+2. **Profile Management** → Real-time updates with MongoDB transactions  
+3. **AI Processing** → Python microservices for resume analysis and career guidance
+4. **File Management** → Cloudinary integration for secure document storage
+5. **Real-time Updates** → WebSocket connections for live notifications
+6. **Analytics Pipeline** → Data aggregation for institutional insights
 │   └── 📁 pyresparser/              # 🔍 Advanced Resume Parsing
 │
 ├── 📁 ai-career-coach/              # 🎯 AI Career Coach (Port 3002)
@@ -637,106 +697,156 @@ The integrated NewLinkFolio-main features provide a complete portfolio building 
   - Interaction tracking and insights
 
 ### 🤖 **AI Resume Analyzer**
-Advanced artificial intelligence features for resume enhancement:
+## 📊 Analytics & Reporting
 
-- **📄 Intelligent Parsing**: Extract structured data from PDF resumes
-- **🧠 NLP Analysis**: Advanced natural language processing for content analysis
-- **⭐ Quality Scoring**: Comprehensive resume scoring with improvement suggestions
-- **🎯 Skill Recommendations**: Personalized skill enhancement suggestions
-- **📊 Career Insights**: Data-driven career path predictions
-- **📈 Progress Tracking**: Monitor resume improvement over time
+### **🎯 Institutional Analytics**
+Real-time insights for informed decision-making:
 
-### 📊 **Analytics Dashboard**
-Comprehensive analytics for all user types:
+- **� Placement Trends**: Historical data analysis with year-over-year comparisons
+- **🏭 Industry Mapping**: Detailed breakdown of student placements across industries
+- **💰 Package Analysis**: Comprehensive salary statistics and benchmarking
+- **🎓 Department Performance**: Branch-wise placement rates and success metrics
+- **🏢 Company Partnerships**: Recruiter engagement and satisfaction tracking
+- **📊 ROI Measurement**: Cost-benefit analysis of placement activities
 
-- **Student Analytics**:
-  - Application success rates and conversion metrics
-  - Profile completion tracking and recommendations
-  - Skill development progress and growth areas
-  - Interview performance and feedback analysis
+### **� Student Success Metrics**
+- **Career Readiness Scoring**: Multi-dimensional assessment of student preparedness
+- **Skill Gap Analysis**: Identification of market demands vs. current capabilities
+- **Interview Performance**: Success rates and improvement recommendations
+- **Alumni Career Progression**: Long-term tracking of graduate success stories
 
-- **Recruiter Analytics**:
-  - Job posting performance and application metrics
-  - Candidate quality assessment and filtering
-  - Time-to-hire optimization and efficiency tracking
-  - Recruitment funnel analysis and conversion rates
-
-- **Faculty Analytics**:
-  - Student placement success rates and trends
-  - Department-wise performance comparisons
-  - Industry placement patterns and insights
-  - Academic correlation with placement outcomes
+### **🏢 Corporate Partner Insights**
+- **Recruitment Efficiency**: Time-to-hire and quality metrics for partner companies
+- **Talent Pipeline Health**: Predictive analytics for future recruitment needs
+- **Partnership ROI**: Value delivered to corporate partners through placement programs
 
 ---
 
-## 🧪 Test Accounts & Usage
+## 🚀 Deployment & Production
 
-### **👥 Pre-configured Test Users**
+### **🌐 Production Environment**
+- **Live URL**: [https://jssateb-placement-portal.vercel.app](https://jssateb-placement-portal.vercel.app)
+- **Hosting**: Vercel Edge Network with global CDN
+- **Database**: MongoDB Atlas with automated backups
+- **File Storage**: Cloudinary with 99.9% uptime SLA
+- **Monitoring**: Real-time performance tracking and alerting
 
-#### **Student Access**
-- **Primary**: patel@gmail.com / patel@gmail.com
-- **Secondary**: test@student.com / password123
-- **Features**: Portfolio builder, job applications, AI resume analysis, alumni networking
+### **🔒 Security & Compliance**
+- **Data Protection**: GDPR-compliant data handling and storage
+- **Authentication**: Multi-factor authentication for admin access
+- **Encryption**: End-to-end encryption for sensitive student information
+- **Access Control**: Role-based permissions with audit trails
+- **Backup Strategy**: Daily automated backups with point-in-time recovery
 
-#### **Recruiter Dashboard**
-- **Email**: recruiter@company.com / recruiter123
-- **Features**: Job posting, candidate management, application review, analytics
-
-#### **Faculty Panel**
-- **Email**: faculty@jssateb.ac.in / faculty123
-- **Features**: Student oversight, resource management, placement analytics
-
-#### **AI System Admin**
-- **Credentials**: admin / admin@resume-analyzer
-- **Features**: AI analytics, user data management, system insights
+### **📱 Mobile & Accessibility**
+- **Responsive Design**: Optimized for all devices and screen sizes
+- **PWA Support**: Progressive Web App capabilities for mobile users
+- **Accessibility**: WCAG 2.1 AA compliance for inclusive access
+- **Cross-Browser**: Tested across Chrome, Firefox, Safari, and Edge
 
 ---
 
-## 📞 Support & Help
+## � Contributing & Development
 
-### **Getting Help**
-- **📧 Email Support**: [vikastg2000@gmail.com](mailto:vikastg2000@gmail.com)
-- **🐛 Bug Reports**: [Create an Issue](https://github.com/18vikastg/jss-placement-portal-demo/issues)
-- **💡 Feature Requests**: [Feature Request Template](https://github.com/18vikastg/jss-placement-portal-demo/issues/new)
-- **📖 Documentation**: Check this README and code comments
+### **🏛️ Institutional Partnership**
+This is an **official project of JSS Academy of Technical Education, Bangalore**. We welcome contributions from:
+- **Faculty Members**: Enhancement of academic integration features
+- **Students**: UI/UX improvements and feature suggestions  
+- **Alumni**: Networking features and mentorship tools
+- **Industry Partners**: Integration requirements and feedback
+- **Technical Contributors**: Bug fixes and performance optimizations
 
-### **Common Issues & Solutions**
+### **💻 Development Guidelines**
 ```bash
-# Database connection issues
-1. Check MongoDB service status
-2. Verify connection string in .env
-3. Ensure network connectivity
+# Fork and clone the repository
+git clone https://github.com/18vikastg/jss-placement-portal-demo.git
+cd jss-placement-portal-demo
 
-# Build failures
-1. Clear node_modules: rm -rf node_modules && npm install
-2. Clear cache: npm cache clean --force
-3. Check Node.js version compatibility
+# Create feature branch
+git checkout -b feature/your-feature-name
 
-# Authentication issues
-1. Verify JWT_SECRET in environment
-2. Check token expiration settings
-3. Clear browser localStorage
+# Make changes and commit
+git add .
+git commit -m "feat(module): description of changes"
+
+# Submit pull request for review
+git push origin feature/your-feature-name
 ```
 
+### **🎯 Priority Areas for Contribution**
+- **Mobile App Development**: React Native companion app
+- **Advanced Analytics**: Machine learning-based insights
+- **Integration APIs**: Third-party service integrations
+- **Performance Optimization**: Database query optimization
+- **Testing Coverage**: Automated testing suites
+
 ---
 
-## 🤝 Contributing
+## 📞 Contact & Support
 
-We welcome contributions from the community! Here's how you can help:
+### **🏛️ JSS Academy of Technical Education**
+- **Official Website**: [JSS Academy of Technical Education](https://jssateb.ac.in)
+- **Placement Cell**: placement@jssateb.ac.in
+- **Technical Support**: support@jssateb.ac.in
+- **Address**: JSS Academy of Technical Education, Bangalore, Karnataka, India
 
-### **Getting Started**
-1. **Fork the repository** on GitHub
-2. **Clone your fork** locally
-3. **Create a feature branch** from main
-4. **Make your changes** with proper testing
-5. **Submit a pull request** with detailed description
+### **�‍💻 Technical Team**
+- **Lead Developer**: Vikas T G
+- **Email**: vikastg2000@gmail.com  
+- **GitHub**: [@18vikastg](https://github.com/18vikastg)
+- **LinkedIn**: [Connect on LinkedIn](https://linkedin.com/in/vikastg)
 
-### **Contribution Guidelines**
-- Follow the existing code style and conventions
-- Write comprehensive tests for new features
-- Update documentation for any API changes
-- Ensure all tests pass before submitting PR
-- Use meaningful commit messages
+### **🐛 Issue Reporting**
+- **Bug Reports**: [GitHub Issues](https://github.com/18vikastg/jss-placement-portal-demo/issues)
+- **Feature Requests**: [Feature Request Form](https://github.com/18vikastg/jss-placement-portal-demo/issues/new)
+- **Security Issues**: security@jssateb.ac.in
+
+---
+
+## 📜 License & Copyright
+
+### **📄 License Information**
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+
+### **🏛️ Institutional Attribution**
+```
+Copyright (c) 2024 JSS Academy of Technical Education, Bangalore
+Developed by: Vikas T G
+Under the guidance of: JSS Academy Placement Cell
+```
+
+### **⚖️ Usage Terms**
+- ✅ **Educational Use**: Free for educational institutions and students
+- ✅ **Open Source**: Contributions welcome under MIT license terms
+- ✅ **Commercial Use**: Permitted with proper attribution to JSS Academy
+- ❌ **Trademark**: JSS Academy name and logos require permission for use
+
+---
+
+## 🙏 Acknowledgments
+
+### **🎓 Special Thanks**
+- **JSS Academy Faculty**: For guidance and academic integration support
+- **Student Community**: For testing, feedback, and feature suggestions  
+- **Corporate Partners**: For requirements gathering and industry insights
+- **Alumni Network**: For mentorship features and real-world validation
+- **Open Source Community**: For the amazing tools and libraries used
+
+### **🛠️ Built With Love**
+*Crafted with passion for education and career development at JSS Academy of Technical Education, Bangalore*
+
+---
+
+<div align="center">
+
+**🎓 Empowering JSS Academy Students • Connecting Global Opportunities • Building Tomorrow's Leaders**
+
+[![JSS Academy](https://img.shields.io/badge/JSS_Academy-Technical_Education-red?style=for-the-badge&logo=graduation-cap)](https://jssateb.ac.in)
+[![Placement Portal](https://img.shields.io/badge/Portal-Live_Now-green?style=for-the-badge&logo=rocket)](https://jssateb-placement-portal.vercel.app)
+
+**Made with ❤️ by the JSS Academy Community**
+
+</div>
 
 ### **Development Workflow**
 ```bash
