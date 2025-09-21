@@ -32,7 +32,7 @@ Visit our live portal at: **[https://jss-placement-portal-demo.vercel.app](https
 
 | User Type | Email | Password | Access Level |
 |-----------|--------|----------|--------------|
-| **🎓 Student** | `vikastg2000@gmail.com` | `@Vikastg2004` | Student Dashboard, Job Applications, Profile Management |
+| **🎓 Student** | `vikastg2000@gmail.com` | `@Vikas123` | Student Dashboard, Job Applications, Profile Management |
 | **👨‍🏫 Faculty** | `faculty@jssateb.ac.in` | `faculty123` | Student Oversight, Resource Management, Analytics |
 | **🏢 Recruiter** | `recruiter@company.com` | `recruiter123` | Job Posting, Candidate Management, Hiring Analytics |
 | **👨‍💼 Admin** | `admin@jssateb.ac.in` | `admin123` | System Administration, Complete Access |
@@ -637,7 +637,7 @@ cd ../backend && npm start
 
 #### **Student Account**
 ```
-Email: patel@gmail.com
+Email: vikastg2000@gmail.com
 Password: patel@gmail.com
 Role: Student
 Features: Complete access to all student features
@@ -800,7 +800,7 @@ git push origin feature/your-feature-name
 
 #### **👥 Development Team Members**
 - **Sohan HM**
-  - **USN**: 1JS22CS184
+  - **USN**: 1JS22CS151
   - **Role**: Developer
   
 - **Tejas R**
