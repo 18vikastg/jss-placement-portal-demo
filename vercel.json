@@ -1,6 +1,7 @@
 {
   "buildCommand": "cd placement-portal/frontend && npm install && npm run build",
   "outputDirectory": "placement-portal/frontend/dist",
+  "installCommand": "cd placement-portal/frontend && npm install",
   "framework": "vite",
   "rewrites": [
     {
