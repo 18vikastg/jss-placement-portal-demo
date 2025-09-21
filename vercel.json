@@ -1,33 +1,11 @@
 {
-  "version": 2,
-  "name": "jss-placement-portal",
-  "builds": [
+  "buildCommand": "cd placement-portal/frontend && npm install && npm run build",
+  "outputDirectory": "placement-portal/frontend/dist",
+  "framework": "vite",
+  "rewrites": [
     {
-      "src": "placement-portal/frontend/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
-    },
-    {
-      "src": "placement-portal/backend/index.js",
-      "use": "@vercel/node",
-      "config": {
-        "maxLambdaSize": "50mb"
-      }
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "placement-portal/backend/index.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "placement-portal/frontend/dist/$1"
-    }
-  ],
-  "env": {
-    "NODE_ENV": "production"
-  }
+  ]
 }
