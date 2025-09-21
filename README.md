@@ -10,7 +10,7 @@
 **Official Placement Portal of JSS Academy of Technical Education, Bangalore**  
 **🎯 Empowering Students • Connecting Recruiters • Building Careers**
 
-[🌐 Live Portal](https://jssateb-placement-portal.vercel.app) • [� User Guide](#-quick-start) • [🛠️ Admin Panel](#-admin-features) • [� Analytics](#-features)
+[🌐 Live Portal](https://jss-placement-portal-demo.vercel.app/) • [� User Guide](#-quick-start) • [🛠️ Admin Panel](#-admin-features) • [� Analytics](#-features)
 
 ---
 
