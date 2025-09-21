@@ -1,0 +1,681 @@
+{
+  "drives": 127,
+  "totalOffers": 2121,
+  "dept": {
+    "CSE": 827,
+    "ISE": 495,
+    "ECE": 454,
+    "EI": 99,
+    "ME": 158,
+    "IEM": 35,
+    "CVL": 8,
+    "PG": 44
+  },
+  "ctcWeightedSum": 10419.54,
+  "ctcOfferSum": 1751,
+  "topRecruiters": [
+    {
+      "company": "TOTAL",
+      "offers": 770,
+      "ctc": 7.5
+    },
+    {
+      "company": "Cognizant",
+      "offers": 156,
+      "ctc": null
+    },
+    {
+      "company": "Wipro",
+      "offers": 132,
+      "ctc": 3.5
+    },
+    {
+      "company": "Cognizant",
+      "offers": 95,
+      "ctc": 4
+    },
+    {
+      "company": "Accenture",
+      "offers": 61,
+      "ctc": null
+    },
+    {
+      "company": "TCS",
+      "offers": 56,
+      "ctc": null
+    },
+    {
+      "company": "Bosch",
+      "offers": 50,
+      "ctc": 5
+    },
+    {
+      "company": "ITC Infotech",
+      "offers": 42,
+      "ctc": 4.25
+    },
+    {
+      "company": "LTI",
+      "offers": 41,
+      "ctc": null
+    },
+    {
+      "company": "TCS",
+      "offers": 36,
+      "ctc": 3.36
+    },
+    {
+      "company": "Accenture",
+      "offers": 32,
+      "ctc": 4.5
+    },
+    {
+      "company": "LTI Level 0",
+      "offers": 32,
+      "ctc": 4
+    },
+    {
+      "company": "Vistas Learning",
+      "offers": 32,
+      "ctc": 2
+    },
+    {
+      "company": "Harman (Core)",
+      "offers": 20,
+      "ctc": 7
+    },
+    {
+      "company": "Turing Minds",
+      "offers": 18,
+      "ctc": 1.8
+    },
+    {
+      "company": "Mercedes-Benz R & D",
+      "offers": 17,
+      "ctc": 10
+    },
+    {
+      "company": "Toyota Industries Engine India (Large Drive)",
+      "offers": 17,
+      "ctc": 1.74
+    },
+    {
+      "company": "Palle Technologies",
+      "offers": 17,
+      "ctc": null
+    },
+    {
+      "company": "Palle Technologies",
+      "offers": 16,
+      "ctc": 3
+    },
+    {
+      "company": "LTI Level 1",
+      "offers": 14,
+      "ctc": 5
+    },
+    {
+      "company": "Continental (Core)",
+      "offers": 14,
+      "ctc": 6
+    },
+    {
+      "company": "CyRAACS",
+      "offers": 13,
+      "ctc": 5
+    },
+    {
+      "company": "Betsol",
+      "offers": 13,
+      "ctc": null
+    },
+    {
+      "company": "CyRAACS",
+      "offers": 13,
+      "ctc": null
+    },
+    {
+      "company": "Sonata Software",
+      "offers": 13,
+      "ctc": 4
+    },
+    {
+      "company": "Seventh Sense",
+      "offers": 12,
+      "ctc": 5
+    },
+    {
+      "company": "Mercedes Benz (R&D)",
+      "offers": 12,
+      "ctc": 10
+    },
+    {
+      "company": "Ericsson (Core)",
+      "offers": 11,
+      "ctc": 8.25
+    },
+    {
+      "company": "SpurTree Technologies",
+      "offers": 10,
+      "ctc": 4
+    },
+    {
+      "company": "Yokogawa (Core)",
+      "offers": 10,
+      "ctc": 4.6
+    },
+    {
+      "company": "Proman Infrastructure",
+      "offers": 10,
+      "ctc": 2.16
+    },
+    {
+      "company": "Betsol",
+      "offers": 9,
+      "ctc": 8
+    },
+    {
+      "company": "ICICI Securities Limited",
+      "offers": 9,
+      "ctc": 4.05
+    },
+    {
+      "company": "Bharat Fritz Werner Limited",
+      "offers": 9,
+      "ctc": 1
+    },
+    {
+      "company": "Magna",
+      "offers": 9,
+      "ctc": 5.5
+    },
+    {
+      "company": "Bosch Limited (Core)",
+      "offers": 8,
+      "ctc": 4.5
+    },
+    {
+      "company": "NTT Data",
+      "offers": 8,
+      "ctc": 3
+    },
+    {
+      "company": "Avanseus",
+      "offers": 8,
+      "ctc": 4.75
+    },
+    {
+      "company": "Xoriant Solutions Pvt Ltd",
+      "offers": 8,
+      "ctc": 5.5
+    },
+    {
+      "company": "TCS Digital",
+      "offers": 7,
+      "ctc": 7.6
+    },
+    {
+      "company": "Avanseus",
+      "offers": 7,
+      "ctc": 6.75
+    },
+    {
+      "company": "Light & Wonder",
+      "offers": 7,
+      "ctc": 8.55
+    },
+    {
+      "company": "DXCorr",
+      "offers": 7,
+      "ctc": 4
+    },
+    {
+      "company": "HCL",
+      "offers": 7,
+      "ctc": 3
+    },
+    {
+      "company": "Clarivate",
+      "offers": 7,
+      "ctc": 6.48
+    },
+    {
+      "company": "HashedIn By Deloitte (3rd visit)",
+      "offers": 7,
+      "ctc": 8.1
+    },
+    {
+      "company": "Bosch Limited",
+      "offers": 7,
+      "ctc": 4.5
+    },
+    {
+      "company": "Quinbay",
+      "offers": 6,
+      "ctc": 10
+    },
+    {
+      "company": "Tech Mahindra",
+      "offers": 6,
+      "ctc": 4
+    },
+    {
+      "company": "JK Tech",
+      "offers": 6,
+      "ctc": 4
+    },
+    {
+      "company": "Stratogent",
+      "offers": 6,
+      "ctc": 3.5
+    },
+    {
+      "company": "Kickdrum",
+      "offers": 5,
+      "ctc": 14.87
+    },
+    {
+      "company": "Accenture_ASE",
+      "offers": 5,
+      "ctc": 6.5
+    },
+    {
+      "company": "TCS (Ninja)",
+      "offers": 5,
+      "ctc": 3.36
+    },
+    {
+      "company": "Vitesco Technologies (Core)",
+      "offers": 5,
+      "ctc": 6
+    },
+    {
+      "company": "HPE - Hewlett Packard Enterprises",
+      "offers": 5,
+      "ctc": 5.5
+    },
+    {
+      "company": "Reliance Jio",
+      "offers": 5,
+      "ctc": 3.5
+    },
+    {
+      "company": "PWC",
+      "offers": 5,
+      "ctc": 6
+    },
+    {
+      "company": "Turing Minds AI",
+      "offers": 5,
+      "ctc": 5
+    },
+    {
+      "company": "Kantar",
+      "offers": 4,
+      "ctc": 5
+    },
+    {
+      "company": "LTI Level 2",
+      "offers": 4,
+      "ctc": 6.5
+    },
+    {
+      "company": "MAGNA BLR (Core)",
+      "offers": 4,
+      "ctc": 5
+    },
+    {
+      "company": "Velankani Software",
+      "offers": 4,
+      "ctc": 5
+    },
+    {
+      "company": "HashedIn By Deloitte",
+      "offers": 4,
+      "ctc": 8.1
+    },
+    {
+      "company": "Technovert",
+      "offers": 4,
+      "ctc": null
+    },
+    {
+      "company": "Willey MThree",
+      "offers": 4,
+      "ctc": 7
+    },
+    {
+      "company": "HashedIn By Deloitte (2nd visit)",
+      "offers": 4,
+      "ctc": 8.1
+    },
+    {
+      "company": "PhonePe",
+      "offers": 4,
+      "ctc": 14
+    },
+    {
+      "company": "Harman with iPRIMED",
+      "offers": 4,
+      "ctc": 5.5
+    },
+    {
+      "company": "HCL 2nd",
+      "offers": 4,
+      "ctc": 4.25
+    },
+    {
+      "company": "TVS Supply chain solutions",
+      "offers": 4,
+      "ctc": 2.4
+    },
+    {
+      "company": "Yokogawa",
+      "offers": 4,
+      "ctc": 4.2
+    },
+    {
+      "company": "Mpokket",
+      "offers": 4,
+      "ctc": 2.64
+    },
+    {
+      "company": "Yuken India",
+      "offers": 4,
+      "ctc": 6
+    },
+    {
+      "company": "Ribbon Communications (Core)",
+      "offers": 3,
+      "ctc": 9
+    },
+    {
+      "company": "Fintellix",
+      "offers": 3,
+      "ctc": 5.5
+    },
+    {
+      "company": "Textron (Core)",
+      "offers": 3,
+      "ctc": 4
+    },
+    {
+      "company": "Beepkart (Internship)",
+      "offers": 3,
+      "ctc": 1
+    },
+    {
+      "company": "Piramal Capital & Housing Finance",
+      "offers": 3,
+      "ctc": 7.5
+    },
+    {
+      "company": "K&S Partners",
+      "offers": 3,
+      "ctc": 9
+    },
+    {
+      "company": "Getronics",
+      "offers": 3,
+      "ctc": 5
+    },
+    {
+      "company": "Nextfirst",
+      "offers": 3,
+      "ctc": 2.4
+    },
+    {
+      "company": "m2Nnxt Solutions",
+      "offers": 3,
+      "ctc": 3.6
+    },
+    {
+      "company": "Keka Campus",
+      "offers": 3,
+      "ctc": null
+    },
+    {
+      "company": "Acmegrade",
+      "offers": 3,
+      "ctc": 19
+    },
+    {
+      "company": "COLT Technology Services",
+      "offers": 3,
+      "ctc": 3
+    },
+    {
+      "company": "Contentstack",
+      "offers": 2,
+      "ctc": 12
+    },
+    {
+      "company": "HashedIn Technologies",
+      "offers": 2,
+      "ctc": 8.1
+    },
+    {
+      "company": "Skylark Drones Pvt Ltd",
+      "offers": 2,
+      "ctc": 8
+    },
+    {
+      "company": "Quest Global",
+      "offers": 2,
+      "ctc": 3.25
+    },
+    {
+      "company": "NMTronics India Pvt Ltd (Core)",
+      "offers": 2,
+      "ctc": 3
+    },
+    {
+      "company": "Juspay",
+      "offers": 2,
+      "ctc": 11
+    },
+    {
+      "company": "IDFC FIRST Bank",
+      "offers": 2,
+      "ctc": 3
+    },
+    {
+      "company": "PLM Indishtech",
+      "offers": 2,
+      "ctc": 2.75
+    },
+    {
+      "company": "EDS Technologies",
+      "offers": 2,
+      "ctc": 4
+    },
+    {
+      "company": "Sonata Software",
+      "offers": 2,
+      "ctc": 4
+    },
+    {
+      "company": "Wiley Edge",
+      "offers": 2,
+      "ctc": 9
+    },
+    {
+      "company": "Flowserve",
+      "offers": 2,
+      "ctc": 6.69
+    },
+    {
+      "company": "Accolite",
+      "offers": 2,
+      "ctc": 6.5
+    },
+    {
+      "company": "Kantar",
+      "offers": 2,
+      "ctc": 5
+    },
+    {
+      "company": "Infy TQ",
+      "offers": 2,
+      "ctc": null
+    },
+    {
+      "company": "Evertz",
+      "offers": 2,
+      "ctc": 3.5
+    },
+    {
+      "company": "One Direct",
+      "offers": 2,
+      "ctc": null
+    },
+    {
+      "company": "Wells Fargo",
+      "offers": 2,
+      "ctc": 0
+    },
+    {
+      "company": "Infosys",
+      "offers": 2,
+      "ctc": 3.6
+    },
+    {
+      "company": "Cordis Technology",
+      "offers": 1,
+      "ctc": 6
+    },
+    {
+      "company": "DeltaX",
+      "offers": 1,
+      "ctc": 7
+    },
+    {
+      "company": "Comviva",
+      "offers": 1,
+      "ctc": 3.75
+    },
+    {
+      "company": "Smartsocs (Core)",
+      "offers": 1,
+      "ctc": 6
+    },
+    {
+      "company": "Intellipaat",
+      "offers": 1,
+      "ctc": 9
+    },
+    {
+      "company": "IBM",
+      "offers": 1,
+      "ctc": 4.5
+    },
+    {
+      "company": "Juspay",
+      "offers": 1,
+      "ctc": 21
+    },
+    {
+      "company": "Zerofox",
+      "offers": 1,
+      "ctc": 3.4
+    },
+    {
+      "company": "Toyota Industries Engine India",
+      "offers": 1,
+      "ctc": 3
+    },
+    {
+      "company": "Target",
+      "offers": 1,
+      "ctc": 7.5
+    },
+    {
+      "company": "Tech Mahindra",
+      "offers": 1,
+      "ctc": 3.25
+    },
+    {
+      "company": "Sasken",
+      "offers": 1,
+      "ctc": 3.7
+    },
+    {
+      "company": "Cronj IT",
+      "offers": 1,
+      "ctc": 5.65
+    },
+    {
+      "company": "Theatro Labs India",
+      "offers": 1,
+      "ctc": 1
+    },
+    {
+      "company": "Thermax",
+      "offers": 0,
+      "ctc": 0
+    },
+    {
+      "company": "M/S LEADSQUARED",
+      "offers": 0,
+      "ctc": 0
+    },
+    {
+      "company": "Nextfirst",
+      "offers": 0,
+      "ctc": 0
+    },
+    {
+      "company": "Signoff Semiconductor",
+      "offers": 0,
+      "ctc": 0
+    },
+    {
+      "company": "Intel",
+      "offers": 0,
+      "ctc": 0
+    },
+    {
+      "company": "Amazon",
+      "offers": 0,
+      "ctc": 0
+    },
+    {
+      "company": "Goldman Sachs",
+      "offers": 0,
+      "ctc": 0
+    },
+    {
+      "company": "Couch Base",
+      "offers": 0,
+      "ctc": 0
+    }
+  ],
+  "avgCTC": 5.950622501427756,
+  "top5": [
+    {
+      "company": "TOTAL",
+      "offers": 770,
+      "ctc": 7.5
+    },
+    {
+      "company": "Cognizant",
+      "offers": 156,
+      "ctc": null
+    },
+    {
+      "company": "Wipro",
+      "offers": 132,
+      "ctc": 3.5
+    },
+    {
+      "company": "Cognizant",
+      "offers": 95,
+      "ctc": 4
+    },
+    {
+      "company": "Accenture",
+      "offers": 61,
+      "ctc": null
+    }
+  ]
+}
