@@ -32,12 +32,24 @@ Visit our live portal at: **[https://jss-placement-portal-demo.vercel.app](https
 
 | User Type | Email | Password | Access Level |
 |-----------|--------|----------|--------------|
-| **🎓 Student** | `vikastg2000@gmail.com` | `@Vikastg123` | Student Dashboard, Job Applications, Profile Management |
+| **🎓 Student** | `vikastg2000@gmail.com` | `@Vikastg2004` | Student Dashboard, Job Applications, Profile Management |
 | **👨‍🏫 Faculty** | `faculty@jssateb.ac.in` | `faculty123` | Student Oversight, Resource Management, Analytics |
 | **🏢 Recruiter** | `recruiter@company.com` | `recruiter123` | Job Posting, Candidate Management, Hiring Analytics |
 | **👨‍💼 Admin** | `admin@jssateb.ac.in` | `admin123` | System Administration, Complete Access |
 
-### **🛠️ Local Development Setup**
+### **� Key Portal Features**
+
+#### **🎯 Advanced Analytics Dashboard**
+Access comprehensive placement analytics at: **[/placement/analytics](https://jss-placement-portal-demo.vercel.app/placement/analytics)**
+
+- **📈 Interactive Visualizations**: Real JSS Academy placement data (2019-2023) with dynamic charts
+- **🏆 Department Analysis**: Branch-wise performance metrics, placement rates, and package distributions  
+- **📊 Multi-Year Trends**: Historical analysis with 127+ placement drives and 2000+ offers tracked
+- **🏢 Top Recruiters**: Company-wise hiring statistics and partnership insights
+- **💰 Package Analytics**: Comprehensive CTC analysis and salary benchmarking
+- **📱 Mobile Responsive**: Optimized dashboard for all devices with export capabilities
+
+### **�🛠️ Local Development Setup**
 
 #### **Prerequisites**
 - Node.js 18+ and npm
