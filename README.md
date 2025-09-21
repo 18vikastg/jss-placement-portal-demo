@@ -32,7 +32,7 @@ Visit our live portal at: **[https://jss-placement-portal-demo.vercel.app](https
 
 | User Type | Email | Password | Access Level |
 |-----------|--------|----------|--------------|
-| **🎓 Student** | `student@jssateb.ac.in` | `student123` | Student Dashboard, Job Applications, Profile Management |
+| **🎓 Student** | `vikastg2000@gmail.com` | `@Vikastg2004` | Student Dashboard, Job Applications, Profile Management |
 | **👨‍🏫 Faculty** | `faculty@jssateb.ac.in` | `faculty123` | Student Oversight, Resource Management, Analytics |
 | **🏢 Recruiter** | `recruiter@company.com` | `recruiter123` | Job Posting, Candidate Management, Hiring Analytics |
 | **👨‍💼 Admin** | `admin@jssateb.ac.in` | `admin123` | System Administration, Complete Access |
