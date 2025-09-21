@@ -80,7 +80,7 @@ const appRouter = createBrowserRouter([
     element: <ProtectedRoute><PreparationDashboard /></ProtectedRoute>
   },
   {
-    path: "/placement/analytics",
+    path: "/placement/dashboard",
     element: <PlacementDashboard />
   },
   // admin ke liye yha se start hoga

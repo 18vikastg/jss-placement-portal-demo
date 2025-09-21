@@ -18,7 +18,7 @@ const WelcomeModal = () => {
     };
 
     const handleExploreAnalytics = () => {
-        window.location.href = '/placement/analytics';
+        window.open('http://localhost:3002', '_blank');
         handleClose();
     };
 

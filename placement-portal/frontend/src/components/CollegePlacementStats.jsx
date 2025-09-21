@@ -12,7 +12,7 @@ const CollegePlacementStats = () => {
             try {
                 // Try to fetch from API first
                 const apiUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8001';
-                const response = await axios.get(`${apiUrl}/api/v1/placement/placement-stats/latest`);
+                const response = await axios.get(`${apiUrl}/api/v1/placement/latest`);
                 setPlacementData(response.data.data);
                 setLoading(false);
             } catch (error) {
@@ -234,11 +234,12 @@ const CollegePlacementStats = () => {
                         </div>
                     </div>
                     <div className="flex-shrink-0 ml-6">
-                        <button 
-                            onClick={() => window.location.href = '/placement/analytics'}
-                            className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-200 shadow-lg flex items-center gap-2"
+                                                                        <button 
+                            className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white py-3 px-4 rounded-lg transition-all duration-300 transform hover:scale-105"
+                            onClick={() => window.open('http://localhost:3002', '_blank')}
                         >
-                            📊 View Analytics Dashboard
+                            <span className="text-lg">📊</span>
+                            � View Analytics Dashboard
                         </button>
                     </div>
                 </div>
@@ -359,7 +360,7 @@ const CollegePlacementStats = () => {
                         <h4 className="font-semibold mb-2">📊 Detailed Analytics</h4>
                         <p className="text-gray-300">Explore comprehensive placement trends, department-wise analysis, and interactive charts</p>
                         <button 
-                            onClick={() => window.location.href = '/placement/analytics'}
+                            onClick={() => window.open('http://localhost:3002', '_blank')}
                             className="mt-2 bg-green-600 hover:bg-green-700 px-4 py-2 rounded transition-colors flex items-center gap-2"
                         >
                             📈 View Analytics Dashboard

@@ -7,12 +7,12 @@ const router = express.Router();
 
 // Only recruiters can post jobs
 router.route("/post").post(isAuthenticated, authorizeRoles('recruiter'), postJob);
-// All authenticated users can view jobs
-router.route("/get").get(isAuthenticated, getAllJobs);
+// Public route - anyone can view jobs (for homepage, etc.)
+router.route("/get").get(getAllJobs);
 // Only recruiters can get their posted jobs
 router.route("/getadminjobs").get(isAuthenticated, authorizeRoles('recruiter'), getAdminJobs);
-// All authenticated users can view job details
-router.route("/get/:id").get(isAuthenticated, getJobById);
+// Public route - anyone can view job details  
+router.route("/get/:id").get(getJobById);
 
 export default router;
 

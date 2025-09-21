@@ -134,7 +134,7 @@ const HeroSection = () => {
                                     <span>Interactive Placement Analytics Dashboard</span>
                                 </div>
                                 <button 
-                                    onClick={() => navigate('/placement/analytics')}
+                                    onClick={() => window.open('http://localhost:3002', '_blank')}
                                     className='bg-gradient-to-r from-amber-600 to-yellow-700 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:from-amber-700 hover:to-yellow-800 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 hover:scale-105'
                                 >
                                     Explore Analytics →

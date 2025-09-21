@@ -71,10 +71,13 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/placement/analytics" className="text-gray-300 hover:text-red-400 transition-colors flex items-center group">
+                <button 
+                  onClick={() => window.open('http://localhost:3002', '_blank')}
+                  className="text-gray-300 hover:text-red-400 transition-colors flex items-center group"
+                >
                   <ArrowRight className="w-4 h-4 mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
                   📊 Placement Analytics
-                </Link>
+                </button>
               </li>
               <li>
                 <Link to="/preparation" className="text-gray-300 hover:text-red-400 transition-colors flex items-center group">

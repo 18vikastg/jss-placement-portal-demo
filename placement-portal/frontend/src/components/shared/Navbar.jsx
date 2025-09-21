@@ -55,12 +55,12 @@ const Navbar = () => {
                                     <li><Link to="/jobs">Jobs</Link></li>
                                     <li><Link to="/browse">Browse</Link></li>
                                     <li>
-                                        <Link 
-                                            to="/placement/analytics"
+                                        <button 
+                                            onClick={() => window.open('http://localhost:3002', '_blank')}
                                             className="bg-gradient-to-r from-green-500 to-blue-500 text-white px-3 py-2 rounded-lg font-medium hover:from-green-600 hover:to-blue-600 transition-all duration-200 flex items-center gap-1"
                                         >
                                             📊 Analytics
-                                        </Link>
+                                        </button>
                                     </li>
                                     <li>
                                         <Link 
