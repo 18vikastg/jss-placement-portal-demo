@@ -32,7 +32,7 @@ Visit our live portal at: **[https://jss-placement-portal-demo.vercel.app](https
 
 | User Type | Email | Password | Access Level |
 |-----------|--------|----------|--------------|
-| **🎓 Student** | `student@jssateb.ac.in` | `student123` | Student Dashboard, Job Applications, Profile Management |
+| **🎓 Student** | `vikastg2000@gmail.com` | `@Vikastg2004` | Student Dashboard, Job Applications, Profile Management |
 | **👨‍🏫 Faculty** | `faculty@jssateb.ac.in` | `faculty123` | Student Oversight, Resource Management, Analytics |
 | **🏢 Recruiter** | `recruiter@company.com` | `recruiter123` | Job Posting, Candidate Management, Hiring Analytics |
 | **👨‍💼 Admin** | `admin@jssateb.ac.in` | `admin123` | System Administration, Complete Access |
@@ -791,10 +791,25 @@ git push origin feature/your-feature-name
 - **Address**: JSS Academy of Technical Education, Bangalore, Karnataka, India
 
 ### **�‍💻 Technical Team**
-- **Lead Developer**: Vikas T G
+#### **🚀 Lead Developer**
+- **Name**: Vikas T G
+- **USN**: 1JS22CS184
 - **Email**: vikastg2000@gmail.com  
 - **GitHub**: [@18vikastg](https://github.com/18vikastg)
 - **LinkedIn**: [Connect on LinkedIn](https://www.linkedin.com/in/vikas-t-g-09692325a/)
+
+#### **👥 Development Team Members**
+- **Sohan HM**
+  - **USN**: 1JS22CS184
+  - **Role**: Developer
+  
+- **Tejas R**
+  - **USN**: 1JS22CS170
+  - **Role**: Developer
+  
+- **Varun KS**
+  - **USN**: 1JS22CS179
+  - **Role**: Developer
 
 ### **🐛 Issue Reporting**
 - **Bug Reports**: [GitHub Issues](https://github.com/18vikastg/jss-placement-portal-demo/issues)
