@@ -26,7 +26,7 @@ JSS Academy of Technical Education, Bangalore is a premier engineering instituti
 ## 🚀 Quick Start
 
 ### **� Production Portal Access**
-Visit our live portal at: **[https://jssateb-placement-portal.vercel.app](https://jssateb-placement-portal.vercel.app)**
+Visit our live portal at: **[https://jssateb-placement-portal.vercel.app](https://jss-placement-portal-demo.vercel.app/)**
 
 ### **👥 User Access Credentials**
 
