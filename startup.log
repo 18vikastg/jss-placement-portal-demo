@@ -1,88 +1,124 @@
 nohup: ignoring input
-🚀 JSS PLACEMENT PORTAL - COMPLETE STARTUP
-============================================
-Starting all services in one command...
+[0;35m🚀 JSS PLACEMENT PORTAL - ENHANCED COMPLETE STARTUP[0m
+[0;35m======================================================[0m
+[0;36mStarting all services with enhanced monitoring...[0m
 
-[STEP 1] Cleaning up existing processes...
-[STEP 2] Starting Backend Server (Port 8001)...
-Backend PID: 1055038
-[STEP 3] Starting Frontend Development Server (Port 5173)...
-Frontend PID: 1055039
-[STEP 4] Starting AI Career Coach (Port 3001)...
-AI Career Coach PID: 1055040
-[STEP 5] Starting AI Resume Analyzer (Port 8501)...
-AI Resume Analyzer PID: 1055041
+[1;33m[PREREQ] Checking system prerequisites...[0m
+[0;32m✅ node found[0m
+[0;32m✅ npm found[0m
+[0;32m✅ streamlit found[0m
+[0;32m✅ curl found[0m
+[0;32m✅ lsof found[0m
+[0;32m✅ MongoDB is running[0m
 
-[STEP 6] Waiting for all services to be ready...
-This may take 30-60 seconds...
+[1;33m[STEP 1] Starting all services...[0m
 
-Checking Backend Server...
-⏳ Waiting for Backend Server to be ready...
-✅ Backend Server is ready!
-Checking Frontend Server...
-⏳ Waiting for Frontend Server to be ready...
-✅ Frontend Server is ready!
-Checking AI Career Coach...
-⏳ Waiting for AI Career Coach to be ready...
-✅ AI Career Coach is ready!
-Checking AI Resume Analyzer...
-⏳ Waiting for AI Resume Analyzer to be ready...
-✅ AI Resume Analyzer is ready!
+[0;34m[STARTING] backend (Port 8001)[0m
+[0;36m   Directory: /home/vikas/Desktop/jss-placement-portal/placement-portal/backend[0m
+[0;36m   Command: node index.js[0m
+[0;36m   Log: /home/vikas/Desktop/jss-placement-portal/logs/backend.log[0m
+[0;32m✅ backend started (PID: 1116000)[0m
 
-🎉 ALL SERVICES STARTED SUCCESSFULLY!
-=====================================
+[0;32m✅ backend started successfully[0m
 
-📱 MAIN APPLICATION PORTAL:
-   🌐 URL: http://localhost:5173
-   📋 Features: Job Portal, Portfolio Builder, Alumni Network
+[0;34m[STARTING] frontend (Port 5173)[0m
+[0;36m   Directory: /home/vikas/Desktop/jss-placement-portal/placement-portal/frontend[0m
+[0;36m   Command: npm run dev[0m
+[0;36m   Log: /home/vikas/Desktop/jss-placement-portal/logs/frontend.log[0m
+[0;32m✅ frontend started (PID: 1116088)[0m
 
-🔧 BACKEND API SERVER:
-   🌐 URL: http://localhost:8001
-   📋 Features: Authentication, Database, File Upload
+[0;32m✅ frontend started successfully[0m
 
-🤖 AI CAREER COACH:
-   🌐 URL: http://localhost:3001
-   📋 Features: Career Roadmaps, Skill Recommendations, Learning Paths
+[0;34m[STARTING] ai-career (Port 3001)[0m
+[0;36m   Directory: /home/vikas/Desktop/jss-placement-portal/ai-career-coach[0m
+[0;36m   Command: npm run dev[0m
+[0;36m   Log: /home/vikas/Desktop/jss-placement-portal/logs/ai-career.log[0m
+[0;32m✅ ai-career started (PID: 1116160)[0m
 
-🧠 AI RESUME ANALYZER:
-   🌐 URL: http://localhost:8501
-   📋 Features: Resume Analysis, Career Insights, Skill Assessment
+[0;32m✅ ai-career started successfully[0m
 
-👥 TEST ACCOUNTS:
-   👨‍🎓 Student: patel@gmail.com / patel@gmail.com
-   🏢 Recruiter: recruiter@company.com / recruiter123
-   👨‍🏫 Faculty: faculty@jssateb.ac.in / faculty123
-   🔧 AI Admin: admin / admin@resume-analyzer
+[0;34m[STARTING] ai-resume (Port 8501)[0m
+[0;36m   Directory: /home/vikas/Desktop/jss-placement-portal/ai-resume-analyser[0m
+[0;36m   Command: streamlit run App/App.py --server.port 8501 --server.address 0.0.0.0[0m
+[0;36m   Log: /home/vikas/Desktop/jss-placement-portal/logs/ai-resume.log[0m
+[0;32m✅ ai-resume started (PID: 1116218)[0m
 
-📊 KEY FEATURES AVAILABLE:
-   ✅ Job Search & Applications
-   ✅ AI-Powered Resume Analysis
-   ✅ AI Career Roadmap Generation
-   ✅ Professional Portfolio Builder (LinkFolio)
-   ✅ Alumni Network & Messaging
-   ✅ Real-time Notifications
-   ✅ Analytics Dashboard
+[0;32m✅ ai-resume started successfully[0m
 
-📝 PROCESS INFORMATION:
-   Backend PID: 1055038 (Port 8001)
-   Frontend PID: 1055039 (Port 5173)
-   AI Career Coach PID: 1055040 (Port 3001)
-   AI Resume Analyzer PID: 1055041 (Port 8501)
+[1;33m[STEP 2] Waiting for services to initialize...[0m
+[1;33m[STEP 3] Verifying service health...[0m
+[0;34m[VERIFICATION] Checking all services...[0m
 
-📁 LOG FILES:
-   Backend: /home/vikas/Desktop/jss-placement-portal/logs/backend.log
-   Frontend: /home/vikas/Desktop/jss-placement-portal/logs/frontend.log
-   AI Career Coach: /home/vikas/Desktop/jss-placement-portal/logs/ai-career-coach.log
-   AI Resume Analyzer: /home/vikas/Desktop/jss-placement-portal/logs/ai-resume-analyzer.log
+[0;36m⏳ Waiting for Backend Server to be ready...[0m
+[0;32m✅ Backend Server is ready and responding![0m
+[0;32m   📊 Backend API: http://localhost:8001[0m
+[0;36m⏳ Waiting for Frontend Server to be ready...[0m
+[0;32m✅ Frontend Server is ready and responding![0m
+[0;32m   🌐 Main Application: http://localhost:5173[0m
+[0;36m⏳ Waiting for AI Career Coach to be ready...[0m
+[0;32m✅ AI Career Coach is ready and responding![0m
+[0;32m   🤖 AI Career Coach: http://localhost:3001[0m
+[0;36m⏳ Waiting for AI Resume Analyzer to be ready...[0m
+[0;32m✅ AI Resume Analyzer is ready and responding![0m
+[0;32m   🧠 AI Resume Analyzer: http://localhost:8501[0m
 
-🛑 TO STOP ALL SERVICES:
-   Run: ./stop-all-complete.sh
-   Or manually kill PIDs: 1055038 1055039 1055040 1055041
+[0;32m✅ All core services are healthy[0m
 
-🚀 READY FOR DEVELOPMENT AND TESTING!
-=====================================
+[0;34m================================================[0m
+[0;32m🎉 JSS PLACEMENT PORTAL - ALL SERVICES STARTED![0m
+[0;34m================================================[0m
 
-💡 TIP: All services are running in background. You can close this terminal.
-📊 Monitor logs: tail -f logs/[service-name].log
+[0;35m📱 MAIN APPLICATION PORTAL:[0m
+[0;36m   🌐 URL: http://localhost:5173[0m
+[0;36m   📋 Features: Complete Placement Portal with Enhanced UI[0m
 
-./start-everything.sh: line 186: read: read error: 0: Bad file descriptor
+[0;35m🔧 BACKEND API SERVER:[0m
+[0;36m   🌐 URL: http://localhost:8001[0m
+[0;36m   📋 Features: Authentication, Database, File Management[0m
+
+[0;35m🤖 AI CAREER COACH:[0m
+[0;36m   🌐 URL: http://localhost:3001[0m
+[0;36m   📋 Features: Career Roadmaps, Skill Assessment, Learning Paths[0m
+
+[0;35m🧠 AI RESUME ANALYZER:[0m
+[0;36m   🌐 URL: http://localhost:8501[0m
+[0;36m   📋 Features: Resume Analysis, Career Insights, Skill Matching[0m
+
+[0;35m👥 TEST ACCOUNTS:[0m
+[0;36m   👨‍🎓 Student: vikastg2000@gmail.com / vikas123[0m
+[0;36m   🏢 Recruiter: recruiter@company.com / recruiter123[0m
+[0;36m   👨‍🏫 Faculty: faculty@jssateb.ac.in / faculty123[0m
+
+[0;35m🎯 ENHANCED FEATURES AVAILABLE:[0m
+[0;32m   ✅ Advanced Student Dashboard with AI Integration[0m
+[0;32m   ✅ Enhanced Faculty Dashboard with Analytics[0m
+[0;32m   ✅ Comprehensive Recruiter Dashboard[0m
+[0;32m   ✅ Professional LinkFolio Networking Platform[0m
+[0;32m   ✅ AI-Powered Resume Analysis & Career Guidance[0m
+[0;32m   ✅ Mock Interview System with AI Training[0m
+[0;32m   ✅ Preparation Hub with Study Materials[0m
+[0;32m   ✅ Real-time Notifications & Messaging[0m
+
+[0;35m📁 LOG FILES & MONITORING:[0m
+[0;36m   ai-resume: /home/vikas/Desktop/jss-placement-portal/logs/ai-resume.log (PID: 1116218)[0m
+[0;36m   frontend: /home/vikas/Desktop/jss-placement-portal/logs/frontend.log (PID: 1116088)[0m
+[0;36m   backend: /home/vikas/Desktop/jss-placement-portal/logs/backend.log (PID: 1116000)[0m
+[0;36m   ai-career: /home/vikas/Desktop/jss-placement-portal/logs/ai-career.log (PID: 1116160)[0m
+
+[0;35m🛑 TO STOP ALL SERVICES:[0m
+[0;36m   ./stop-all-complete.sh[0m
+[0;36m   Or kill PIDs: 1116218 1116088 1116000 1116160[0m
+
+[0;35m💡 USEFUL COMMANDS:[0m
+[0;36m   Monitor logs: tail -f logs/[service].log[0m
+[0;36m   Check status: ps aux | grep -E '(node|npm|streamlit)'[0m
+[0;36m   Check ports: netstat -tlnp | grep -E ':(5173|8001|3001|8501)'[0m
+
+[0;34m================================================[0m
+[0;32m🚀 READY FOR IEEE CONFERENCE DEMONSTRATION![0m
+[0;34m================================================[0m
+[0;32m🎉 SUCCESS: All services started successfully![0m
+[0;36mYou can now close this terminal. Services will continue running.[0m
+
+[0;35mPress Enter to exit (all services will continue running)...[0m
+./start-all-features.sh: line 382: read: read error: 0: Bad file descriptor

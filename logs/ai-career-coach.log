@@ -12,77 +12,15 @@
 
    ▲ Next.js 15.5.2 (Turbopack)
    - Local:        http://localhost:3001
-   - Network:      http://10.135.188.224:3001
+   - Network:      http://192.168.0.111:3001
    - Environments: .env.local
    - Experiments (use with caution):
      · optimizePackageImports
 
  ✓ Starting...
- ✓ Compiled middleware in 185ms
- ✓ Ready in 1031ms
+ ✓ Compiled middleware in 164ms
+ ✓ Ready in 910ms
  ○ Compiling / ...
- ✓ Compiled / in 11.3s
- GET / 200 in 11947ms
- ✓ Compiled /career-guide in 471ms
- GET /career-guide 200 in 718ms
- GET /career-guide 200 in 166ms
-[2025-09-19T07:06:52.598Z] INFO: Generating career guide {"careerRole":"Software Engineer"}
-[2025-09-19T07:07:06.822Z] INFO: Career guide generated successfully {"careerRole":"Software Engineer","roadmapPhases":4,"resourceCategories":4}
- POST /career-guide 200 in 14268ms
-[2025-09-19T07:48:34.649Z] INFO: Generating career guide {"careerRole":"Software Engineer"}
-[2025-09-19T07:48:46.943Z] INFO: Career guide generated successfully {"careerRole":"Software Engineer","roadmapPhases":4,"resourceCategories":4}
- POST /career-guide 200 in 12347ms
- ✓ Compiled /dashboard in 460ms
-(node:130145) [MONGOOSE] Warning: Duplicate schema index on {"industry":1} found. This is often due to declaring an index using both "index: true" and "schema.index()". Please remove the duplicate index definition.
-(Use `node --trace-warnings ...` to show where the warning was created)
- GET /dashboard 200 in 786ms
-✅ Connected to MongoDB
-[2025-09-19T07:50:18.238Z] INFO: Onboarding status check {"userId":"68ba7a167ca584499712bfa3","industry":"tech-software-development","experience":0,"isOnboarded":true,"hasExperience":false}
- POST /dashboard 200 in 116ms
- POST /dashboard 200 in 48ms
- ○ Compiling /interview ...
- ✓ Compiled /interview in 1847ms
- GET /interview 200 in 1986ms
- POST /interview 200 in 49ms
- ✓ Compiled /ai-cover-letter in 444ms
- GET /ai-cover-letter 200 in 512ms
- POST /ai-cover-letter 200 in 56ms
- ○ Compiling /resume ...
- ✓ Compiled /resume in 3.3s
- GET /resume 200 in 3375ms
- GET /resume 200 in 47ms
- POST /resume 200 in 81ms
- GET / 200 in 75ms
- GET /ai-cover-letter 200 in 267ms
- POST /ai-cover-letter 200 in 74ms
- GET /ai-cover-letter 200 in 167ms
- POST /ai-cover-letter 200 in 79ms
- GET /career-guide 200 in 89ms
-[2025-09-19T08:32:29.969Z] INFO: Generating career guide {"careerRole":"UPSC"}
-[2025-09-19T08:32:42.149Z] INFO: Career guide generated successfully {"careerRole":"UPSC","roadmapPhases":4,"resourceCategories":4}
- POST /career-guide 200 in 12249ms
-[2025-09-19T08:41:44.777Z] INFO: Generating career guide {"careerRole":"Software Engineer"}
-[2025-09-19T08:42:00.209Z] INFO: Career guide generated successfully {"careerRole":"Software Engineer","roadmapPhases":4,"resourceCategories":4}
- POST /career-guide 200 in 15482ms
- GET /career-guide 200 in 188ms
-[2025-09-19T09:06:27.898Z] INFO: Generating career guide {"careerRole":"cybersecurity"}
-[2025-09-19T09:06:42.062Z] INFO: Career guide generated successfully {"careerRole":"cybersecurity","roadmapPhases":4,"resourceCategories":4}
- POST /career-guide 200 in 14233ms
-[2025-09-19T09:11:12.545Z] INFO: Generating career guide {"careerRole":"Data Scientist"}
-[2025-09-19T09:11:25.314Z] INFO: Career guide generated successfully {"careerRole":"Data Scientist","roadmapPhases":4,"resourceCategories":4}
- POST /career-guide 200 in 12837ms
- GET / 200 in 78ms
- GET /career-guide 200 in 109ms
-[2025-09-19T09:20:29.652Z] INFO: Generating career guide {"careerRole":"system design"}
-[2025-09-19T09:20:54.883Z] INFO: Career guide generated successfully {"careerRole":"system design","roadmapPhases":4,"resourceCategories":4}
- POST /career-guide 200 in 25278ms
-[2025-09-19T09:25:21.947Z] INFO: Generating career guide {"careerRole":"Data Scientist"}
-[2025-09-19T09:25:41.154Z] INFO: Career guide generated successfully {"careerRole":"Data Scientist","roadmapPhases":4,"resourceCategories":4}
- POST /career-guide 200 in 19257ms
-[2025-09-19T09:28:43.253Z] INFO: Generating career guide {"careerRole":"Data Scientist"}
-[2025-09-19T09:28:56.675Z] INFO: Career guide generated successfully {"careerRole":"Data Scientist","roadmapPhases":4,"resourceCategories":4}
- POST /career-guide 200 in 13476ms
-[2025-09-19T09:30:45.426Z] INFO: Generating career guide {"careerRole":"Data Scientist"}
- POST /career-guide 200 in 6584ms
-[2025-09-19T09:30:58.024Z] INFO: Career guide generated successfully {"careerRole":"Data Scientist","roadmapPhases":4,"resourceCategories":4}
- GET /career-guide 200 in 289ms
+ ✓ Compiled / in 10.7s
+ GET / 200 in 11445ms
+[?25h

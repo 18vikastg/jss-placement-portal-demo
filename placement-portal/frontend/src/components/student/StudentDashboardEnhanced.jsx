@@ -259,7 +259,7 @@ const StudentDashboardEnhanced = () => {
             description: "AI-generated career paths",
             icon: Target,
             color: "from-indigo-500 to-purple-500",
-            link: "http://localhost:3002/career-guide",
+            link: "http://localhost:3001/career-guide",
             stats: "AI Coach",
             external: true
         },
@@ -268,7 +268,7 @@ const StudentDashboardEnhanced = () => {
             description: "Build professional resumes",
             icon: Award,
             color: "from-pink-500 to-rose-500",
-            link: "http://localhost:3002/resume",
+            link: "http://localhost:3001/resume",
             stats: "Smart Build",
             external: true
         },
@@ -277,7 +277,7 @@ const StudentDashboardEnhanced = () => {
             description: "AI interview practice",
             icon: Brain,
             color: "from-cyan-500 to-blue-500",
-            link: "http://localhost:3002/interview",
+            link: "http://localhost:3001/interview",
             stats: "AI Trainer",
             external: true
         },
@@ -286,7 +286,7 @@ const StudentDashboardEnhanced = () => {
             description: "AI-powered cover letters",
             icon: Sparkles,
             color: "from-orange-500 to-red-500",
-            link: "http://localhost:3002/ai-cover-letter",
+            link: "http://localhost:3001/ai-cover-letter",
             stats: "AI Writer",
             external: true
         }

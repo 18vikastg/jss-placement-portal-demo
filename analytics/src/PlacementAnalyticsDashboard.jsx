@@ -381,21 +381,26 @@ const PlacementAnalyticsDashboard = () => {
                         color: "red"
                     }
                 ].map((kpi, index) => (
-                    <div key={index} className="group bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-red-100 hover:border-red-200 transform hover:-translate-y-1">
-                        <div className="flex items-start justify-between mb-4">
-                            <div className="p-4 rounded-xl bg-gradient-to-br from-red-50 to-red-100 group-hover:from-red-100 group-hover:to-red-200 transition-all duration-300">
-                                <kpi.icon className="w-7 h-7 text-red-600 group-hover:text-red-700 transition-colors duration-300" />
+                    <div key={index} className="group relative bg-gradient-to-br from-white via-white to-gray-50/50 p-8 rounded-2xl shadow-xl hover:shadow-3xl transition-all duration-500 border border-red-100/50 hover:border-red-200 transform hover:-translate-y-2 hover:scale-105 overflow-hidden">
+                        <div className="absolute inset-0 bg-gradient-to-br from-red-50/20 via-transparent to-red-100/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-red-200/30 to-transparent rounded-full -translate-y-16 translate-x-16 group-hover:scale-150 transition-transform duration-700"></div>
+                        <div className="relative z-10">
+                            <div className="flex items-start justify-between mb-6">
+                                <div className="p-5 rounded-2xl bg-gradient-to-br from-red-50 to-red-100 group-hover:from-red-100 group-hover:to-red-200 transition-all duration-300 shadow-lg group-hover:shadow-xl transform group-hover:scale-110">
+                                    <kpi.icon className="w-8 h-8 text-red-600 group-hover:text-red-700 transition-colors duration-300" />
+                                </div>
+                                <div className="flex items-center space-x-2 text-sm bg-gradient-to-r from-emerald-50 to-green-50 px-4 py-2 rounded-full shadow-md border border-emerald-200">
+                                    <div className={`w-2 h-2 rounded-full animate-pulse ${kpi.growth > 0 ? 'bg-emerald-500' : 'bg-red-500'}`}></div>
+                                    <span className={`font-bold ${kpi.growth > 0 ? 'text-emerald-700' : 'text-red-700'}`}>
+                                        {kpi.growth > 0 ? '+' : ''}{kpi.growth}%
+                                    </span>
+                                </div>
                             </div>
-                            <div className="flex items-center space-x-1 text-sm bg-gray-50 px-3 py-1 rounded-full">
-                                {getGrowthIcon(kpi.growth)}
-                                <span className={`font-semibold ${kpi.growth > 0 ? 'text-emerald-600' : 'text-red-600'}`}>
-                                    {kpi.growth > 0 ? '+' : ''}{kpi.growth}%
-                                </span>
-                            </div>
+                            <div className="text-4xl font-black text-gray-900 mb-3 group-hover:text-red-700 transition-colors duration-300 tracking-tight">{kpi.value}</div>
+                            <div className="text-gray-700 font-bold text-xl mb-2 group-hover:text-red-800 transition-colors duration-300">{kpi.title}</div>
+                            <div className="text-gray-500 text-base font-medium">{kpi.subtitle}</div>
                         </div>
-                        <div className="text-3xl font-bold text-gray-900 mb-2 group-hover:text-red-700 transition-colors duration-300">{kpi.value}</div>
-                        <div className="text-gray-700 font-semibold text-lg">{kpi.title}</div>
-                        <div className="text-gray-500 text-sm mt-1">{kpi.subtitle}</div>
+                        <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-red-400 via-red-500 to-red-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
                     </div>
                 ))}
             </div>
@@ -478,44 +483,42 @@ const PlacementAnalyticsDashboard = () => {
             {/* Detailed Branch Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {departmentStats.map((dept, index) => (
-                    <div key={index} className="group bg-white rounded-xl shadow-lg p-6 border border-red-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 hover:border-red-200">
-                        <div className="flex items-center justify-between mb-4">
-                            <div className="flex items-center space-x-3">
-                                <div className="w-14 h-14 rounded-xl flex items-center justify-center text-white font-bold bg-gradient-to-br from-red-600 to-red-700 shadow-lg group-hover:shadow-xl transition-all duration-300">
-                                    {dept.shortName}
+                    <div key={index} className="group relative bg-gradient-to-br from-white via-white to-red-50/30 p-8 rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 border border-red-100/60 hover:border-red-200 transform hover:-translate-y-3 hover:scale-105 overflow-hidden">
+                        <div className="absolute inset-0 bg-gradient-to-br from-red-50/40 via-transparent to-red-100/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-bl from-red-200/20 to-transparent rounded-full -translate-y-20 translate-x-20 group-hover:scale-150 transition-transform duration-700"></div>
+                        <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-red-300/10 to-transparent rounded-full translate-y-16 -translate-x-16 group-hover:scale-125 transition-transform duration-700"></div>
+                        <div className="relative z-10">
+                            <div className="flex items-center justify-between mb-6">
+                                <div className="flex items-center space-x-4">
+                                    <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-white font-black text-xl bg-gradient-to-br from-red-600 to-red-700 shadow-2xl group-hover:shadow-3xl transform group-hover:scale-110 transition-all duration-300 border-4 border-white">
+                                        {dept.shortName}
+                                    </div>
+                                    <div>
+                                        <h3 className="font-black text-gray-900 text-xl group-hover:text-red-700 transition-colors duration-300 tracking-tight">{dept.shortName}</h3>
+                                        <p className="text-gray-600 font-semibold text-base">{dept.department}</p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <h3 className="font-bold text-gray-900 text-lg group-hover:text-red-700 transition-colors duration-300">{dept.shortName}</h3>
-                                    <p className="text-sm text-gray-600">{dept.department}</p>
+                            </div>
+                            <div className="grid grid-cols-2 gap-4">
+                                <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-4 rounded-xl border border-green-200/50">
+                                    <div className="text-2xl font-black text-green-700 mb-1">{dept.placementRate}%</div>
+                                    <div className="text-green-600 font-bold text-sm">Placement Rate</div>
+                                </div>
+                                <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-4 rounded-xl border border-blue-200/50">
+                                    <div className="text-2xl font-black text-blue-700 mb-1">{dept.placedStudents}/{dept.totalStudents}</div>
+                                    <div className="text-blue-600 font-bold text-sm">Students Placed</div>
+                                </div>
+                                <div className="bg-gradient-to-br from-red-50 to-pink-50 p-4 rounded-xl border border-red-200/50">
+                                    <div className="text-2xl font-black text-red-700 mb-1">₹{dept.avgPackage}L</div>
+                                    <div className="text-red-600 font-bold text-sm">Avg Package</div>
+                                </div>
+                                <div className="bg-gradient-to-br from-purple-50 to-violet-50 p-4 rounded-xl border border-purple-200/50">
+                                    <div className="text-2xl font-black text-purple-700 mb-1">{dept.dreamOffers}</div>
+                                    <div className="text-purple-600 font-bold text-sm">Dream Offers</div>
                                 </div>
                             </div>
                         </div>
-                        <div className="space-y-3">
-                            <div className="flex justify-between items-center">
-                                <span className="text-gray-600">Placement Rate</span>
-                                <span className="font-bold text-green-600">{dept.placementRate}%</span>
-                            </div>
-                            <div className="flex justify-between items-center">
-                                <span className="text-gray-600">Students Placed</span>
-                                <span className="font-bold text-gray-900">{dept.placedStudents}/{dept.totalStudents}</span>
-                            </div>
-                            <div className="flex justify-between items-center">
-                                <span className="text-gray-600">Avg Package</span>
-                                <span className="font-bold text-red-600">₹{dept.avgPackage}L</span>
-                            </div>
-                            <div className="flex justify-between items-center">
-                                <span className="text-gray-600">Highest Package</span>
-                                <span className="font-bold text-red-700">₹{dept.highestPackage}L</span>
-                            </div>
-                            <div className="flex justify-between items-center">
-                                <span className="text-gray-600">Top Recruiter</span>
-                                <span className="font-medium text-gray-900">{dept.topRecruiter}</span>
-                            </div>
-                            <div className="flex justify-between items-center">
-                                <span className="text-gray-600">Dream Offers</span>
-                                <span className="font-bold text-red-600">{dept.dreamOffers}</span>
-                            </div>
-                        </div>
+                        <div className="absolute bottom-0 left-0 w-full h-2 bg-gradient-to-r from-red-400 via-red-500 to-red-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left rounded-b-3xl"></div>
                     </div>
                 ))}
             </div>
@@ -533,40 +536,45 @@ const PlacementAnalyticsDashboard = () => {
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     {topRecruiters.map((recruiter, index) => (
-                        <div key={index} className="group bg-gradient-to-br from-white to-gray-50 rounded-xl p-6 hover:shadow-lg transition-all duration-300 border border-gray-200 hover:border-red-200 transform hover:-translate-y-1 relative">
-                            <div className="absolute top-2 right-2">
-                                <div className={`px-2 py-1 rounded-full text-xs font-medium ${
-                                    recruiter.tier === 'Super Dream' ? 'bg-red-100 text-red-700' :
-                                    recruiter.tier === 'Dream' ? 'bg-red-50 text-red-600' :
-                                    recruiter.tier === 'Premium' ? 'bg-green-100 text-green-700' :
-                                    'bg-gray-100 text-gray-700'
-                                }`}>
-                                    {recruiter.tier}
+                        <div key={index} className="group relative bg-gradient-to-br from-white via-gray-50/50 to-white p-6 hover:shadow-2xl transition-all duration-500 border border-gray-200/60 hover:border-red-200 transform hover:-translate-y-2 hover:scale-105 overflow-hidden rounded-2xl">
+                            <div className="absolute inset-0 bg-gradient-to-br from-red-50/30 via-transparent to-red-100/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-red-200/20 to-transparent rounded-full -translate-y-12 translate-x-12 group-hover:scale-150 transition-transform duration-700"></div>
+                            <div className="relative z-10">
+                                <div className="absolute top-3 right-3">
+                                    <div className={`px-3 py-1.5 rounded-full text-xs font-bold shadow-lg ${
+                                        recruiter.tier === 'Super Dream' ? 'bg-gradient-to-r from-red-500 to-red-600 text-white' :
+                                        recruiter.tier === 'Dream' ? 'bg-gradient-to-r from-red-400 to-red-500 text-white' :
+                                        recruiter.tier === 'Premium' ? 'bg-gradient-to-r from-emerald-500 to-green-600 text-white' :
+                                        'bg-gradient-to-r from-gray-500 to-gray-600 text-white'
+                                    }`}>
+                                        {recruiter.tier}
+                                    </div>
+                                </div>
+                                <div className="mb-5">
+                                    <div className="w-14 h-14 bg-gradient-to-br from-red-600 to-red-700 rounded-2xl flex items-center justify-center mb-4 shadow-xl group-hover:shadow-2xl transform group-hover:scale-110 transition-all duration-300 border-4 border-white">
+                                        <span className="text-white font-black text-lg">{recruiter.company.charAt(0)}</span>
+                                    </div>
+                                    <h3 className="font-black text-gray-900 mb-2 text-lg group-hover:text-red-700 transition-colors duration-300">{recruiter.company}</h3>
+                                    <p className="text-xs text-gray-600 font-semibold bg-gray-100 px-3 py-1 rounded-full inline-block">{recruiter.category}</p>
+                                </div>
+                                <div className="space-y-3">
+                                    <div className="flex justify-between items-center bg-white/60 p-3 rounded-xl border border-gray-200/50">
+                                        <span className="text-gray-600 font-semibold text-sm">Total Offers:</span>
+                                        <span className="font-black text-gray-900 text-lg">{recruiter.offers}</span>
+                                    </div>
+                                    <div className="flex justify-between items-center bg-white/60 p-3 rounded-xl border border-gray-200/50">
+                                        <span className="text-gray-600 font-semibold text-sm">Package:</span>
+                                        <span className="font-black text-gray-900 text-lg">
+                                            {recruiter.ctc ? `₹${recruiter.ctc}L` : 'Varied'}
+                                        </span>
+                                    </div>
+                                    <div className="flex justify-between items-center bg-gradient-to-r from-emerald-50 to-green-50 p-3 rounded-xl border border-emerald-200/50">
+                                        <span className="text-emerald-700 font-semibold text-sm">Growth:</span>
+                                        <span className="font-black text-emerald-700 text-lg">{recruiter.growth}</span>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="mb-4">
-                                <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mb-3">
-                                    <span className="text-white font-bold text-lg">{recruiter.company.charAt(0)}</span>
-                                </div>
-                                <h3 className="font-bold text-gray-900 mb-1">{recruiter.company}</h3>
-                                <p className="text-xs text-gray-600 mb-2">{recruiter.category}</p>
-                            </div>
-                            <div className="space-y-2 text-sm">
-                                <div className="flex justify-between">
-                                    <span className="text-gray-600">Total Offers:</span>
-                                    <span className="font-semibold text-gray-900">{recruiter.offers}</span>
-                                </div>
-                                <div className="flex justify-between">
-                                    <span className="text-gray-600">Package:</span>
-                                    <span className="font-semibold text-gray-900">
-                                        {recruiter.ctc ? `₹${recruiter.ctc}L` : 'Varied'}
-                                    </span>
-                                </div>
-                                <div className="flex justify-between">
-                                    <span className="text-gray-600">Growth:</span>
-                                    <span className="font-semibold text-green-600">{recruiter.growth}</span>
-                                </div>
-                            </div>
+                            <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-red-400 via-red-500 to-red-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left rounded-b-2xl"></div>
                         </div>
                     ))}
                 </div>
@@ -750,13 +758,17 @@ const PlacementAnalyticsDashboard = () => {
                             </div>
                         </div>
                         <div className="flex space-x-3">
-                            <button className="bg-white text-red-600 hover:bg-red-50 px-6 py-3 rounded-lg font-medium transition-all duration-200 flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
-                                <Download className="w-4 h-4" />
-                                <span>Export Report</span>
+                            <button className="group relative bg-gradient-to-r from-white to-gray-50 text-red-600 hover:from-gray-50 hover:to-white px-8 py-4 rounded-xl font-bold transition-all duration-300 flex items-center space-x-3 shadow-2xl hover:shadow-3xl transform hover:-translate-y-1 hover:scale-105 border-2 border-red-200 hover:border-red-300 overflow-hidden">
+                                <div className="absolute inset-0 bg-gradient-to-r from-red-50 to-red-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                <Download className="w-5 h-5 relative z-10 group-hover:scale-110 transition-transform duration-300" />
+                                <span className="relative z-10 tracking-wide">Export Report</span>
+                                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
                             </button>
-                            <button className="bg-red-800/30 border border-white/20 text-white hover:bg-red-800/50 px-6 py-3 rounded-lg font-medium transition-all duration-200 flex items-center space-x-2 backdrop-blur-sm">
-                                <Share2 className="w-4 h-4" />
-                                <span>Share</span>
+                            <button className="group relative bg-gradient-to-r from-red-800/40 to-red-900/40 backdrop-blur-md text-white hover:from-red-700/50 hover:to-red-800/50 px-8 py-4 rounded-xl font-bold transition-all duration-300 flex items-center space-x-3 shadow-2xl hover:shadow-3xl transform hover:-translate-y-1 hover:scale-105 border border-white/30 hover:border-white/50 overflow-hidden">
+                                <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                <Share2 className="w-5 h-5 relative z-10 group-hover:scale-110 transition-transform duration-300" />
+                                <span className="relative z-10 tracking-wide">Share Dashboard</span>
+                                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
                             </button>
                         </div>
                     </div>
@@ -766,19 +778,36 @@ const PlacementAnalyticsDashboard = () => {
             {/* Professional Tab Navigation */}
             <div className="bg-white border-b border-gray-200 sticky top-0 z-40 shadow-lg">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex space-x-1 overflow-x-auto">
+                    <div className="flex space-x-2 overflow-x-auto">
                         {tabs.map((tab) => (
                             <button
                                 key={tab.id}
                                 onClick={() => setActiveTab(tab.id)}
-                                className={`px-6 py-4 whitespace-nowrap font-semibold text-sm rounded-t-lg flex items-center space-x-2 transition-all duration-200 transform ${
+                                className={`group relative px-8 py-5 whitespace-nowrap font-bold text-sm rounded-t-2xl flex items-center space-x-3 transition-all duration-300 transform hover:scale-105 ${
                                     activeTab === tab.id
-                                        ? 'bg-red-50 text-red-700 border-b-3 border-red-600 shadow-lg -mb-px'
-                                        : 'text-gray-600 hover:text-red-600 hover:bg-red-50/50 border-b-3 border-transparent'
+                                        ? 'bg-gradient-to-br from-red-50 to-red-100 text-red-700 border-b-4 border-red-600 shadow-2xl -mb-1 scale-105'
+                                        : 'text-gray-600 hover:text-red-600 hover:bg-gradient-to-br hover:from-red-50/50 hover:to-red-100/50 border-b-4 border-transparent hover:border-red-300/50 hover:shadow-lg'
                                 }`}
                             >
-                                <tab.icon className={`w-5 h-5 ${activeTab === tab.id ? 'text-red-600' : ''}`} />
-                                <span>{tab.label}</span>
+                                <div className={`p-2 rounded-xl transition-all duration-300 ${
+                                    activeTab === tab.id
+                                        ? 'bg-red-200 shadow-lg'
+                                        : 'bg-gray-100 group-hover:bg-red-100'
+                                }`}>
+                                    <tab.icon className={`w-5 h-5 transition-all duration-300 ${
+                                        activeTab === tab.id
+                                            ? 'text-red-700 scale-110'
+                                            : 'text-gray-500 group-hover:text-red-600 group-hover:scale-110'
+                                    }`} />
+                                </div>
+                                <span className={`transition-all duration-300 ${
+                                    activeTab === tab.id
+                                        ? 'text-red-800 font-extrabold'
+                                        : 'group-hover:text-red-700'
+                                }`}>{tab.label}</span>
+                                {activeTab === tab.id && (
+                                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-red-600 rounded-full animate-pulse"></div>
+                                )}
                             </button>
                         ))}
                     </div>
@@ -824,17 +853,23 @@ const PlacementAnalyticsDashboard = () => {
                         <div>
                             <h3 className="text-lg font-semibold mb-4">Quick Actions</h3>
                             <div className="space-y-3">
-                                <button className="w-full text-left text-sm bg-white/10 hover:bg-white/20 px-4 py-3 rounded-lg transition-all duration-200 flex items-center space-x-2">
-                                    <Download className="w-4 h-4" />
-                                    <span>Download Report</span>
+                                <button className="group w-full text-left bg-gradient-to-r from-white/15 to-white/10 hover:from-white/25 hover:to-white/20 px-5 py-4 rounded-xl transition-all duration-300 flex items-center space-x-3 backdrop-blur-sm border border-white/20 hover:border-white/40 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                                    <div className="p-2 rounded-lg bg-white/20 group-hover:bg-white/30 transition-colors duration-300">
+                                        <Download className="w-4 h-4 text-white group-hover:scale-110 transition-transform duration-300" />
+                                    </div>
+                                    <span className="font-medium text-white group-hover:text-gray-100 transition-colors duration-300">Download Report</span>
                                 </button>
-                                <button className="w-full text-left text-sm bg-white/10 hover:bg-white/20 px-4 py-3 rounded-lg transition-all duration-200 flex items-center space-x-2">
-                                    <Building2 className="w-4 h-4" />
-                                    <span>Schedule Campus Visit</span>
+                                <button className="group w-full text-left bg-gradient-to-r from-white/15 to-white/10 hover:from-white/25 hover:to-white/20 px-5 py-4 rounded-xl transition-all duration-300 flex items-center space-x-3 backdrop-blur-sm border border-white/20 hover:border-white/40 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                                    <div className="p-2 rounded-lg bg-white/20 group-hover:bg-white/30 transition-colors duration-300">
+                                        <Building2 className="w-4 h-4 text-white group-hover:scale-110 transition-transform duration-300" />
+                                    </div>
+                                    <span className="font-medium text-white group-hover:text-gray-100 transition-colors duration-300">Schedule Campus Visit</span>
                                 </button>
-                                <button className="w-full text-left text-sm bg-white/10 hover:bg-white/20 px-4 py-3 rounded-lg transition-all duration-200 flex items-center space-x-2">
-                                    <Users className="w-4 h-4" />
-                                    <span>Contact Admissions</span>
+                                <button className="group w-full text-left bg-gradient-to-r from-white/15 to-white/10 hover:from-white/25 hover:to-white/20 px-5 py-4 rounded-xl transition-all duration-300 flex items-center space-x-3 backdrop-blur-sm border border-white/20 hover:border-white/40 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                                    <div className="p-2 rounded-lg bg-white/20 group-hover:bg-white/30 transition-colors duration-300">
+                                        <Users className="w-4 h-4 text-white group-hover:scale-110 transition-transform duration-300" />
+                                    </div>
+                                    <span className="font-medium text-white group-hover:text-gray-100 transition-colors duration-300">Contact Admissions</span>
                                 </button>
                             </div>
                         </div>

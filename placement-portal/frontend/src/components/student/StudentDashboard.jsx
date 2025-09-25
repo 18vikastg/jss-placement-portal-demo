@@ -323,13 +323,14 @@ const StudentDashboard = () => {
                                             Build your profile • Showcase projects • Connect with JSS alumni
                                         </p>
                                     </div>
-                                    <Button 
-                                        onClick={() => setShowLinkFolio(true)}
-                                        className="bg-white text-purple-600 hover:bg-purple-50 font-semibold px-6 py-3 rounded-lg transition-all hover:scale-105"
-                                    >
-                                        <Portfolio className="w-4 h-4 mr-2" />
-                                        Create Portfolio
-                                    </Button>
+                                    <Link to="/student/linkfolio">
+                                        <Button 
+                                            className="bg-white text-purple-600 hover:bg-purple-50 font-semibold px-6 py-3 rounded-lg transition-all hover:scale-105"
+                                        >
+                                            <Portfolio className="w-4 h-4 mr-2" />
+                                            Create Portfolio
+                                        </Button>
+                                    </Link>
                                 </div>
                             </CardContent>
                         </Card>
@@ -449,18 +450,24 @@ const StudentDashboard = () => {
                             </CardHeader>
                             <CardContent>
                                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                                    <Button className="h-20 flex flex-col items-center gap-2 bg-blue-50 hover:bg-blue-100 text-blue-700 border-blue-200">
-                                        <Briefcase className="w-6 h-6" />
-                                        <span className="text-sm">Browse Jobs</span>
-                                    </Button>
-                                    <Button className="h-20 flex flex-col items-center gap-2 bg-green-50 hover:bg-green-100 text-green-700 border-green-200">
-                                        <User className="w-6 h-6" />
-                                        <span className="text-sm">Update Profile</span>
-                                    </Button>
-                                    <Button className="h-20 flex flex-col items-center gap-2 bg-purple-50 hover:bg-purple-100 text-purple-700 border-purple-200">
-                                        <BookOpen className="w-6 h-6" />
-                                        <span className="text-sm">Practice Tests</span>
-                                    </Button>
+                                    <Link to="/jobs" className="w-full">
+                                        <Button className="h-20 w-full flex flex-col items-center gap-2 bg-blue-50 hover:bg-blue-100 text-blue-700 border-blue-200">
+                                            <Briefcase className="w-6 h-6" />
+                                            <span className="text-sm">Browse Jobs</span>
+                                        </Button>
+                                    </Link>
+                                    <Link to="/student/profile" className="w-full">
+                                        <Button className="h-20 w-full flex flex-col items-center gap-2 bg-green-50 hover:bg-green-100 text-green-700 border-green-200">
+                                            <User className="w-6 h-6" />
+                                            <span className="text-sm">Update Profile</span>
+                                        </Button>
+                                    </Link>
+                                    <Link to="/preparation" className="w-full">
+                                        <Button className="h-20 w-full flex flex-col items-center gap-2 bg-purple-50 hover:bg-purple-100 text-purple-700 border-purple-200">
+                                            <BookOpen className="w-6 h-6" />
+                                            <span className="text-sm">Practice Tests</span>
+                                        </Button>
+                                    </Link>
                                     <Link to="/resume-analyser-info">
                                         <Button className="h-20 w-full flex flex-col items-center gap-2 bg-red-50 hover:bg-red-100 text-red-700 border-red-200">
                                             <FileText className="w-6 h-6" />
@@ -471,23 +478,25 @@ const StudentDashboard = () => {
                                 
                                 {/* Additional row for more actions */}
                                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
-                                    <Button className="h-20 flex flex-col items-center gap-2 bg-orange-50 hover:bg-orange-100 text-orange-700 border-orange-200">
-                                        <Award className="w-6 h-6" />
-                                        <span className="text-sm">Certificates</span>
-                                    </Button>
-                                    <a href="http://localhost:3002/career-guide" target="_blank" rel="noopener noreferrer" className="w-full">
+                                    <Link to="/student/applications" className="w-full">
+                                        <Button className="h-20 w-full flex flex-col items-center gap-2 bg-orange-50 hover:bg-orange-100 text-orange-700 border-orange-200">
+                                            <Award className="w-6 h-6" />
+                                            <span className="text-sm">My Applications</span>
+                                        </Button>
+                                    </Link>
+                                    <a href="http://localhost:3001/career-guide" target="_blank" rel="noopener noreferrer" className="w-full">
                                         <Button className="h-20 w-full flex flex-col items-center gap-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border-indigo-200">
                                             <Compass className="w-6 h-6" />
                                             <span className="text-sm">Career Guide</span>
                                         </Button>
                                     </a>
-                                    <a href="http://localhost:3002/resume" target="_blank" rel="noopener noreferrer" className="w-full">
+                                    <a href="http://localhost:3001/resume" target="_blank" rel="noopener noreferrer" className="w-full">
                                         <Button className="h-20 w-full flex flex-col items-center gap-2 bg-pink-50 hover:bg-pink-100 text-pink-700 border-pink-200">
                                             <FileText className="w-6 h-6" />
                                             <span className="text-sm">AI Resume Builder</span>
                                         </Button>
                                     </a>
-                                    <a href="http://localhost:3002/interview" target="_blank" rel="noopener noreferrer" className="w-full">
+                                    <a href="http://localhost:3001/interview" target="_blank" rel="noopener noreferrer" className="w-full">
                                         <Button className="h-20 w-full flex flex-col items-center gap-2 bg-cyan-50 hover:bg-cyan-100 text-cyan-700 border-cyan-200">
                                             <MessageCircle className="w-6 h-6" />
                                             <span className="text-sm">Interview Prep</span>
@@ -497,24 +506,30 @@ const StudentDashboard = () => {
                                 
                                 {/* Third row for Cover Letter Generator */}
                                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
-                                    <a href="http://localhost:3002/ai-cover-letter" target="_blank" rel="noopener noreferrer" className="w-full">
+                                    <a href="http://localhost:3001/ai-cover-letter" target="_blank" rel="noopener noreferrer" className="w-full">
                                         <Button className="h-20 w-full flex flex-col items-center gap-2 bg-yellow-50 hover:bg-yellow-100 text-yellow-700 border-yellow-200">
                                             <Mail className="w-6 h-6" />
                                             <span className="text-sm">Cover Letter</span>
                                         </Button>
                                     </a>
-                                    <a href="http://localhost:3002/preparation-hub" target="_blank" rel="noopener noreferrer" className="w-full">
+                                    <a href="http://localhost:3001/preparation-hub" target="_blank" rel="noopener noreferrer" className="w-full">
                                         <Button className="h-20 w-full flex flex-col items-center gap-2 bg-teal-50 hover:bg-teal-100 text-teal-700 border-teal-200">
                                             <BookOpen className="w-6 h-6" />
                                             <span className="text-sm">Prep Hub</span>
                                         </Button>
                                     </a>
-                                    <a href="http://localhost:3002/dashboard" target="_blank" rel="noopener noreferrer" className="w-full">
+                                    <Link to="/student/mock-interview" className="w-full">
                                         <Button className="h-20 w-full flex flex-col items-center gap-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border-emerald-200">
-                                            <Target className="w-6 h-6" />
-                                            <span className="text-sm">AI Dashboard</span>
+                                            <MessageCircle className="w-6 h-6" />
+                                            <span className="text-sm">Mock Interview</span>
                                         </Button>
-                                    </a>
+                                    </Link>
+                                    <Link to="/student/linkfolio" className="w-full">
+                                        <Button className="h-20 w-full flex flex-col items-center gap-2 bg-purple-50 hover:bg-purple-100 text-purple-700 border-purple-200">
+                                            <Portfolio className="w-6 h-6" />
+                                            <span className="text-sm">LinkFolio</span>
+                                        </Button>
+                                    </Link>
                                 </div>
                             </CardContent>
                         </Card>
@@ -602,22 +617,30 @@ const StudentDashboard = () => {
                             </CardHeader>
                             <CardContent>
                                 <div className="space-y-2">
-                                    <Button variant="ghost" className="w-full justify-start">
-                                        <FileText className="w-4 h-4 mr-2" />
-                                        Resume Builder
-                                    </Button>
-                                    <Button variant="ghost" className="w-full justify-start">
-                                        <Users className="w-4 h-4 mr-2" />
-                                        Alumni Network
-                                    </Button>
-                                    <Button variant="ghost" className="w-full justify-start">
-                                        <TrendingUp className="w-4 h-4 mr-2" />
-                                        Placement Statistics
-                                    </Button>
-                                    <Button variant="ghost" className="w-full justify-start">
-                                        <Clock className="w-4 h-4 mr-2" />
-                                        Interview Schedule
-                                    </Button>
+                                    <a href="http://localhost:3001/resume" target="_blank" rel="noopener noreferrer" className="w-full">
+                                        <Button variant="ghost" className="w-full justify-start">
+                                            <FileText className="w-4 h-4 mr-2" />
+                                            Resume Builder
+                                        </Button>
+                                    </a>
+                                    <a href="http://localhost:3001/career-guide" target="_blank" rel="noopener noreferrer" className="w-full">
+                                        <Button variant="ghost" className="w-full justify-start">
+                                            <Users className="w-4 h-4 mr-2" />
+                                            Career Roadmap
+                                        </Button>
+                                    </a>
+                                    <a href="http://localhost:3003" target="_blank" rel="noopener noreferrer" className="w-full">
+                                        <Button variant="ghost" className="w-full justify-start">
+                                            <TrendingUp className="w-4 h-4 mr-2" />
+                                            Analytics Dashboard
+                                        </Button>
+                                    </a>
+                                    <a href="http://localhost:3001/interview" target="_blank" rel="noopener noreferrer" className="w-full">
+                                        <Button variant="ghost" className="w-full justify-start">
+                                            <Clock className="w-4 h-4 mr-2" />
+                                            Interview Prep
+                                        </Button>
+                                    </a>
                                 </div>
                             </CardContent>
                         </Card>

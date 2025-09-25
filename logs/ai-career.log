@@ -1,3 +1,4 @@
+nohup: ignoring input
 
 > preproad-ai-career-coach@1.0.0 dev
 > next dev --turbopack -p ${PORT:-3001}
@@ -18,9 +19,31 @@
      · optimizePackageImports
 
  ✓ Starting...
- ○ Compiling middleware ...
- ✓ Compiled middleware in 521ms
- ✓ Ready in 2.7s
+ ✓ Compiled middleware in 313ms
+ ✓ Ready in 1534ms
  ○ Compiling / ...
- ✓ Compiled / in 13.6s
- GET / 200 in 187ms
+ ✓ Compiled / in 13.1s
+ HEAD / 200 in 13905ms
+ ○ Compiling /career-guide ...
+ ✓ Compiled /career-guide in 654ms
+ HEAD /career-guide 200 in 912ms
+ GET / 200 in 298ms
+ GET / 200 in 281ms
+ GET /career-guide 200 in 359ms
+ ○ Compiling /resume ...
+ ✓ Compiled /resume in 5.7s
+(node:1157326) [MONGOOSE] Warning: Duplicate schema index on {"industry":1} found. This is often due to declaring an index using both "index: true" and "schema.index()". Please remove the duplicate index definition.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ GET /resume 200 in 7034ms
+ ○ Compiling /interview ...
+ ✓ Compiled /interview in 2.7s
+ GET /interview 200 in 3114ms
+ ○ Compiling /ai-cover-letter ...
+ ✓ Compiled /ai-cover-letter in 664ms
+ GET /ai-cover-letter 200 in 888ms
+ ○ Compiling /preparation-hub ...
+ ✓ Compiled /preparation-hub in 582ms
+ GET /preparation-hub 200 in 808ms
+ GET /career-guide 200 in 250ms
+ ✓ Compiled /favicon.ico in 391ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 737ms
