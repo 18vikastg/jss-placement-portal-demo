@@ -10462,3 +10462,5 @@ note: This error originates from a subprocess, and is likely not a problem with 
 
   URL: http://0.0.0.0:5001
 
+[nltk_data] Downloading package stopwords to /home/vikas/nltk_data...
+[nltk_data]   Package stopwords is already up-to-date!

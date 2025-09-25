@@ -1,9 +1,6 @@
 
-> frontend@0.0.0 dev
-> vite
-
-
-  VITE v5.4.20  ready in 232 ms
+  VITE v5.4.20  ready in 324 ms
 
   ➜  Local:   http://localhost:5173/
   ➜  Network: use --host to expose
+1:44:36 AM [vite] hmr update /src/components/linkfolio/NewLinkFolio.jsx, /src/index.css

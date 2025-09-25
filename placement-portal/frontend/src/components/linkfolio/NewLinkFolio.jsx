@@ -34,6 +34,7 @@ import {
     alumniStorage, 
     messagesStorage, 
     notificationsStorage,
+    scheduledLinksStorage,
     validateProfileData
 } from './storage.js';
 
@@ -61,6 +62,10 @@ const NewLinkFolio = ({ onClose }) => {
     // Alumni data states
     const [alumniData, setAlumniData] = useState([]);
     const [filteredAlumni, setFilteredAlumni] = useState([]);
+    
+    // Link states
+    const [linkedUsers, setLinkedUsers] = useState(new Set());
+    const [scheduledLinks, setScheduledLinks] = useState([]);
     
     // Messaging and notification states  
     const [filteredMessages, setFilteredMessages] = useState([]);
@@ -216,6 +221,16 @@ const NewLinkFolio = ({ onClose }) => {
         setFilteredNotifications(notifications);
     }, []);
 
+    // Initialize scheduled links and linked users
+    const initializeScheduledLinks = useCallback(() => {
+        const links = scheduledLinksStorage.load();
+        setScheduledLinks(links);
+        
+        // Initialize linked users set from existing scheduled links
+        const linkedUserIds = new Set(links.map(link => link.alumniId));
+        setLinkedUsers(linkedUserIds);
+    }, []);
+
     // Navigation function
     const showPage = useCallback((pageName) => {
         setCurrentPage(pageName);
@@ -230,7 +245,8 @@ const NewLinkFolio = ({ onClose }) => {
         initializeAlumniData();
         initializeMessagingData();
         initializeNotificationData();
-    }, [loadSavedProfile, initializeAlumniData, initializeMessagingData, initializeNotificationData]);
+        initializeScheduledLinks();
+    }, [loadSavedProfile, initializeAlumniData, initializeMessagingData, initializeNotificationData, initializeScheduledLinks]);
 
     // Handle profile picture upload
     const handleProfilePictureChange = useCallback((event) => {
@@ -296,6 +312,98 @@ const NewLinkFolio = ({ onClose }) => {
                 : alumni
         ));
     }, []);
+
+    // Toggle link with alumni - schedule meeting and create notification
+    const toggleLink = useCallback((alumniId) => {
+        const alumni = alumniData.find(a => a.id === alumniId);
+        if (!alumni) return;
+
+        const isCurrentlyLinked = linkedUsers.has(alumniId);
+        
+        setLinkedUsers(prev => {
+            const newSet = new Set(prev);
+            if (isCurrentlyLinked) {
+                newSet.delete(alumniId);
+            } else {
+                newSet.add(alumniId);
+                
+                // Schedule a meeting time (use available slots or default)
+                const meetingTime = alumni.availableSlots && alumni.availableSlots.length > 0 
+                    ? alumni.availableSlots[0].time 
+                    : "18:30";
+                
+                const tomorrow = new Date();
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                
+                // Create scheduled link
+                const newLink = {
+                    id: Date.now(),
+                    alumniId,
+                    alumniName: alumni.name,
+                    alumniCompany: alumni.company,
+                    date: tomorrow.toISOString().split('T')[0],
+                    time: meetingTime,
+                    status: 'scheduled',
+                    createdAt: new Date().toISOString()
+                };
+                
+                setScheduledLinks(prev => {
+                    const updated = [...prev, newLink];
+                    scheduledLinksStorage.save(updated);
+                    return updated;
+                });
+                
+                // Add notification for scheduled meeting
+                const newNotification = {
+                    id: Date.now() + Math.random(),
+                    title: `Link with ${alumni.name}@${meetingTime}`,
+                    description: `Scheduled meeting reminder with ${alumni.name} from ${alumni.company}`,
+                    timestamp: new Date().toISOString(),
+                    type: "meeting",
+                    isRead: false,
+                    priority: "high"
+                };
+                
+                // Add notification to the filtered list and save to storage
+                setFilteredNotifications(prev => {
+                    const updated = [newNotification, ...prev];
+                    notificationsStorage.save(updated);
+                    return updated;
+                });
+                
+                // Add success message
+                const newMessage = {
+                    id: Date.now() + 1,
+                    fromAlumniId: alumniId,
+                    fromAlumniName: alumni.name,
+                    fromAlumniCompany: alumni.company,
+                    message: `Meeting scheduled @ ${meetingTime}`,
+                    timestamp: new Date().toISOString(),
+                    isRead: false,
+                    type: "meeting"
+                };
+                
+                setFilteredMessages(prev => {
+                    const updated = [newMessage, ...prev];
+                    messagesStorage.save(updated);
+                    return updated;
+                });
+                
+                // Show success feedback
+                if (typeof window !== 'undefined') {
+                    const successMsg = document.createElement('div');
+                    successMsg.className = 'fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg z-50';
+                    successMsg.textContent = `✓ Meeting scheduled with ${alumni.name} at ${meetingTime}`;
+                    document.body.appendChild(successMsg);
+                    
+                    setTimeout(() => {
+                        document.body.removeChild(successMsg);
+                    }, 3000);
+                }
+            }
+            return newSet;
+        });
+    }, [alumniData, linkedUsers]);
 
     // Utility function for time ago
     const getTimeAgo = useCallback((timestamp) => {
@@ -1084,9 +1192,16 @@ const NewLinkFolio = ({ onClose }) => {
                                         {alumni.isFollowing ? <UserCheck className="w-4 h-4" /> : <UserPlus className="w-4 h-4" />}
                                         {alumni.isFollowing ? 'Following' : 'Follow'}
                                     </Button>
-                                    <Button className="flex-1 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white">
+                                    <Button 
+                                        onClick={() => toggleLink(alumni.id)}
+                                        className={`flex-1 ${
+                                            linkedUsers.has(alumni.id) 
+                                                ? 'bg-green-600 hover:bg-green-700' 
+                                                : 'bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800'
+                                        } text-white`}
+                                    >
                                         <CalendarPlus className="w-4 h-4 mr-2" />
-                                        Link
+                                        {linkedUsers.has(alumni.id) ? 'Linked' : 'Link'}
                                     </Button>
                                 </div>
                             </CardContent>
