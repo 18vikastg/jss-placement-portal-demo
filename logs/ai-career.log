@@ -1,4 +1,3 @@
-nohup: ignoring input
 
 > preproad-ai-career-coach@1.0.0 dev
 > next dev --turbopack -p ${PORT:-3001}
@@ -19,31 +18,41 @@ nohup: ignoring input
      · optimizePackageImports
 
  ✓ Starting...
- ✓ Compiled middleware in 313ms
- ✓ Ready in 1534ms
+ ✓ Compiled middleware in 263ms
+ ✓ Ready in 1292ms
  ○ Compiling / ...
- ✓ Compiled / in 13.1s
- HEAD / 200 in 13905ms
+ ✓ Compiled / in 9.7s
+ GET / 200 in 10373ms
  ○ Compiling /career-guide ...
- ✓ Compiled /career-guide in 654ms
- HEAD /career-guide 200 in 912ms
- GET / 200 in 298ms
- GET / 200 in 281ms
- GET /career-guide 200 in 359ms
- ○ Compiling /resume ...
- ✓ Compiled /resume in 5.7s
-(node:1157326) [MONGOOSE] Warning: Duplicate schema index on {"industry":1} found. This is often due to declaring an index using both "index: true" and "schema.index()". Please remove the duplicate index definition.
-(Use `node --trace-warnings ...` to show where the warning was created)
- GET /resume 200 in 7034ms
+ ✓ Compiled /career-guide in 561ms
+ GET /career-guide 200 in 868ms
+ ✓ Compiled /_not-found/page in 400ms
+ POST /api/career-guide 404 in 642ms
+ POST /api/career-guide 404 in 186ms
+ POST /api/career-guide 404 in 203ms
+ GET /career-guide 200 in 297ms
+ GET / 200 in 98ms
  ○ Compiling /interview ...
- ✓ Compiled /interview in 2.7s
- GET /interview 200 in 3114ms
- ○ Compiling /ai-cover-letter ...
- ✓ Compiled /ai-cover-letter in 664ms
- GET /ai-cover-letter 200 in 888ms
- ○ Compiling /preparation-hub ...
- ✓ Compiled /preparation-hub in 582ms
- GET /preparation-hub 200 in 808ms
- GET /career-guide 200 in 250ms
- ✓ Compiled /favicon.ico in 391ms
- GET /favicon.ico?favicon.0b3bf435.ico 200 in 737ms
+ ✓ Compiled /interview in 3.2s
+(node:1175842) [MONGOOSE] Warning: Duplicate schema index on {"industry":1} found. This is often due to declaring an index using both "index: true" and "schema.index()". Please remove the duplicate index definition.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ GET /interview 200 in 3980ms
+ GET /interview 200 in 249ms
+✅ Connected to MongoDB
+ POST /interview 200 in 257ms
+ ○ Compiling /interview/mock ...
+ ✓ Compiled /interview/mock in 672ms
+ GET /interview/mock 200 in 795ms
+ POST /interview 200 in 93ms
+ GET /career-guide 200 in 354ms
+ GET /career-guide 200 in 242ms
+[2025-09-25T19:45:04.815Z] INFO: Generating career guide {"careerRole":"Software Engineer"}
+[2025-09-25T19:45:06.504Z] ERROR: Career guide generation failed {"careerRole":"Software Engineer","error":"[GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent: [404 Not Found] Publisher Model `projects/generativelanguage-ga/locations/us-central1/publishers/google/models/gemini-1.5-flash-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions"}
+[2025-09-25T19:45:06.504Z] WARN: Using fallback career guide due to API error {"careerRole":"Software Engineer"}
+ POST /career-guide 200 in 1772ms
+ GET /interview 200 in 112ms
+ POST /interview 200 in 138ms
+ GET /interview/mock 200 in 160ms
+[2025-09-25T19:45:30.014Z] INFO: Generating AI questions {"jobRole":"Full Stack developer","count":10}
+[2025-09-25T19:45:31.488Z] WARN: AI question generation failed, using fallback {"jobRole":"Full Stack developer","error":"[GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent: [404 Not Found] models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods."}
+ POST /interview/mock 200 in 1545ms

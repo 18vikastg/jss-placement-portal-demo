@@ -18,9 +18,6 @@
      · optimizePackageImports
 
  ✓ Starting...
- ✓ Compiled middleware in 279ms
- ✓ Ready in 1690ms
- ○ Compiling / ...
- ✓ Compiled / in 14.3s
- GET / 200 in 15151ms
+ ✓ Compiled middleware in 255ms
+ ✓ Ready in 1289ms
 [?25h

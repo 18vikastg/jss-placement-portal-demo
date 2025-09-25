@@ -1,6 +1,6 @@
 Collecting en-core-web-sm@ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.4.1/en_core_web_sm-3.4.1-py3-none-any.whl (from -r requirements.txt (line 19))
   Downloading https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.4.1/en_core_web_sm-3.4.1-py3-none-any.whl (12.8 MB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.8/12.8 MB 244.9 kB/s  0:01:07
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.8/12.8 MB 7.4 MB/s  0:00:01
 Requirement already satisfied: streamlit in /home/vikas/jupyter-env/lib/python3.12/site-packages (from -r requirements.txt (line 1)) (1.49.1)
 Requirement already satisfied: pandas in /home/vikas/jupyter-env/lib/python3.12/site-packages (from -r requirements.txt (line 2)) (2.2.3)
 Requirement already satisfied: numpy in /home/vikas/jupyter-env/lib/python3.12/site-packages (from -r requirements.txt (line 3)) (2.1.3)
@@ -21,15 +21,14 @@ Requirement already satisfied: pyresparser in /home/vikas/jupyter-env/lib/python
 Collecting spacy<3.8.0,>=3.4.0 (from -r requirements.txt (line 18))
   Downloading spacy-3.7.5-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (27 kB)
   Downloading spacy-3.4.4.tar.gz (1.2 MB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 477.2 kB/s  0:00:02
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 7.6 MB/s  0:00:00
   Installing build dependencies: started
-  Installing build dependencies: still running...
   Installing build dependencies: finished with status 'error'
   error: subprocess-exited-with-error
   
   × pip subprocess to install build dependencies did not run successfully.
   │ exit code: 1
-  ╰─> [10419 lines of output]
+  ╰─> [10418 lines of output]
       Collecting setuptools
         Using cached setuptools-80.9.0-py3-none-any.whl.metadata (6.6 kB)
       Collecting cython<3.0,>=0.25
@@ -43,7 +42,6 @@ Collecting spacy<3.8.0,>=3.4.0 (from -r requirements.txt (line 18))
       Collecting thinc<8.2.0,>=8.1.0
         Using cached thinc-8.1.12.tar.gz (190 kB)
         Installing build dependencies: started
-        Installing build dependencies: still running...
         Installing build dependencies: finished with status 'done'
         Getting requirements to build wheel: started
         Getting requirements to build wheel: finished with status 'done'
@@ -62,7 +60,7 @@ Collecting spacy<3.8.0,>=3.4.0 (from -r requirements.txt (line 18))
       Collecting confection<1.0.0,>=0.0.1 (from thinc<8.2.0,>=8.1.0)
         Using cached confection-0.1.5-py3-none-any.whl.metadata (19 kB)
       Collecting pydantic!=1.8,!=1.8.1,<3.0.0,>=1.7.4 (from thinc<8.2.0,>=8.1.0)
-        Using cached pydantic-2.11.7-py3-none-any.whl.metadata (67 kB)
+        Using cached pydantic-2.11.9-py3-none-any.whl.metadata (68 kB)
       Collecting packaging>=20.0 (from thinc<8.2.0,>=8.1.0)
         Using cached packaging-25.0-py3-none-any.whl.metadata (3.3 kB)
       Collecting annotated-types>=0.6.0 (from pydantic!=1.8,!=1.8.1,<3.0.0,>=1.7.4->thinc<8.2.0,>=8.1.0)
@@ -80,7 +78,7 @@ Collecting spacy<3.8.0,>=3.4.0 (from -r requirements.txt (line 18))
       Using cached blis-0.7.11-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (10.2 MB)
       Using cached catalogue-2.0.10-py3-none-any.whl (17 kB)
       Using cached confection-0.1.5-py3-none-any.whl (35 kB)
-      Using cached pydantic-2.11.7-py3-none-any.whl (444 kB)
+      Using cached pydantic-2.11.9-py3-none-any.whl (444 kB)
       Using cached pydantic_core-2.33.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.0 MB)
       Using cached srsly-2.5.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.1 MB)
       Using cached wasabi-1.1.3-py3-none-any.whl (27 kB)
@@ -99,7 +97,7 @@ Collecting spacy<3.8.0,>=3.4.0 (from -r requirements.txt (line 18))
         │ exit code: 1
         ╰─> [10342 lines of output]
             Cythonizing sources
-            /tmp/pip-build-env-_tq9tqvb/overlay/lib/python3.12/site-packages/setuptools/dist.py:759: SetuptoolsDeprecationWarning: License classifiers are deprecated.
+            /tmp/pip-build-env-_5apqelz/overlay/lib/python3.12/site-packages/setuptools/dist.py:759: SetuptoolsDeprecationWarning: License classifiers are deprecated.
             !!
       
                     ********************************************************************************
@@ -295,24 +293,24 @@ Collecting spacy<3.8.0,>=3.4.0 (from -r requirements.txt (line 18))
             writing entry points to thinc.egg-info/entry_points.txt
             writing requirements to thinc.egg-info/requires.txt
             writing top-level names to thinc.egg-info/top_level.txt
-            dependency /tmp/pip-build-env-_tq9tqvb/overlay/lib/python3.12/site-packages/numpy/_core/include/numpy/arrayobject.h won't be automatically included in the manifest: the path must be relative
-            dependency /tmp/pip-build-env-_tq9tqvb/overlay/lib/python3.12/site-packages/numpy/_core/include/numpy/arrayscalars.h won't be automatically included in the manifest: the path must be relative
-            dependency /tmp/pip-build-env-_tq9tqvb/overlay/lib/python3.12/site-packages/numpy/_core/include/numpy/ndarrayobject.h won't be automatically included in the manifest: the path must be relative
-            dependency /tmp/pip-build-env-_tq9tqvb/overlay/lib/python3.12/site-packages/numpy/_core/include/numpy/ndarraytypes.h won't be automatically included in the manifest: the path must be relative
-            dependency /tmp/pip-build-env-_tq9tqvb/overlay/lib/python3.12/site-packages/numpy/_core/include/numpy/ufuncobject.h won't be automatically included in the manifest: the path must be relative
+            dependency /tmp/pip-build-env-_5apqelz/overlay/lib/python3.12/site-packages/numpy/_core/include/numpy/arrayobject.h won't be automatically included in the manifest: the path must be relative
+            dependency /tmp/pip-build-env-_5apqelz/overlay/lib/python3.12/site-packages/numpy/_core/include/numpy/arrayscalars.h won't be automatically included in the manifest: the path must be relative
+            dependency /tmp/pip-build-env-_5apqelz/overlay/lib/python3.12/site-packages/numpy/_core/include/numpy/ndarrayobject.h won't be automatically included in the manifest: the path must be relative
+            dependency /tmp/pip-build-env-_5apqelz/overlay/lib/python3.12/site-packages/numpy/_core/include/numpy/ndarraytypes.h won't be automatically included in the manifest: the path must be relative
+            dependency /tmp/pip-build-env-_5apqelz/overlay/lib/python3.12/site-packages/numpy/_core/include/numpy/ufuncobject.h won't be automatically included in the manifest: the path must be relative
             dependency /usr/include/python3.12/Python.h won't be automatically included in the manifest: the path must be relative
-            dependency /tmp/pip-build-env-_tq9tqvb/overlay/lib/python3.12/site-packages/numpy/_core/include/numpy/arrayobject.h won't be automatically included in the manifest: the path must be relative
-            dependency /tmp/pip-build-env-_tq9tqvb/overlay/lib/python3.12/site-packages/numpy/_core/include/numpy/arrayscalars.h won't be automatically included in the manifest: the path must be relative
-            dependency /tmp/pip-build-env-_tq9tqvb/overlay/lib/python3.12/site-packages/numpy/_core/include/numpy/ndarrayobject.h won't be automatically included in the manifest: the path must be relative
-            dependency /tmp/pip-build-env-_tq9tqvb/overlay/lib/python3.12/site-packages/numpy/_core/include/numpy/ndarraytypes.h won't be automatically included in the manifest: the path must be relative
-            dependency /tmp/pip-build-env-_tq9tqvb/overlay/lib/python3.12/site-packages/numpy/_core/include/numpy/ufuncobject.h won't be automatically included in the manifest: the path must be relative
+            dependency /tmp/pip-build-env-_5apqelz/overlay/lib/python3.12/site-packages/numpy/_core/include/numpy/arrayobject.h won't be automatically included in the manifest: the path must be relative
+            dependency /tmp/pip-build-env-_5apqelz/overlay/lib/python3.12/site-packages/numpy/_core/include/numpy/arrayscalars.h won't be automatically included in the manifest: the path must be relative
+            dependency /tmp/pip-build-env-_5apqelz/overlay/lib/python3.12/site-packages/numpy/_core/include/numpy/ndarrayobject.h won't be automatically included in the manifest: the path must be relative
+            dependency /tmp/pip-build-env-_5apqelz/overlay/lib/python3.12/site-packages/numpy/_core/include/numpy/ndarraytypes.h won't be automatically included in the manifest: the path must be relative
+            dependency /tmp/pip-build-env-_5apqelz/overlay/lib/python3.12/site-packages/numpy/_core/include/numpy/ufuncobject.h won't be automatically included in the manifest: the path must be relative
             dependency /usr/include/python3.12/Python.h won't be automatically included in the manifest: the path must be relative
             reading manifest file 'thinc.egg-info/SOURCES.txt'
             reading manifest template 'MANIFEST.in'
             no previously-included directories found matching 'tmp'
             adding license file 'LICENSE'
             writing manifest file 'thinc.egg-info/SOURCES.txt'
-            /tmp/pip-build-env-_tq9tqvb/overlay/lib/python3.12/site-packages/setuptools/command/build_py.py:212: _Warning: Package 'thinc.tests.mypy.configs' is absent from the `packages` configuration.
+            /tmp/pip-build-env-_5apqelz/overlay/lib/python3.12/site-packages/setuptools/command/build_py.py:212: _Warning: Package 'thinc.tests.mypy.configs' is absent from the `packages` configuration.
             !!
       
                     ********************************************************************************
@@ -353,7 +351,7 @@ Collecting spacy<3.8.0,>=3.4.0 (from -r requirements.txt (line 18))
       
             !!
               check.warn(importable)
-            /tmp/pip-build-env-_tq9tqvb/overlay/lib/python3.12/site-packages/setuptools/command/build_py.py:212: _Warning: Package 'thinc.tests.mypy.outputs' is absent from the `packages` configuration.
+            /tmp/pip-build-env-_5apqelz/overlay/lib/python3.12/site-packages/setuptools/command/build_py.py:212: _Warning: Package 'thinc.tests.mypy.outputs' is absent from the `packages` configuration.
             !!
       
                     ********************************************************************************
@@ -423,15 +421,15 @@ Collecting spacy<3.8.0,>=3.4.0 (from -r requirements.txt (line 18))
             running build_ext
             building 'thinc.backends.cblas' extension
             creating build/temp.linux-x86_64-cpython-312/thinc/backends
-            x86_64-linux-gnu-g++ -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/tmp/pip-build-env-_tq9tqvb/overlay/lib/python3.12/site-packages/numpy/_core/include -I/usr/include/python3.12 -I/home/vikas/jupyter-env/include -I/usr/include/python3.12 -c thinc/backends/cblas.cpp -o build/temp.linux-x86_64-cpython-312/thinc/backends/cblas.o -O3 -Wno-strict-prototypes -Wno-unused-function -std=c++11
+            x86_64-linux-gnu-g++ -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/tmp/pip-build-env-_5apqelz/overlay/lib/python3.12/site-packages/numpy/_core/include -I/usr/include/python3.12 -I/home/vikas/jupyter-env/include -I/usr/include/python3.12 -c thinc/backends/cblas.cpp -o build/temp.linux-x86_64-cpython-312/thinc/backends/cblas.o -O3 -Wno-strict-prototypes -Wno-unused-function -std=c++11
             cc1plus: warning: command-line option ‘-Wno-strict-prototypes’ is valid for C/ObjC but not for C++
             x86_64-linux-gnu-g++ -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -shared -Wl,-O1 -Wl,-Bsymbolic-functions build/temp.linux-x86_64-cpython-312/thinc/backends/cblas.o -L/usr/lib/x86_64-linux-gnu -o build/lib.linux-x86_64-cpython-312/thinc/backends/cblas.cpython-312-x86_64-linux-gnu.so
             building 'thinc.backends.linalg' extension
-            x86_64-linux-gnu-g++ -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/tmp/pip-build-env-_tq9tqvb/overlay/lib/python3.12/site-packages/numpy/_core/include -I/usr/include/python3.12 -I/home/vikas/jupyter-env/include -I/usr/include/python3.12 -c thinc/backends/linalg.cpp -o build/temp.linux-x86_64-cpython-312/thinc/backends/linalg.o -O3 -Wno-strict-prototypes -Wno-unused-function -std=c++11
+            x86_64-linux-gnu-g++ -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/tmp/pip-build-env-_5apqelz/overlay/lib/python3.12/site-packages/numpy/_core/include -I/usr/include/python3.12 -I/home/vikas/jupyter-env/include -I/usr/include/python3.12 -c thinc/backends/linalg.cpp -o build/temp.linux-x86_64-cpython-312/thinc/backends/linalg.o -O3 -Wno-strict-prototypes -Wno-unused-function -std=c++11
             cc1plus: warning: command-line option ‘-Wno-strict-prototypes’ is valid for C/ObjC but not for C++
             x86_64-linux-gnu-g++ -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -shared -Wl,-O1 -Wl,-Bsymbolic-functions build/temp.linux-x86_64-cpython-312/thinc/backends/linalg.o -L/usr/lib/x86_64-linux-gnu -o build/lib.linux-x86_64-cpython-312/thinc/backends/linalg.cpython-312-x86_64-linux-gnu.so
             building 'thinc.backends.numpy_ops' extension
-            x86_64-linux-gnu-g++ -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -Ithinc/backends -I/tmp/pip-build-env-_tq9tqvb/overlay/lib/python3.12/site-packages/numpy/_core/include -I/usr/include/python3.12 -I/home/vikas/jupyter-env/include -I/usr/include/python3.12 -c thinc/backends/numpy_ops.cpp -o build/temp.linux-x86_64-cpython-312/thinc/backends/numpy_ops.o -O3 -Wno-strict-prototypes -Wno-unused-function -std=c++11
+            x86_64-linux-gnu-g++ -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -Ithinc/backends -I/tmp/pip-build-env-_5apqelz/overlay/lib/python3.12/site-packages/numpy/_core/include -I/usr/include/python3.12 -I/home/vikas/jupyter-env/include -I/usr/include/python3.12 -c thinc/backends/numpy_ops.cpp -o build/temp.linux-x86_64-cpython-312/thinc/backends/numpy_ops.o -O3 -Wno-strict-prototypes -Wno-unused-function -std=c++11
             cc1plus: warning: command-line option ‘-Wno-strict-prototypes’ is valid for C/ObjC but not for C++
             thinc/backends/numpy_ops.cpp: In function ‘PyObject* __pyx_pf_5thinc_8backends_9numpy_ops_8NumpyOps___init__(PyObject*, PyObject*, PyObject*, PyObject*, PyObject*)’:
             thinc/backends/numpy_ops.cpp:2366:34: error: ‘_PyCFrame’ {aka ‘struct _PyCFrame’} has no member named ‘use_tracing’
@@ -10464,4 +10462,3 @@ note: This error originates from a subprocess, and is likely not a problem with 
 
   URL: http://0.0.0.0:5001
 
-  Stopping...

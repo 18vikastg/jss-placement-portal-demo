@@ -1,11 +1,9 @@
-nohup: ignoring input
 
 > frontend@0.0.0 dev
 > vite
 
 
-  VITE v5.4.20  ready in 234 ms
+  VITE v5.4.20  ready in 232 ms
 
   ➜  Local:   http://localhost:5173/
   ➜  Network: use --host to expose
-12:54:05 AM [vite] hmr update /src/components/student/StudentDashboardEnhanced.jsx, /src/index.css
