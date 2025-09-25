@@ -381,29 +381,31 @@ const PlacementAnalyticsDashboard = () => {
                         color: "red"
                     }
                 ].map((kpi, index) => (
-                    <div key={index} className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 border border-gray-100">
+                    <div key={index} className="group bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-red-100 hover:border-red-200 transform hover:-translate-y-1">
                         <div className="flex items-start justify-between mb-4">
-                            <div className="p-3 rounded-lg bg-red-100">
-                                <kpi.icon className="w-6 h-6 text-red-600" />
+                            <div className="p-4 rounded-xl bg-gradient-to-br from-red-50 to-red-100 group-hover:from-red-100 group-hover:to-red-200 transition-all duration-300">
+                                <kpi.icon className="w-7 h-7 text-red-600 group-hover:text-red-700 transition-colors duration-300" />
                             </div>
-                            <div className="flex items-center space-x-1 text-sm">
+                            <div className="flex items-center space-x-1 text-sm bg-gray-50 px-3 py-1 rounded-full">
                                 {getGrowthIcon(kpi.growth)}
-                                <span className={kpi.growth > 0 ? 'text-green-600' : 'text-red-600'}>
+                                <span className={`font-semibold ${kpi.growth > 0 ? 'text-emerald-600' : 'text-red-600'}`}>
                                     {kpi.growth > 0 ? '+' : ''}{kpi.growth}%
                                 </span>
                             </div>
                         </div>
-                        <div className="text-3xl font-bold text-gray-900 mb-2">{kpi.value}</div>
-                        <div className="text-gray-700 font-medium">{kpi.title}</div>
+                        <div className="text-3xl font-bold text-gray-900 mb-2 group-hover:text-red-700 transition-colors duration-300">{kpi.value}</div>
+                        <div className="text-gray-700 font-semibold text-lg">{kpi.title}</div>
                         <div className="text-gray-500 text-sm mt-1">{kpi.subtitle}</div>
                     </div>
                 ))}
             </div>
 
             {/* Package Distribution */}
-            <div className="bg-white rounded-lg shadow-md p-8 border border-gray-100">
-                <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
-                    <PieChartIcon className="w-5 h-5 mr-2 text-red-600" />
+            <div className="bg-white rounded-xl shadow-lg p-8 border border-red-100 hover:shadow-xl transition-all duration-300">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                    <div className="p-2 rounded-lg bg-red-100 mr-3">
+                        <PieChartIcon className="w-6 h-6 text-red-600" />
+                    </div>
                     Package Distribution Analysis (2019-2023)
                 </h2>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -476,14 +478,14 @@ const PlacementAnalyticsDashboard = () => {
             {/* Detailed Branch Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {departmentStats.map((dept, index) => (
-                    <div key={index} className="bg-white rounded-lg shadow-md p-6 border border-gray-100 hover:shadow-lg transition-shadow duration-200">
+                    <div key={index} className="group bg-white rounded-xl shadow-lg p-6 border border-red-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 hover:border-red-200">
                         <div className="flex items-center justify-between mb-4">
                             <div className="flex items-center space-x-3">
-                                <div className="w-12 h-12 rounded-lg flex items-center justify-center text-white font-bold bg-red-600">
+                                <div className="w-14 h-14 rounded-xl flex items-center justify-center text-white font-bold bg-gradient-to-br from-red-600 to-red-700 shadow-lg group-hover:shadow-xl transition-all duration-300">
                                     {dept.shortName}
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-gray-900">{dept.shortName}</h3>
+                                    <h3 className="font-bold text-gray-900 text-lg group-hover:text-red-700 transition-colors duration-300">{dept.shortName}</h3>
                                     <p className="text-sm text-gray-600">{dept.department}</p>
                                 </div>
                             </div>
@@ -522,14 +524,16 @@ const PlacementAnalyticsDashboard = () => {
 
     const renderCompaniesTab = () => (
         <div className="space-y-8">
-            <div className="bg-white rounded-lg shadow-md p-8 border border-gray-100">
+            <div className="bg-white rounded-xl shadow-lg p-8 border border-red-100 hover:shadow-xl transition-all duration-300">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                    <Building2 className="w-6 h-6 mr-3 text-red-600" />
+                    <div className="p-2 rounded-lg bg-red-100 mr-3">
+                        <Building2 className="w-6 h-6 text-red-600" />
+                    </div>
                     Top Recruiting Partners (2019-2023)
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     {topRecruiters.map((recruiter, index) => (
-                        <div key={index} className="bg-gray-50 rounded-lg p-6 hover:shadow-md transition-shadow duration-200 border border-gray-100">
+                        <div key={index} className="group bg-gradient-to-br from-white to-gray-50 rounded-xl p-6 hover:shadow-lg transition-all duration-300 border border-gray-200 hover:border-red-200 transform hover:-translate-y-1 relative">
                             <div className="absolute top-2 right-2">
                                 <div className={`px-2 py-1 rounded-full text-xs font-medium ${
                                     recruiter.tier === 'Super Dream' ? 'bg-red-100 text-red-700' :
@@ -711,41 +715,46 @@ const PlacementAnalyticsDashboard = () => {
 
     return (
         <div className="min-h-screen bg-gray-50">
-            {/* Clean JSS Header */}
-            <div className="bg-gradient-to-r from-red-600 to-red-700 text-white shadow-lg">
+            {/* Professional JSS Header */}
+            <div className="bg-gradient-to-br from-red-700 via-red-600 to-red-800 text-white shadow-xl">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
                     <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
                         <div className="mb-6 lg:mb-0">
                             <div className="flex items-center mb-4">
-                                <BarChart3 className="w-8 h-8 mr-3 text-white" />
-                                <h1 className="text-3xl lg:text-4xl font-bold">
-                                    JSS Academy Placement Analytics
-                                </h1>
+                                <div className="bg-white/10 backdrop-blur-sm p-2 rounded-lg mr-4">
+                                    <BarChart3 className="w-8 h-8 text-white" />
+                                </div>
+                                <div>
+                                    <h1 className="text-3xl lg:text-4xl font-bold tracking-tight">
+                                        JSS Academy Analytics
+                                    </h1>
+                                    <div className="text-red-100 text-lg font-medium">Placement Dashboard</div>
+                                </div>
                             </div>
-                            <p className="text-lg text-red-100 max-w-2xl">
-                                Comprehensive placement insights and performance analytics across all branches (2019-2023)
+                            <p className="text-lg text-red-100 max-w-2xl leading-relaxed">
+                                Comprehensive placement insights and performance analytics across all engineering branches
                             </p>
-                            <div className="flex items-center mt-4 space-x-6 text-sm">
-                                <span className="flex items-center">
-                                    <Activity className="w-4 h-4 mr-2 text-green-400" />
-                                    Real Data
-                                </span>
-                                <span className="flex items-center">
-                                    <Clock className="w-4 h-4 mr-2 text-red-200" />
-                                    Updated: {new Date().toLocaleDateString()}
-                                </span>
-                                <span className="flex items-center">
-                                    <Users className="w-4 h-4 mr-2 text-red-200" />
-                                    5-Year Analytics
-                                </span>
+                            <div className="flex flex-wrap items-center mt-6 gap-4 text-sm">
+                                <div className="flex items-center bg-white/10 backdrop-blur-sm px-3 py-2 rounded-lg">
+                                    <Activity className="w-4 h-4 mr-2 text-emerald-300" />
+                                    <span className="text-white font-medium">Live Data</span>
+                                </div>
+                                <div className="flex items-center bg-white/10 backdrop-blur-sm px-3 py-2 rounded-lg">
+                                    <Clock className="w-4 h-4 mr-2 text-yellow-300" />
+                                    <span className="text-white">Updated: {new Date().toLocaleDateString()}</span>
+                                </div>
+                                <div className="flex items-center bg-white/10 backdrop-blur-sm px-3 py-2 rounded-lg">
+                                    <Users className="w-4 h-4 mr-2 text-blue-300" />
+                                    <span className="text-white">2019-2023</span>
+                                </div>
                             </div>
                         </div>
                         <div className="flex space-x-3">
-                            <button className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-lg border border-white/30 hover:bg-white/30 transition-colors flex items-center space-x-2">
+                            <button className="bg-white text-red-600 hover:bg-red-50 px-6 py-3 rounded-lg font-medium transition-all duration-200 flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
                                 <Download className="w-4 h-4" />
-                                <span>Export</span>
+                                <span>Export Report</span>
                             </button>
-                            <button className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-lg border border-white/30 hover:bg-white/30 transition-colors flex items-center space-x-2">
+                            <button className="bg-red-800/30 border border-white/20 text-white hover:bg-red-800/50 px-6 py-3 rounded-lg font-medium transition-all duration-200 flex items-center space-x-2 backdrop-blur-sm">
                                 <Share2 className="w-4 h-4" />
                                 <span>Share</span>
                             </button>
@@ -754,21 +763,21 @@ const PlacementAnalyticsDashboard = () => {
                 </div>
             </div>
 
-            {/* Clean Tab Navigation */}
-            <div className="bg-white border-b border-gray-200 sticky top-0 z-40 shadow-sm">
+            {/* Professional Tab Navigation */}
+            <div className="bg-white border-b border-gray-200 sticky top-0 z-40 shadow-lg">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex space-x-8 overflow-x-auto">
+                    <div className="flex space-x-1 overflow-x-auto">
                         {tabs.map((tab) => (
                             <button
                                 key={tab.id}
                                 onClick={() => setActiveTab(tab.id)}
-                                className={`py-4 px-2 whitespace-nowrap font-medium text-sm border-b-2 flex items-center space-x-2 transition-colors ${
+                                className={`px-6 py-4 whitespace-nowrap font-semibold text-sm rounded-t-lg flex items-center space-x-2 transition-all duration-200 transform ${
                                     activeTab === tab.id
-                                        ? 'border-red-500 text-red-600'
-                                        : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                                        ? 'bg-red-50 text-red-700 border-b-3 border-red-600 shadow-lg -mb-px'
+                                        : 'text-gray-600 hover:text-red-600 hover:bg-red-50/50 border-b-3 border-transparent'
                                 }`}
                             >
-                                <tab.icon className="w-4 h-4" />
+                                <tab.icon className={`w-5 h-5 ${activeTab === tab.id ? 'text-red-600' : ''}`} />
                                 <span>{tab.label}</span>
                             </button>
                         ))}
@@ -781,13 +790,15 @@ const PlacementAnalyticsDashboard = () => {
                 {renderTabContent()}
             </div>
 
-            {/* Clean Footer */}
-            <div className="bg-gray-900 text-white py-8 mt-16">
+            {/* Professional JSS Footer */}
+            <div className="bg-gradient-to-r from-gray-900 via-red-900 to-gray-900 text-white py-12 mt-16">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                         <div>
                             <h3 className="text-xl font-semibold mb-4 flex items-center">
-                                <Activity className="w-5 h-5 mr-2 text-red-500" />
+                                <div className="p-2 rounded-lg bg-white/10 mr-3">
+                                    <Activity className="w-5 h-5 text-red-400" />
+                                </div>
                                 JSS Placement Analytics
                             </h3>
                             <p className="text-gray-300 text-sm">
@@ -812,15 +823,18 @@ const PlacementAnalyticsDashboard = () => {
                         </div>
                         <div>
                             <h3 className="text-lg font-semibold mb-4">Quick Actions</h3>
-                            <div className="space-y-2">
-                                <button className="block w-full text-left text-sm text-gray-300 hover:text-white transition-colors">
-                                    Download Report
+                            <div className="space-y-3">
+                                <button className="w-full text-left text-sm bg-white/10 hover:bg-white/20 px-4 py-3 rounded-lg transition-all duration-200 flex items-center space-x-2">
+                                    <Download className="w-4 h-4" />
+                                    <span>Download Report</span>
                                 </button>
-                                <button className="block w-full text-left text-sm text-gray-300 hover:text-white transition-colors">
-                                    Schedule Campus Visit
+                                <button className="w-full text-left text-sm bg-white/10 hover:bg-white/20 px-4 py-3 rounded-lg transition-all duration-200 flex items-center space-x-2">
+                                    <Building2 className="w-4 h-4" />
+                                    <span>Schedule Campus Visit</span>
                                 </button>
-                                <button className="block w-full text-left text-sm text-gray-300 hover:text-white transition-colors">
-                                    Contact Admissions
+                                <button className="w-full text-left text-sm bg-white/10 hover:bg-white/20 px-4 py-3 rounded-lg transition-all duration-200 flex items-center space-x-2">
+                                    <Users className="w-4 h-4" />
+                                    <span>Contact Admissions</span>
                                 </button>
                             </div>
                         </div>
