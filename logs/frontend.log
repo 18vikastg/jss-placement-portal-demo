@@ -1,6 +1,13 @@
 
-  VITE v5.4.20  ready in 324 ms
+> frontend@0.0.0 dev
+> vite
+
+
+  VITE v5.4.20  ready in 121 ms
 
   ➜  Local:   http://localhost:5173/
   ➜  Network: use --host to expose
-1:44:36 AM [vite] hmr update /src/components/linkfolio/NewLinkFolio.jsx, /src/index.css
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+11:29:57 PM [vite] hmr update /src/components/student/StudentDashboardEnhanced.jsx, /src/index.css
+11:29:57 PM [vite] hmr update /src/App.jsx, /src/index.css
+11:29:57 PM [vite] hmr update /src/App.jsx, /src/index.css

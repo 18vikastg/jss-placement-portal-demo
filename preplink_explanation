@@ -1,0 +1,876 @@
+PREPLINK – An Integrated Digital Platform for College Placement Management and Professional Networking
+
+============================================================
+
+1. Introduction to PREPLINK
+---------------------------
+
+### 1.1 What is PREPLINK?
+
+PREPLINK is an integrated digital platform designed to manage the complete campus placement lifecycle and professional networking for students, faculty, recruiters, and alumni. It combines a placement management system, student career profiles, recruiter portal, analytics dashboard, and AI‑assisted career tools into a single, unified system.
+
+Instead of treating placement activities, resume evaluation, interview preparation, and alumni networking as separate tools, PREPLINK offers one cohesive platform where all stakeholders work on the same source of truth. The goal is to make placement processes transparent, efficient, data‑driven, and scalable.
+
+### 1.2 Why colleges need PREPLINK
+
+Modern colleges handle thousands of students, dozens of companies, and multiple drives every semester. Traditional processes based on spreadsheets, WhatsApp groups, emails, and manual shortlisting are slow, error‑prone, and not auditable.
+
+Colleges need PREPLINK because it:
+
+- Centralizes all placement‑related data and workflows.
+- Ensures every stakeholder sees the same, consistent information.
+- Automates repetitive tasks like eligibility filtering, notifications, and report generation.
+- Provides analytics that help placement officers and management understand performance trends.
+- Improves the student experience by giving clear visibility into opportunities and readiness.
+
+### 1.3 Problems in traditional placement systems
+
+Typical issues with conventional or semi‑manual systems include:
+
+- Fragmented data: Student data is spread across Excel sheets, Google Forms, and offline records. There is no single reliable source.
+- Manual shortlisting: Placement officers manually filter students by CGPA, backlog status, eligibility criteria, etc., which is slow and error‑prone.
+- Poor communication: Students miss deadlines because notifications are scattered across emails, WhatsApp groups, and notices.
+- Limited transparency: Students and faculty do not have real‑time visibility into application status, shortlists, and offer progress.
+- Weak recruiter experience: Companies receive inconsistent data formats for resumes and reports, and it is hard to track past engagement.
+- No historical analytics: After a batch passes out, data is rarely consolidated into dashboards showing department‑wise, company‑wise, or package‑wise performance.
+- No integration with career preparation: Resume building, interview practice, and placement data often live in separate tools, leading to broken workflows.
+
+PREPLINK is designed specifically to address these gaps.
+
+### 1.4 Vision and long‑term goals of PREPLINK
+
+The long‑term vision of PREPLINK is to become a standard digital infrastructure for academic institutions to manage placements and early career development. The goals include:
+
+- Providing an end‑to‑end placement operating system for colleges.
+- Building rich, portable student career profiles that remain useful even after graduation.
+- Enabling deeper collaboration between industry, academia, and alumni communities.
+- Leveraging AI to offer personalized recommendations, resume analysis, and interview guidance.
+- Evolving into a multi‑institution SaaS platform that can support many colleges with shared infrastructure but isolated data and configuration.
+
+
+2. Stakeholders & User Roles
+----------------------------
+
+PREPLINK is multi‑tenant and role‑aware. Each stakeholder sees a tailored experience and has strictly scoped permissions.
+
+### 2.1 Students
+
+**Responsibilities**: Maintain accurate profiles, apply to eligible drives, upload correct documents, track applications, and engage with preparation content.
+
+**Permissions and access**:
+
+- Can register and log in as a student.
+- Can view and update their own profile, including academics, skills, projects, certifications, and resumes.
+- Can view active and upcoming placement drives for which they are eligible.
+- Can apply to eligible drives and withdraw applications within allowed windows.
+- Can view their application status, interview schedule, and offers.
+- Can access preparation modules (roadmaps, resources, mock interviews, AI‑based tools where enabled).
+
+**Data they can modify or view**:
+
+- Modify: their personal and academic details, skills, resumes, preferences, and consent for data sharing.
+- View: their own applications, eligibility decisions, shortlisting status, interview schedules, results, and aggregate, non‑sensitive placement statistics.
+
+### 2.2 Placement Officers / Admin
+
+**Responsibilities**: Oversee the entire placement lifecycle, onboard companies, configure drives, ensure policy compliance, and provide reports to management.
+
+**Permissions and access**:
+
+- Full control over placement configuration for the institution.
+- Manage user accounts: approve or deactivate student, faculty, and recruiter access where necessary.
+- Create and manage placement drives, including eligibility criteria and timelines.
+- Manage company profiles and contact details.
+- Access detailed analytics, statistics, and downloadable reports.
+- Override certain automated decisions (e.g., manual shortlisting for exceptional cases), subject to audit logging.
+
+**Data they can modify or view**:
+
+- Modify: drive configurations, eligibility rules, company information, and high‑level system settings.
+- View: all students’ profiles for placement purposes, full application lists, shortlists, offers, and department‑wise/drive‑wise performance metrics.
+
+### 2.3 Lecturers / Faculty
+
+**Responsibilities**: Support academic verification, mentor students, ensure academic data accuracy, and help students align with placement requirements.
+
+**Permissions and access**:
+
+- View students of specific departments or batches assigned to them.
+- View academic performance, skills, and placement readiness indicators.
+- Verify academic and certification claims (e.g., confirm GPA, verify internship letters, etc.).
+- Provide recommendations or comments (where enabled) on student readiness.
+
+**Data they can modify or view**:
+
+- Modify: verification flags (e.g., “CGPA verified”), optional remarks or recommendations.
+- View: detailed academic profiles, placement progression of students in their department, and aggregate placement statistics for their department.
+
+### 2.4 Recruiters / Companies
+
+**Responsibilities**: Publish job roles and drives, shortlist candidates, conduct interviews, and issue offers.
+
+**Permissions and access**:
+
+- Secure recruiter login associated with a verified company account.
+- Create and manage job openings, including role, package, eligibility, and selection process.
+- View filtered lists of eligible and applied students.
+- Access standardized student profiles and resumes.
+- Record interview outcomes and offers (optional if college chooses to allow it).
+
+**Data they can modify or view**:
+
+- Modify: job descriptions, hiring criteria, shortlisting decisions, interview results (if enabled), and offers.
+- View: anonymized or identified candidate lists (depending on institution policy), candidate profiles, and drive statistics relevant to their organization.
+
+### 2.5 Alumni
+
+**Responsibilities**: Provide mentorship, share opportunities, participate in networking, and optionally share referrals.
+
+**Permissions and access**:
+
+- Alumni login with limited access.
+- Maintain an alumni profile (current company, role, skills, willingness to mentor, etc.).
+- Connect with current students via controlled channels (e.g., mentoring requests, AMA sessions, or moderated messaging).
+- Share job or internship leads with placement officers.
+
+**Data they can modify or view**:
+
+- Modify: their own alumni profile and mentoring preferences.
+- View: student posts requesting guidance, limited candidate profiles (only with consent and under defined rules), and curated placement or networking dashboards.
+
+
+3. System Architecture Overview
+-------------------------------
+
+### 3.1 High‑level architecture
+
+PREPLINK follows a modular, service‑oriented architecture built around a web client, REST APIs, AI services, and a central database.
+
+Text‑based architecture diagram:
+
+```
+[Browser / Mobile]
+     |
+     v
+[Frontend SPA (React / Next.js)]
+     |
+     v
+[API Gateway / Backend (Express.js)]
+     |
+     v
++--------------------------+
+| Core Micro‑modules       |
+|                          |
+| - User & Auth Service    |
+| - Placement Drive Service|
+| - Application Service    |
+| - Profile Service        |
+| - Analytics Service      |
+| - Notification Service   |
+| - AI Integration Service |
++--------------------------+
+     |
+     v
+[Primary Database (MongoDB with relational-style schema)]
+     |
+     +--[Object Storage / Cloudinary for documents]
+     |
+     +--[AI Resume Analyser (Python/Streamlit)]
+```
+
+The actual implementation uses React/Vite and Next.js for different frontends, Express.js for the backend, and MongoDB for data. Conceptually, the data model is relational in nature with well-defined entities and relationships.
+
+### 3.2 Client–Server model
+
+The system follows a standard client–server model:
+
+- The frontend (student, faculty, admin, recruiter portals) runs in the browser as a single-page application (SPA).
+- All data operations (login, viewing drives, applying to jobs, updating profiles) are made through HTTPS requests to backend REST APIs.
+- The backend enforces authentication, authorization, validation, and business rules, and then talks to the database.
+- Responses are returned as JSON objects, which the frontend renders into interactive views.
+
+This decoupling allows independent scaling of frontend and backend, and even supports multiple frontends (e.g., web, mobile) consuming the same APIs.
+
+### 3.3 Role-based access control
+
+PREPLINK uses role-based access control (RBAC) at the API level:
+
+- After login, users receive a signed JWT that encodes their user ID and role (student, faculty, recruiter, admin, alumni).
+- Every protected API route is wrapped with middleware that verifies the token and checks role permissions.
+- Some routes are role-specific (e.g., faculty analytics, recruiter shortlisting) while others are shared with role-based restrictions on fields.
+- Internally, the user document stores the role, and optional flags for advanced permissions (such as “placement officer” or “department coordinator”).
+
+### 3.4 Authentication & Authorization flow
+
+The authentication and authorization flow works as follows:
+
+1. The user submits credentials via the login page.
+2. The backend verifies the credentials against stored hashed passwords.
+3. On success, the backend issues a JWT token and sets it in an HTTP‑only cookie to protect against XSS.
+4. The frontend stores basic, non-sensitive profile data in Redux/state for UI purposes, but relies on the cookie for secure API authorization.
+5. For each subsequent API request, the cookie is automatically sent; backend middleware verifies the token and populates `req.user` with user data and role.
+6. Role‑checking middleware ensures that only appropriate users can hit certain endpoints (e.g., only recruiters can access recruiter endpoints).
+
+This mechanism separates authentication (identity proof) from authorization (what the identity can do).
+
+
+4. Frontend Working (UI/UX Flow)
+--------------------------------
+
+### 4.1 Landing Page
+
+The landing page introduces PREPLINK for students, faculty, and recruiters. It typically displays:
+
+- High‑level placement statistics such as total offers, highest package, and department‑wise performance.
+- Logos of top recruiting companies.
+- A summary of available modules: Student dashboard, Faculty panel, Recruiter portal, Analytics, AI tools.
+- Clear calls to action for “Student Login”, “Faculty Login”, “Recruiter Login”, and “Admin Login”.
+
+The landing page is designed to communicate credibility and clarity to visitors like HODs, TPOs, and external recruiters.
+
+### 4.2 Login & Registration flow
+
+The login and registration journeys are role‑aware.
+
+- New students can register using their college email and a verification step defined by the institution.
+- Recruiters usually receive an invite from placement officers or are approved after verification.
+- Faculty and admins are generally onboarded by the institution.
+
+Flow:
+
+1. User selects their role and navigates to the appropriate login/registration page.
+2. The form collects necessary details (for students: basic info, department, batch; for recruiters: company details; for faculty/admin: institutional email, ID, etc.).
+3. The frontend validates input locally and sends it to the backend.
+4. The backend creates the account, hashes the password, and stores the user with the correct role.
+5. On successful login, the user is redirected to their dashboard.
+
+### 4.3 Dashboards for each role
+
+The student dashboard typically shows:
+
+- Profile completeness score and prompts to add missing information.
+- Active drives for which the student is eligible, along with deadlines.
+- Application status tiles (applied, shortlisted, in interview, selected, rejected).
+- Access to preparation content (Preparation Hub, mock interviews, roadmaps).
+
+The admin/placement officer dashboard shows:
+
+- Total number of active drives.
+- Department‑wise placement summary.
+- Pending approvals (companies, drives, or exceptions).
+- Quick links to create new drives, send announcements, or export reports.
+
+The faculty dashboard includes:
+
+- A list of students in the faculty’s department or batch.
+- Indicators of placement readiness, such as CGPA, profile completeness, and application activity.
+- Views of drive participation and outcome summaries for the department.
+
+The recruiter dashboard focuses on:
+
+- Drives they have created or participated in.
+- Lists of candidates by stage (applied, shortlisted, in process, offered).
+- Tools to filter and view student profiles and resumes.
+
+### 4.4 Responsiveness
+
+PREPLINK is built with responsive UI frameworks (such as TailwindCSS and modern React component libraries). Layouts adapt automatically to:
+
+- Mobile: single‑column layout, collapsible navigation, vertical stacking of sections.
+- Tablet: two‑column layouts where appropriate, optimized card sizes.
+- Desktop: multi‑column dashboards with rich charts and tables.
+
+Responsiveness ensures that students can quickly check drives and notifications from their phones, while placement officers can work comfortably on laptops with full dashboards.
+
+### 4.5 UI principles
+
+The UI follows several key principles:
+
+- Simplicity: Clear navigation, minimal clutter, and straightforward labels.
+- Clarity: Use of consistent colors, icons, and typography to indicate statuses.
+- Accessibility: Sufficient contrast, keyboard navigability, and descriptive labels.
+- Feedback: Immediate feedback on actions through toasts, validations, and loading indicators.
+
+
+5. Backend Working (Core Logic)
+-------------------------------
+
+### 5.1 API design
+
+The backend exposes RESTful APIs organized by resource:
+
+- `/api/v1/user` for user registration, login, and profile operations.
+- `/api/v1/company` for company and recruiter‑facing operations.
+- `/api/v1/job` or `/api/v1/drive` for placement drives and job postings.
+- `/api/v1/application` for student applications.
+- `/api/v1/preparation` for preparation content.
+- `/api/v1/placement` for placement statistics and analytics.
+- `/api/v1/resume` for AI‑assisted resume analysis integration.
+
+Each endpoint maintains a clear separation between input models (DTOs) and persistence models. HTTP status codes consistently indicate outcome (200/201 for success, 4xx for client errors, 5xx for server errors).
+
+### 5.2 Request–response lifecycle
+
+1. The client sends an HTTP request with the appropriate method (GET, POST, PUT, DELETE) and payload.
+2. The Express.js router matches the URL to the relevant controller function.
+3. Middleware layers run in sequence:
+   - CORS handling
+   - JSON/body parsing
+   - Authentication verification (JWT)
+   - Role‑based access checks
+   - Input validation
+4. The controller invokes service functions that contain business logic.
+5. Service functions interact with the database models (Mongoose/Prisma) and any external services (AI, storage, mail).
+6. The result is normalized into a consistent JSON structure and sent back to the client.
+
+### 5.3 Session handling / JWT authentication
+
+PREPLINK does not rely on server‑side session storage. Instead, it uses stateless JWT tokens:
+
+- On login, a JWT is created that contains user identification and role claims.
+- The token is signed with a secret key and stored as an HTTP‑only cookie.
+- On each request, the token is verified for authenticity and expiration.
+- If valid, the user context is attached to the request object; otherwise, the request is rejected with an unauthorized response.
+
+This approach is scalable, because servers do not need to store session state for each user.
+
+### 5.4 Business logic separation
+
+The backend is structured into controllers, services, and models:
+
+- Controllers: Receive HTTP requests and map them to services.
+- Services: Implement placement logic such as eligibility checking, application status transitions, and report generation.
+- Models: Represent the data structures stored in the database.
+
+This separation ensures that controllers remain thin and easy to test, and business rules are centralized in services.
+
+### 5.5 Error handling
+
+Unified error handling ensures that unexpected conditions are safely managed:
+
+- Validation errors return structured responses that the frontend can display directly.
+- Permissions errors return clear messages, rather than silent failures.
+- All unexpected exceptions are logged with context (endpoint, user, payload snapshot) for debugging.
+- Sensitive internal details are not exposed in responses, preserving security.
+
+### 5.6 Validation mechanisms
+
+Input validation is performed using schema validators and custom rules:
+
+- Required fields (e.g., CGPA, department, batch) are enforced.
+- Ranges (e.g., CGPA between 0 and 10) are verified.
+- Enumerations (e.g., branch, role, status) are restricted to known values.
+- File types (for resumes, certificates) are checked against safe MIME types.
+
+This ensures data quality and reduces issues in analytics, eligibility filters, and reporting.
+
+
+6. Database Design & Data Storage
+---------------------------------
+
+### 6.1 Conceptual model and choice of storage
+
+Conceptually, PREPLINK’s data model is relational: entities like Students, Companies, Drives, and Applications have clear relationships. In the implementation, this relational schema is represented using MongoDB (a document database) with references to mimic table‑like relations.
+
+A relational‑style design is chosen because:
+
+- The relationships between students, drives, companies, and applications are well defined.
+- Strong consistency is required for placement calculations and analytics.
+- Reporting and filtering (e.g., “all students of CSE with CGPA > 8, no backlogs, applied to Company X in 2024”) are critical.
+
+### 6.2 Major entities (logical tables)
+
+The core logical tables (or collections) are:
+
+- Users: Stores login credentials and role information.
+- Students: Extends user with academic, skills, and placement‑specific data.
+- Companies: Stores company details and recruiter contacts.
+- Drives (Jobs): Defines placement drives with eligibility criteria and schedules.
+- Applications: Links students to drives and tracks status.
+- Results/Offers: Tracks final outcomes and offer details.
+- PlacementStats: Aggregated statistics per batch and department.
+
+### 6.3 Relationships between entities
+
+Key relationships include:
+
+- One user has one student or recruiter or faculty profile (depending on role).
+- One company can have many drives.
+- One drive belongs to one company and one academic year.
+- One student can apply to many drives; one drive can have many student applications (many‑to‑many via Applications).
+- One student can receive multiple offers (for different drives) but institution‑specific rules may limit acceptance.
+
+### 6.4 Data normalization
+
+Data is designed to avoid redundancy:
+
+- Common user data (name, email) stays in the Users collection.
+- Academic details, skills, and resumes stay in the Student profile.
+- Drive details (eligibility, schedule) stay in the Drive entity.
+- Applications reference students and drives by ID, without copying entire profiles.
+
+This helps maintain consistency when data is updated and simplifies reporting.
+
+### 6.5 Data security and privacy
+
+Sensitive information is protected by design:
+
+- Passwords are stored as hashed values using industry‑standard algorithms.
+- Sensitive fields (e.g., contact numbers, internal IDs) are only exposed to authorized roles.
+- Student data is only used for placement and analytics within the institution; external access is strictly controlled.
+
+### 6.6 Backup and recovery strategy
+
+For production deployments, PREPLINK recommends:
+
+- Automated daily database backups, stored in a separate, secure location.
+- Point‑in‑time recovery options via managed database services.
+- Exportable reports and snapshots for long‑term archival.
+- Regular restore drills to verify that backups are usable.
+
+
+7. Placement Workflow (Step‑by‑Step)
+------------------------------------
+
+PREPLINK automates the complete placement lifecycle.
+
+### Step 1: Company onboarding
+
+Companies are onboarded either by placement officers or through self‑service registration followed by verification. Company profiles include sectors, locations, roles offered, typical salary ranges, and contact persons.
+
+PREPLINK stores this information and links future drives to these profiles. This avoids repeated data entry and enables long‑term analytics.
+
+### Step 2: Drive creation
+
+For each hiring initiative, a drive is created with:
+
+- Job role and description.
+- Eligibility criteria (branches, CGPA, backlogs, graduation year, etc.).
+- Selection process stages (test, technical interview, HR interview).
+- Application window dates and interview schedules.
+
+Placement officers configure these parameters via the admin dashboard. The system then generates the drive entry in the database.
+
+### Step 3: Student eligibility filtering
+
+PREPLINK automatically filters eligible students based on:
+
+- Academic criteria (CGPA, backlogs, department, batch).
+- Placement rules (e.g., number of offers already accepted).
+- Any custom conditions defined by the institution.
+
+This is done by querying the Students and Users collections against the drive criteria. Eligible students are marked, and the frontend shows them corresponding opportunities.
+
+### Step 4: Student application
+
+Eligible students can view details of the drive and apply with one click. The application records:
+
+- Student ID and Drive ID.
+- Timestamp of application.
+- Version of resume used (if multiple resumes exist).
+
+The Applications entity keeps a history of all applications and their current status.
+
+### Step 5: Resume and document verification
+
+Faculty or placement staff can review and verify resumes and supporting documents. PREPLINK can integrate with an AI Resume Analyser to:
+
+- Extract skills, experience, and key sections from resumes.
+- Detect missing or weak areas.
+- Provide scores that help in ranking or guidance.
+
+Verification flags are updated in the student profile, which boosts trust for recruiters.
+
+### Step 6: Shortlisting
+
+Companies and placement officers can shortlist candidates either manually using filters or semi‑automatically using rules:
+
+- Filters: CGPA threshold, specific skills, branch, etc.
+- AI assistance (optional): using resume scores or relevance metrics.
+
+Once shortlists are finalized, PREPLINK updates application statuses and notifies students.
+
+### Step 7: Interview rounds
+
+Interviews are scheduled in multiple rounds:
+
+- Placement officers or recruiters define dates, modes (online/offline), and panels.
+- Students see their interview schedule in the dashboard.
+- After each round, outcomes are updated (e.g., “Round 1 cleared”, “Waitlisted”, “Rejected”).
+
+The system keeps a per‑student, per‑drive progress log that is visible to authorized users.
+
+### Step 8: Result declaration
+
+After final rounds, results are declared:
+
+- Applications are marked as “Selected”, “Rejected”, or “Waitlisted”.
+- Offer details are recorded (CTC, role, location, joining date).
+- Students receive notifications and can acknowledge offers.
+
+The results feed into the PlacementStats module for analytics.
+
+### Step 9: Offer tracking
+
+Offer tracking ensures compliance with institutional rules (e.g., one dream offer, or two regular offers):
+
+- For each student, the system records number and type of offers.
+- If rules require, students may be auto‑blocked from future drives after certain types of offers.
+- Admins and faculty can view offer distribution by department and company.
+
+PREPLINK automates the enforcement of these policies, reducing manual errors.
+
+
+8. Student Profile Management
+-----------------------------
+
+### 8.1 Academic data
+
+Student profiles capture:
+
+- Personal details (name, email, phone, address).
+- Academic history (department, batch, semester, CGPA, 10th and 12th percentages, backlogs).
+- Course‑level performance where required.
+
+This data comes either from self‑entry with verification or from integration with institutional systems.
+
+### 8.2 Skills and certifications
+
+Students can add skills, certifications, and training programs. Each entry may include:
+
+- Skill name and proficiency.
+- Certification name, issuing authority, and date.
+- Links to credential verification if available.
+
+These details help recruiters filter candidates for specific technology stacks.
+
+### 8.3 Resume uploads
+
+Students can upload one or more resumes in standard formats (PDF, DOCX). The system:
+
+- Stores documents in secure object storage.
+- Integrates with AI Resume Analyser to extract structured information.
+- Associates each application with a specific resume version.
+
+### 8.4 Achievements
+
+Achievements such as hackathons, research papers, open‑source contributions, and awards can be recorded. These provide additional differentiation for candidates with similar academic scores.
+
+### 8.5 Profile verification
+
+Faculty or placement officers can verify information:
+
+- Mark academic details as verified.
+- Validate certifications or internships.
+- Flag discrepancies or incomplete information.
+
+Verified profiles build trust with recruiters and improve shortlisting chances.
+
+### 8.6 How profiles help recruiters
+
+Recruiters see consistent, structured profiles instead of inconsistent, free‑form resumes. They can:
+
+- Quickly filter by skills, experience, or certifications.
+- Compare candidates on uniform attributes.
+- Export structured data for internal tools.
+
+This increases efficiency and reduces the time required to understand candidate suitability.
+
+
+9. Admin Dashboard & Controls
+-----------------------------
+
+The admin dashboard is the control center for placement officers and institutional staff.
+
+### 9.1 User management
+
+Admins can:
+
+- Create, approve, or deactivate student, faculty, and recruiter accounts.
+- Reset passwords or update roles where needed.
+- Ensure that only authorized users have access to sensitive data.
+
+### 9.2 Drive management
+
+From the dashboard, admins can:
+
+- Create new drives and configure eligibility rules.
+- Monitor the number of applicants per drive.
+- Adjust deadlines or criteria if policies change.
+- Lock drives once shortlists are finalized.
+
+### 9.3 Company management
+
+Admins manage company profiles by:
+
+- Approving new recruiter registrations.
+- Updating company details and engagement history.
+- Tagging companies by sectors (IT, core, consulting, etc.).
+
+### 9.4 Analytics and reports
+
+The dashboard provides:
+
+- Department‑wise placement rates.
+- Company‑wise offers and packages.
+- Year‑on‑year performance comparisons.
+- Gender‑wise or category‑wise participation and outcomes where required by policy.
+
+Reports can be exported in standard formats for submission to management, accreditation bodies, or brochures.
+
+### 9.5 Placement statistics generation
+
+Placement statistics are generated automatically from application and offer data. This eliminates manual counting and reduces the risk of inconsistencies between internal and public numbers.
+
+### 9.6 Approval workflows
+
+Certain actions may require approval, such as:
+
+- New company onboarding.
+- Special‑case eligibility overrides.
+- Exceptions to placement rules (e.g., allowing a second dream offer).
+
+PREPLINK models these workflows so changes are controlled, tracked, and auditable.
+
+
+10. Lecturer / Faculty Module
+-----------------------------
+
+The faculty module supports academic oversight and mentoring.
+
+### 10.1 Viewing student performance
+
+Faculty members can view performance data for students in their departments or assigned batches, including:
+
+- Academic metrics (CGPA, backlog status).
+- Profile completeness.
+- Placement participation and outcomes.
+
+This helps faculties understand where mentoring is required.
+
+### 10.2 Academic verification
+
+Faculty play a key role in verifying data credibility:
+
+- Confirm CGPA and backlog statuses.
+- Validate details such as projects completed under their guidance.
+- Mark students as “verified” for participation in critical drives.
+
+### 10.3 Recommendation support
+
+The system can support basic recommendation workflows:
+
+- Faculty can write short recommendations or highlight strong candidates for certain roles.
+- These recommendations can be visible to placement officers and recruiters according to policy.
+
+### 10.4 Monitoring placement readiness
+
+By seeing common gaps (e.g., missing skills, low participation in practice tests), faculty can work with departments to:
+
+- Organize targeted workshops.
+- Encourage students to use preparation tools.
+- Align curriculum projects with market expectations.
+
+
+11. Notification & Communication System
+--------------------------------------
+
+PREPLINK embeds a notification layer to prevent missed opportunities.
+
+### 11.1 Email notifications
+
+Key actions trigger emails:
+
+- New drive announcements.
+- Shortlisting alerts.
+- Interview schedule updates.
+- Offer declarations.
+
+Institutions can configure email templates and frequency.
+
+### 11.2 In‑platform alerts
+
+The web UI shows notification banners or cards, such as:
+
+- “New drive open for your branch.”
+- “Interview scheduled tomorrow at 10:00 AM.”
+- “Offer letter available for review.”
+
+These alerts are visible immediately after login.
+
+### 11.3 System announcements
+
+Placement officers can broadcast important announcements (policy changes, orientation sessions, deadlines) that appear on dashboards for target groups (all students, specific departments, or only faculty).
+
+### 11.4 Importance of timely communication
+
+Placement activities are highly time‑bound. A single missed email or message can cost a student an opportunity. Centralizing notifications in PREPLINK reduces reliance on informal channels and provides an auditable communication history.
+
+
+12. Security & Compliance
+-------------------------
+
+### 12.1 Authentication security
+
+Authentication relies on:
+
+- Secure password hashing with modern algorithms.
+- HTTP‑only cookies for JWT tokens to mitigate XSS risks.
+- Optional multi‑factor authentication for admin and sensitive roles in future enhancements.
+
+### 12.2 Authorization
+
+Strict role checks prevent unauthorized data access. Backend middleware ensures that every sensitive API call is both authenticated and authorized.
+
+### 12.3 Data encryption
+
+Transport‑level security is enforced via HTTPS for all traffic. For production use, database encryption at rest and encrypted storage for documents are recommended.
+
+### 12.4 Protection against misuse
+
+- Rate limiting and input validation help prevent automated abuse.
+- Audit logs record critical administrative actions (e.g., modifying offers, changing eligibility rules).
+- Access to raw data exports is limited to designated administrators.
+
+### 12.5 Compliance with academic data privacy
+
+PREPLINK is designed to align with typical academic data privacy expectations:
+
+- Data is used only for placement and related academic support.
+- Access is role‑restricted and logged.
+- Data retention and deletion policies can be configured according to institutional norms and regulatory requirements.
+
+
+13. Scalability & Performance
+-----------------------------
+
+### 13.1 Scaling across multiple colleges
+
+The architecture supports multi‑tenant deployment where each college has logically separate data but shares the same codebase:
+
+- Tenant identification can be mapped to institution IDs and domains.
+- Configuration per tenant defines roles, rules, and themes.
+
+This allows PREPLINK to evolve into a SaaS offering without fundamental redesign.
+
+### 13.2 Handling thousands of students
+
+Key strategies ensure performance at scale:
+
+- Proper indexing on high‑volume collections (Applications, Drives, Students).
+- Pagination for all large lists in the UI.
+- Caching of frequently used, read‑heavy data (e.g., placement stats, drive lists).
+
+### 13.3 Database optimization
+
+Queries are designed to:
+
+- Use selective projections, returning only required fields.
+- Rely on compound indexes for common filters (branch, batch, CGPA thresholds).
+- Avoid N+1 patterns by using references and aggregate pipelines.
+
+### 13.4 Modular architecture benefits
+
+Since core services (auth, drives, applications, analytics, AI integrations) are modular, they can be scaled independently:
+
+- The AI resume analysis service can be deployed separately and scaled based on usage.
+- Analytics computations can run as background jobs or scheduled tasks.
+- Frontend and backend services can be deployed on independent infrastructure.
+
+
+14. Technology Stack (Explained Clearly)
+----------------------------------------
+
+### 14.1 Frontend
+
+PREPLINK uses modern JavaScript frameworks such as React and Next.js, with Vite as a build tool. These are chosen because they:
+
+- Provide responsive, component‑based user interfaces.
+- Support fast development and hot‑reload, which speeds up iteration.
+- Have rich ecosystems of UI libraries, chart components, and form helpers.
+
+Styling is managed using TailwindCSS and UI component libraries that provide consistent, accessible components.
+
+### 14.2 Backend
+
+The backend is built on Node.js with Express.js:
+
+- Node.js allows using a single language (JavaScript/TypeScript) across frontend and backend, reducing cognitive overhead.
+- Express.js is lightweight, flexible, and well‑suited for building REST APIs.
+- Middleware patterns in Express.js align well with authentication, logging, and validation requirements.
+
+### 14.3 Database
+
+MongoDB is used as the primary database, structured to mimic a relational schema:
+
+- Document storage handles flexible profile structures (skills, projects, experiences) naturally.
+- It still allows well‑defined relationships via references.
+- Cloud‑hosted MongoDB services (like Atlas) provide automatic scaling, backups, and monitoring.
+
+Conceptually, the schema is relational in design, which would also map cleanly to traditional SQL databases if required in future.
+
+### 14.4 Hosting and deployment
+
+- Frontend applications can be deployed on platforms like Vercel or similar static hosting services.
+- Backend services run as Node.js applications on cloud platforms or institutional servers.
+- Databases are hosted on managed database services for reliability and automated backup.
+
+This deployment model keeps operational overhead manageable for a college while remaining cloud‑ready.
+
+### 14.5 Version control and collaboration
+
+Git and GitHub are used for version control:
+
+- All changes are tracked with commits and branches.
+- Multiple contributors can work in parallel, review code, and manage releases.
+- Issues and pull requests serve as documentation for design decisions and bug fixes.
+
+### 14.6 Optional AI integration
+
+AI features are integrated selectively:
+
+- AI Resume Analyser: A Python/Streamlit service using NLP libraries (spaCy, NLTK, pyresparser) to parse resumes and compute scores.
+- AI Career Coach: A Next.js service integrated with large language models (such as Google Gemini) to generate roadmaps, interview questions, and career guides.
+
+These features are isolated from core placement workflows, so the platform remains usable and reliable even when AI services are offline or evolving.
+
+
+15. Future Enhancements
+-----------------------
+
+PREPLINK is designed to grow over time. Planned and potential enhancements include:
+
+### 15.1 AI‑based student recommendations
+
+- Recommend suitable roles, companies, and upskilling paths based on academic history, skills, and interests.
+- Suggest courses or certifications that meaningfully improve placement chances.
+
+### 15.2 Advanced resume scoring
+
+- More granular scoring models that consider structure, keywords, achievements, and alignment with specific job descriptions.
+- Actionable feedback to help students iteratively improve their resumes.
+
+### 15.3 Recruiter analytics
+
+- Dashboards for recruiters showing engagement history with the college, conversion rates, and talent pipelines.
+- Insights into which profiles matched best with offered roles, helping them refine future job descriptions.
+
+### 15.4 Alumni mentoring
+
+- Structured mentoring programs where alumni can sign up as mentors, be matched with students, and track mentoring progress.
+- Events and webinars managed directly within the platform.
+
+### 15.5 Multi‑college SaaS model
+
+- A platform where multiple colleges sign up and get isolated, configurable instances.
+- Shared AI and analytics services with cost efficiencies across institutions.
+
+
+16. Conclusion
+--------------
+
+PREPLINK is more than a placement portal; it is an integrated digital infrastructure for managing the entire journey from campus to career. By combining robust data models, role‑based workflows, modern UI, secure APIs, and optional AI capabilities, it addresses the real challenges that colleges face in organizing placements at scale.
+
+For students, PREPLINK provides clarity, fairness, and tools to become job‑ready. For faculty and placement officers, it reduces manual work, increases transparency, and offers reliable analytics. For recruiters, it delivers a consistent, high‑quality experience and access to well‑structured candidate data.
+
+Designed with scalability, security, and extensibility in mind, PREPLINK can evolve alongside institutional needs and technological advancements, making it a sustainable, long‑term solution for academic placement management and professional networking.
