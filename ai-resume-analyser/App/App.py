@@ -1,5 +1,67 @@
 # Developed by Vikas TG [https://github.com/18vikastg]    Made with Streamlit
-
+def run():
+    # Apply JSS Academy themed styling
+    st.markdown(get_jss_custom_css(), unsafe_allow_html=True)
+    
+    # Environment detection
+    is_cloud = os.path.exists('/mount/src') or 'STREAMLIT_SERVER_PORT' in os.environ
+    
+    # Initialize database connection only if not already connected
+    if 'db_connected' not in st.session_state or not st.session_state.get('db_connected', False):
+        db_connected = init_database()
+    else:
+        db_connected = st.session_state.get('db_connected', False)
+        
+    if not db_connected:
+        if is_cloud:
+            st.info("🌐 Running on Streamlit Cloud in demo mode - database features are disabled")
+            st.info("💡 All resume analysis features are fully functional!")
+        else:
+            st.info("💡 Running in demo mode - some features may be limited")
+    
+    # Logo and Header
+    try:
+        logo_paths = [
+            'Logo/RESUM.png',
+            './Logo/RESUM.png',
+            os.path.join(os.path.dirname(__file__), 'Logo', 'RESUM.png'),
+            '/mount/src/ai-resume-analyser/App/Logo/RESUM.png',
+            'App/Logo/RESUM.png'
+        ]
+        
+        img = None
+        for logo_path in logo_paths:
+            try:
+                if os.path.exists(logo_path):
+                    img = Image.open(logo_path)
+                    break
+            except:
+                continue
+        
+        if img:
+            col1, col2, col3 = st.columns([1, 2, 1])
+            with col2:
+                st.markdown('<div class="jss-logo-container">', unsafe_allow_html=True)
+                st.image(img, width=280)
+                st.markdown('</div>', unsafe_allow_html=True)
+        
+        # JSS Header
+        st.markdown(get_jss_header(), unsafe_allow_html=True)
+        
+    except Exception as e:
+        st.markdown(get_jss_header(), unsafe_allow_html=True)
+        
+    # JSS Styled Sidebar
+    st.sidebar.markdown(get_jss_sidebar_header(), unsafe_allow_html=True)
+    
+    activities = ["User", "Feedback", "About", "Admin"]
+    choice = st.sidebar.selectbox("🎯 Select Mode:", activities, key="nav_selectbox")
+    
+    # Sidebar footer
+    st.sidebar.markdown("---")
+    st.sidebar.markdown(get_jss_footer(), unsafe_allow_html=True)
+    
+    # ... rest of your code with updated styling calls
 
 ###### Packages Used ######
 import streamlit as st # core package used in this project
